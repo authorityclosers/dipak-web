@@ -64,7 +64,7 @@ jobs:
           EOF
           chmod 600 ~/.ssh/config
           
-          ssh -v production "echo 'SSH Connection to nivi Successful'"
+          ssh production "echo 'SSH Connection to nivi Successful'"
 
       - name: Sync Code to Remote Host
         run: |
@@ -78,12 +78,12 @@ jobs:
 
       - name: Deploy Docker Container
         run: |
-          ssh production "cd /home/nivi/apps/dipak-web && sudo docker compose -f docker-compose.prod.yml build && sudo docker compose -f docker-compose.prod.yml up -d --remove-orphans"
+          ssh production "cd /home/nivi/apps/dipak-web && docker compose -f docker-compose.prod.yml build && docker compose -f docker-compose.prod.yml up -d --remove-orphans"
 
       - name: Verify Live Production Health
         run: |
-          echo "Waiting 15s for container readiness and Traefik SSL certificate..."
-          sleep 15
+          echo "Waiting 5s for container readiness and Traefik SSL certificate..."
+          sleep 5
           for i in {1..12}; do
             echo "Attempt $i: Checking https://dipakvishwakarma.com/api/health..."
             STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://dipakvishwakarma.com/api/health || true)
@@ -91,7 +91,7 @@ jobs:
               echo "✅ Production Health Check PASSED (HTTP 200)!"
               exit 0
             fi
-            sleep 5
+            sleep 3
           done
           echo "❌ Health check did not return HTTP 200 in expected time window."
           exit 1
