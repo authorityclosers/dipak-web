@@ -1,0 +1,92 @@
+name: CI/CD Pipeline - Dipak Vishwakarma Web
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: production-deploy
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Lint, Typecheck & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run TypeScript check
+        run: npm run typecheck
+
+      - name: Run Next.js Build
+        run: npm run build
+
+  deploy:
+    name: Deploy to Production (nivi)
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Sync Code to Remote Host
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          ssh "$SSH_USER@$SSH_HOST" "mkdir -p /home/nivi/apps/dipak-web"
+          rsync -avz --delete \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            --exclude '.next' \
+            --exclude 'deploy.tar.gz' \
+            ./ "$SSH_USER@$SSH_HOST:/home/nivi/apps/dipak-web/"
+
+      - name: Deploy Docker Container
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: |
+          ssh "$SSH_USER@$SSH_HOST" "cd /home/nivi/apps/dipak-web && sudo docker compose -f docker-compose.prod.yml build && sudo docker compose -f docker-compose.prod.yml up -d --remove-orphans"
+
+      - name: Verify Live Production Health
+        run: |
+          echo "Waiting 15s for container readiness and Traefik SSL certificate..."
+          sleep 15
+          for i in {1..12}; do
+            echo "Attempt $i: Checking https://dipakvishwakarma.com/api/health..."
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://dipakvishwakarma.com/api/health || true)
+            if [ "$STATUS" = "200" ]; then
+              echo "✅ Production Health Check PASSED (HTTP 200)!"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "❌ Health check did not return HTTP 200 in expected time window."
+          exit 1

@@ -1,0 +1,40 @@
+services:
+  dipak-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: dipak-web
+    restart: unless-stopped
+    cpus: "0.50"
+    mem_limit: 512m
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_SITE_ORIGIN: https://dipakvishwakarma.com
+    networks:
+      - proxy_net
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy_net"
+      - "traefik.http.routers.dipak-web.rule=Host(`dipakvishwakarma.com`) || Host(`www.dipakvishwakarma.com`)"
+      - "traefik.http.routers.dipak-web.entrypoints=websecure"
+      - "traefik.http.routers.dipak-web.tls.certresolver=letsencrypt"
+      - "traefik.http.services.dipak-web.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.dipak-security.headers.stsseconds=31536000"
+      - "traefik.http.middlewares.dipak-security.headers.stsincludesubdomains=true"
+      - "traefik.http.middlewares.dipak-security.headers.contenttypenosniff=true"
+      - "traefik.http.middlewares.dipak-security.headers.framedeny=true"
+      - "traefik.http.middlewares.dipak-security.headers.referrerpolicy=strict-origin-when-cross-origin"
+      - "traefik.http.middlewares.dipak-security.headers.permissionspolicy=camera=(), microphone=(), geolocation=()"
+      - "traefik.http.routers.dipak-web.middlewares=dipak-security"
+
+networks:
+  proxy_net:
+    external: true
