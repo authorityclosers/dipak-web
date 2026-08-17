@@ -44,36 +44,41 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup SSH Key
+      - name: Setup SSH Key and Config
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
         run: |
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          
+          cat <<EOF > ~/.ssh/config
+          Host production
+            HostName $SSH_HOST
+            User $SSH_USER
+            IdentityFile ~/.ssh/id_ed25519
+            StrictHostKeyChecking accept-new
+            IdentitiesOnly yes
+          EOF
+          chmod 600 ~/.ssh/config
+          
+          ssh -v production "echo 'SSH Connection to nivi Successful'"
 
       - name: Sync Code to Remote Host
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          ssh "$SSH_USER@$SSH_HOST" "mkdir -p /home/nivi/apps/dipak-web"
+          ssh production "mkdir -p /home/nivi/apps/dipak-web"
           rsync -avz --delete \
             --exclude '.git' \
             --exclude 'node_modules' \
             --exclude '.next' \
             --exclude 'deploy.tar.gz' \
-            ./ "$SSH_USER@$SSH_HOST:/home/nivi/apps/dipak-web/"
+            ./ production:/home/nivi/apps/dipak-web/
 
       - name: Deploy Docker Container
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
         run: |
-          ssh "$SSH_USER@$SSH_HOST" "cd /home/nivi/apps/dipak-web && sudo docker compose -f docker-compose.prod.yml build && sudo docker compose -f docker-compose.prod.yml up -d --remove-orphans"
+          ssh production "cd /home/nivi/apps/dipak-web && sudo docker compose -f docker-compose.prod.yml build && sudo docker compose -f docker-compose.prod.yml up -d --remove-orphans"
 
       - name: Verify Live Production Health
         run: |
