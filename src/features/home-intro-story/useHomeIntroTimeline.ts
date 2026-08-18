@@ -50,6 +50,8 @@ export function useHomeIntroTimeline({
       // -----------------------------------------------------------------------
       // PART 1-4: PINNED 4-ACT STORY TIMELINE (Acts 1 to 4)
       // -----------------------------------------------------------------------
+      const bridgeDot = stage.querySelector("[data-story-bridge-dot]");
+
       const act1Wrapper = stage.querySelector("[data-story-act1-wrapper]");
       const act2Wrapper = stage.querySelector("[data-story-act2-wrapper]");
       const act3Wrapper = stage.querySelector("[data-story-act3-wrapper]");
@@ -63,9 +65,7 @@ export function useHomeIntroTimeline({
       const heroCopy = stage.querySelector("[data-story-copy]");
       const heroCtaRow = stage.querySelector("[data-story-cta-row]");
       const heroQuote = stage.querySelector("[data-story-quote]");
-      const heroPortraitRoot = stage.querySelector(
-        "[data-story-portrait-root]"
-      );
+      const heroPortraitRoot = stage.querySelector("[data-story-portrait-root]");
       const heroLeftAccent = stage.querySelector(".leftBrushAccent");
 
       const act2Index = stage.querySelector("[data-story-act2-index]");
@@ -113,6 +113,15 @@ export function useHomeIntroTimeline({
           scaleX: 0,
           opacity: 0,
           transformOrigin: "left center",
+        });
+      }
+
+      if (bridgeDot) {
+        gsap.set(bridgeDot, {
+          opacity: 0,
+          scale: 0,
+          x: 0,
+          y: 0,
         });
       }
 
@@ -196,18 +205,59 @@ export function useHomeIntroTimeline({
       });
 
       // -----------------------------------------------------------------------
-      // BEAT 1: HERO DECONSTRUCTION (0.0 -> 0.4) — INSTANT KINETIC FEEDBACK
+      // BEAT 1: HERO DECONSTRUCTION & PHOTON LEAP (0.0 -> 0.35)
       // -----------------------------------------------------------------------
       masterTl.addLabel("DECONSTRUCT", 0.0);
+
+      // Kinetic Bridge Photon Particle Leap
+      if (bridgeDot) {
+        masterTl.fromTo(
+          bridgeDot,
+          {
+            opacity: 0,
+            scale: 0,
+            x: -60,
+            y: 40,
+          },
+          {
+            opacity: 1,
+            scale: 2.2,
+            duration: 0.12,
+            ease: "power2.out",
+          },
+          "DECONSTRUCT+=0.02"
+        );
+        masterTl.to(
+          bridgeDot,
+          {
+            x: 160,
+            y: -230,
+            scale: 3.4,
+            duration: 0.22,
+            ease: "power2.inOut",
+          },
+          "DECONSTRUCT+=0.1"
+        );
+        masterTl.to(
+          bridgeDot,
+          {
+            scale: 0,
+            opacity: 0,
+            duration: 0.1,
+            ease: "power2.in",
+          },
+          "ACT2_ENTER+=0.02"
+        );
+      }
 
       if (heroGoldRule) {
         masterTl.to(
           heroGoldRule,
           {
-            scaleX: 1.4,
-            opacity: 0.4,
+            scaleX: 2.6,
+            opacity: 0,
             transformOrigin: "left center",
-            duration: 0.25,
+            duration: 0.28,
             ease: "power2.out",
           },
           "DECONSTRUCT"
@@ -218,8 +268,9 @@ export function useHomeIntroTimeline({
           heroHeadlineLines,
           {
             yPercent: -105,
-            duration: 0.35,
-            stagger: 0.025,
+            rotateX: 8,
+            duration: 0.32,
+            stagger: 0.02,
             ease: "power2.inOut",
           },
           "DECONSTRUCT"
@@ -229,7 +280,7 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroCopy,
           {
-            y: -14,
+            y: -20,
             opacity: 0,
             duration: 0.25,
             ease: "power2.in",
@@ -241,7 +292,7 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroCtaRow,
           {
-            y: 16,
+            y: 20,
             opacity: 0,
             duration: 0.25,
             ease: "power2.in",
@@ -253,7 +304,7 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroQuote,
           {
-            y: -10,
+            y: -16,
             opacity: 0,
             duration: 0.25,
             ease: "power2.in",
@@ -265,9 +316,10 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroPortraitRoot,
           {
-            x: 28,
-            scale: 0.94,
-            duration: 0.38,
+            x: 50,
+            scale: 0.9,
+            opacity: 0,
+            duration: 0.35,
             ease: "power2.inOut",
           },
           "DECONSTRUCT+=0.02"
@@ -277,9 +329,11 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroLeftAccent,
           {
+            x: 100,
+            scaleX: 2.2,
             opacity: 0,
-            duration: 0.2,
-            ease: "power1.inOut",
+            duration: 0.3,
+            ease: "power2.inOut",
           },
           "DECONSTRUCT"
         );
@@ -288,6 +342,7 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroHeader,
           {
+            y: -20,
             opacity: 0,
             duration: 0.25,
             ease: "power1.inOut",

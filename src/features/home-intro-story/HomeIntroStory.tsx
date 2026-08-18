@@ -41,6 +41,13 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
             aria-hidden="true"
           />
 
+          {/* Kinetic Act 1 -> Act 2 Bridge Golden Photon Particle */}
+          <div
+            className={styles.bridgeGoldDot}
+            data-story-bridge-dot="true"
+            aria-hidden="true"
+          />
+
           {/* Act 1: Belief & Philosophy (Hero) */}
           <div className={styles.act1Wrapper} data-story-act1-wrapper="true">
             <DipakHero content={dipakHeroContent} />
