@@ -1,0 +1,1 @@
+The procedural-bristle images are a tested CPU prototype proving that bristle deposition + coherent dropout produces natural internal texture unlike stacked uniform SVG bands. They are NOT the final art target.

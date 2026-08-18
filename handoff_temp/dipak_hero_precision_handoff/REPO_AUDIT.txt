@@ -1,0 +1,29 @@
+# Repo audit snapshot
+
+Repository: nayagrowth/dipak-web
+
+Baseline reviewed:
+43a85ae0a4539ac2bc250e61960fdefd5355a1a4
+feat: complete mobile & desktop responsive art direction rebuild with Playwright test suite
+
+Important files reviewed:
+
+- src/features/dipak-hero/DipakHero.tsx
+- src/features/dipak-hero/dipak-hero.module.css
+- scripts/prepare-hero-assets.py
+- tests/hero.visual.spec.ts
+- playwright.config.ts
+- next.config.ts
+
+Important current implementation facts:
+
+- Playwright dependency was added in 43a85ae.
+- A dedicated mobile portrait source was added.
+- Mobile portrait and halo still use independent vw-based sizing/offsets.
+- The mask generator currently reconstructs the Ensō from two reference screenshots.
+- The left brush generator mostly preserves the source alpha channel, which is why an opaque rectangular alpha defect survives into CSS masking.
+- The Playwright geometry suite checks halo/stage top rather than meaningful portrait content and has no screenshot assertions.
+
+EA-web reference note:
+
+The GitHub connector did not resolve a repository named `EA-web` / Estate Autopilots in the currently accessible repository index during this handoff pass. The animation spec therefore uses the previously established EA interaction principles (immediate first-scroll response, no dead scroll distance, progress-driven transitions, restrained pointer response) without claiming a fresh code-level audit of that repo.

@@ -1,0 +1,5 @@
+Use the attached ZIP as the implementation source of truth for the Dipak hero. Work from `nayagrowth/dipak-web` at baseline commit `43a85ae0a4539ac2bc250e61960fdefd5355a1a4` (or rebase carefully if a newer commit exists). Read `00_START_HERE.md` first, then execute in order.
+
+The highest-priority rule: **do not keep tuning the current halo with arbitrary CSS offsets.** Remove the broken left brush, rebuild the Ensō from the original `brush-halo.png` source (not composited reference screenshots), then register portrait + halo through one generated coordinate system so they share a single transform on every breakpoint. Fix the Playwright blind spots before declaring success. Only after static desktop/mobile screenshots are correct should you add the restrained intro motion in `03_INTRO_MOTION_SPEC.md`.
+
+Use the supplied current screenshots and zooms as failure references. Run all viewport screenshots listed in `04_QA_PLAYWRIGHT.md` and do not stop at a passing build.

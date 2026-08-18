@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "seed": 108,
+  "canvasSize": 2048,
+  "logicalSize": 1000,
+  "centerline": [
+    [760, 210],
+    [620, 130],
+    [390, 140],
+    [210, 270],
+    [130, 480],
+    [150, 710],
+    [270, 860],
+    [470, 935],
+    [700, 890],
+    [845, 730],
+    [885, 540]
+  ],
+  "brush": {
+    "preset": "charcoal-enso",
+    "numBristles": 700,
+    "baseWidth": 135.0,
+    "peakOpacity": 0.76,
+    "pigmentDepletion": 0.40,
+    "dryBrushGaps": true,
+    "splatters": 120
+  },
+  "reveal": {
+    "duration": "820ms",
+    "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+    "delay": "110ms",
+    "strokeWidth": 240
+  },
+  "assetPath": "/hero/enso-brush-master.webp"
+}

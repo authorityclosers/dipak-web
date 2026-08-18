@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "43a85ae0a4539ac2bc250e61960fdefd5355a1a4",
+  "rule": "portrait and halo must share one composition transform",
+  "reference": {
+    "width": 1672,
+    "height": 941,
+    "portraitBox": [
+      "MEASURE_x",
+      "MEASURE_y",
+      "MEASURE_w",
+      "MEASURE_h"
+    ],
+    "haloBox": [
+      "MEASURE_x",
+      "MEASURE_y",
+      "MEASURE_w",
+      "MEASURE_h"
+    ]
+  },
+  "derived": {
+    "halo_u": "(haloX - portraitX) / portraitW",
+    "halo_v": "(haloY - portraitY) / portraitH",
+    "halo_sw": "haloW / portraitW",
+    "halo_sh": "haloH / portraitH"
+  },
+  "mobileCropMapping": {
+    "formula": {
+      "xPrime": "(x - cropX) / cropW",
+      "yPrime": "(y - cropY) / cropH",
+      "wPrime": "w / cropW",
+      "hPrime": "h / cropH"
+    }
+  }
+}

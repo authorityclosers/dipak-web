@@ -26,6 +26,30 @@
   padding: clamp(0.8rem, 2vh, 1.8rem) clamp(1.5rem, 5vw, 6rem) clamp(0.8rem, 1.8vh, 1.4rem);
 }
 
+/* Authentic Left Margin Calligraphy Brush Accent */
+.leftBrushAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: clamp(60px, 6vw, 95px);
+  height: clamp(280px, 45vh, 450px);
+  background-image: url("/hero/left-brush-accent.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: top left;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+  .leftBrushAccent {
+    width: 48px;
+    height: 220px;
+    opacity: 0.60;
+  }
+}
+
 /* Header & Navigation */
 .header {
   position: relative;
@@ -811,6 +835,18 @@
   }
 }
 
+.ensoRevealPath {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: ensoPaintReveal 820ms cubic-bezier(0.16, 1, 0.3, 1) 110ms forwards;
+}
+
+@keyframes ensoPaintReveal {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .header,
   .kickerRow,
@@ -824,10 +860,12 @@
   .primaryIcon,
   .mobileDrawer,
   .drawerNavLink,
-  .drawerCtaArrow {
+  .drawerCtaArrow,
+  .ensoRevealPath {
     animation: none !important;
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;
+    stroke-dashoffset: 0 !important;
   }
 }

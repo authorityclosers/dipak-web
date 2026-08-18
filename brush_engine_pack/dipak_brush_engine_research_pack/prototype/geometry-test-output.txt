@@ -1,0 +1,1 @@
+PASS: normalized brush registration is invariant under composition-root resizing

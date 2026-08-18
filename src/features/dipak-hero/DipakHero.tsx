@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MobileNav } from "./MobileNav";
-import { EnsoBrush } from "./EnsoBrush";
+import { BrushArtwork } from "./BrushArtwork";
 import type { HeroContent, HeroCta } from "./hero.types";
 import heroComposition from "./generated/hero-composition.json";
 import styles from "./dipak-hero.module.css";
@@ -35,6 +35,9 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 export function DipakHero({ content }: { content: HeroContent }) {
   return (
     <section id="hero" className={styles.surface} aria-labelledby="hero-heading">
+      {/* Authentic Left Margin Calligraphy Brush Accent */}
+      <div className={styles.leftBrushAccent} aria-hidden="true" />
+
       {/* Top Header & Navigation */}
       <header className={styles.header}>
         <a className={styles.wordmark} href="#hero" aria-label="Dipak Vishwakarma homepage">
@@ -136,8 +139,8 @@ export function DipakHero({ content }: { content: HeroContent }) {
               } as React.CSSProperties
             }
           >
-            {/* Pure Vector SVG Ensō Brush Halo with Organic Ink Texture */}
-            <EnsoBrush className={styles.halo} />
+            {/* Authentic Natural-Media Ensō Brush Artwork with Animated Reveal */}
+            <BrushArtwork className={styles.halo} />
 
             {/* Decontaminated High-Resolution Portrait Cutouts */}
             <Image

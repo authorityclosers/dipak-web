@@ -1,0 +1,9 @@
+Implement the Dipak hero brush system from this pack. Work from the latest repo state at or after commit `d70ebc9561be9efd41e5df44002f13291bdbea60`.
+
+Critical: the current four-path `EnsoBrush.tsx` is not acceptable. It is producing translucent vector bands. Do not keep tuning `feTurbulence`, stroke widths or opacities.
+
+Build a development-only natural-media authoring workflow with `p5.brush/standalone` (or the custom bristle engine only if p5.brush cannot meet the visual target). Generate one deterministic transparent high-resolution Ensō texture from a pressure-aware spline. Runtime must be lightweight: authentic texture + SVG reveal mask, all inside the existing single registered composition root. The brush texture and reveal mask must share one fixed logical viewBox, and portrait/brush registration must remain normalized to the composition root on every breakpoint.
+
+Read the Markdown files in numeric order. Add Playwright screenshot regression and normalized registration assertions. Only add GSAP/DrawSVG if GSAP is also being introduced for the next scroll-act work; otherwise use native SVG pathLength/dashoffset for the initial reveal.
+
+Do not declare completion until desktop and mobile screenshots no longer show the current gray ring/band effect.
