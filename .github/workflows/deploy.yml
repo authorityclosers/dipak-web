@@ -78,7 +78,7 @@ jobs:
 
       - name: Deploy Docker Container
         run: |
-          ssh production "cd /home/nivi/apps/dipak-web && docker compose -f docker-compose.prod.yml build && (docker rm -f dipak-web 2>/dev/null || true) && docker compose -f docker-compose.prod.yml up -d --remove-orphans --force-recreate"
+          ssh production "cd /home/nivi/apps/dipak-web && docker compose -f docker-compose.prod.yml down --remove-orphans 2>/dev/null || true && docker compose -f docker-compose.prod.yml up -d --build --remove-orphans"
 
       - name: Verify Live Production Health
         run: |
