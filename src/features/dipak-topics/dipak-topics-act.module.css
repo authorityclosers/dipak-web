@@ -1,0 +1,301 @@
+.topicsSection {
+  --dv-ink: #11110f;
+  --dv-body: #4a473e;
+  --dv-canvas: #f4f1ea;
+  --dv-gold-art: #c89545;
+  --dv-gold-text: #8f621f;
+  --dv-gold-line: #d8aa5a;
+  --dv-line: rgba(17, 17, 15, 0.12);
+  --dv-serif: var(--font-serif), "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --dv-sans: var(--font-sans), "Plus Jakarta Sans", Inter, -apple-system, sans-serif;
+  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+
+  position: relative;
+  width: 100%;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dv-canvas);
+  color: var(--dv-ink);
+  padding: clamp(4.5rem, 9vh, 8rem) clamp(1.5rem, 5vw, 6rem);
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+.atmosphereLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(200, 149, 69, 0.08), transparent 55%),
+    radial-gradient(circle at 90% 80%, rgba(200, 149, 69, 0.06), transparent 50%);
+}
+
+.ensoEcho {
+  position: absolute;
+  top: 50%;
+  right: -120px;
+  transform: translateY(-50%);
+  width: 700px;
+  height: 700px;
+  background-image: url("/hero/enso-brush-master.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.topicsContainer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 112rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vh, 4rem);
+}
+
+/* Header Row */
+.headerRow {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: flex-end;
+  gap: 2rem;
+  border-bottom: 1.5px solid var(--dv-gold-line);
+  padding-bottom: clamp(1rem, 2vh, 1.8rem);
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sectionIndex {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.82rem, 0.9vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--dv-gold-text);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.headline {
+  font-family: var(--dv-serif);
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+.goldPeriod {
+  color: var(--dv-gold-art);
+  font-family: var(--dv-serif);
+}
+
+.headerMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.35rem;
+}
+
+.metaLabel {
+  font-family: var(--dv-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--dv-gold-text);
+  text-transform: uppercase;
+}
+
+.supportingNote {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.95rem, 1.05vw, 1.15rem);
+  line-height: 1.55;
+  color: var(--dv-body);
+  max-width: 26rem;
+  margin: 0;
+}
+
+/* Monumental Architectural Domain Ledger */
+.ledgerList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--dv-line);
+}
+
+.ledgerRow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 80px 1.4fr 1.6fr 40px;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  padding: clamp(2rem, 3.8vh, 3rem) 0;
+  border-bottom: 1px solid var(--dv-line);
+  transition: background-color 220ms ease, padding-left 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ledgerRow::before {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--dv-gold-art), var(--dv-gold-line));
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.ledgerRow:hover {
+  background-color: rgba(200, 149, 69, 0.03);
+  padding-left: 1.2rem;
+}
+
+.ledgerRow:hover::before {
+  width: 100%;
+}
+
+/* Row Index */
+.rowIndex {
+  font-family: var(--dv-mono);
+  font-size: clamp(1rem, 1.2vw, 1.35rem);
+  font-weight: 700;
+  color: var(--dv-gold-text);
+  letter-spacing: 0.08em;
+}
+
+/* Row Title Block */
+.rowTitleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.domainTag {
+  font-family: var(--dv-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #8c887f;
+  text-transform: uppercase;
+}
+
+.domainTitle {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.6rem, 2.3vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--dv-ink);
+  margin: 0;
+  transition: color 200ms ease;
+}
+
+.ledgerRow:hover .domainTitle {
+  color: var(--dv-gold-text);
+}
+
+/* Row Content & Telemetry */
+.rowContentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.domainDescription {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.95rem, 1.05vw, 1.15rem);
+  line-height: 1.6;
+  color: var(--dv-body);
+  margin: 0;
+  max-width: 44ch;
+}
+
+.telemetryTag {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--dv-gold-text);
+  text-transform: uppercase;
+}
+
+/* Row Arrow */
+.rowArrow {
+  font-size: 1.4rem;
+  color: var(--dv-gold-text);
+  opacity: 0.35;
+  transform: translateX(-6px);
+  transition: opacity 220ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1), color 220ms ease;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ledgerRow:hover .rowArrow {
+  opacity: 1;
+  color: var(--dv-gold-art);
+  transform: translateX(0);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .headerRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .headerMeta {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .ledgerRow {
+    grid-template-columns: 50px 1fr 40px;
+    grid-template-rows: auto auto;
+    gap: 1rem;
+  }
+
+  .rowContentBlock {
+    grid-column: 2 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .topicsSection {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .headline {
+    font-size: clamp(2.2rem, 8.5vw, 3.6rem);
+  }
+
+  .ledgerRow {
+    grid-template-columns: 1fr 30px;
+    padding: 1.6rem 0;
+  }
+
+  .rowIndex {
+    font-size: 0.9rem;
+  }
+
+  .rowContentBlock {
+    grid-column: 1 / -1;
+  }
+}

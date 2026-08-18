@@ -1,0 +1,17 @@
+Finalize the existing Act 2 on `feature/act2-certainty-builder`; do not start Act 3/4.
+
+Use this pack as a design-QA source of truth. Preserve the concept and verified copy. This is a precision refinement, not a redesign.
+
+Critical fixes:
+1. Remove/reposition the gold rule that currently passes through `THE CERTAINTY`.
+2. Treat `02 / THE PERSON` and the title as one header composition.
+3. Split `BUILDER`, `™`, and the period; make the TM a true superscript and use the warm gold period as the inherited accent.
+4. Keep `Founder of Authority Closers.` but remove `STRATEGIC SALES ENABLEMENT` unless it is independently client-approved.
+5. Rebuild proof metrics as a strict component system. `₹9+` is the main metric and `CRORE` is a smaller suffix. This is mandatory because the current mobile recording clips the word `CRORE`.
+6. Rebuild Featured In as a monochrome icon+name trust rail. Use real brand marks only; never fabricate a Dailyhunt logo. Typography-only is acceptable if no verified asset exists.
+7. Remove whole-act crossfades that create the pale ghost/white-wash frame visible in the supplied recording. Keep the background constant; exit Act 1 via masks/transforms and locally reveal Act 2.
+8. On mobile, keep document-flow behavior and fix clipping/overflow. No desktop-style long pinned cinematic sequence.
+9. Only after static + motion QA passes, optionally add one 3–5% opacity crop from the existing authentic brush asset as continuity. No new smudge files and no second full Ensō.
+10. Fix `/favicon.ico` 404 before client review.
+
+Run the screenshot and bounding-box checks in `07_PLAYWRIGHT_ACCEPTANCE.md`. The existing 28 passing tests are not sufficient because the current recording still contains visible clipping and transition defects.

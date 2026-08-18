@@ -1,0 +1,29 @@
+Act 2 is being implemented/finalized. Prepare and implement the next homepage sections from this pack one act at a time.
+
+Do not redesign the existing visual language. Preserve the Dipak editorial system: ivory, near-black, warm gold, large serif typography, restrained natural-media accents, minimal UI.
+
+Recommended order:
+1. Act 3 Featured In
+2. Act 4 My Mission shell
+3. Act 5 What I Talk About
+4. Act 6 Latest Videos + Latest Articles
+5. Act 7 Authority Closers bridge + final CTA
+
+Important content rules:
+- Medium, Dailyhunt, YouTube, Podcast, LinkedIn are the verified Featured In platform set.
+- Topic labels are Sales, Buyer Psychology, Communication, Personal Branding, AI, Entrepreneurship, Startups, Public Speaking.
+- Do not invent Dipak's final Mission wording. Build mission content from config and use only approved copy when available.
+- Approved philosophy lines may be used as supporting manifesto material.
+- CTA `Explore Authority Closers` is approved.
+- Do not fabricate Dailyhunt brand artwork. Use text-only until a verified official asset is available.
+
+Motion:
+- copy Estate Autopilots' motion grammar, not its visual style
+- immediate response
+- shared motif continuity
+- no whole-act ghost crossfades
+- fast assembly + long readable hold
+- reversible deterministic GSAP timeline
+- mobile remains simplified document flow
+
+Build and visually QA each section separately before stitching the entire homepage timeline.

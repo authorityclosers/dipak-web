@@ -1,0 +1,243 @@
+.missionSection {
+  --dv-ink: #11110f;
+  --dv-body: #4a473e;
+  --dv-canvas: #f4f1ea;
+  --dv-gold-art: #c89545;
+  --dv-gold-text: #8f621f;
+  --dv-gold-line: #d8aa5a;
+  --dv-line: rgba(17, 17, 15, 0.12);
+  --dv-serif: var(--font-serif), "Playfair Display", "Iowan Old Style", Georgia, serif;
+  --dv-sans: var(--font-sans), "Plus Jakarta Sans", Inter, -apple-system, sans-serif;
+  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--dv-canvas);
+  color: var(--dv-ink);
+  padding: clamp(2rem, 5vh, 4rem) clamp(1.5rem, 5vw, 6rem);
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+/* Atmospheric Layer */
+.atmosphereLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(200, 149, 69, 0.08), transparent 65%),
+    radial-gradient(circle at 10% 20%, rgba(200, 149, 69, 0.04), transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(200, 149, 69, 0.04), transparent 45%);
+}
+
+.ensoAura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(380px, 45vw, 650px);
+  height: clamp(380px, 45vw, 650px);
+  background-image: url("/hero/enso-brush-master.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+
+/* Central Horizontally Spread Container */
+.manifestoContainer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 72rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: clamp(1.4rem, 2.6vh, 2.2rem);
+}
+
+/* Eyebrow / Act Kicker */
+.kickerBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.sectionIndex {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.78rem, 0.85vw, 0.92rem);
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  color: var(--dv-gold-text);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.kickerMeta {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: #8c887f;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Horizontally Spread Core Belief Quote */
+.quoteSculpture {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.quoteHeadline {
+  font-family: var(--dv-serif);
+  font-size: clamp(2.4rem, 4.4vw, 4.6rem);
+  font-weight: 700;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--dv-ink);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.headlineMask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.headlineLine {
+  display: block;
+  will-change: transform, opacity;
+  white-space: normal;
+}
+
+.goldEmphasis {
+  background: linear-gradient(135deg, #8f621f 0%, #c89545 50%, #8f621f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-style: italic;
+  padding-right: 0.06em;
+}
+
+/* Central Gold Laser Axis with Center Accent */
+.laserContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: clamp(140px, 20vw, 240px);
+  transform-origin: center;
+}
+
+.laserLine {
+  flex: 1;
+  height: 1.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--dv-gold-line) 40%,
+    var(--dv-gold-art) 100%
+  );
+  opacity: 0.75;
+}
+
+.laserLine:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--dv-gold-art) 0%,
+    var(--dv-gold-line) 60%,
+    transparent 100%
+  );
+}
+
+.laserDiamond {
+  width: 5px;
+  height: 5px;
+  background-color: var(--dv-gold-art);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+/* Two Pure Editorial Tenets */
+.tenetsRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 3.5vw, 3.2rem);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tenetItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--dv-sans);
+  font-size: clamp(0.92rem, 1.05vw, 1.1rem);
+  font-weight: 500;
+  color: var(--dv-body);
+  letter-spacing: -0.01em;
+}
+
+.tenetDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--dv-gold-art);
+  flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .manifestoContainer {
+    gap: 1.2rem;
+  }
+
+  .quoteHeadline {
+    font-size: clamp(2rem, 7.5vw, 3rem);
+  }
+
+  .tenetsRow {
+    flex-direction: column;
+    gap: 0.65rem;
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .headlineLine,
+  .laserContainer,
+  .tenetsRow,
+  .ensoAura {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

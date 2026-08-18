@@ -1,6 +1,7 @@
 import React from "react";
 import { identityContent } from "./identity.content";
 import type { IdentityContent } from "./identity.types";
+import { MediaIcon } from "./MediaIcons";
 import styles from "./dipak-identity-act.module.css";
 
 interface DipakIdentityActProps {
@@ -19,7 +20,7 @@ export function DipakIdentityAct({
       aria-labelledby="identity-heading"
       data-story-act2="true"
     >
-      {/* Background Atmosphere */}
+      {/* Background Atmosphere Continuity */}
       <div className={styles.atmosphereLayer} aria-hidden="true" />
 
       <div className={styles.identityContainer}>
@@ -45,13 +46,15 @@ export function DipakIdentityAct({
                 className={styles.headlineLine}
                 data-story-act2-headline="true"
               >
-                {content.headlinePart2}
+                {content.headlineWord2}
+                <span className={styles.tm}>™</span>
+                <span className={styles.goldPeriod}>.</span>
               </span>
             </span>
           </h2>
         </header>
 
-        {/* Structural Editorial Gold Rule */}
+        {/* Structural Editorial Gold Rule Sits Strictly Under Header */}
         <div className={styles.structuralRuleContainer}>
           <div
             className={styles.structuralRule}
@@ -60,11 +63,11 @@ export function DipakIdentityAct({
           />
         </div>
 
-        {/* Middle Content Row: Subhead & Verified Bio */}
+        {/* Middle Content Row: Founder Lockup & Verified Bio */}
         <div className={styles.middleRow}>
           <div className={styles.roleColumn} data-story-act2-role="true">
             <h3 className={styles.roleSubhead}>{content.roleSubhead}</h3>
-            <p className={styles.roleTagline}>Strategic Sales Enablement</p>
+            <span className={styles.founderDash} aria-hidden="true" />
           </div>
 
           <div className={styles.bioColumn} data-story-act2-bio="true">
@@ -72,20 +75,27 @@ export function DipakIdentityAct({
           </div>
         </div>
 
-        {/* Bottom Proof Metrics Row */}
+        {/* Bottom Normalized Proof Metrics Row */}
         <div className={styles.statsRow} data-story-act2-stats="true">
-          {content.stats.map((stat) => (
-            <div className={styles.statBlock} key={stat.label}>
-              <span className={styles.statValue}>{stat.value}</span>
+          {content.metrics.map((metric) => (
+            <div className={styles.statBlock} key={metric.label}>
+              <div className={styles.statValueRow}>
+                <span className={styles.statMain}>{metric.main}</span>
+                {metric.suffix ? (
+                  <span className={styles.statSuffix}>{metric.suffix}</span>
+                ) : null}
+              </div>
               <div className={styles.statLabelRow}>
-                <span className={styles.statLabel}>{stat.label}</span>
-                <span className={styles.statSublabel}>{stat.sublabel}</span>
+                <span className={styles.statLabel}>{metric.label}</span>
+                {metric.sublabel ? (
+                  <span className={styles.statSublabel}>{metric.sublabel}</span>
+                ) : null}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Media Proof Preview Rail */}
+        {/* Bottom Monochrome Media Proof Trust Rail */}
         <footer className={styles.previewRail} data-story-act2-preview="true">
           <div className={styles.previewRailLabel}>
             <span>{content.previewRailLabel}</span>
@@ -94,16 +104,15 @@ export function DipakIdentityAct({
             </span>
           </div>
 
-          <ul className={styles.channelsList} aria-label="Media channels">
-            {content.previewChannels.map((channel, idx) => (
-              <React.Fragment key={channel}>
-                <li className={styles.channelItem}>{channel}</li>
-                {idx < content.previewChannels.length - 1 ? (
-                  <li className={styles.channelDot} aria-hidden="true">
-                    ·
-                  </li>
-                ) : null}
-              </React.Fragment>
+          <ul className={styles.mediaList} aria-label="Featured media channels">
+            {content.previewChannels.map((channel) => (
+              <li className={styles.mediaItem} key={channel.label}>
+                <MediaIcon
+                  type={channel.iconType}
+                  className={styles.mediaIcon}
+                />
+                <span className={styles.mediaName}>{channel.label}</span>
+              </li>
             ))}
           </ul>
         </footer>

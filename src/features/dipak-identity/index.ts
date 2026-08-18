@@ -1,3 +1,8 @@
 export { DipakIdentityAct } from "./DipakIdentityAct";
 export { identityContent } from "./identity.content";
-export type { IdentityContent, IdentityStat } from "./identity.types";
+export { MediaIcon } from "./MediaIcons";
+export type {
+  IdentityContent,
+  IdentityMetric,
+  MediaChannel,
+} from "./identity.types";
