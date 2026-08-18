@@ -1,9 +1,9 @@
-import { DipakHero, dipakHeroContent } from "@/features/dipak-hero";
+import { HomeIntroStory } from "@/features/home-intro-story";
 
 export default function HomePage() {
   return (
     <main>
-      <DipakHero content={dipakHeroContent} />
+      <HomeIntroStory />
     </main>
   );
 }

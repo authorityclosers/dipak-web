@@ -1,0 +1,9 @@
+Work from the current Dipak website repo head at or after `7b643f7deae63fde360c5172e98d75ae9823476b` and build the next homepage act using this pack.
+
+The next section is **ACT 2 — THE CERTAINTY BUILDER™**, solving the client-requested Short Bio / identity section. Preserve the exact verified copy in `01_EXACT_COPY_SOURCE.md`. Do not invent mission copy or new achievements.
+
+Use Estate Autopilots only as a motion-architecture reference: immediate first-scroll response, a deterministic reversible GSAP timeline, solid deconstruction instead of opacity mush, one shared motif bridging acts, and a fully readable Act 2 hold. Do not import Estate Autopilots' 3D runway / velocity / eclipse visual language into Dipak.
+
+The shared transition object should be the hero's gold kicker rule, which stretches into the structural editorial rule in Act 2. Keep the Ensō secondary. Build Act 2 as a typography/evidence-heavy editorial spread with the verified short bio and the three verified facts: 11+ years, ₹9+ Crore generated, 940+ sales professionals trained. End with only a preview rail for Medium · Dailyhunt · YouTube · Podcast · LinkedIn, preparing the next section.
+
+Read the Markdown files in order. Implement Playwright screenshots at multiple timeline progress states before declaring the section complete.

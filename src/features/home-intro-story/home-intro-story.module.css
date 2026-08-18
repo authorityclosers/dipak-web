@@ -1,0 +1,112 @@
+.storyShell {
+  position: relative;
+  width: 100%;
+  min-height: 240vh;
+  background-color: #f4f1ea;
+}
+
+.storyStage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100dvh;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  overflow: clip;
+  background-color: #f4f1ea;
+  box-sizing: border-box;
+}
+
+/* Layered Story Acts */
+.act1Wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.act2Wrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+}
+
+/* Shared Bridge Motif: The Gold Editorial Rule */
+.bridgeGoldRule {
+  position: absolute;
+  top: clamp(8.5rem, 14vh, 12rem);
+  left: clamp(1.5rem, 5vw, 6rem);
+  right: clamp(1.5rem, 5vw, 6rem);
+  height: 1px;
+  background-color: #d8aa5a;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Mobile & Reduced Motion Adaptive Layout */
+@media (max-width: 768px) {
+  .storyShell {
+    min-height: 100%;
+  }
+
+  .storyStage {
+    position: relative;
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .act1Wrapper {
+    position: relative;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .act2Wrapper {
+    position: relative;
+    height: auto;
+    min-height: 100dvh;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .bridgeGoldRule {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storyShell {
+    min-height: 100%;
+  }
+
+  .storyStage {
+    position: relative;
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .act1Wrapper {
+    position: relative;
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .act2Wrapper {
+    position: relative;
+    height: auto;
+    min-height: 100dvh;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .bridgeGoldRule {
+    display: none;
+  }
+}

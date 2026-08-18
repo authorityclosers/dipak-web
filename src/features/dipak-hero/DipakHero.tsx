@@ -34,12 +34,17 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 
 export function DipakHero({ content }: { content: HeroContent }) {
   return (
-    <section id="hero" className={styles.surface} aria-labelledby="hero-heading">
+    <section
+      id="hero"
+      className={styles.surface}
+      aria-labelledby="hero-heading"
+      data-story-act1="true"
+    >
       {/* Authentic Left Margin Calligraphy Brush Accent */}
       <div className={styles.leftBrushAccent} aria-hidden="true" />
 
       {/* Top Header & Navigation */}
-      <header className={styles.header}>
+      <header className={styles.header} data-story-header="true">
         <a className={styles.wordmark} href="#hero" aria-label="Dipak Vishwakarma homepage">
           <span className={styles.wordmarkFirst}>{content.brandFirstLine}</span>
           <span className={styles.wordmarkSecond}>{content.brandSecondLine}</span>
@@ -72,24 +77,40 @@ export function DipakHero({ content }: { content: HeroContent }) {
       <div className={styles.heroGrid}>
         {/* Left Column: Copy & CTAs */}
         <div className={styles.copyColumn}>
-          <div className={styles.kickerRow}>
+          <div className={styles.kickerRow} data-story-kicker="true">
             <span className={styles.kickerText}>{content.kicker}</span>
-            <span className={styles.kickerLine} aria-hidden="true" />
+            <span
+              className={styles.kickerLine}
+              data-story-gold-rule="true"
+              aria-hidden="true"
+            />
           </div>
 
           <h1 id="hero-heading" className={styles.headline}>
             <span className={styles.headlineMask}>
-              <span className={styles.headlineLine} style={{ "--line-index": 0 } as React.CSSProperties}>
+              <span
+                className={styles.headlineLine}
+                data-story-headline-line="true"
+                style={{ "--line-index": 0 } as React.CSSProperties}
+              >
                 {content.headlinePart1}
               </span>
             </span>
             <span className={styles.headlineMask}>
-              <span className={styles.headlineLine} style={{ "--line-index": 1 } as React.CSSProperties}>
+              <span
+                className={styles.headlineLine}
+                data-story-headline-line="true"
+                style={{ "--line-index": 1 } as React.CSSProperties}
+              >
                 {content.headlinePart2}
               </span>
             </span>
             <span className={styles.headlineMask}>
-              <span className={styles.headlineLine} style={{ "--line-index": 2 } as React.CSSProperties}>
+              <span
+                className={styles.headlineLine}
+                data-story-headline-line="true"
+                style={{ "--line-index": 2 } as React.CSSProperties}
+              >
                 {content.headlinePart3}
                 <span className={styles.goldDot} aria-hidden="true">
                   .
@@ -98,10 +119,16 @@ export function DipakHero({ content }: { content: HeroContent }) {
             </span>
           </h1>
 
-          <p className={styles.supportingCopy}>{content.supportingCopy}</p>
+          <p className={styles.supportingCopy} data-story-copy="true">
+            {content.supportingCopy}
+          </p>
 
           {content.ctas.some((cta) => Boolean(cta.href)) ? (
-            <div className={styles.ctaRow} aria-label="Hero actions">
+            <div
+              className={styles.ctaRow}
+              data-story-cta-row="true"
+              aria-label="Hero actions"
+            >
               {content.ctas.map((cta) => (
                 <CtaButton cta={cta} key={cta.event} />
               ))}
@@ -109,7 +136,11 @@ export function DipakHero({ content }: { content: HeroContent }) {
           ) : null}
 
           {content.quote ? (
-            <blockquote className={styles.quoteBlock} data-hero-quote="true">
+            <blockquote
+              className={styles.quoteBlock}
+              data-hero-quote="true"
+              data-story-quote="true"
+            >
               <span className={styles.quoteMark} aria-hidden="true">
                 “
               </span>
@@ -124,6 +155,7 @@ export function DipakHero({ content }: { content: HeroContent }) {
           <div
             className={styles.visualComposition}
             data-hero-composition="true"
+            data-story-portrait-root="true"
             style={
               {
                 "--desktop-aspect": heroComposition.desktop.aspectRatio,
