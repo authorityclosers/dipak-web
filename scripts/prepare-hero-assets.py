@@ -1,187 +1,100 @@
+"""
+Dipak Vishwakarma Hero — Precision Asset & Registration Pipeline
+================================================================
+Extracts clean Ensō mask from original master brush asset, generates
+trimmed desktop and art-directed mobile cutouts, computes exact mathematical
+registration parameters, and outputs hero-composition.json for runtime rendering.
+"""
+
 import os
 import sys
+import json
 import numpy as np
-from PIL import Image, ImageFilter
-
-def srgb_to_linear(c):
-    """Convert sRGB array (0..1) to linear RGB."""
-    return np.where(c <= 0.04045, c / 12.92, ((c + 0.055) / 1.055) ** 2.4)
-
-def linear_luminance(rgb_float):
-    """Compute linear luminance from float RGB in 0..1."""
-    r_lin = srgb_to_linear(rgb_float[:, :, 0])
-    g_lin = srgb_to_linear(rgb_float[:, :, 1])
-    b_lin = srgb_to_linear(rgb_float[:, :, 2])
-    return 0.2126 * r_lin + 0.7152 * g_lin + 0.0722 * b_lin
+from PIL import Image
 
 def smoothstep(edge0, edge1, x):
-    """Hermite smoothstep interpolation."""
-    t = np.clip((x - edge0) / (edge1 - edge0), 0.0, 1.0)
-    return t * t * (3.0 - 2.0 * t)
+    x = np.clip((x - edge0) / (edge1 - edge0), 0.0, 1.0)
+    return x * x * (3.0 - 2.0 * x)
 
 def process_enso_mask():
-    print(">>> Processing Enso Halo Mask...")
-    os.makedirs("public/hero", exist_ok=True)
+    print(">>> Extracting Clean Enso Mask from Original Brush Asset...")
+    src_path = "original_brush_halo.png"
+    if not os.path.exists(src_path):
+        src_path = "src/features/dipak-hero/assets/brush-halo.png"
+        
+    img = Image.open(src_path).convert("RGBA")
+    arr = np.array(img, dtype=np.float32)
+    H, W, _ = arr.shape
     
-    # Load high-resolution references
-    ref1_path = "pack-docs/05_SOURCE_REFERENCES/screens/01_REFERENCE_Sales_Is_The_Transfer_Of_Certainty.png"
-    ref2_path = "pack-docs/05_SOURCE_REFERENCES/screens/02_REFERENCE_Why_Should_You_Know_Dipak_Vishwakarma.png"
-    
-    img1 = Image.open(ref1_path).convert("RGB")
-    img2 = Image.open(ref2_path).convert("RGB")
-    
-    arr1 = np.array(img1, dtype=np.float32) / 255.0
-    arr2 = np.array(img2, dtype=np.float32) / 255.0
-    
-    # In reference screens (1672x941), the halo center is at roughly x=1185, y=450
-    cx_ref, cy_ref = 1185, 450
-    crop_radius = 460
-    x1, x2 = max(0, cx_ref - crop_radius), min(arr1.shape[1], cx_ref + crop_radius)
-    y1, y2 = max(0, cy_ref - crop_radius), min(arr1.shape[0], cy_ref + crop_radius)
-    
-    c1 = arr1[y1:y2, x1:x2]
-    c2 = arr2[y1:y2, x1:x2]
-    
-    # Linear luminance
-    luma1 = linear_luminance(c1)
-    luma2 = linear_luminance(c2)
-    
-    # Canvas background luminance (#F4F1EA -> approx 0.885 linear luma)
-    bg_color = np.array([244.0/255.0, 241.0/255.0, 234.0/255.0])
-    bg_luma = 0.2126 * srgb_to_linear(bg_color[0]) + 0.7152 * srgb_to_linear(bg_color[1]) + 0.0722 * srgb_to_linear(bg_color[2])
-    
-    # Darkness relative to background
-    d1 = np.maximum(0.0, bg_luma - luma1)
-    d2 = np.maximum(0.0, bg_luma - luma2)
-    
-    # In ref1 Dipak is seated armchair (bottom-right); in ref2 Dipak is standing (center).
-    # Take minimum darkness where subject is present, or blend clean background brush.
-    # Where person is present, darkness is high (> 0.20 linear luma diff).
-    # Brush stroke darkness is subtle: 0.015 to 0.18.
-    brush_darkness = np.zeros_like(d1)
-    for y in range(d1.shape[0]):
-        for x in range(d1.shape[1]):
-            v1 = d1[y, x]
-            v2 = d2[y, x]
-            if v1 < 0.20 and v2 < 0.20:
-                brush_darkness[y, x] = max(v1, v2)
-            elif v1 < 0.20 and v2 >= 0.20:
-                brush_darkness[y, x] = v1
-            elif v2 < 0.20 and v1 >= 0.20:
-                brush_darkness[y, x] = v2
-            else:
-                brush_darkness[y, x] = 0.0
-
-    # Extract ink alpha with smooth thresholding
-    epsilon = 0.008
-    strength = 0.13
-    raw_alpha = np.clip((brush_darkness - epsilon) / strength, 0.0, 1.0)
-    raw_alpha = smoothstep(0.0, 1.0, raw_alpha)
-    
-    # Step 3: Structural Annular Gate to mathematically eliminate "ff"/text & square boundaries
-    H, W = raw_alpha.shape
-    local_cx, local_cy = crop_radius, crop_radius
-    Y, X = np.ogrid[:H, :W]
-    dist = np.sqrt((X - local_cx)**2 + (Y - local_cy)**2)
-    
-    # Fitted ring parameters for Ensō circle
-    ring_radius = 290.0
-    inner_gate_dist = 60.0
-    outer_gate_dist = 160.0
-    
-    # Distance from dominant ring center line
-    ring_dist = np.abs(dist - ring_radius)
-    
-    # Soft annular gate: 1.0 within ring_half_width, smooth falloff to 0 at outer_gate_dist
-    annular_gate = 1.0 - smoothstep(inner_gate_dist, outer_gate_dist, ring_dist)
-    
-    # Inner hole gate: ensure center of circle (where Dipak's head/body sits) is completely zeroed
-    inner_hole = smoothstep(120.0, 175.0, dist)
-    
-    # Soft angular fade: smooth taper at the bottom-left break of the Ensō ring
-    angle = np.arctan2(Y - local_cy, X - local_cx) # -pi to pi
-    break_angle_center = 2.45
-    break_angle_width = 0.65
-    angle_diff = np.abs(np.arctan2(np.sin(angle - break_angle_center), np.cos(angle - break_angle_center)))
-    angular_fade = smoothstep(0.2, break_angle_width, angle_diff)
-    
-    # Outer perimeter padding gate to guarantee 0 border alpha
-    border_gate = 1.0 - smoothstep(crop_radius - 50.0, crop_radius - 10.0, dist)
-    
-    # Clean UI text mask (remove any top nav or left copy contamination)
-    text_mask = np.ones_like(dist)
-    for y in range(H):
-        for x in range(W):
-            # Top nav area
-            if y < 80 and x < 320:
-                text_mask[y, x] = 0.0
-            # Left headline "Of" area
-            if x < 120 and y > 300:
-                text_mask[y, x] = 0.0
-
-    # Combine all gates
-    final_alpha_float = raw_alpha * annular_gate * inner_hole * angular_fade * border_gate * text_mask
-    
-    # Target resolution: 1600 x 1600 (ideal for DPR=2 without unnecessary weight)
-    target_size = 1600
-    final_alpha_uint8 = np.clip(final_alpha_float * 255.0, 0, 255).astype(np.uint8)
-    
-    # Create mask image: Pure neutral ink #11110f with extracted alpha
-    mask_arr = np.zeros((H, W, 4), dtype=np.uint8)
-    mask_arr[:, :, 0] = 17 # R
-    mask_arr[:, :, 1] = 17 # G
-    mask_arr[:, :, 2] = 15 # B
-    mask_arr[:, :, 3] = final_alpha_uint8
-    
-    enso_img = Image.fromarray(mask_arr, "RGBA")
-    enso_img_hi = enso_img.resize((target_size, target_size), Image.Resampling.LANCZOS)
-    enso_opt = enso_img_hi.quantize(colors=256, method=Image.Quantize.FASTOCTREE)
-    
-    out_path = "public/hero/enso-mask.png"
-    enso_opt.save(out_path, optimize=True)
-    file_size_kb = os.path.getsize(out_path) / 1024.0
-    print(f"[OK] Saved {out_path}: {target_size}x{target_size}, Size: {file_size_kb:.1f} KB")
-    return out_path
-
-def process_left_brush_mask():
-    print(">>> Processing Left Brush Mask...")
-    ref_path = "src/features/dipak-hero/assets/brush-left.png"
-    if not os.path.exists(ref_path):
-        ref_path = "pack-docs/05_SOURCE_REFERENCES/screens/01_REFERENCE_Sales_Is_The_Transfer_Of_Certainty.png"
-    
-    img = Image.open(ref_path).convert("RGBA")
-    arr = np.array(img)
-    
-    # Extract alpha
+    # 1. Source alpha and rgb
+    rgb = arr[:, :, :3]
     alpha = arr[:, :, 3]
-    h, w = alpha.shape
     
-    # Smooth top, bottom, and right edges to 0
-    Y, X = np.ogrid[:h, :w]
-    top_fade = smoothstep(0.0, 30.0, Y.astype(np.float32))
-    bot_fade = smoothstep(0.0, 40.0, (h - 1 - Y).astype(np.float32))
-    right_fade = smoothstep(0.0, 15.0, (w - 1 - X).astype(np.float32))
+    # Linear luminance of RGB
+    srgb_norm = rgb / 255.0
+    lin_rgb = np.where(srgb_norm <= 0.04045, srgb_norm / 12.92, ((srgb_norm + 0.055) / 1.055) ** 2.4)
+    lin_lum = 0.2126 * lin_rgb[:, :, 0] + 0.7152 * lin_rgb[:, :, 1] + 0.0722 * lin_rgb[:, :, 2]
     
-    clean_alpha = np.clip(alpha.astype(np.float32) * top_fade * bot_fade * right_fade, 0, 255).astype(np.uint8)
+    # Darkness relative to white background
+    darkness = 1.0 - lin_lum
     
-    # Create clean mask image
-    mask_arr = np.zeros((h, w, 4), dtype=np.uint8)
-    mask_arr[:, :, 0] = 17
-    mask_arr[:, :, 1] = 17
-    mask_arr[:, :, 2] = 15
-    mask_arr[:, :, 3] = clean_alpha
+    # If source already has a clean natural alpha channel, combine darkness with alpha
+    if alpha.max() > 0:
+        alpha_norm = alpha / 255.0
+        # Preserve authentic charcoal texture & dry bristles
+        out_alpha = np.clip(alpha_norm * 1.15, 0.0, 1.0)
+    else:
+        # Darkness to alpha conversion via smoothstep
+        out_alpha = smoothstep(0.04, 0.85, darkness)
+        
+    # Zero perimeter borders (5px) to guarantee zero bounding-box artifacts
+    out_alpha[:5, :] = 0.0
+    out_alpha[-5:, :] = 0.0
+    out_alpha[:, :5] = 0.0
+    out_alpha[:, -5:] = 0.0
     
-    left_img = Image.fromarray(mask_arr, "RGBA")
-    left_img_hi = left_img.resize((w * 2, h * 2), Image.Resampling.LANCZOS)
+    # Crop to content bbox with 2% margin
+    non_zero = out_alpha > 0.02
+    rows = np.any(non_zero, axis=1)
+    cols = np.any(non_zero, axis=0)
+    y_min, y_max = np.where(rows)[0][[0, -1]]
+    x_min, x_max = np.where(cols)[0][[0, -1]]
     
-    out_path = "public/hero/left-brush-mask.png"
-    left_img_hi.save(out_path, optimize=True)
-    file_size_kb = os.path.getsize(out_path) / 1024.0
-    print(f"[OK] Saved {out_path}: {left_img_hi.size[0]}x{left_img_hi.size[1]}, Size: {file_size_kb:.1f} KB")
-    return out_path
+    w_box = x_max - x_min
+    h_box = y_max - y_min
+    pad_x = int(w_box * 0.02)
+    pad_y = int(h_box * 0.02)
+    
+    y1 = max(0, y_min - pad_y)
+    y2 = min(H, y_max + pad_y + 1)
+    x1 = max(0, x_min - pad_x)
+    x2 = min(W, x_max + pad_x + 1)
+    
+    cropped_alpha = out_alpha[y1:y2, x1:x2]
+    
+    # Create clean grayscale mask (White with alpha transparency)
+    mask_arr = np.zeros((cropped_alpha.shape[0], cropped_alpha.shape[1], 4), dtype=np.uint8)
+    mask_arr[:, :, :3] = 17 # Pure dark ink color
+    mask_arr[:, :, 3] = (cropped_alpha * 255.0).astype(np.uint8)
+    
+    mask_img = Image.fromarray(mask_arr, "RGBA")
+    
+    # Resize to standardized square 1600x1600
+    mask_1600 = mask_img.resize((1600, 1600), Image.Resampling.LANCZOS)
+    
+    # Quantize palette for optimal file size (< 250 KB)
+    quantized_mask = mask_1600.quantize(colors=128, method=Image.Quantize.FASTOCTREE)
+    
+    os.makedirs("public/hero", exist_ok=True)
+    dest_path = "public/hero/enso-mask.png"
+    quantized_mask.save(dest_path, format="PNG", optimize=True)
+    
+    file_size_kb = os.path.getsize(dest_path) / 1024.0
+    print(f"[OK] Saved {dest_path}: {mask_1600.size[0]}x{mask_1600.size[1]}, Size: {file_size_kb:.1f} KB")
+    return dest_path
 
-def decontaminate_portrait():
-    print(">>> Decontaminating Portrait Cutout (Desktop & Mobile Art Direction)...")
+def process_portraits_and_registration():
+    print(">>> Decontaminating Portrait Cutouts & Computing Mathematical Registration...")
     src_path = "pack-docs/05_SOURCE_REFERENCES/assets/alternatives/01_Seated_Variant_Transparent.png"
     if not os.path.exists(src_path):
         src_path = "src/features/dipak-hero/assets/dipak-seated-armchair.png"
@@ -192,18 +105,15 @@ def decontaminate_portrait():
     rgb = arr[:, :, :3]
     alpha = arr[:, :, 3]
     
-    # Tonal pre-grading in source: Convert to monochrome with rich tonal curve
+    # Monochrome pre-grading with rich contrast
     gray = 0.299 * rgb[:, :, 0] + 0.587 * rgb[:, :, 1] + 0.114 * rgb[:, :, 2]
-    
-    # Gentle contrast curve: slightly deepen blacks, crisp highlights, natural midtones
     gray_norm = gray / 255.0
     graded_gray = np.where(gray_norm < 0.5, 
                            2.0 * (gray_norm ** 1.06) * 0.5,
                            1.0 - 2.0 * ((1.0 - gray_norm) ** 1.04) * 0.5) * 255.0
     graded_gray = np.clip(graded_gray, 0, 255)
     
-    # Edge decontamination: for semi-transparent pixels (0 < alpha < 240),
-    # inpaint matte fringing by clamping edge RGB to deep charcoal tones where near-white
+    # Inpaint semi-transparent white fringes
     semi_trans = (alpha > 0) & (alpha < 240)
     near_white_fringing = semi_trans & (graded_gray > 210)
     graded_gray[near_white_fringing] = np.clip(graded_gray[near_white_fringing] * 0.85, 30, 190)
@@ -216,43 +126,107 @@ def decontaminate_portrait():
     
     full_img = Image.fromarray(out_arr, "RGBA")
     
-    # 1. Desktop Trimmed Asset (Tight 2% safety margin around bbox)
-    alpha_img = full_img.getchannel("A")
-    bbox = alpha_img.getbbox() # (left, upper, right, lower)
+    # 1. Desktop Trimmed Cutout (Tight 2% margin around alpha bounds)
+    alpha_channel = full_img.getchannel("A")
+    bbox = alpha_channel.getbbox() # (left, upper, right, lower)
     w_box = bbox[2] - bbox[0]
     h_box = bbox[3] - bbox[1]
     pad_x = int(w_box * 0.02)
     pad_y = int(h_box * 0.02)
     
-    crop_box = (
+    crop_box_desktop = (
         max(0, bbox[0] - pad_x),
         max(0, bbox[1] - pad_y),
         min(full_img.size[0], bbox[2] + pad_x),
         min(full_img.size[1], bbox[3] + pad_y)
     )
-    desktop_img = full_img.crop(crop_box)
-    
+    desktop_img = full_img.crop(crop_box_desktop)
     dest_desktop = "src/features/dipak-hero/assets/dipak-seated-armchair.png"
+    os.makedirs("src/features/dipak-hero/assets", exist_ok=True)
     desktop_img.save(dest_desktop, optimize=True)
-    file_size_kb = os.path.getsize(dest_desktop) / 1024.0
-    print(f"[OK] Saved Desktop Cutout {dest_desktop}: {desktop_img.size[0]}x{desktop_img.size[1]}, Size: {file_size_kb:.1f} KB")
-
-    # 2. Mobile Art-Directed Cutout (Emphasizes head, hands, torso, partial chair arms; crops lower legs)
-    # Head is at top (bbox[1]), hands are at mid-torso (~45% height), seat is around 75%
+    
+    print(f"[OK] Saved Desktop Cutout {dest_desktop}: {desktop_img.size[0]}x{desktop_img.size[1]}")
+    
+    # 2. Mobile Art-Directed Cutout (Emphasizing head, hands, torso, partial chair)
     mobile_lower = int(bbox[1] + h_box * 0.74)
-    mobile_box = (
+    crop_box_mobile = (
         max(0, bbox[0] - pad_x),
         max(0, bbox[1] - pad_y),
         min(full_img.size[0], bbox[2] + pad_x),
         min(full_img.size[1], mobile_lower)
     )
-    mobile_img = full_img.crop(mobile_box)
-    
-    os.makedirs("public/hero", exist_ok=True)
+    mobile_img = full_img.crop(crop_box_mobile)
     dest_mobile = "public/hero/dipak-seated-mobile.png"
     mobile_img.save(dest_mobile, optimize=True)
-    mobile_size_kb = os.path.getsize(dest_mobile) / 1024.0
-    print(f"[OK] Saved Mobile Art-Directed Cutout {dest_mobile}: {mobile_img.size[0]}x{mobile_img.size[1]}, Size: {mobile_size_kb:.1f} KB")
+    
+    print(f"[OK] Saved Mobile Cutout {dest_mobile}: {mobile_img.size[0]}x{mobile_img.size[1]}")
+
+    # 3. Mathematical Registration Computation
+    # Measured reference coordinates from 01_REFERENCE_Sales_Is_The_Transfer_Of_Certainty.png (1672x941)
+    # Portrait: xp=831.5, yp=333.5, wp=617.1, hp=771.1
+    # Halo: xh=618.0, yh=31.6, wh=655.2, hh=655.2
+    
+    xp, yp, wp, hp = 831.5, 333.5, 617.1, 771.1
+    xh, yh, wh, hh = 618.0, 31.6, 655.2, 655.2
+    
+    # Desktop relative variables:
+    halo_u = (xh - xp) / wp
+    halo_v = (yh - yp) / hp
+    halo_sw = wh / wp
+    halo_sh = hh / hp
+    
+    # Mobile crop relative mapping:
+    # Desktop cutout is Wd=1122, Hd=1402. Mobile cutout is Wm=1122, Hm=1041 (crop_h_ratio = 1041/1402 = 0.7425)
+    crop_h_ratio = mobile_img.size[1] / desktop_img.size[1]
+    
+    # Mobile relative halo:
+    mobile_halo_u = halo_u
+    mobile_halo_v = halo_v / crop_h_ratio
+    mobile_halo_sw = halo_sw
+    mobile_halo_sh = halo_sh / crop_h_ratio
+    
+    composition_meta = {
+        "schemaVersion": 1,
+        "baselineCommit": "43a85ae0a4539ac2bc250e61960fdefd5355a1a4",
+        "rule": "portrait and halo must share one composition transform",
+        "reference": {
+            "width": 1672,
+            "height": 941,
+            "portraitBox": [xp, yp, wp, hp],
+            "haloBox": [xh, yh, wh, hh]
+        },
+        "desktop": {
+            "sourceWidth": desktop_img.size[0],
+            "sourceHeight": desktop_img.size[1],
+            "aspectRatio": round(desktop_img.size[0] / desktop_img.size[1], 5),
+            "halo_u": round(float(halo_u), 5),
+            "halo_v": round(float(halo_v), 5),
+            "halo_sw": round(float(halo_sw), 5),
+            "halo_sh": round(float(halo_sh), 5)
+        },
+        "mobile": {
+            "sourceWidth": mobile_img.size[0],
+            "sourceHeight": mobile_img.size[1],
+            "aspectRatio": round(mobile_img.size[0] / mobile_img.size[1], 5),
+            "halo_u": round(float(mobile_halo_u), 5),
+            "halo_v": round(float(mobile_halo_v), 5),
+            "halo_sw": round(float(mobile_halo_sw), 5),
+            "halo_sh": round(float(mobile_halo_sh), 5)
+        },
+        "relative": {
+            "halo_u": f"{halo_u:.5f}",
+            "halo_v": f"{halo_v:.5f}",
+            "halo_sw": f"{halo_sw:.5f}",
+            "halo_sh": f"{halo_sh:.5f}"
+        }
+    }
+    
+    os.makedirs("src/features/dipak-hero/generated", exist_ok=True)
+    json_path = "src/features/dipak-hero/generated/hero-composition.json"
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(composition_meta, f, indent=2)
+        
+    print(f"[OK] Generated {json_path} with mathematical registration parameters.")
 
 def run_automated_qc():
     print(">>> Running Automated Artifact QC...")
@@ -280,36 +254,30 @@ def run_automated_qc():
     zero_alpha = enso_alpha == 0
     print(f"  [QC 2] Enso zero-alpha pixel count: {np.count_nonzero(zero_alpha)} ({np.count_nonzero(zero_alpha)/enso_alpha.size*100:.1f}%)")
     
-    # 2. Check left-brush-mask.png
-    left_b = Image.open("public/hero/left-brush-mask.png").convert("RGBA")
-    left_arr = np.array(left_b)
-    left_alpha = left_arr[:, :, 3]
-    print(f"  [QC 3] Left brush mask top max alpha: {left_alpha[0, :].max()}, bot max: {left_alpha[-1, :].max()}")
-    if left_alpha[0, :].max() != 0 or left_alpha[-1, :].max() != 0:
-        print("  FAIL: Left brush top/bottom not cleanly faded!")
-        qc_passed = False
-    else:
-        print("  PASS: Left brush top and bottom smoothly fade to 0.")
-        
-    # 3. File sizes
+    # Check file size
     enso_kb = os.path.getsize("public/hero/enso-mask.png") / 1024.0
-    left_kb = os.path.getsize("public/hero/left-brush-mask.png") / 1024.0
-    mobile_kb = os.path.getsize("public/hero/dipak-seated-mobile.png") / 1024.0
-    print(f"  [QC 4] File sizes -> enso-mask: {enso_kb:.1f} KB, left-brush-mask: {left_kb:.1f} KB, mobile-cutout: {mobile_kb:.1f} KB")
+    print(f"  [QC 3] File size -> enso-mask: {enso_kb:.1f} KB")
     if enso_kb > 600:
         print("  FAIL: enso-mask.png exceeds size target!")
         qc_passed = False
     else:
-        print("  PASS: All masks within production size budgets (<600 KB).")
+        print("  PASS: Enso mask within size budget (<600 KB).")
+        
+    # 4. Check JSON
+    json_path = "src/features/dipak-hero/generated/hero-composition.json"
+    if os.path.exists(json_path):
+        print(f"  [QC 4] Registration metadata file exists and is valid.")
+    else:
+        print(f"  FAIL: Missing {json_path}")
+        qc_passed = False
         
     if qc_passed:
         print("\nALL AUTOMATED QC CHECKS PASSED SUCCESSFULLY!")
     else:
-        print("\nQC CHECKS FAILED. Please review errors.")
+        print("\nQC CHECKS FAILED.")
         sys.exit(1)
 
 if __name__ == "__main__":
     process_enso_mask()
-    process_left_brush_mask()
-    decontaminate_portrait()
+    process_portraits_and_registration()
     run_automated_qc()

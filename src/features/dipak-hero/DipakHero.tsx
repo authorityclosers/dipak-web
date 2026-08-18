@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { MobileNav } from "./MobileNav";
+import { EnsoBrush } from "./EnsoBrush";
 import type { HeroContent, HeroCta } from "./hero.types";
+import heroComposition from "./generated/hero-composition.json";
 import styles from "./dipak-hero.module.css";
 
 const EVENT_SCHEMA_VERSION = "1";
@@ -33,9 +35,6 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 export function DipakHero({ content }: { content: HeroContent }) {
   return (
     <section id="hero" className={styles.surface} aria-labelledby="hero-heading">
-      {/* Authentic charcoal brush stroke on left border via CSS Mask (Desktop only) */}
-      <div className={styles.leftBrush} aria-hidden="true" />
-
       {/* Top Header & Navigation */}
       <header className={styles.header}>
         <a className={styles.wordmark} href="#hero" aria-label="Dipak Vishwakarma homepage">
@@ -76,12 +75,22 @@ export function DipakHero({ content }: { content: HeroContent }) {
           </div>
 
           <h1 id="hero-heading" className={styles.headline}>
-            <span className={styles.headlineLine}>{content.headlinePart1}</span>
-            <span className={styles.headlineLine}>{content.headlinePart2}</span>
-            <span className={styles.headlineLine}>
-              {content.headlinePart3}
-              <span className={styles.goldDot} aria-hidden="true">
-                .
+            <span className={styles.headlineMask}>
+              <span className={styles.headlineLine} style={{ "--line-index": 0 } as React.CSSProperties}>
+                {content.headlinePart1}
+              </span>
+            </span>
+            <span className={styles.headlineMask}>
+              <span className={styles.headlineLine} style={{ "--line-index": 1 } as React.CSSProperties}>
+                {content.headlinePart2}
+              </span>
+            </span>
+            <span className={styles.headlineMask}>
+              <span className={styles.headlineLine} style={{ "--line-index": 2 } as React.CSSProperties}>
+                {content.headlinePart3}
+                <span className={styles.goldDot} aria-hidden="true">
+                  .
+                </span>
               </span>
             </span>
           </h1>
@@ -97,7 +106,7 @@ export function DipakHero({ content }: { content: HeroContent }) {
           ) : null}
 
           {content.quote ? (
-            <blockquote className={styles.quoteBlock}>
+            <blockquote className={styles.quoteBlock} data-hero-quote="true">
               <span className={styles.quoteMark} aria-hidden="true">
                 “
               </span>
@@ -107,33 +116,50 @@ export function DipakHero({ content }: { content: HeroContent }) {
           ) : null}
         </div>
 
-        {/* Right Column: Unified Visual Stage (Portrait + Ensō Mask) */}
+        {/* Right Column: Mathematically Registered Single Composition Root */}
         <div className={styles.portraitColumn}>
-          <div className={styles.visualStage} data-hero-visual-stage="true">
-            {/* Pure Ensō CSS Masked Ambient Artwork */}
-            <div className={styles.halo} aria-hidden="true" />
+          <div
+            className={styles.visualComposition}
+            data-hero-composition="true"
+            style={
+              {
+                "--desktop-aspect": heroComposition.desktop.aspectRatio,
+                "--desktop-halo-u": heroComposition.desktop.halo_u,
+                "--desktop-halo-v": heroComposition.desktop.halo_v,
+                "--desktop-halo-sw": heroComposition.desktop.halo_sw,
+                "--desktop-halo-sh": heroComposition.desktop.halo_sh,
+                "--mobile-aspect": heroComposition.mobile.aspectRatio,
+                "--mobile-halo-u": heroComposition.mobile.halo_u,
+                "--mobile-halo-v": heroComposition.mobile.halo_v,
+                "--mobile-halo-sw": heroComposition.mobile.halo_sw,
+                "--mobile-halo-sh": heroComposition.mobile.halo_sh,
+              } as React.CSSProperties
+            }
+          >
+            {/* Pure Vector SVG Ensō Brush Halo with Organic Ink Texture */}
+            <EnsoBrush className={styles.halo} />
 
-            {/* Decontaminated Portrait Cutout */}
-            <div className={styles.portraitWrapper}>
-              <Image
-                className={`${styles.portrait} ${styles.desktopPortrait}`}
-                src={content.portrait}
-                alt={content.portraitAlt}
-                sizes="(max-width: 767px) 1px, (max-width: 1200px) 50vw, 44vw"
-                quality={92}
-                priority
-              />
-              <Image
-                className={`${styles.portrait} ${styles.mobilePortrait}`}
-                src="/hero/dipak-seated-mobile.png"
-                alt={content.portraitAlt}
-                width={1122}
-                height={1041}
-                sizes="(max-width: 768px) 92vw, 1px"
-                quality={92}
-                priority
-              />
-            </div>
+            {/* Decontaminated High-Resolution Portrait Cutouts */}
+            <Image
+              className={`${styles.portrait} ${styles.desktopPortrait}`}
+              data-hero-portrait="true"
+              src={content.portrait}
+              alt={content.portraitAlt}
+              sizes="(max-width: 768px) 1px, (max-width: 1200px) 50vw, 44vw"
+              quality={92}
+              priority
+            />
+            <Image
+              className={`${styles.portrait} ${styles.mobilePortrait}`}
+              data-hero-portrait-mobile="true"
+              src="/hero/dipak-seated-mobile.png"
+              alt={content.portraitAlt}
+              width={1122}
+              height={1041}
+              sizes="(max-width: 768px) 96vw, 1px"
+              quality={92}
+              priority
+            />
           </div>
         </div>
       </div>

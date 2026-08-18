@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "baselineCommit": "43a85ae0a4539ac2bc250e61960fdefd5355a1a4",
+  "rule": "portrait and halo must share one composition transform",
+  "reference": {
+    "width": 1672,
+    "height": 941,
+    "portraitBox": [
+      831.5,
+      333.5,
+      617.1,
+      771.1
+    ],
+    "haloBox": [
+      618.0,
+      31.6,
+      655.2,
+      655.2
+    ]
+  },
+  "desktop": {
+    "sourceWidth": 1122,
+    "sourceHeight": 1402,
+    "aspectRatio": 0.80029,
+    "halo_u": -0.34597,
+    "halo_v": -0.39152,
+    "halo_sw": 1.06174,
+    "halo_sh": 0.8497
+  },
+  "mobile": {
+    "sourceWidth": 1122,
+    "sourceHeight": 1041,
+    "aspectRatio": 1.07781,
+    "halo_u": -0.34597,
+    "halo_v": -0.52729,
+    "halo_sw": 1.06174,
+    "halo_sh": 1.14435
+  },
+  "relative": {
+    "halo_u": "-0.34597",
+    "halo_v": "-0.39152",
+    "halo_sw": "1.06174",
+    "halo_sh": "0.84970"
+  }
+}

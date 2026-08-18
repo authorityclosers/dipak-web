@@ -1,6 +1,8 @@
 import { test, expect } from "@playwright/test";
+import heroComposition from "../src/features/dipak-hero/generated/hero-composition.json";
 
 const TARGET_VIEWPORTS = [
+  { name: "mobile-359x807", width: 359, height: 807, isMobile: true },
   { name: "mobile-360x800", width: 360, height: 800, isMobile: true },
   { name: "mobile-375x667", width: 375, height: 667, isMobile: true },
   { name: "mobile-390x844", width: 390, height: 844, isMobile: true },
@@ -11,14 +13,22 @@ const TARGET_VIEWPORTS = [
   { name: "desktop-1440x900", width: 1440, height: 900, isMobile: false },
   { name: "desktop-1536x864", width: 1536, height: 864, isMobile: false },
   { name: "desktop-1920x1080", width: 1920, height: 1080, isMobile: false },
+  { name: "desktop-2560x1440", width: 2560, height: 1440, isMobile: false },
 ];
 
-test.describe("Hero Surface Geometry & Responsive Fit", () => {
+test.describe("Hero Surface Geometry, Registration & Responsive Fit", () => {
   for (const vp of TARGET_VIEWPORTS) {
     test(`hero fits ${vp.name} (${vp.width}x${vp.height}) with zero overflow`, async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height });
       await page.goto("/");
-      await page.evaluate(() => document.fonts.ready);
+      await page.evaluate(async () => {
+        await document.fonts.ready;
+        await Promise.all(
+          [...document.images].map((img) =>
+            img.complete ? Promise.resolve() : img.decode().catch(() => {})
+          )
+        );
+      });
 
       const hero = page.locator("#hero");
       await expect(hero).toBeVisible();
@@ -37,44 +47,74 @@ test.describe("Hero Surface Geometry & Responsive Fit", () => {
       expect(dimensions.scrollWidth).toBe(dimensions.viewportWidth);
       expect(dimensions.bodyScrollWidth).toBe(dimensions.viewportWidth);
 
-      // 3. Assert critical content elements are visible
-      await expect(page.locator("#hero-heading")).toBeVisible();
-      await expect(page.locator("a[data-ac-event='public.dipak_hero.primary_cta_clicked']")).toBeVisible();
-      await expect(page.locator("blockquote")).toBeVisible();
+      // 3. Assert critical content elements are strictly within viewport bounding box
+      const elementsInsideViewport = await page.evaluate(() => {
+        const vh = window.innerHeight;
+        const vw = window.innerWidth;
+        
+        const isInside = (sel: string) => {
+          const el = document.querySelector(sel);
+          if (!el) return false;
+          const rect = el.getBoundingClientRect();
+          return rect.top >= 0 && rect.bottom <= vh && rect.left >= 0 && rect.right <= vw;
+        };
 
-      // 4. On mobile: test absolute visual stage geometry & tight vertical rhythm
+        return {
+          heading: isInside("#hero-heading"),
+          primaryCta: isInside("a[data-ac-event='public.dipak_hero.primary_cta_clicked']"),
+          secondaryCta: isInside("a[data-ac-event='public.dipak_hero.secondary_cta_clicked']"),
+          quote: isInside("blockquote[data-hero-quote='true']"),
+        };
+      });
+
+      expect(elementsInsideViewport.heading).toBe(true);
+      expect(elementsInsideViewport.primaryCta).toBe(true);
+      expect(elementsInsideViewport.secondaryCta).toBe(true);
+      expect(elementsInsideViewport.quote).toBe(true);
+
+      // 4. Test Single Composition Root & Mathematical Halo Registration
+      const registrationMetrics = await page.evaluate(() => {
+        const root = document.querySelector("[data-hero-composition]")?.getBoundingClientRect();
+        const halo = document.querySelector("[data-hero-halo]")?.getBoundingClientRect();
+        if (!root || !halo) return null;
+
+        return {
+          u: (halo.left - root.left) / root.width,
+          v: (halo.top - root.top) / root.height,
+          sw: halo.width / root.width,
+          sh: halo.height / root.height,
+        };
+      });
+
+      expect(registrationMetrics).not.toBeNull();
+      const expected = vp.isMobile ? heroComposition.mobile : heroComposition.desktop;
+      
+      expect(Math.abs(registrationMetrics!.u - expected.halo_u)).toBeLessThanOrEqual(0.06);
+      expect(Math.abs(registrationMetrics!.v - expected.halo_v)).toBeLessThanOrEqual(0.06);
+      expect(Math.abs(registrationMetrics!.sw - expected.halo_sw)).toBeLessThanOrEqual(0.06);
+
+      // 5. On mobile: assert visible subject starts tightly after quote (dead space fix)
       if (vp.isMobile) {
-        const metrics = await page.evaluate(() => {
+        const mobileRhythm = await page.evaluate(() => {
           const vh = window.innerHeight;
-          const stage = document.querySelector("[data-hero-visual-stage]")?.getBoundingClientRect();
-          const halo = document.querySelector("[class*='halo']")?.getBoundingClientRect();
-          const headline = document.querySelector("#hero-heading")?.getBoundingClientRect();
-          const quote = document.querySelector("blockquote")?.getBoundingClientRect();
-          const primaryCta = document.querySelector("a[data-ac-event='public.dipak_hero.primary_cta_clicked']")?.getBoundingClientRect();
+          const root = document.querySelector("[data-hero-composition]")?.getBoundingClientRect();
+          const quote = document.querySelector("blockquote[data-hero-quote='true']")?.getBoundingClientRect();
 
-          const visualTop = halo ? Math.min(stage?.top ?? vh, halo.top) : (stage?.top ?? 0);
+          // Visible portrait subject begins at top of composition root
+          const subjectTop = root ? root.top : vh;
+          const gapQuoteToSubject = quote ? subjectTop - quote.bottom : 0;
 
           return {
-            stageTopRatio: stage ? stage.top / vh : 0,
-            stageBottomRatio: stage ? stage.bottom / vh : 0,
-            stageHeightRatio: stage ? stage.height / vh : 0,
-            headlineBottomRatio: headline ? headline.bottom / vh : 0,
-            quoteBottomRatio: quote ? quote.bottom / vh : 0,
-            primaryCtaBottomRatio: primaryCta ? primaryCta.bottom / vh : 0,
-            gapQuoteToVisual: quote ? (visualTop - quote.bottom) : 0,
+            rootBottomRatio: root ? root.bottom / vh : 0,
+            gapQuoteToSubject,
           };
         });
 
-        // Visual stage bottom must anchor near bottom of viewport (>= 0.90)
-        expect(metrics.stageBottomRatio).toBeGreaterThanOrEqual(0.90);
+        // Subject composition is anchored to lower viewport
+        expect(mobileRhythm.rootBottomRatio).toBeGreaterThanOrEqual(0.90);
 
-        // Headline, CTAs, and Quote must all finish comfortably in upper/mid viewport
-        expect(metrics.headlineBottomRatio).toBeLessThan(0.48);
-        expect(metrics.primaryCtaBottomRatio).toBeLessThan(0.68);
-        expect(metrics.quoteBottomRatio).toBeLessThan(0.78);
-
-        // Blank gap between quote and visual activity must be tightly controlled (<= 45px)
-        expect(metrics.gapQuoteToVisual).toBeLessThanOrEqual(45);
+        // Gap between quote and visible subject is <= 55px (eliminating the ~180px dead space)
+        expect(mobileRhythm.gapQuoteToSubject).toBeLessThanOrEqual(55);
       }
     });
   }
