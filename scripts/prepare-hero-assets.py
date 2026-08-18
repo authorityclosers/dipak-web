@@ -181,7 +181,7 @@ def process_left_brush_mask():
     return out_path
 
 def decontaminate_portrait():
-    print(">>> Decontaminating Portrait Cutout...")
+    print(">>> Decontaminating Portrait Cutout (Desktop & Mobile Art Direction)...")
     src_path = "pack-docs/05_SOURCE_REFERENCES/assets/alternatives/01_Seated_Variant_Transparent.png"
     if not os.path.exists(src_path):
         src_path = "src/features/dipak-hero/assets/dipak-seated-armchair.png"
@@ -214,11 +214,45 @@ def decontaminate_portrait():
     out_arr[:, :, 2] = graded_gray.astype(np.uint8)
     out_arr[:, :, 3] = alpha.astype(np.uint8)
     
-    out_img = Image.fromarray(out_arr, "RGBA")
-    dest_path = "src/features/dipak-hero/assets/dipak-seated-armchair.png"
-    out_img.save(dest_path, optimize=True)
-    file_size_kb = os.path.getsize(dest_path) / 1024.0
-    print(f"[OK] Saved {dest_path}: {out_img.size[0]}x{out_img.size[1]}, Size: {file_size_kb:.1f} KB")
+    full_img = Image.fromarray(out_arr, "RGBA")
+    
+    # 1. Desktop Trimmed Asset (Tight 2% safety margin around bbox)
+    alpha_img = full_img.getchannel("A")
+    bbox = alpha_img.getbbox() # (left, upper, right, lower)
+    w_box = bbox[2] - bbox[0]
+    h_box = bbox[3] - bbox[1]
+    pad_x = int(w_box * 0.02)
+    pad_y = int(h_box * 0.02)
+    
+    crop_box = (
+        max(0, bbox[0] - pad_x),
+        max(0, bbox[1] - pad_y),
+        min(full_img.size[0], bbox[2] + pad_x),
+        min(full_img.size[1], bbox[3] + pad_y)
+    )
+    desktop_img = full_img.crop(crop_box)
+    
+    dest_desktop = "src/features/dipak-hero/assets/dipak-seated-armchair.png"
+    desktop_img.save(dest_desktop, optimize=True)
+    file_size_kb = os.path.getsize(dest_desktop) / 1024.0
+    print(f"[OK] Saved Desktop Cutout {dest_desktop}: {desktop_img.size[0]}x{desktop_img.size[1]}, Size: {file_size_kb:.1f} KB")
+
+    # 2. Mobile Art-Directed Cutout (Emphasizes head, hands, torso, partial chair arms; crops lower legs)
+    # Head is at top (bbox[1]), hands are at mid-torso (~45% height), seat is around 75%
+    mobile_lower = int(bbox[1] + h_box * 0.74)
+    mobile_box = (
+        max(0, bbox[0] - pad_x),
+        max(0, bbox[1] - pad_y),
+        min(full_img.size[0], bbox[2] + pad_x),
+        min(full_img.size[1], mobile_lower)
+    )
+    mobile_img = full_img.crop(mobile_box)
+    
+    os.makedirs("public/hero", exist_ok=True)
+    dest_mobile = "public/hero/dipak-seated-mobile.png"
+    mobile_img.save(dest_mobile, optimize=True)
+    mobile_size_kb = os.path.getsize(dest_mobile) / 1024.0
+    print(f"[OK] Saved Mobile Art-Directed Cutout {dest_mobile}: {mobile_img.size[0]}x{mobile_img.size[1]}, Size: {mobile_size_kb:.1f} KB")
 
 def run_automated_qc():
     print(">>> Running Automated Artifact QC...")
@@ -260,7 +294,8 @@ def run_automated_qc():
     # 3. File sizes
     enso_kb = os.path.getsize("public/hero/enso-mask.png") / 1024.0
     left_kb = os.path.getsize("public/hero/left-brush-mask.png") / 1024.0
-    print(f"  [QC 4] File sizes -> enso-mask: {enso_kb:.1f} KB, left-brush-mask: {left_kb:.1f} KB")
+    mobile_kb = os.path.getsize("public/hero/dipak-seated-mobile.png") / 1024.0
+    print(f"  [QC 4] File sizes -> enso-mask: {enso_kb:.1f} KB, left-brush-mask: {left_kb:.1f} KB, mobile-cutout: {mobile_kb:.1f} KB")
     if enso_kb > 600:
         print("  FAIL: enso-mask.png exceeds size target!")
         qc_passed = False

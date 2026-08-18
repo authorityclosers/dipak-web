@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MobileNav } from "./MobileNav";
 import type { HeroContent, HeroCta } from "./hero.types";
 import styles from "./dipak-hero.module.css";
 
@@ -32,7 +33,7 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 export function DipakHero({ content }: { content: HeroContent }) {
   return (
     <section id="hero" className={styles.surface} aria-labelledby="hero-heading">
-      {/* Authentic charcoal brush stroke on left border via CSS Mask */}
+      {/* Authentic charcoal brush stroke on left border via CSS Mask (Desktop only) */}
       <div className={styles.leftBrush} aria-hidden="true" />
 
       {/* Top Header & Navigation */}
@@ -56,11 +57,12 @@ export function DipakHero({ content }: { content: HeroContent }) {
         </nav>
 
         <div className={styles.headerActions}>
-          <button className={styles.hamburgerBtn} aria-label="Open menu" type="button">
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
-            <span className={styles.hamburgerLine} />
-          </button>
+          <MobileNav
+            navLinks={content.navLinks}
+            ctas={content.ctas}
+            brandFirstLine={content.brandFirstLine}
+            brandSecondLine={content.brandSecondLine}
+          />
         </div>
       </header>
 
@@ -100,24 +102,34 @@ export function DipakHero({ content }: { content: HeroContent }) {
                 “
               </span>
               <span className={styles.quoteDivider} aria-hidden="true" />
-              <cite className={styles.quoteText}>{content.quote}</cite>
+              <span className={styles.quoteText}>{content.quote}</span>
             </blockquote>
           ) : null}
         </div>
 
         {/* Right Column: Unified Visual Stage (Portrait + Ensō Mask) */}
         <div className={styles.portraitColumn}>
-          <div className={styles.visualStage}>
+          <div className={styles.visualStage} data-hero-visual-stage="true">
             {/* Pure Ensō CSS Masked Ambient Artwork */}
             <div className={styles.halo} aria-hidden="true" />
 
             {/* Decontaminated Portrait Cutout */}
             <div className={styles.portraitWrapper}>
               <Image
-                className={styles.portrait}
+                className={`${styles.portrait} ${styles.desktopPortrait}`}
                 src={content.portrait}
                 alt={content.portraitAlt}
-                sizes="(max-width: 767px) 96vw, (max-width: 1200px) 50vw, 44vw"
+                sizes="(max-width: 767px) 1px, (max-width: 1200px) 50vw, 44vw"
+                quality={92}
+                priority
+              />
+              <Image
+                className={`${styles.portrait} ${styles.mobilePortrait}`}
+                src="/hero/dipak-seated-mobile.png"
+                alt={content.portraitAlt}
+                width={1122}
+                height={1041}
+                sizes="(max-width: 768px) 92vw, 1px"
                 quality={92}
                 priority
               />

@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "test:visual": "playwright test",
     "check": "npm run lint && npm run typecheck && npm run build"
   },
   "dependencies": {
@@ -16,6 +17,7 @@
     "react-dom": "19.2.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
