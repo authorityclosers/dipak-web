@@ -1,58 +1,82 @@
 import type { TopicsContent } from "./topics.types";
 
+/**
+ * "What I Think About" — the eight subjects from the client copy master
+ * (01_COPY section 06). Titles and descriptions are transcribed verbatim;
+ * only the mono `tag` kickers are presentational additions.
+ */
 export const topicsContent: TopicsContent = {
   sectionNumber: "05",
-  sectionTitle: "SUBJECTS",
+  sectionTitle: "Subjects",
   headlineWord1: "WHAT I",
-  headlineWord2: "TALK ABOUT",
+  headlineWord2: "THINK ABOUT",
+  metaLabel: "Advisory & Keynotes",
+  supportingNote:
+    "The ideas, systems and questions I spend most of my time exploring.",
   topics: [
     {
-      id: "sales",
+      id: "buyer-psychology",
       number: "01",
-      title: "SALES SYSTEMS",
-      description: "High-ticket sales alignment, repeatable execution, and predictable closing frameworks.",
+      tag: "Cognitive Dynamics",
+      title: "Buyer Psychology",
+      description:
+        "Why people hesitate, what creates trust, and how decisions are actually made.",
     },
     {
-      id: "buyer-psychology",
+      id: "high-ticket-sales",
       number: "02",
-      title: "BUYER PSYCHOLOGY",
-      description: "Understanding hesitation, friction, certainty transfer, and emotional commitment.",
+      tag: "Systems Architecture",
+      title: "High-Ticket Sales",
+      description:
+        "How to lead complex conversations without pressure, scripts or manipulation.",
     },
     {
       id: "communication",
       number: "03",
-      title: "STRATEGIC COMMUNICATION",
-      description: "Clarity over volume, active listening, and objection dissolution.",
+      tag: "Language & Framing",
+      title: "Communication",
+      description:
+        "Questions, listening, framing and the language that changes how people understand value.",
     },
     {
       id: "personal-branding",
       number: "04",
-      title: "PERSONAL BRANDING",
-      description: "Building unassailable authority and intellectual equity for founders.",
+      tag: "Intellectual Equity",
+      title: "Personal Branding",
+      description:
+        "How expertise becomes authority — and how authority compounds over time.",
     },
     {
       id: "ai",
       number: "05",
-      title: "AI IN REVENUE",
-      description: "Leveraging intelligent automation to amplify sales velocity and precision.",
+      tag: "Applied Intelligence",
+      title: "AI",
+      description:
+        "How AI can improve learning, practice, feedback and decision-making without replacing human judgment.",
     },
     {
       id: "entrepreneurship",
       number: "06",
-      title: "ENTREPRENEURSHIP",
-      description: "Navigating startup growth, operational resilience, and founder mindset.",
+      tag: "Operating Reality",
+      title: "Entrepreneurship",
+      description:
+        "Building systems, teams and products around a clear market problem.",
     },
     {
       id: "startups",
       number: "07",
-      title: "STARTUP SCALING",
-      description: "Transitioning from founder-led sales to dedicated, scalable teams.",
+      tag: "Founder-Led Growth",
+      title: "Startups",
+      description:
+        "Sales systems, founder-led growth and the transition from instinct to repeatability.",
     },
     {
       id: "public-speaking",
       number: "08",
-      title: "PUBLIC SPEAKING",
-      description: "Keynotes and masterclasses delivering actionable sales frameworks.",
+      tag: "Stage Craft",
+      title: "Public Speaking",
+      description:
+        "Communicating ideas with clarity, structure and conviction.",
     },
   ],
 };

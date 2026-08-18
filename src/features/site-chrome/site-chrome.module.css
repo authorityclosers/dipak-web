@@ -1,0 +1,343 @@
+/* ==========================================================================
+   Site chrome — fixed header, mobile drawer, global footer.
+   Used by every page except Home (whose header lives inside the pinned stage).
+   ========================================================================== */
+
+.skipLink {
+  position: absolute;
+  top: -100px;
+  left: var(--gutter);
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--ink-obsidian);
+  color: var(--inv-text);
+  font-size: var(--step-meta);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: top var(--dur-fast) var(--ease-out-editorial);
+}
+
+.skipLink:focus {
+  top: 1rem;
+}
+
+/* --- Header --------------------------------------------------------------- */
+
+.header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.4rem var(--gutter);
+  transition: background var(--dur-base) var(--ease-out-editorial),
+    border-color var(--dur-base) var(--ease-out-editorial),
+    padding var(--dur-base) var(--ease-out-editorial);
+  border-bottom: 1px solid transparent;
+}
+
+.headerScrolled {
+  background: rgba(244, 241, 234, 0.86);
+  backdrop-filter: saturate(150%) blur(14px);
+  -webkit-backdrop-filter: saturate(150%) blur(14px);
+  border-bottom-color: var(--rule-hairline);
+  padding-block: 0.95rem;
+}
+
+.wordmark,
+.footerWordmark {
+  display: grid;
+  gap: 0.1rem;
+  font-family: var(--font-family-serif);
+  line-height: 1;
+}
+
+.wordmarkFirst,
+.wordmarkSecond {
+  font-size: 0.94rem;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+.wordmarkSecond {
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-body);
+}
+
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.1rem, 2.4vw, 2.6rem);
+}
+
+.navLink {
+  position: relative;
+  font-size: var(--step-meta);
+  color: var(--ink-body);
+  padding-block: 0.35rem;
+  transition: color var(--dur-fast) var(--ease-out-editorial);
+}
+
+.navLink:hover {
+  color: var(--ink-obsidian);
+}
+
+.navLinkActive {
+  color: var(--ink-obsidian);
+}
+
+.activeIndicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: var(--gold);
+}
+
+/* --- Menu button ---------------------------------------------------------- */
+
+.menuButton {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menuBar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  margin-inline: auto;
+  background: var(--ink-obsidian);
+  transition: transform var(--dur-fast) var(--ease-out-editorial);
+}
+
+.menuBarTopOpen {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.menuBarBottomOpen {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+/* --- Mobile drawer -------------------------------------------------------- */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  padding: 6rem var(--gutter) 3rem;
+  background: var(--paper);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease-out-editorial);
+}
+
+.drawerOpen {
+  opacity: 1;
+}
+
+.drawerNav {
+  display: grid;
+  gap: 0.35rem;
+  width: 100%;
+}
+
+.drawerLink {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 0.7rem;
+  border-bottom: 1px solid var(--rule-hairline);
+  font-family: var(--font-family-serif);
+  font-size: clamp(1.75rem, 8vw, 2.6rem);
+  letter-spacing: var(--tracking-tight);
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.drawerOpen .drawerLink {
+  animation: drawerLinkIn var(--dur-base) var(--ease-out-editorial) forwards;
+  animation-delay: calc(90ms + var(--i) * 45ms);
+}
+
+.drawerIndex {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--gold-deep);
+}
+
+@keyframes drawerLinkIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- Footer --------------------------------------------------------------- */
+
+.footer {
+  background: var(--ink-obsidian-deep);
+  color: var(--inv-text);
+  padding: clamp(3.5rem, 6vw, 6rem) var(--gutter) 2rem;
+}
+
+.footerInner {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  grid-template-columns: 1.4fr 1fr 1.2fr;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--inv-hairline);
+}
+
+.footerBrandBlock {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.footerWordmark {
+  color: var(--inv-text);
+}
+
+.footerBrandBlock .wordmarkSecond {
+  color: var(--inv-text-muted);
+}
+
+.footerPositioning {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--gold-light);
+  text-transform: uppercase;
+}
+
+.footerPhilosophy {
+  margin: 0;
+  max-width: 26ch;
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  font-size: var(--step-body-lg);
+  color: var(--inv-text-muted);
+}
+
+.footerLabel {
+  display: block;
+  margin-bottom: 1.1rem;
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--inv-text-muted);
+}
+
+.footerNavList,
+.socialList {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.socialList {
+  margin-top: 1.5rem;
+}
+
+.footerLink {
+  color: var(--inv-text-muted);
+  font-size: var(--step-body);
+  transition: color var(--dur-fast) var(--ease-out-editorial);
+}
+
+.footerLink:hover {
+  color: var(--gold-light);
+}
+
+.footerCtaBlock {
+  align-content: start;
+}
+
+.footerCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.95rem 1.5rem;
+  border: 1px solid var(--gold-hairline);
+  color: var(--gold-light);
+  font-size: var(--step-meta);
+  letter-spacing: 0.04em;
+  transition: background var(--dur-fast) var(--ease-out-editorial),
+    border-color var(--dur-fast) var(--ease-out-editorial),
+    color var(--dur-fast) var(--ease-out-editorial);
+}
+
+.footerCta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--ink-obsidian);
+}
+
+.footerBaseline {
+  display: flex;
+  justify-content: center;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-top: 2rem;
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: 0.1em;
+  color: var(--inv-text-muted);
+  text-align: center;
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .footerInner {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footerBrandBlock {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopNav {
+    display: none;
+  }
+
+  .menuButton {
+    display: flex;
+  }
+}
+
+@media (max-width: 560px) {
+  .footerInner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The drawer animation is decorative; reduced-motion users get it instantly. */
+@media (prefers-reduced-motion: reduce) {
+  .drawerOpen .drawerLink {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

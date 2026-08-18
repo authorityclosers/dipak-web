@@ -12,41 +12,6 @@ export function DipakTopicsAct({
   content = topicsContent,
   className,
 }: DipakTopicsActProps) {
-  const domains = [
-    {
-      number: "01",
-      tag: "SYSTEMS ARCHITECTURE",
-      title: "High-Ticket Sales Systems",
-      description:
-        "Codifying predictable enterprise revenue pipelines, qualification matrices, and closing protocols that scale without founder dependency.",
-      telemetry: "[ 940+ CLOSERS TRAINED ]",
-    },
-    {
-      number: "02",
-      tag: "COGNITIVE DYNAMICS",
-      title: "Buyer Psychology & Certainty",
-      description:
-        "Deconstructing the deep cognitive resistance behind buyer hesitation and engineering decisive certainty before commercial proposals.",
-      telemetry: "[ TRUST IS ABSENCE OF DOUBT ]",
-    },
-    {
-      number: "03",
-      tag: "INTELLECTUAL EQUITY",
-      title: "Founder Authority Architecture",
-      description:
-        "Transforming executive conviction and specialized frameworks into an unassailable commercial moat that commands premium pricing.",
-      telemetry: "[ THE CERTAINTY BUILDER™ ]",
-    },
-    {
-      number: "04",
-      tag: "ORGANIZATIONAL SCALE",
-      title: "High-Performance Sales Leadership",
-      description:
-        "Building autonomous deal closers, high-conviction culture, and scalable sales management systems for high-growth enterprise teams.",
-      telemetry: "[ ₹9+ CRORE GENERATED ]",
-    },
-  ];
-
   return (
     <section
       id="topics"
@@ -77,9 +42,9 @@ export function DipakTopicsAct({
           </div>
 
           <div className={styles.headerMeta}>
-            <span className={styles.metaLabel}>ADVISORY &amp; KEYNOTES</span>
+            <span className={styles.metaLabel}>{content.metaLabel}</span>
             <p className={styles.supportingNote} data-story-act5-note="true">
-              Strategic keynotes, interactive workshops, and high-stakes executive advisory.
+              {content.supportingNote}
             </p>
           </div>
         </header>
@@ -90,9 +55,9 @@ export function DipakTopicsAct({
           aria-label="Core topic domains"
           data-story-act5-ledger="true"
         >
-          {domains.map((item) => (
+          {content.topics.map((item) => (
             <li
-              key={item.number}
+              key={item.id}
               className={styles.ledgerRow}
               data-story-act5-item="true"
             >
@@ -105,7 +70,6 @@ export function DipakTopicsAct({
 
               <div className={styles.rowContentBlock}>
                 <p className={styles.domainDescription}>{item.description}</p>
-                <span className={styles.telemetryTag}>{item.telemetry}</span>
               </div>
 
               <span className={styles.rowArrow} aria-hidden="true">

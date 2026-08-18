@@ -12,6 +12,7 @@ export interface PresenceContent {
   sectionTitle: string;
   headlineWord1: string;
   headlineWord2: string;
+  metaLabel: string;
   supportingNote: string;
   signatures: MediaSignature[];
 }

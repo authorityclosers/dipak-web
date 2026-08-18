@@ -457,3 +457,22 @@
     opacity: 1 !important;
   }
 }
+
+/* Platform column becomes interactive only when the content file supplies a
+   real profile URL; otherwise the column renders as a plain proof mark. */
+.platformLink {
+  display: contents;
+}
+
+.platformColumn:has(.platformLink) {
+  cursor: pointer;
+}
+
+.platformColumn:has(.platformLink):hover .iconBadge {
+  border-color: var(--gold, #c89545);
+  transform: translateY(-2px);
+}
+
+.platformColumn:has(.platformLink):hover .platformTitle {
+  color: var(--gold-deep, #8f621f);
+}

@@ -1,49 +1,27 @@
 import React from "react";
-import type { ThinkingContent } from "./thinking.types";
+import Link from "next/link";
+import type { ThinkingContent, FeaturedArticle } from "./thinking.types";
 import { thinkingContent } from "./thinking.content";
 import styles from "./dipak-thinking-act.module.css";
 
 interface DipakThinkingActProps {
   content?: ThinkingContent;
+  /**
+   * Real published articles, injected by the page from the file-backed
+   * article store. Supplying these is what makes this act link to live posts
+   * instead of the static fallback in thinking.content.ts.
+   */
+  articles?: FeaturedArticle[];
   className?: string;
 }
 
 export function DipakThinkingAct({
   content = thinkingContent,
+  articles,
   className,
 }: DipakThinkingActProps) {
-  const editorialEssays = [
-    {
-      id: "a1",
-      number: "01",
-      tag: "BUYER PSYCHOLOGY // ESSAY",
-      title: "Why Negotiation Is Just a Symptom of Early Misalignment.",
-      abstract:
-        "When certainty is established in the first fifteen minutes, commercial friction dissolves. Deconstructing the cognitive friction behind closing stalls.",
-      readTime: "6 MIN READ",
-      url: "https://medium.com",
-    },
-    {
-      id: "a2",
-      number: "02",
-      tag: "COMMUNICATION // ESSAY",
-      title: "The Architecture of Trust: How Top Closers Lead Conversations.",
-      abstract:
-        "Clarity over volume. Structuring high-ticket advisory dialogues that systematically dissolve buyer doubt and command authority.",
-      readTime: "8 MIN READ",
-      url: "https://medium.com",
-    },
-    {
-      id: "a3",
-      number: "03",
-      tag: "ENTREPRENEURSHIP // ESSAY",
-      title: "Transitioning From Founder-Led Sales to a Scalable Machine.",
-      abstract:
-        "Codifying founder intuition into repeatable team execution frameworks that preserve closing ratios across enterprise pipelines.",
-      readTime: "5 MIN READ",
-      url: "https://medium.com",
-    },
-  ];
+  const essays = articles?.length ? articles : content.articles;
+  const featuredVideo = content.featuredVideo;
 
   return (
     <section
@@ -72,88 +50,94 @@ export function DipakThinkingAct({
           </div>
 
           <div className={styles.headerMeta}>
-            <span className={styles.metaLabel}>PUBLICATIONS &amp; MEDIA</span>
+            <span className={styles.metaLabel}>{content.metaLabel}</span>
             <p className={styles.supportingNote} data-story-act6-note="true">
-              Deep dives, video breakdowns, and strategic frameworks on buyer psychology and closing.
+              {content.supportingNote}
             </p>
           </div>
         </header>
 
-        {/* Feature 1: Monumental Full-Width Masterclass Installation */}
-        <div className={styles.masterclassBlock} data-story-act6-video="true">
-          <div className={styles.blockLabelRow}>
-            <span className={styles.blockSectionTitle}>
-              FEATURED VIDEO MASTERCLASS
-            </span>
-          </div>
-
-          <a
-            href={content.featuredVideo.youtubeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.masterclassCard}
-            aria-label={`Watch masterclass: ${content.featuredVideo.title}`}
-          >
-            <div className={styles.cardMainInfo}>
-              <div className={styles.cardKickerRow}>
-                <span className={styles.cardCategory}>
-                  {content.featuredVideo.category} {" // MASTERCLASS"}
-                </span>
-                <span className={styles.cardDuration}>
-                  {content.featuredVideo.duration}
-                </span>
-              </div>
-
-              <h3 className={styles.cardTitle}>
-                {content.featuredVideo.title}
-              </h3>
-
-              <p className={styles.cardSubtitle}>
-                A complete breakdown of certainty transfer protocols, buyer friction elimination, and closing mechanics in high-ticket enterprise transactions.
-              </p>
+        {/*
+          Featured masterclass renders only when a real video URL exists.
+          AGENTS.md forbids shipping a dead destination to make a button
+          clickable, so an unset youtubeUrl removes the block entirely.
+        */}
+        {featuredVideo?.youtubeUrl ? (
+          <div className={styles.masterclassBlock} data-story-act6-video="true">
+            <div className={styles.blockLabelRow}>
+              <span className={styles.blockSectionTitle}>
+                {content.videoSectionHeading}
+              </span>
             </div>
 
-            <div className={styles.cardActionCol}>
-              <div className={styles.playTokenContainer}>
-                <span className={styles.playPrompt}>WATCH BREAKDOWN</span>
-                <div className={styles.playIconSlot} aria-hidden="true">
-                  ▶
+            <a
+              href={featuredVideo.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.masterclassCard}
+              aria-label={`Watch masterclass: ${featuredVideo.title}`}
+              data-ac-event="public.home.featured_video_clicked"
+            >
+              <div className={styles.cardMainInfo}>
+                <div className={styles.cardKickerRow}>
+                  <span className={styles.cardCategory}>
+                    {featuredVideo.category} {" // MASTERCLASS"}
+                  </span>
+                  <span className={styles.cardDuration}>
+                    {featuredVideo.duration}
+                  </span>
+                </div>
+
+                <h3 className={styles.cardTitle}>{featuredVideo.title}</h3>
+
+                {featuredVideo.summary ? (
+                  <p className={styles.cardSubtitle}>{featuredVideo.summary}</p>
+                ) : null}
+              </div>
+
+              <div className={styles.cardActionCol}>
+                <div className={styles.playTokenContainer}>
+                  <span className={styles.playPrompt}>WATCH BREAKDOWN</span>
+                  <div className={styles.playIconSlot} aria-hidden="true">
+                    ▶
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </div>
+            </a>
+          </div>
+        ) : null}
 
-        {/* Feature 2: Expansive Full-Width Essays Ledger */}
+        {/* Long-form essays — real published articles when available. */}
         <div className={styles.essaysBlock} data-story-act6-articles="true">
           <div className={styles.blockLabelRow}>
             <span className={styles.blockSectionTitle}>
-              LONG-FORM EDITORIAL ESSAYS
+              {content.articleSectionHeading}
             </span>
           </div>
 
-          <ul
-            className={styles.essaysLedgerList}
-            aria-label="Editorial Essays"
-          >
-            {editorialEssays.map((essay) => (
+          <ul className={styles.essaysLedgerList} aria-label="Editorial essays">
+            {essays.map((essay) => (
               <li key={essay.id}>
-                <a
-                  href={essay.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={essay.url ?? "/articles"}
                   className={styles.essayLedgerRow}
                   data-story-act6-essay-row="true"
+                  data-ac-event="public.home.article_clicked"
                 >
                   <span className={styles.essayIndex}>[{essay.number}]</span>
 
                   <div className={styles.essayTitleCol}>
-                    <span className={styles.essayCategory}>{essay.tag}</span>
+                    <span className={styles.essayCategory}>
+                      {essay.category}
+                      {essay.series ? ` // ${essay.series}` : " // ESSAY"}
+                    </span>
                     <h3 className={styles.essayTitle}>{essay.title}</h3>
                   </div>
 
                   <div className={styles.essaySummaryCol}>
-                    <p className={styles.essayAbstract}>{essay.abstract}</p>
+                    {essay.abstract ? (
+                      <p className={styles.essayAbstract}>{essay.abstract}</p>
+                    ) : null}
                     <div className={styles.essayMetaRow}>
                       <span className={styles.essayReadTime}>
                         {essay.readTime}
@@ -164,10 +148,15 @@ export function DipakThinkingAct({
                   <span className={styles.essayArrow} aria-hidden="true">
                     →
                   </span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
+
+          <Link className={styles.allArticlesCta} href="/articles">
+            {content.articlesCtaText}
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>

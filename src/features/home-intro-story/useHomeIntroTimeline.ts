@@ -1039,6 +1039,8 @@ export function useHomeIntroTimeline({
     // 2. MOBILE SEQUENTIAL DOCUMENT FLOW (<= 768px)
     // =========================================================================
     mm.add("(max-width: 768px)", () => {
+      // Pinning is disabled on mobile: every act returns to normal document
+      // flow so the page scrolls as a plain vertical document.
       const allActs = [
         "[data-story-act2-wrapper]",
         "[data-story-act3-wrapper]",
@@ -1052,6 +1054,40 @@ export function useHomeIntroTimeline({
         const elements = document.querySelectorAll(actSelector);
         elements.forEach((el) => {
           gsap.set(el, { visibility: "visible", opacity: 1, position: "relative" });
+        });
+      });
+
+      // Mobile still gets entrance motion — simplified, never pinned.
+      // Without this the whole page below the hero arrives fully formed and
+      // reads as a flat document next to the desktop choreography.
+      const mobileReveals: Array<[string, number]> = [
+        ["[data-story-act2-wrapper] h2", 0],
+        ["[data-story-act3-item]", 0.06],
+        ["[data-story-act4-line]", 0.08],
+        ["[data-story-act5-item]", 0.06],
+        ["[data-story-act6] header", 0],
+        ["[data-story-act6-video]", 0],
+        ["[data-story-act6-essay-row]", 0.06],
+        ["[data-story-act7] h2", 0],
+        ["[data-story-act7-body]", 0],
+        ["[data-story-act7-ctas]", 0],
+      ];
+
+      mobileReveals.forEach(([selector, stagger]) => {
+        const elements = document.querySelectorAll(selector);
+        if (!elements.length) return;
+
+        gsap.from(elements, {
+          scrollTrigger: {
+            trigger: elements[0],
+            start: "top 88%",
+            toggleActions: "play none none none",
+          },
+          opacity: 0,
+          y: 20,
+          duration: 0.45,
+          stagger,
+          ease: "power2.out",
         });
       });
     });
