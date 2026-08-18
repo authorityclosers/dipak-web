@@ -9,7 +9,7 @@ interface DipakPresenceActProps {
 }
 
 /**
- * Authentic, pixel-precise vector glyphs matching media_1787087016008.png
+ * Pixel-precise vector glyphs for each media platform
  */
 const PLATFORM_ICONS: Record<string, React.ReactElement> = {
   medium: (
@@ -19,7 +19,7 @@ const PLATFORM_ICONS: Record<string, React.ReactElement> = {
   ),
   dailyhunt: (
     <svg className={styles.svgIcon} viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.6" />
       <text
         x="12"
         y="15.8"
@@ -45,7 +45,7 @@ const PLATFORM_ICONS: Record<string, React.ReactElement> = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2.2"
+      strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -75,9 +75,9 @@ export function DipakPresenceAct({
     >
       <div className={styles.atmosphereLayer} aria-hidden="true" />
 
-      {/* The Envelope Security Certificate Card Frame */}
+      {/* The Broader Envelope Security Certificate Frame */}
       <div className={styles.ticketFrameRoot} data-story-act3-ticket="true">
-        {/* Smudgy Sunset Aurora Wash (Upper Half Focus) */}
+        {/* Subtle, Sophisticated Sunset Aurora Texture (Restricted to Top-Left/Center Crest) */}
         <div className={styles.auroraBackground} aria-hidden="true">
           <div className={styles.auroraAmberBlob} />
           <div className={styles.auroraCoralBlob} />
@@ -85,17 +85,37 @@ export function DipakPresenceAct({
           <div className={styles.auroraTextureOverlay} />
         </div>
 
-        {/* 4 Semicircle Cutout Notches at Corners */}
+        {/* 4 Precise Geometric Scallop Corner Cuts */}
         <div className={styles.scallopTL} data-story-act3-scallop="true" aria-hidden="true" />
         <div className={styles.scallopTR} data-story-act3-scallop="true" aria-hidden="true" />
         <div className={styles.scallopBL} data-story-act3-scallop="true" aria-hidden="true" />
         <div className={styles.scallopBR} data-story-act3-scallop="true" aria-hidden="true" />
 
-        {/* 4 Corner Florets / Gold 4-Point Stars */}
-        <span className={styles.cornerStarTL} data-story-act3-floret="true" aria-hidden="true">✦</span>
-        <span className={styles.cornerStarTR} data-story-act3-floret="true" aria-hidden="true">✦</span>
-        <span className={styles.cornerStarBL} data-story-act3-floret="true" aria-hidden="true">✦</span>
-        <span className={styles.cornerStarBR} data-story-act3-floret="true" aria-hidden="true">✦</span>
+        {/* 4 Outer Corner Geometric 8-Point Diamond Florets */}
+        <div className={styles.cornerStarTL} data-story-act3-floret="true" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+            <polygon points="8,1 10,6 15,8 10,10 8,15 6,10 1,8 6,6" fill="#C59B27" />
+            <polygon points="8,4 9,7 12,8 9,9 8,12 7,9 4,8 7,7" fill="#FAF6EE" />
+          </svg>
+        </div>
+        <div className={styles.cornerStarTR} data-story-act3-floret="true" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+            <polygon points="8,1 10,6 15,8 10,10 8,15 6,10 1,8 6,6" fill="#C59B27" />
+            <polygon points="8,4 9,7 12,8 9,9 8,12 7,9 4,8 7,7" fill="#FAF6EE" />
+          </svg>
+        </div>
+        <div className={styles.cornerStarBL} data-story-act3-floret="true" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+            <polygon points="8,1 10,6 15,8 10,10 8,15 6,10 1,8 6,6" fill="#C59B27" />
+            <polygon points="8,4 9,7 12,8 9,9 8,12 7,9 4,8 7,7" fill="#FAF6EE" />
+          </svg>
+        </div>
+        <div className={styles.cornerStarBR} data-story-act3-floret="true" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none">
+            <polygon points="8,1 10,6 15,8 10,10 8,15 6,10 1,8 6,6" fill="#C59B27" />
+            <polygon points="8,4 9,7 12,8 9,9 8,12 7,9 4,8 7,7" fill="#FAF6EE" />
+          </svg>
+        </div>
 
         {/* Inner Engraved Certificate Border */}
         <div className={styles.innerEngravedBorder} aria-hidden="true" />
@@ -143,29 +163,47 @@ export function DipakPresenceAct({
           </div>
         </header>
 
-        {/* Ornate Center Filigree Divider Axis with Diamond Emblem */}
+        {/* Mathematically Precise Geometric Coordinate Separator Axis */}
         <div
           className={styles.centerDividerAxis}
           data-story-act3-axis="true"
           aria-hidden="true"
         >
-          <div className={styles.axisLineLeft} />
           <svg
-            className={styles.filigreeEmblemSvg}
-            viewBox="0 0 64 20"
+            className={styles.geometricSeparatorSvg}
+            viewBox="0 0 1000 24"
+            preserveAspectRatio="none"
             fill="none"
-            data-story-act3-axis-floret="true"
-            aria-hidden="true"
           >
+            {/* Left Baseline Hairline */}
+            <line x1="0" y1="12" x2="435" y2="12" stroke="#C59B27" strokeWidth="1" strokeOpacity="0.4" />
+            
+            {/* Left Geometric Filigree S-Curve */}
             <path
-              d="M2 10 C14 10 20 4 28 8 C30 9 31 10 32 10 C33 10 34 9 36 8 C44 4 50 10 62 10"
+              d="M 435 12 C 452 12, 466 5.5, 478 9 C 488 11.5, 494 12, 500 12"
               stroke="#C59B27"
               strokeWidth="1.2"
               strokeOpacity="0.85"
             />
-            <polygon points="32,4 35.5,10 32,16 28.5,10" fill="#C59B27" />
+            
+            {/* Center Sacred Geometry 8-Point Diamond Star */}
+            <g data-story-act3-axis-floret="true">
+              <polygon points="500,2 506,12 500,22 494,12" fill="#C59B27" />
+              <polygon points="500,5 504,12 500,19 496,12" fill="#FAF6EE" />
+              <polygon points="500,7 502.5,12 500,17 497.5,12" fill="#C59B27" />
+            </g>
+
+            {/* Right Geometric Filigree S-Curve */}
+            <path
+              d="M 500 12 C 506 12, 512 11.5, 522 9 C 534 5.5, 548 12, 565 12"
+              stroke="#C59B27"
+              strokeWidth="1.2"
+              strokeOpacity="0.85"
+            />
+
+            {/* Right Baseline Hairline */}
+            <line x1="565" y1="12" x2="1000" y2="12" stroke="#C59B27" strokeWidth="1" strokeOpacity="0.4" />
           </svg>
-          <div className={styles.axisLineRight} />
         </div>
 
         {/* Bottom 5-Column Platform Signatures Grid */}
@@ -207,7 +245,7 @@ export function DipakPresenceAct({
                   body
                 )}
 
-                {/* Vertical Divider with Gold Diamond Star Pip */}
+                {/* Vertical Divider with Geometric Diamond Star Pip */}
                 {idx < content.signatures.length - 1 && (
                   <div className={styles.columnDivider} aria-hidden="true">
                     <span className={styles.dividerStarPip}>✦</span>

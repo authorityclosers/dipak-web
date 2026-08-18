@@ -459,7 +459,7 @@ export function useHomeIntroTimeline({
       masterTl.to({}, { duration: 0.6 }, "ACT2_HOLD");
 
       // -----------------------------------------------------------------------
-      // BEAT 3: ACT 2 ➔ ACT 3 (PRESENCE / FEATURED IN TICKET) (1.2 -> 2.4)
+      // BEAT 3: ACT 2 ➔ ACT 3 (PRESENCE / ENVELOPE REDESIGN) (1.2 -> 2.2)
       // -----------------------------------------------------------------------
       masterTl.addLabel("ACT2_TO_ACT3", 1.2);
 
@@ -468,8 +468,8 @@ export function useHomeIntroTimeline({
           act2Sunlight,
           {
             opacity: 0,
-            x: 40,
-            duration: 0.3,
+            x: 30,
+            duration: 0.28,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3"
@@ -480,8 +480,8 @@ export function useHomeIntroTimeline({
           act2Shadow1,
           {
             opacity: 0,
-            x: 30,
-            duration: 0.3,
+            x: 24,
+            duration: 0.28,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3"
@@ -492,7 +492,7 @@ export function useHomeIntroTimeline({
           act2Shadow2,
           {
             opacity: 0,
-            x: 20,
+            x: 18,
             duration: 0.25,
             ease: "power2.in",
           },
@@ -504,9 +504,9 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act2Index,
           {
-            y: -18,
+            y: -24,
             opacity: 0,
-            duration: 0.3,
+            duration: 0.28,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3"
@@ -517,7 +517,8 @@ export function useHomeIntroTimeline({
           act2HeadlineLines,
           {
             yPercent: -105,
-            duration: 0.35,
+            opacity: 0,
+            duration: 0.32,
             stagger: 0.02,
             ease: "power2.inOut",
           },
@@ -528,45 +529,46 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act2StructuralRules,
           {
+            scaleX: 0.6,
             opacity: 0,
-            duration: 0.25,
+            duration: 0.24,
             stagger: 0.02,
             ease: "power2.in",
           },
-          "ACT2_TO_ACT3+=0.04"
+          "ACT2_TO_ACT3+=0.02"
         );
       }
       if (act2Role) {
         masterTl.to(
           act2Role,
           {
-            y: -10,
+            y: -18,
             opacity: 0,
-            duration: 0.25,
+            duration: 0.26,
             ease: "power2.in",
           },
-          "ACT2_TO_ACT3+=0.04"
+          "ACT2_TO_ACT3+=0.02"
         );
       }
       if (act2Bio) {
         masterTl.to(
           act2Bio,
           {
-            y: -10,
+            y: -18,
             opacity: 0,
-            duration: 0.25,
+            duration: 0.26,
             ease: "power2.in",
           },
-          "ACT2_TO_ACT3+=0.05"
+          "ACT2_TO_ACT3+=0.03"
         );
       }
       if (act2Stats.length) {
         masterTl.to(
           act2Stats,
           {
-            y: 20,
+            y: 28,
             opacity: 0,
-            duration: 0.3,
+            duration: 0.28,
             stagger: 0.02,
             ease: "power2.in",
           },
@@ -578,21 +580,22 @@ export function useHomeIntroTimeline({
         act2Wrapper,
         {
           opacity: 0,
-          duration: 0.2,
+          duration: 0.25,
           ease: "power1.in",
         },
-        "ACT2_TO_ACT3+=0.15"
+        "ACT2_TO_ACT3+=0.08"
       );
       masterTl.set(
         act2Wrapper,
         {
           visibility: "hidden",
         },
-        "ACT2_TO_ACT3+=0.35"
+        "ACT2_TO_ACT3+=0.33"
       );
 
       // ACT 3 ENTRANCE (Ticket Certificate 3D Assembly & Kinetic Cascade)
-      masterTl.addLabel("ACT3_ENTER", 1.45);
+      // Overlaps immediately at 1.25 to prevent any empty dead void
+      masterTl.addLabel("ACT3_ENTER", 1.25);
       masterTl.set(
         act3Wrapper,
         {
@@ -609,7 +612,7 @@ export function useHomeIntroTimeline({
             opacity: 1,
             scale: 1,
             rotateX: 0,
-            duration: 0.5,
+            duration: 0.45,
             ease: "power3.out",
           },
           "ACT3_ENTER"
