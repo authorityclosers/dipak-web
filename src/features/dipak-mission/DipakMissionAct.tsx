@@ -43,11 +43,8 @@ export function DipakMissionAct({
         <blockquote className={styles.quoteSculpture}>
           <h2 id="mission-heading" className={styles.quoteHeadline}>
             <span className={styles.headlineMask}>
-              <span
-                className={styles.headlineLine}
-                data-story-act4-line="0"
-              >
-                &ldquo;Sales is the
+              <span className={styles.headlineLine} data-story-act4-line="0">
+                &ldquo;{content.monumentalQuote.prefix}
               </span>
             </span>
             <span className={styles.headlineMask}>
@@ -55,7 +52,8 @@ export function DipakMissionAct({
                 className={`${styles.headlineLine} ${styles.goldEmphasis}`}
                 data-story-act4-line="1"
               >
-                transfer of certainty.&rdquo;
+                {content.monumentalQuote.emphasis}
+                {content.monumentalQuote.suffix}&rdquo;
               </span>
             </span>
           </h2>
@@ -74,14 +72,12 @@ export function DipakMissionAct({
           aria-label="Core Operating Tenets"
           data-story-act4-tenets="true"
         >
-          <li className={styles.tenetItem}>
-            <span className={styles.tenetDot} aria-hidden="true" />
-            <span>Trust is the absence of doubt.</span>
-          </li>
-          <li className={styles.tenetItem}>
-            <span className={styles.tenetDot} aria-hidden="true" />
-            <span>Curiosity builds trust.</span>
-          </li>
+          {content.pillars.map((pillar) => (
+            <li key={pillar.index} className={styles.tenetItem}>
+              <span className={styles.tenetDot} aria-hidden="true" />
+              <span>{pillar.statement}</span>
+            </li>
+          ))}
         </ul>
       </div>
     </section>

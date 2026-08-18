@@ -17,7 +17,7 @@ export const bridgeContent: BridgeContent = {
     },
     {
       label: "Read My Story",
-      href: "#about",
+      href: "/about",
       primary: false,
       event: "cta_read_story_bridge",
     },

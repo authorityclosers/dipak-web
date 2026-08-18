@@ -1,0 +1,397 @@
+/* ==========================================================================
+   Editorial kit — shared primitives for the inner pages.
+   ========================================================================== */
+
+/* --- Reveal --------------------------------------------------------------- */
+
+.reveal {
+  /* No hidden state by default: SSR / no-JS output must stay readable.
+     Reveal.tsx adds .revealArmed after mount to opt into the animation. */
+  will-change: opacity, transform;
+}
+
+.revealArmed {
+  opacity: 0;
+  transition:
+    opacity var(--dur-slow) var(--ease-out-editorial),
+    transform var(--dur-slow) var(--ease-out-editorial);
+  transition-delay: calc(var(--reveal-index, 0) * 70ms);
+}
+
+.revealArmed.revealFrom_up {
+  transform: translateY(26px);
+}
+
+.revealArmed.revealFrom_left {
+  transform: translateX(-26px);
+}
+
+.revealArmed.revealFrom_scale {
+  transform: scale(0.965);
+}
+
+.revealShown {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Eyebrow / section header --------------------------------------------- */
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 1.4rem;
+}
+
+.eyebrow,
+.eyebrowIndex,
+.eyebrowSlash {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+}
+
+.eyebrowIndex {
+  color: var(--gold-deep);
+}
+
+.eyebrowSlash {
+  color: var(--ink-faint);
+}
+
+.eyebrow {
+  color: var(--ink-muted);
+}
+
+.eyebrowRule {
+  flex: 1;
+  max-width: 8rem;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+}
+
+.sectionHeadline,
+.pageHeadline {
+  margin: 0;
+  font-family: var(--font-family-serif);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.sectionHeadline {
+  font-size: var(--step-h2);
+  text-transform: uppercase;
+}
+
+.sectionNote {
+  margin: 0;
+  max-width: 34ch;
+  color: var(--ink-body);
+  font-size: var(--step-body);
+}
+
+.goldPeriod {
+  color: var(--gold);
+}
+
+.inverted .eyebrow {
+  color: var(--inv-text-muted);
+}
+
+.inverted .sectionHeadline {
+  color: var(--inv-text);
+}
+
+.inverted .sectionNote {
+  color: var(--inv-text-muted);
+}
+
+/* --- Page hero ------------------------------------------------------------ */
+
+.pageHero {
+  position: relative;
+  padding: clamp(8rem, 14vw, 12rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--rule-hairline);
+}
+
+.pageHeroInner {
+  max-width: var(--max-page);
+  margin-inline: auto;
+}
+
+.pageHeroSplit {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.pageHeadline {
+  font-size: var(--step-h1);
+  max-width: 16ch;
+}
+
+.pageHeroBody {
+  display: grid;
+  gap: 1.1rem;
+  margin-top: 2rem;
+  max-width: var(--measure);
+}
+
+.pageHeroBody p {
+  margin: 0;
+  color: var(--ink-body);
+  font-size: var(--step-body-lg);
+  line-height: 1.68;
+}
+
+.pageHeroAside {
+  position: relative;
+}
+
+/* --- Background media ----------------------------------------------------- */
+
+.bgMedia {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bgPoster,
+.bgVideo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.bgVideo {
+  /* Sits above the poster once playback starts. */
+  z-index: 1;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    rgba(14, 13, 12, 0.55) 0%,
+    rgba(14, 13, 12, 0.72) 60%,
+    rgba(14, 13, 12, 0.92) 100%
+  );
+}
+
+.bgOverlayStrong {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 13, 12, 0.82) 0%,
+    rgba(14, 13, 12, 0.9) 100%
+  );
+}
+
+/* Fine film grain — keeps large flat dark areas from banding. */
+.bgGrain {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  opacity: 0.055;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --- Shared page scaffolding ---------------------------------------------- */
+
+.section {
+  position: relative;
+  padding: var(--section-y) var(--gutter);
+}
+
+.sectionDark {
+  background: var(--ink-obsidian-deep);
+  color: var(--inv-text);
+}
+
+.sectionSunken {
+  background: var(--paper-sunken);
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-page);
+  margin-inline: auto;
+}
+
+.containerNarrow {
+  position: relative;
+  z-index: 1;
+  max-width: 76ch;
+  margin-inline: auto;
+}
+
+/* --- Ledger rows (shared by topics / principles / timeline) ---------------- */
+
+.ledger {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule-hairline);
+}
+
+.ledgerRow {
+  display: grid;
+  grid-template-columns: 4.5rem 1.1fr 1.4fr;
+  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: start;
+  padding: clamp(1.6rem, 3vw, 2.6rem) 0;
+  border-bottom: 1px solid var(--rule-hairline);
+  transition: background var(--dur-base) var(--ease-out-editorial);
+}
+
+.ledgerRow:hover {
+  background: var(--gold-wash);
+}
+
+.ledgerIndex {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--gold-deep);
+  padding-top: 0.5rem;
+}
+
+.ledgerTitle {
+  margin: 0;
+  font-family: var(--font-family-serif);
+  font-size: var(--step-h3);
+  font-weight: 600;
+  letter-spacing: var(--tracking-tight);
+  line-height: 1.1;
+}
+
+.ledgerBody {
+  margin: 0;
+  color: var(--ink-body);
+  max-width: 52ch;
+}
+
+/* --- CTA buttons ---------------------------------------------------------- */
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  font-size: var(--step-meta);
+  letter-spacing: 0.04em;
+  transition:
+    background var(--dur-fast) var(--ease-out-editorial),
+    color var(--dur-fast) var(--ease-out-editorial),
+    border-color var(--dur-fast) var(--ease-out-editorial),
+    transform var(--dur-fast) var(--ease-out-editorial);
+}
+
+.ctaPrimary {
+  background: var(--ink-obsidian);
+  color: var(--inv-text);
+}
+
+.ctaPrimary:hover {
+  background: var(--gold-deep);
+  transform: translateY(-2px);
+}
+
+.ctaSecondary {
+  border: 1px solid var(--rule-strong);
+  color: var(--ink-obsidian);
+}
+
+.ctaSecondary:hover {
+  border-color: var(--gold);
+  color: var(--gold-deep);
+  transform: translateY(-2px);
+}
+
+.sectionDark .ctaPrimary {
+  background: var(--gold);
+  color: var(--ink-obsidian);
+}
+
+.sectionDark .ctaPrimary:hover {
+  background: var(--gold-light);
+}
+
+.sectionDark .ctaSecondary {
+  border-color: var(--inv-hairline);
+  color: var(--inv-text);
+}
+
+.sectionDark .ctaSecondary:hover {
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+
+/* --- Responsive ----------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .sectionHeader,
+  .pageHeroSplit {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .pageHeroAside {
+    order: -1;
+    max-width: 20rem;
+  }
+
+  .ledgerRow {
+    grid-template-columns: 3rem 1fr;
+  }
+
+  .ledgerBody {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .ledgerRow {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .ledgerBody {
+    grid-column: 1;
+  }
+
+  .ledgerIndex {
+    padding-top: 0;
+  }
+}

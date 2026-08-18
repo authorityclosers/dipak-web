@@ -8,10 +8,16 @@ import { DipakMissionAct, missionContent } from "@/features/dipak-mission";
 import { DipakTopicsAct, topicsContent } from "@/features/dipak-topics";
 import { DipakThinkingAct, thinkingContent } from "@/features/dipak-thinking";
 import { DipakBridgeAct, bridgeContent } from "@/features/dipak-bridge";
+import type { FeaturedArticle } from "@/features/dipak-thinking/thinking.types";
 import { useHomeIntroTimeline } from "./useHomeIntroTimeline";
 import styles from "./home-intro-story.module.css";
 
-export function HomeIntroStory() {
+interface HomeIntroStoryProps {
+  /** Real published articles, read server-side and passed down for Act 6. */
+  latestArticles?: FeaturedArticle[];
+}
+
+export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
   const shellRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const bridgeRuleRef = useRef<HTMLDivElement>(null);
@@ -64,7 +70,7 @@ export function HomeIntroStory() {
 
       {/* Act 6: Latest Thinking (Videos + Articles) */}
       <div className={styles.actSectionWrapper}>
-        <DipakThinkingAct content={thinkingContent} />
+        <DipakThinkingAct content={thinkingContent} articles={latestArticles} />
       </div>
 
       {/* Act 7: Authority Closers Bridge & Final CTA */}

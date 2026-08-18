@@ -1,3 +1,70 @@
+/* ==========================================================================
+   Dipak Vishwakarma — Global Design Tokens
+   Single source of truth for colour, type, rhythm, and motion.
+   Feature CSS Modules must consume these tokens rather than re-declaring hex.
+   ========================================================================== */
+
+:root {
+  /* --- Surface / ink ---------------------------------------------------- */
+  --ink-obsidian: #11110f;
+  --ink-obsidian-deep: #0e0d0c;
+  --ink-plate: #181715;
+  --ink-body: #4a473e;
+  --ink-muted: #6d6a60;
+  --ink-faint: #8f8b80;
+
+  --paper: #f4f1ea;
+  --paper-raised: #faf8f3;
+  --paper-sunken: #ebe7dd;
+
+  /* --- Metallic gold ramp ----------------------------------------------- */
+  --gold: #c89545;
+  --gold-deep: #8f621f;
+  --gold-light: #d8aa5a;
+  --gold-wash: rgba(200, 149, 69, 0.12);
+  --gold-hairline: rgba(200, 149, 69, 0.32);
+
+  /* --- Inverted (dark sections) ----------------------------------------- */
+  --inv-text: #f4f1ea;
+  --inv-text-muted: rgba(244, 241, 234, 0.62);
+  --inv-hairline: rgba(244, 241, 234, 0.14);
+
+  /* --- Rules ------------------------------------------------------------ */
+  --rule-hairline: rgba(17, 17, 15, 0.12);
+  --rule-strong: rgba(17, 17, 15, 0.28);
+
+  /* --- Type ------------------------------------------------------------- */
+  --font-family-serif: var(--font-serif), "Iowan Old Style", Georgia, serif;
+  --font-family-sans: var(--font-sans), Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-family-mono: "SF Mono", "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Fluid display scale — clamp keeps large type from overflowing mobile. */
+  --step-mono: 0.6875rem;
+  --step-meta: clamp(0.6875rem, 0.66rem + 0.14vw, 0.78rem);
+  --step-body: clamp(0.95rem, 0.9rem + 0.24vw, 1.0625rem);
+  --step-body-lg: clamp(1.05rem, 0.98rem + 0.36vw, 1.25rem);
+  --step-h3: clamp(1.35rem, 1.1rem + 1.1vw, 2rem);
+  --step-h2: clamp(2rem, 1.4rem + 2.8vw, 3.9rem);
+  --step-h1: clamp(2.6rem, 1.5rem + 5vw, 6.4rem);
+  --step-monument: clamp(3rem, 1.4rem + 7vw, 8.5rem);
+
+  --tracking-mono: 0.18em;
+  --tracking-tight: -0.022em;
+
+  /* --- Rhythm ----------------------------------------------------------- */
+  --gutter: clamp(1.25rem, 0.6rem + 3vw, 4.5rem);
+  --section-y: clamp(4.5rem, 3rem + 7vw, 11rem);
+  --measure: 62ch;
+  --max-page: 1680px;
+
+  /* --- Motion ----------------------------------------------------------- */
+  --ease-out-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-editorial: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 220ms;
+  --dur-base: 420ms;
+  --dur-slow: 760ms;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,10 +76,18 @@ body {
   min-height: 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+  /* Header is fixed on inner pages; keep in-page anchors clear of it. */
+  scroll-padding-top: 6rem;
+}
+
 body {
-  background: #f4f1ea;
-  color: #11110f;
-  font-family: var(--font-sans), Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink-obsidian);
+  font-family: var(--font-family-sans);
+  font-size: var(--step-body);
+  line-height: 1.6;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -29,7 +104,48 @@ a {
   text-decoration: none;
 }
 
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
 ::selection {
-  background: #c89545;
+  background: var(--gold);
   color: #ffffff;
+}
+
+/* Visible focus for keyboard users only — never a mouse-click ring. */
+:focus-visible {
+  outline: 2px solid var(--gold-deep);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Screen-reader-only utility, used by skip links and icon-only controls. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

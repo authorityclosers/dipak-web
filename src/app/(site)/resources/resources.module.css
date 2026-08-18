@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Resources page
+   ========================================================================== */
+
+.resourceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--rule-hairline);
+  border: 1px solid var(--rule-hairline);
+}
+
+.resourceCard {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 1.4rem;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: var(--paper);
+  transition: background var(--dur-base) var(--ease-out-editorial);
+}
+
+.resourceCard:hover {
+  background: var(--paper-raised);
+}
+
+.resourceIndex {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--gold-deep);
+}
+
+.resourceBody {
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+}
+
+.resourceTitle {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-family-serif);
+  font-size: var(--step-h3);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+}
+
+.resourceDescription {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--ink-body);
+  line-height: 1.66;
+}
+
+.resourceCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  justify-self: start;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--gold-hairline);
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  transition: border-color var(--dur-fast) var(--ease-out-editorial);
+}
+
+.resourceCta:hover {
+  border-bottom-color: var(--gold);
+}
+
+.resourceCta span {
+  transition: transform var(--dur-fast) var(--ease-out-editorial);
+}
+
+.resourceCta:hover span {
+  transform: translateX(4px);
+}
+
+/* --- Authority Closers bridge --------------------------------------------- */
+
+.bridgeBlock {
+  max-width: 60ch;
+}
+
+.bridgeHeadline {
+  margin: 0 0 1.4rem;
+  font-family: var(--font-family-serif);
+  font-size: var(--step-h2);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.goldPeriod {
+  color: var(--gold);
+}
+
+.bridgeBody {
+  margin: 0;
+  color: var(--inv-text-muted);
+  font-size: var(--step-body-lg);
+  line-height: 1.7;
+}
+
+@media (max-width: 780px) {
+  .resourceGrid {
+    grid-template-columns: 1fr;
+  }
+}

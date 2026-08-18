@@ -1,11 +1,22 @@
 import type { PresenceContent } from "./presence.types";
 
+/**
+ * "Featured / Found On" proof rail.
+ * Copy from the handoff pack, 01_COPY section 03.
+ *
+ * `href` is omitted on every entry deliberately. The previous values were
+ * bare root domains (medium.com, youtube.com, linkedin.com) — not Dipak's
+ * profiles — and the copy master flags media handles as unverified. Add each
+ * real profile URL here and that platform becomes a working link on its own.
+ */
 export const presenceContent: PresenceContent = {
   sectionNumber: "03",
-  sectionTitle: "PRESENCE",
+  sectionTitle: "Presence",
   headlineWord1: "FEATURED",
   headlineWord2: "IN",
-  supportingNote: "Ideas published, discussed, and referenced across digital platforms.",
+  metaLabel: "Digital Signatures",
+  supportingNote:
+    "Ideas on sales, buyer psychology, certainty, communication, entrepreneurship and the systems behind better conversations.",
   signatures: [
     {
       id: "medium",
@@ -13,12 +24,11 @@ export const presenceContent: PresenceContent = {
       sublabel: "Articles & Long-form Essays",
       category: "THINKING",
       iconType: "medium",
-      href: "https://medium.com",
     },
     {
       id: "dailyhunt",
       name: "Dailyhunt",
-      sublabel: "Published Columns & Synergies",
+      sublabel: "Published Columns & Syndication",
       category: "PUBLISHED",
       iconType: "dailyhunt",
     },
@@ -28,7 +38,6 @@ export const presenceContent: PresenceContent = {
       sublabel: "Video Breakdowns & Sales Training",
       category: "EDUCATION",
       iconType: "youtube",
-      href: "https://youtube.com",
     },
     {
       id: "podcast",
@@ -43,7 +52,6 @@ export const presenceContent: PresenceContent = {
       sublabel: "Daily Strategic Insights & Frameworks",
       category: "AUTHORITY",
       iconType: "linkedin",
-      href: "https://linkedin.com",
     },
   ],
 };
