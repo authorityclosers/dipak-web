@@ -72,13 +72,18 @@ export function useHomeIntroTimeline({
       const act2HeadlineLines = stage.querySelectorAll(
         "[data-story-act2-headline]"
       );
-      const act2StructuralRule = stage.querySelector("[data-story-act2-rule]");
+      const act2StructuralRules = stage.querySelectorAll(
+        "[data-story-act2-rule], [data-story-act2-rule2]"
+      );
       const act2Role = stage.querySelector("[data-story-act2-role]");
       const act2Bio = stage.querySelector("[data-story-act2-bio]");
       const act2Stats = stage.querySelectorAll(
         "[data-story-act2-stats] > div"
       );
-      const act2Preview = stage.querySelector("[data-story-act2-preview]");
+      const act2Sunlight = stage.querySelector(".sunlightBeam");
+      const act2Shadow1 = stage.querySelector(".foliageShadow1");
+      const act2Shadow2 = stage.querySelector(".foliageShadow2");
+      const act23DHeadline = stage.querySelector("[data-story-act2-3dheadline]");
 
       const act3Ticket = stage.querySelector("[data-story-act3-ticket]");
       const act3Florets = stage.querySelectorAll("[data-story-act3-floret]");
@@ -115,9 +120,14 @@ export function useHomeIntroTimeline({
       gsap.set(act3Wrapper, { visibility: "hidden", opacity: 0 });
       gsap.set(act4Wrapper, { visibility: "hidden", opacity: 0 });
 
+      if (act2Sunlight) gsap.set(act2Sunlight, { opacity: 0, x: -60 });
+      if (act2Shadow1) gsap.set(act2Shadow1, { opacity: 0, x: -40 });
+      if (act2Shadow2) gsap.set(act2Shadow2, { opacity: 0, x: -30 });
+      if (act23DHeadline) gsap.set(act23DHeadline, { perspective: 1000, rotateY: -3, rotateX: 2 });
+
       gsap.set(act2Index, { opacity: 0, y: -8 });
       gsap.set(act2HeadlineLines, { yPercent: 105 });
-      gsap.set(act2StructuralRule, {
+      gsap.set(act2StructuralRules, {
         scaleX: 0,
         opacity: 0,
         transformOrigin: "left center",
@@ -125,7 +135,6 @@ export function useHomeIntroTimeline({
       gsap.set(act2Role, { opacity: 0, y: 10 });
       gsap.set(act2Bio, { opacity: 0, y: 12 });
       gsap.set(act2Stats, { opacity: 0, y: 14 });
-      gsap.set(act2Preview, { opacity: 0, y: 12 });
 
       gsap.set(act3Ticket, {
         opacity: 0,
@@ -320,6 +329,56 @@ export function useHomeIntroTimeline({
         "ACT2_ENTER"
       );
 
+      if (act2Sunlight) {
+        masterTl.to(
+          act2Sunlight,
+          {
+            opacity: 0.85,
+            x: 0,
+            duration: 0.55,
+            ease: "power2.out",
+          },
+          "ACT2_ENTER"
+        );
+      }
+      if (act2Shadow1) {
+        masterTl.to(
+          act2Shadow1,
+          {
+            opacity: 0.75,
+            x: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          },
+          "ACT2_ENTER+=0.02"
+        );
+      }
+      if (act2Shadow2) {
+        masterTl.to(
+          act2Shadow2,
+          {
+            opacity: 0.65,
+            x: 0,
+            duration: 0.65,
+            ease: "power2.out",
+          },
+          "ACT2_ENTER+=0.04"
+        );
+      }
+
+      if (act23DHeadline) {
+        masterTl.to(
+          act23DHeadline,
+          {
+            rotateY: 0,
+            rotateX: 0,
+            duration: 0.45,
+            ease: "power2.out",
+          },
+          "ACT2_ENTER+=0.04"
+        );
+      }
+
       if (act2Index) {
         masterTl.to(
           act2Index,
@@ -344,13 +403,14 @@ export function useHomeIntroTimeline({
           "ACT2_ENTER+=0.04"
         );
       }
-      if (act2StructuralRule) {
+      if (act2StructuralRules.length) {
         masterTl.to(
-          act2StructuralRule,
+          act2StructuralRules,
           {
             scaleX: 1,
-            opacity: 0.45,
+            opacity: 0.85,
             duration: 0.35,
+            stagger: 0.04,
             ease: "power2.out",
           },
           "ACT2_ENTER+=0.06"
@@ -403,6 +463,43 @@ export function useHomeIntroTimeline({
       // -----------------------------------------------------------------------
       masterTl.addLabel("ACT2_TO_ACT3", 1.2);
 
+      if (act2Sunlight) {
+        masterTl.to(
+          act2Sunlight,
+          {
+            opacity: 0,
+            x: 40,
+            duration: 0.3,
+            ease: "power2.in",
+          },
+          "ACT2_TO_ACT3"
+        );
+      }
+      if (act2Shadow1) {
+        masterTl.to(
+          act2Shadow1,
+          {
+            opacity: 0,
+            x: 30,
+            duration: 0.3,
+            ease: "power2.in",
+          },
+          "ACT2_TO_ACT3"
+        );
+      }
+      if (act2Shadow2) {
+        masterTl.to(
+          act2Shadow2,
+          {
+            opacity: 0,
+            x: 20,
+            duration: 0.25,
+            ease: "power2.in",
+          },
+          "ACT2_TO_ACT3"
+        );
+      }
+
       if (act2Index) {
         masterTl.to(
           act2Index,
@@ -427,12 +524,13 @@ export function useHomeIntroTimeline({
           "ACT2_TO_ACT3"
         );
       }
-      if (act2StructuralRule) {
+      if (act2StructuralRules.length) {
         masterTl.to(
-          act2StructuralRule,
+          act2StructuralRules,
           {
             opacity: 0,
             duration: 0.25,
+            stagger: 0.02,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3+=0.04"

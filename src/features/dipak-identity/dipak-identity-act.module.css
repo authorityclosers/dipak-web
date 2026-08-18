@@ -1,11 +1,11 @@
 .identitySection {
   --dv-ink: #11110f;
-  --dv-body: #36342e;
-  --dv-canvas: #f4f1ea;
-  --dv-gold-art: #c89545;
-  --dv-gold-text: #8f621f;
-  --dv-gold-line: #d8aa5a;
-  --dv-line: rgba(17, 17, 15, 0.12);
+  --dv-body: #36332d;
+  --dv-canvas: #f8f4ec;
+  --dv-gold-art: #c59b27;
+  --dv-gold-text: #967439;
+  --dv-gold-line: rgba(197, 155, 39, 0.45);
+  --dv-line: rgba(197, 155, 39, 0.38);
   --dv-serif: var(--font-serif), "Playfair Display", "Iowan Old Style", Georgia, serif;
   --dv-sans: var(--font-sans), "Plus Jakarta Sans", Inter, -apple-system, sans-serif;
 
@@ -15,28 +15,108 @@
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   background-color: var(--dv-canvas);
   color: var(--dv-ink);
-  padding: clamp(1.2rem, 3.5vh, 2.6rem) clamp(1.5rem, 5vw, 6rem) clamp(1rem, 2.5vh, 2rem);
+  padding: clamp(2rem, 5vh, 4rem) clamp(2rem, 6vw, 7.5rem);
   overflow: clip;
   box-sizing: border-box;
 }
 
-/* Subtle Natural-Media Background Continuity (3-5% opacity) */
-.atmosphereLayer {
+/* ==========================================================================
+   Powerful Architectural Window Sunlight & Shadow Rays
+   ========================================================================== */
+
+.shadowGoboContainer {
   position: absolute;
-  inset: 0;
+  inset: -10%;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.042;
-  background-image: url("/hero/enso-brush-master.webp");
-  background-size: 1400px 1400px;
-  background-position: calc(100% + 200px) -150px;
-  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-/* Container Structure */
+/* Ray 1: Deep Primary Window Shadow Slat across Top-Left and "Founder of Authority Closers" */
+.shadowStripLeft {
+  position: absolute;
+  top: -45%;
+  left: -20%;
+  width: 58%;
+  height: 210%;
+  transform: rotate(-38deg);
+  background: linear-gradient(
+    90deg,
+    rgba(80, 64, 46, 0.68) 0%,
+    rgba(100, 82, 60, 0.52) 35%,
+    rgba(125, 105, 82, 0.32) 70%,
+    transparent 100%
+  );
+  filter: blur(28px);
+  mix-blend-mode: multiply;
+  opacity: 0.95;
+  will-change: transform, opacity;
+}
+
+/* Bright Volumetric Sunlight Shaft between Window Slats */
+.sunlightBeam {
+  position: absolute;
+  top: -35%;
+  left: 12%;
+  width: 48%;
+  height: 190%;
+  transform: rotate(-38deg);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 18%,
+    rgba(255, 255, 255, 0.95) 45%,
+    rgba(255, 255, 255, 0.95) 55%,
+    rgba(255, 255, 255, 0.4) 80%,
+    transparent 100%
+  );
+  filter: blur(24px);
+  mix-blend-mode: overlay;
+  opacity: 1;
+  will-change: transform, opacity;
+}
+
+/* Ray 2: Secondary Window Shadow Slat across Center & Middle Section */
+.shadowStripMid {
+  position: absolute;
+  top: -25%;
+  left: 38%;
+  width: 46%;
+  height: 175%;
+  transform: rotate(-38deg);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(90, 72, 54, 0.52) 30%,
+    rgba(115, 95, 72, 0.38) 60%,
+    transparent 95%
+  );
+  filter: blur(30px);
+  mix-blend-mode: multiply;
+  opacity: 0.9;
+  will-change: transform, opacity;
+}
+
+.ambientLightWash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 35% 15%,
+    rgba(255, 255, 255, 0.55) 0%,
+    transparent 65%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Container Structure
+   ========================================================================== */
+
 .identityContainer {
   position: relative;
   z-index: 1;
@@ -45,42 +125,77 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: space-between;
+  min-height: clamp(520px, 78vh, 760px);
 }
 
-/* Top Header Row: 02 / THE PERSON & Title */
+/* ==========================================================================
+   Top Header Row: 02 / THE PERSON (Aligned High) + Hairline/Dot + Headline
+   ========================================================================== */
+
 .topRow {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  gap: 2rem;
-  padding-bottom: clamp(1.2rem, 2.2vh, 1.8rem);
+  align-items: flex-start;
+  gap: clamp(1.5rem, 3.5vw, 4.5rem);
+}
+
+.sectionIndexWrapper {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-top: clamp(0.6rem, 1.2vh, 1.2rem);
+  flex: 1;
+  max-width: 34rem;
 }
 
 .sectionIndex {
   font-family: var(--dv-sans);
-  font-size: clamp(0.82rem, 0.9vw, 0.95rem);
+  font-size: clamp(0.76rem, 0.86vw, 0.92rem);
   font-weight: 700;
   letter-spacing: 0.22em;
   color: var(--dv-gold-text);
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   margin: 0;
-  padding-bottom: 0.4rem;
+  white-space: nowrap;
 }
 
+.headerHairlineTrack {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+}
+
+.headerHairline {
+  height: 1px;
+  flex: 1;
+  background-color: var(--dv-gold-line);
+}
+
+.headerDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--dv-gold-art);
+  margin-left: 2px;
+  flex-shrink: 0;
+}
+
+/* Monumental Headline: THE CERTAINTY BUILDER™. */
 .headline {
   font-family: var(--dv-serif);
-  font-size: clamp(2.4rem, 5vw, 5.8rem);
-  font-weight: 700;
-  line-height: 0.94;
+  font-size: clamp(2.8rem, 5.2vw, 5.8rem);
+  font-weight: 800;
+  line-height: 0.92;
   letter-spacing: -0.025em;
   color: var(--dv-ink);
   margin: 0;
   text-align: right;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5), 0 3px 14px rgba(17, 17, 15, 0.05);
 }
 
 .headlineMask {
@@ -97,7 +212,7 @@
 
 .tm {
   font-family: var(--dv-sans);
-  font-size: 0.35em;
+  font-size: 0.32em;
   vertical-align: super;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -108,193 +223,156 @@
 .goldPeriod {
   color: var(--dv-gold-art);
   font-family: var(--dv-serif);
+  margin-left: 0.04em;
+  font-size: 0.9em;
 }
 
-/* Structural Gold Line */
-.structuralRuleContainer {
+/* ==========================================================================
+   Full-Width Golden Divider Rules (Top and Bottom of Middle Row)
+   ========================================================================== */
+
+.dividerRuleContainer {
   width: 100%;
   position: relative;
-  margin-bottom: clamp(1.4rem, 2.8vh, 2.4rem);
+  margin-block: clamp(1.4rem, 2.6vh, 2.4rem);
 }
 
-.structuralRule {
+.dividerRule {
   width: 100%;
   height: 1px;
   background-color: var(--dv-gold-line);
-  opacity: 0.45;
+  opacity: 0.85;
   transform-origin: left center;
 }
 
-/* Middle Content: Founder & Bio */
+/* ==========================================================================
+   Middle Content: Founder Lockup & Geometrically Aligned Bio
+   ========================================================================== */
+
 .middleRow {
   display: grid;
   grid-template-columns: 1fr 1.35fr;
-  gap: clamp(2rem, 5vw, 6rem);
+  gap: clamp(2rem, 5.5vw, 6.5rem);
   align-items: start;
-  margin-bottom: clamp(1.4rem, 3vh, 2.6rem);
 }
 
 .roleColumn {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1.1rem;
 }
 
 .roleSubhead {
   font-family: var(--dv-serif);
-  font-size: clamp(1.4rem, 2vw, 2.2rem);
+  font-size: clamp(1.6rem, 2.4vw, 2.7rem);
   font-weight: 600;
   font-style: italic;
   letter-spacing: -0.015em;
   color: var(--dv-ink);
   margin: 0;
-  line-height: 1.18;
+  line-height: 1.16;
+  display: flex;
+  flex-direction: column;
+}
+
+.roleBrand {
+  font-weight: 600;
 }
 
 .founderDash {
   display: block;
-  width: 28px;
+  width: 32px;
   height: 2px;
   background-color: var(--dv-gold-art);
   border-radius: 1px;
 }
 
 .bioColumn {
-  max-width: 42rem;
+  width: 100%;
 }
 
 .bioText {
   font-family: var(--dv-sans);
-  font-size: clamp(0.98rem, 1.12vw, 1.2rem);
-  line-height: 1.58;
+  font-size: clamp(0.94rem, 1.08vw, 1.15rem);
+  line-height: 1.66;
   color: var(--dv-body);
   margin: 0;
   letter-spacing: -0.01em;
+  text-align: left;
 }
 
-/* Normalized Proof Metrics Row */
+/* ==========================================================================
+   Bottom 3-Column Metric Ledger with Vertical Dividers
+   ========================================================================== */
+
 .statsRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(1.5rem, 4vw, 4.5rem);
-  padding-block: clamp(1rem, 2vh, 1.8rem);
-  border-top: 1px solid var(--dv-line);
-  border-bottom: 1px solid var(--dv-line);
-  margin-bottom: clamp(1rem, 2vh, 1.6rem);
+  padding-top: clamp(0.4rem, 1vh, 0.8rem);
+  position: relative;
 }
 
 .statBlock {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.45rem;
+  position: relative;
+  padding-right: clamp(1rem, 2.5vw, 3rem);
+}
+
+.statBlock:not(:first-child) {
+  padding-left: clamp(1rem, 2.5vw, 3rem);
 }
 
 .statValueRow {
   display: flex;
   align-items: baseline;
-  gap: 0.45rem;
+  gap: 0.55rem;
   flex-wrap: nowrap;
 }
 
 .statMain {
   font-family: var(--dv-serif);
-  font-size: clamp(2.4rem, 3.8vw, 4.2rem);
+  font-size: clamp(2.8rem, 4.2vw, 5rem);
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1;
+  letter-spacing: -0.025em;
+  line-height: 0.95;
   color: var(--dv-ink);
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4), 0 2px 6px rgba(17, 17, 15, 0.04);
 }
 
 .statSuffix {
   font-family: var(--dv-serif);
-  font-size: clamp(1.1rem, 1.6vw, 1.9rem);
+  font-size: clamp(1.2rem, 1.8vw, 2.2rem);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.02em;
   line-height: 1;
   color: var(--dv-ink);
+  text-transform: uppercase;
 }
 
 .statLabelRow {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
   margin-top: 0.35rem;
 }
 
 .statLabel {
   font-family: var(--dv-sans);
-  font-size: clamp(0.72rem, 0.76vw, 0.84rem);
+  font-size: clamp(0.72rem, 0.78vw, 0.84rem);
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--dv-gold-text);
 }
 
-.statSublabel {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.68rem, 0.7vw, 0.76rem);
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #767269;
-}
-
-/* Rebuilt Monochrome Featured In Trust Rail */
-.previewRail {
-  display: grid;
-  grid-template-columns: minmax(140px, auto) 1fr;
-  align-items: center;
-  gap: clamp(1.5rem, 3vw, 4rem);
-  padding-top: clamp(0.4rem, 0.8vh, 0.8rem);
-}
-
-.previewRailLabel {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.74rem, 0.78vw, 0.84rem);
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--dv-gold-text);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  white-space: nowrap;
-}
-
-.previewRailArrow {
-  color: var(--dv-gold-text);
-  font-weight: 700;
-}
-
-.mediaList {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(1rem, 2vw, 2.5rem);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.mediaItem {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  color: #4a4740;
-  transition: color 150ms ease;
-}
-
-.mediaIcon {
-  color: #5a564e;
-  flex-shrink: 0;
-}
-
-.mediaName {
-  font-family: var(--dv-serif);
-  font-size: clamp(0.9rem, 1vw, 1.1rem);
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  color: inherit;
+.verticalDivider {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--dv-line);
 }
 
 /* ==========================================================================
@@ -305,72 +383,59 @@
   .topRow {
     flex-direction: column;
     align-items: flex-start;
-    gap: 0.8rem;
+    gap: 1rem;
   }
 
   .headline {
     text-align: left;
-    font-size: clamp(2.2rem, 7vw, 4.4rem);
+    font-size: clamp(2.4rem, 7vw, 4.4rem);
   }
 
   .middleRow {
     grid-template-columns: 1fr;
-    gap: 1.4rem;
+    gap: 1.5rem;
   }
 
   .statsRow {
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
   }
 }
 
 @media (max-width: 640px) {
   .identitySection {
-    padding: 1.4rem 1.25rem 1.25rem;
+    padding: 1.8rem 1.4rem 1.4rem;
     height: auto;
     min-height: 100dvh;
   }
 
   .headline {
-    font-size: clamp(2.1rem, 8.5vw, 3.2rem);
-    line-height: 0.98;
+    font-size: clamp(2.2rem, 8.8vw, 3.4rem);
+    line-height: 0.96;
   }
 
   .statsRow {
-    grid-template-columns: 1fr 1fr;
-    gap: 1.4rem 1rem;
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
   }
 
-  .statBlock:last-child {
-    grid-column: 1 / -1;
+  .statBlock {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
-  .previewRail {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.9rem;
-  }
-
-  .mediaList {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.9rem 1.2rem;
-  }
-
-  .mediaItem {
-    justify-content: flex-start;
+  .verticalDivider {
+    display: none;
   }
 }
 
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .headlineLine,
-  .structuralRule,
+  .dividerRule,
   .bioText,
   .statBlock,
-  .previewRail {
+  .sunlightBeam,
+  .shadowStripLeft {
     animation: none !important;
     transition: none !important;
     transform: none !important;
