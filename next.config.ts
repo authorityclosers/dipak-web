@@ -11,9 +11,9 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 768, 1024, 1280, 1536, 1920],
+    deviceSizes: [640, 768, 1024, 1280, 1536, 1920, 2048, 2560],
     imageSizes: [64, 96, 128, 192, 256, 384],
-    qualities: [60, 75, 85],
+    qualities: [75, 85, 92],
   },
   async headers() {
     return [

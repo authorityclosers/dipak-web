@@ -1,6 +1,4 @@
 import Image from "next/image";
-import brushLeft from "./assets/brush-left.png";
-import brushHalo from "./assets/brush-halo.png";
 import type { HeroContent, HeroCta } from "./hero.types";
 import styles from "./dipak-hero.module.css";
 
@@ -34,16 +32,8 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 export function DipakHero({ content }: { content: HeroContent }) {
   return (
     <section id="hero" className={styles.surface} aria-labelledby="hero-heading">
-      {/* Authentic charcoal brush stroke on left border */}
-      <div className={styles.leftBrushContainer} aria-hidden="true">
-        <Image
-          className={styles.leftBrushImage}
-          src={brushLeft}
-          alt=""
-          priority
-          quality={95}
-        />
-      </div>
+      {/* Authentic charcoal brush stroke on left border via CSS Mask */}
+      <div className={styles.leftBrush} aria-hidden="true" />
 
       {/* Top Header & Navigation */}
       <header className={styles.header}>
@@ -115,28 +105,23 @@ export function DipakHero({ content }: { content: HeroContent }) {
           ) : null}
         </div>
 
-        {/* Right Column: Pristine Seated Armchair Portrait with Zen Halo */}
+        {/* Right Column: Unified Visual Stage (Portrait + Ensō Mask) */}
         <div className={styles.portraitColumn}>
-          {/* Zen Ensō Brush Halo Arc */}
-          <div className={styles.haloContainer} aria-hidden="true">
-            <Image
-              className={styles.haloImage}
-              src={brushHalo}
-              alt=""
-              priority
-              quality={95}
-            />
-          </div>
+          <div className={styles.visualStage}>
+            {/* Pure Ensō CSS Masked Ambient Artwork */}
+            <div className={styles.halo} aria-hidden="true" />
 
-          <div className={styles.portraitWrapper}>
-            <Image
-              className={styles.portrait}
-              src={content.portrait}
-              alt={content.portraitAlt}
-              sizes="(max-width: 767px) 96vw, (max-width: 1200px) 55vw, 48vw"
-              quality={95}
-              priority
-            />
+            {/* Decontaminated Portrait Cutout */}
+            <div className={styles.portraitWrapper}>
+              <Image
+                className={styles.portrait}
+                src={content.portrait}
+                alt={content.portraitAlt}
+                sizes="(max-width: 767px) 96vw, (max-width: 1200px) 50vw, 44vw"
+                quality={92}
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>
