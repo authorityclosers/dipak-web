@@ -9,9 +9,7 @@ interface DipakPresenceActProps {
 }
 
 /**
- * Platform glyphs, keyed by the `iconType` on each signature in
- * presence.content.ts. These are markup, not content — names, captions and
- * destinations all live in the content file so copy has a single home.
+ * Authentic, pixel-precise vector glyphs matching media_1787087016008.png
  */
 const PLATFORM_ICONS: Record<string, React.ReactElement> = {
   medium: (
@@ -21,13 +19,15 @@ const PLATFORM_ICONS: Record<string, React.ReactElement> = {
   ),
   dailyhunt: (
     <svg className={styles.svgIcon} viewBox="0 0 24 24" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.6" />
+      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.8" />
       <text
         x="12"
-        y="16"
+        y="15.8"
         textAnchor="middle"
-        fontSize="10"
+        fontSize="9.2"
         fontWeight="800"
+        fontFamily="sans-serif"
+        letterSpacing="-0.3px"
         fill="currentColor"
       >
         DH
@@ -45,13 +45,13 @@ const PLATFORM_ICONS: Record<string, React.ReactElement> = {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.2"
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
     >
-      <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+      <path d="M12 2a3.2 3.2 0 0 0-3.2 3.2v6.6a3.2 3.2 0 0 0 6.4 0V5.2A3.2 3.2 0 0 0 12 2Z" fill="currentColor" />
+      <path d="M19 10.5v1.5a7 7 0 0 1-14 0v-1.5" />
       <line x1="12" x2="12" y1="19" y2="22" />
     </svg>
   ),
@@ -74,26 +74,33 @@ export function DipakPresenceAct({
       data-story-act3="true"
     >
       <div className={styles.atmosphereLayer} aria-hidden="true" />
-      <div className={styles.brushEcho} aria-hidden="true" />
 
-      {/* The Full-Screen Ticket Certificate Frame Card */}
+      {/* The Envelope Security Certificate Card Frame */}
       <div className={styles.ticketFrameRoot} data-story-act3-ticket="true">
-        {/* Semicircle Curved Cutout Notches at the 4 Corners */}
+        {/* Smudgy Sunset Aurora Wash (Upper Half Focus) */}
+        <div className={styles.auroraBackground} aria-hidden="true">
+          <div className={styles.auroraAmberBlob} />
+          <div className={styles.auroraCoralBlob} />
+          <div className={styles.auroraRoseBlob} />
+          <div className={styles.auroraTextureOverlay} />
+        </div>
+
+        {/* 4 Semicircle Cutout Notches at Corners */}
         <div className={styles.scallopTL} data-story-act3-scallop="true" aria-hidden="true" />
         <div className={styles.scallopTR} data-story-act3-scallop="true" aria-hidden="true" />
         <div className={styles.scallopBL} data-story-act3-scallop="true" aria-hidden="true" />
         <div className={styles.scallopBR} data-story-act3-scallop="true" aria-hidden="true" />
 
-        {/* 4 Corner Florets / Gold Diamonds */}
+        {/* 4 Corner Florets / Gold 4-Point Stars */}
         <span className={styles.cornerStarTL} data-story-act3-floret="true" aria-hidden="true">✦</span>
         <span className={styles.cornerStarTR} data-story-act3-floret="true" aria-hidden="true">✦</span>
         <span className={styles.cornerStarBL} data-story-act3-floret="true" aria-hidden="true">✦</span>
         <span className={styles.cornerStarBR} data-story-act3-floret="true" aria-hidden="true">✦</span>
 
-        {/* Inner Engraved Border Line */}
+        {/* Inner Engraved Certificate Border */}
         <div className={styles.innerEngravedBorder} aria-hidden="true" />
 
-        {/* Header Inside Ticket */}
+        {/* Header Inside Envelope Card */}
         <header className={styles.ticketHeaderRow}>
           <div className={styles.titleBlock}>
             <div className={styles.sectionIndex} data-story-act3-index="true">
@@ -136,16 +143,28 @@ export function DipakPresenceAct({
           </div>
         </header>
 
-        {/* Center Gold Divider Axis with Diamond Center */}
+        {/* Ornate Center Filigree Divider Axis with Diamond Emblem */}
         <div
           className={styles.centerDividerAxis}
           data-story-act3-axis="true"
           aria-hidden="true"
         >
-          <div className={styles.axisLine} />
-          <span className={styles.centerFloretEmblem} data-story-act3-axis-floret="true">
-            ✦
-          </span>
+          <div className={styles.axisLineLeft} />
+          <svg
+            className={styles.filigreeEmblemSvg}
+            viewBox="0 0 64 20"
+            fill="none"
+            data-story-act3-axis-floret="true"
+            aria-hidden="true"
+          >
+            <path
+              d="M2 10 C14 10 20 4 28 8 C30 9 31 10 32 10 C33 10 34 9 36 8 C44 4 50 10 62 10"
+              stroke="#C59B27"
+              strokeWidth="1.2"
+              strokeOpacity="0.85"
+            />
+            <polygon points="32,4 35.5,10 32,16 28.5,10" fill="#C59B27" />
+          </svg>
           <div className={styles.axisLineRight} />
         </div>
 
@@ -155,7 +174,7 @@ export function DipakPresenceAct({
           aria-label="Media publications and channels"
           data-story-act3-grid="true"
         >
-          {content.signatures.map((signature) => {
+          {content.signatures.map((signature, idx) => {
             const body = (
               <>
                 <div className={styles.iconBadge} data-story-act3-badge="true">
@@ -174,11 +193,6 @@ export function DipakPresenceAct({
                 className={styles.platformColumn}
                 data-story-act3-item="true"
               >
-                {/*
-                  Only becomes a link when the content file carries a real
-                  destination. Platforms without a confirmed profile URL render
-                  as plain proof marks rather than dead anchors.
-                */}
                 {signature.href ? (
                   <a
                     className={styles.platformLink}
@@ -191,6 +205,13 @@ export function DipakPresenceAct({
                   </a>
                 ) : (
                   body
+                )}
+
+                {/* Vertical Divider with Gold Diamond Star Pip */}
+                {idx < content.signatures.length - 1 && (
+                  <div className={styles.columnDivider} aria-hidden="true">
+                    <span className={styles.dividerStarPip}>✦</span>
+                  </div>
                 )}
               </li>
             );
