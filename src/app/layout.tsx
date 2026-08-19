@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import "@/styles/globals.css";
 
@@ -73,6 +74,19 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={`${serifFont.variable} ${sansFont.variable}`}>
+      <head>
+        {/* NayaGrowth Tracking & GTag Bootstrap */}
+        <Script
+          src="https://api.nayagrowth.com/capture/tracking-bootstrap.js"
+          strategy="afterInteractive"
+        />
+        {/* NayaGrowth Form Capture Script */}
+        <Script
+          src="https://api.nayagrowth.com/capture/v1.js"
+          data-naya-connector="src_authorityclosers_web"
+          strategy="afterInteractive"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );

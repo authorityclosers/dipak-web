@@ -12,6 +12,7 @@ services:
       PORT: 3000
       HOSTNAME: 0.0.0.0
       NEXT_PUBLIC_SITE_ORIGIN: https://dipakvishwakarma.com
+      CONTACT_WEBHOOK_URL: https://api.nayagrowth.com/api/landing/intake/src_authorityclosers_web
     networks:
       - proxy_net
     healthcheck:
