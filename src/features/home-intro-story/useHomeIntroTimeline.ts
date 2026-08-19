@@ -64,6 +64,7 @@ export function useHomeIntroTimeline({
       const heroCtaRow = stage.querySelector("[data-story-cta-row]");
       const heroQuote = stage.querySelector("[data-story-quote]");
       const heroPortraitRoot = stage.querySelector("[data-story-portrait-root]");
+      const heroHalo = stage.querySelector("[data-hero-halo]");
       const heroLeftAccent = stage.querySelector("[data-story-left-accent]");
 
       const act2Index = stage.querySelector("[data-story-act2-index]");
@@ -264,24 +265,33 @@ export function useHomeIntroTimeline({
         masterTl.to(
           heroPortraitRoot,
           {
-            x: 50,
-            scale: 0.9,
             opacity: 0,
+            y: 20,
             duration: 0.35,
-            ease: "power2.inOut",
+            ease: "power2.in",
           },
           "DECONSTRUCT+=0.02"
+        );
+      }
+      if (heroHalo) {
+        masterTl.to(
+          heroHalo,
+          {
+            scale: 1.25,
+            opacity: 0,
+            duration: 0.35,
+            ease: "power2.out",
+          },
+          "DECONSTRUCT"
         );
       }
       if (heroLeftAccent) {
         masterTl.to(
           heroLeftAccent,
           {
-            x: 100,
-            scaleX: 2.2,
             opacity: 0,
-            duration: 0.3,
-            ease: "power2.inOut",
+            duration: 0.22,
+            ease: "power1.out",
           },
           "DECONSTRUCT"
         );
