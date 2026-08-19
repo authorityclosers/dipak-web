@@ -287,6 +287,33 @@
   border-radius: 1px;
 }
 
+.executiveProofSnippet {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  padding-left: 0.85rem;
+  border-left: 1.5px solid var(--dv-gold-line);
+}
+
+.proofBadge {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--dv-gold-text);
+  text-transform: uppercase;
+}
+
+.proofCaption {
+  font-family: var(--dv-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dv-body);
+  margin: 0;
+  line-height: 1.4;
+}
+
 .bioColumn {
   width: 100%;
 }

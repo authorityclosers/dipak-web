@@ -39,6 +39,36 @@
     radial-gradient(circle at 90% 80%, rgba(200, 149, 69, 0.04), transparent 45%);
 }
 
+/* Cinematic Background Video Layer */
+.videoBackgroundContainer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.backgroundVideo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+  opacity: 0.12;
+  mix-blend-mode: multiply;
+  filter: contrast(1.1) saturate(1.2);
+}
+
+.videoGradientWash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(244, 241, 234, 0.6) 0%, rgba(244, 241, 234, 0.92) 80%);
+}
+
 .ensoAura {
   position: absolute;
   top: 50%;

@@ -20,6 +20,22 @@ export function DipakMissionAct({
       data-story-act4="true"
     >
       <div className={styles.atmosphereLayer} aria-hidden="true" />
+      
+      {/* Cinematic Ambient Motion Video Layer */}
+      <div className={styles.videoBackgroundContainer} aria-hidden="true">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={styles.backgroundVideo}
+          poster="/mission/crystal-light-bg.jpg"
+        >
+          <source src="/hero/ambient-light.mp4" type="video/mp4" />
+        </video>
+        <div className={styles.videoGradientWash} />
+      </div>
+
       <div
         className={styles.ensoAura}
         data-story-act4-enso="true"

@@ -73,7 +73,7 @@ export function DipakIdentityAct({
           />
         </div>
 
-        {/* Middle Content Row: Founder Lockup & Verified Bio */}
+        {/* Middle Content Row: Founder Lockup & Verified Bio with Executive Proof */}
         <div className={styles.middleRow}>
           <div className={styles.roleColumn} data-story-act2-role="true">
             <h3 className={styles.roleSubhead}>
@@ -81,6 +81,11 @@ export function DipakIdentityAct({
               <span className={styles.roleBrand}>Authority Closers.</span>
             </h3>
             <span className={styles.founderDash} aria-hidden="true" />
+
+            <div className={styles.executiveProofSnippet}>
+              <span className={styles.proofBadge}>KEYNOTE & ADVISORY</span>
+              <p className={styles.proofCaption}>Direct Architect of ₹100Cr+ High-Ticket Sales Pipelines</p>
+            </div>
           </div>
 
           <div className={styles.bioColumn} data-story-act2-bio="true">

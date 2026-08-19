@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import type { TopicsContent } from "./topics.types";
 import { topicsContent } from "./topics.content";
 import styles from "./dipak-topics-act.module.css";
@@ -49,35 +50,46 @@ export function DipakTopicsAct({
           </div>
         </header>
 
-        {/* Monumental Architectural Domain Ledger */}
-        <ul
-          className={styles.ledgerList}
+        {/* Expansive Editorial Topic Masterclass Grid */}
+        <div
+          className={styles.galleryGrid}
           aria-label="Core topic domains"
           data-story-act5-ledger="true"
         >
           {content.topics.map((item) => (
-            <li
+            <article
               key={item.id}
-              className={styles.ledgerRow}
+              className={styles.topicCard}
               data-story-act5-item="true"
             >
-              <span className={styles.rowIndex}>[{item.number}]</span>
-
-              <div className={styles.rowTitleBlock}>
-                <span className={styles.domainTag}>{item.tag}</span>
-                <h3 className={styles.domainTitle}>{item.title}</h3>
+              <div className={styles.cardVisualFrame}>
+                {item.image ? (
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className={styles.cardImage}
+                    loading="lazy"
+                  />
+                ) : null}
+                <div className={styles.imageOverlay} />
+                <span className={styles.cardIndex}>[{item.number}]</span>
+                <span className={styles.cardTag}>{item.tag}</span>
               </div>
 
-              <div className={styles.rowContentBlock}>
-                <p className={styles.domainDescription}>{item.description}</p>
+              <div className={styles.cardBody}>
+                <div className={styles.cardTitleRow}>
+                  <h3 className={styles.cardTitle}>{item.title}</h3>
+                  <span className={styles.cardArrow} aria-hidden="true">
+                    ↗
+                  </span>
+                </div>
+                <p className={styles.cardDescription}>{item.description}</p>
               </div>
-
-              <span className={styles.rowArrow} aria-hidden="true">
-                →
-              </span>
-            </li>
+            </article>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );
