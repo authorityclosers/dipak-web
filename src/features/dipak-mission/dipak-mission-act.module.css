@@ -58,15 +58,20 @@
   width: auto;
   height: auto;
   object-fit: cover;
-  opacity: 0.12;
+  opacity: 0.35;
   mix-blend-mode: multiply;
-  filter: contrast(1.1) saturate(1.2);
+  filter: contrast(1.15) brightness(0.95);
 }
 
 .videoGradientWash {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(244, 241, 234, 0.6) 0%, rgba(244, 241, 234, 0.92) 80%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(244, 241, 234, 0.4) 0%,
+    rgba(244, 241, 234, 0.82) 75%,
+    rgba(244, 241, 234, 0.95) 100%
+  );
 }
 
 .ensoAura {

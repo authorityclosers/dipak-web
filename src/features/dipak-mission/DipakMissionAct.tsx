@@ -31,7 +31,7 @@ export function DipakMissionAct({
           className={styles.backgroundVideo}
           poster="/mission/crystal-light-bg.jpg"
         >
-          <source src="/hero/ambient-light.mp4" type="video/mp4" />
+          <source src="/mission/mission-cinematic-bg.mp4" type="video/mp4" />
         </video>
         <div className={styles.videoGradientWash} />
       </div>
