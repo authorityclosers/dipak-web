@@ -76,22 +76,33 @@ jobs:
             --exclude 'deploy.tar.gz' \
             ./ production:/home/nivi/apps/dipak-web/
 
-      - name: Deploy Docker Container
+      - name: Deploy Docker Container (Zero Downtime)
         run: |
-          ssh production "cd /home/nivi/apps/dipak-web && docker compose -f docker-compose.prod.yml down --remove-orphans 2>/dev/null || true && docker compose -f docker-compose.prod.yml up -d --build --remove-orphans"
+          ssh production << 'EOF'
+            set -e
+            cd /home/nivi/apps/dipak-web
+            echo "1. Building new container image in background while old container stays live..."
+            docker compose -f docker-compose.prod.yml build dipak-web
+            
+            echo "2. Recreating container instantaneously with new image..."
+            docker compose -f docker-compose.prod.yml up -d --no-deps --build dipak-web
+            
+            echo "3. Cleaning up dangling images..."
+            docker image prune -f || true
+          EOF
 
       - name: Verify Live Production Health
         run: |
-          echo "Waiting 5s for container readiness and Traefik SSL certificate..."
-          sleep 5
-          for i in {1..12}; do
+          echo "Waiting 3s for container readiness and Traefik verification..."
+          sleep 3
+          for i in {1..15}; do
             echo "Attempt $i: Checking https://dipakvishwakarma.com/api/health..."
             STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://dipakvishwakarma.com/api/health || true)
             if [ "$STATUS" = "200" ]; then
               echo "✅ Production Health Check PASSED (HTTP 200)!"
               exit 0
             fi
-            sleep 3
+            sleep 2
           done
           echo "❌ Health check did not return HTTP 200 in expected time window."
           exit 1
