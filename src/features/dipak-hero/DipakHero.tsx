@@ -176,7 +176,9 @@ export function DipakHero({ content }: { content: HeroContent }) {
             }
           >
             {/* Authentic Natural-Media Ensō Brush Artwork with Animated Reveal */}
-            <BrushArtwork className={styles.halo} />
+            <div data-story-halo="true" className={styles.haloWrapper}>
+              <BrushArtwork className={styles.halo} />
+            </div>
 
             {/* Decontaminated High-Resolution Portrait Cutouts */}
             <Image
