@@ -564,13 +564,13 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act2StructuralRules,
           {
-            scaleX: 0.6,
+            scaleX: 1.15,
             opacity: 0,
-            duration: 0.24,
-            stagger: 0.02,
-            ease: "power2.in",
+            duration: 0.32,
+            stagger: 0.04,
+            ease: "power2.inOut",
           },
-          "ACT2_TO_ACT3+=0.02"
+          "ACT2_TO_ACT3"
         );
       }
       if (act2Role) {
@@ -628,8 +628,8 @@ export function useHomeIntroTimeline({
         "ACT2_TO_ACT3+=0.33"
       );
 
-      // ACT 3 ENTRANCE (Ticket Certificate 3D Assembly & Kinetic Cascade)
-      // Overlaps immediately at 1.25 to prevent any empty dead void
+      // ACT 3 ENTRANCE (Continuous Geometric Handoff into Certificate Frame)
+      // Overlaps seamlessly at 1.25 where Act 2's gold rules morph into Act 3's axis
       masterTl.addLabel("ACT3_ENTER", 1.25);
       masterTl.set(
         act3Wrapper,
