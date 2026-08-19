@@ -1,0 +1,26 @@
+{
+  "reference_image": {"width": 1672, "height": 941},
+  "outer_frame": {"x": 34, "y": 34, "width": 1604, "height": 872},
+  "normalized_frame": {"width_vw": 95.93, "height_vh": 92.67},
+  "header": {
+    "index_glyph_bbox": {"x1": 141, "y1": 193, "x2": 325, "y2": 207},
+    "headline_dark_glyph_bbox": {"x1": 141, "y1": 246, "x2": 811, "y2": 329},
+    "meta_label_glyph_bbox": {"x1": 1325, "y1": 200, "x2": 1528, "y2": 210},
+    "supporting_note_glyph_bbox": {"x1": 1119, "y1": 252, "x2": 1551, "y2": 339},
+    "note_line_tops": [252, 289, 326]
+  },
+  "divider": {
+    "axis_y": 479,
+    "main_sparkle_bbox": {"x1": 822, "y1": 464, "x2": 851, "y2": 496},
+    "left_dot_bbox": {"x1": 800, "y1": 476, "x2": 807, "y2": 483},
+    "right_dot_bbox": {"x1": 866, "y1": 476, "x2": 872, "y2": 483}
+  },
+  "platform_badges": {
+    "diameter_px": 78,
+    "centers": [[244.5, 627.5], [538.5, 627.5], [834.5, 628.5], [1132.5, 627.5], [1421.5, 627.5]]
+  },
+  "platform_title_top_px": 693,
+  "platform_caption_first_line_top_px": 750,
+  "base_canvas_rgb": [244, 240, 233],
+  "base_canvas_hex": "#f4f0e9"
+}

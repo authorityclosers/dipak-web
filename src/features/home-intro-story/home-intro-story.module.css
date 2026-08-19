@@ -41,27 +41,9 @@
   z-index: 5;
 }
 
-/* Luminous Bridge Gold Dot Particle for Act 1 -> Act 2 Kinetic Leap */
-.bridgeGoldDot {
-  position: absolute;
-  top: 48%;
-  left: 28%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #c59b27;
-  box-shadow: 
-    0 0 16px rgba(197, 155, 39, 0.9),
-    0 0 36px rgba(255, 210, 80, 0.7),
-    0 0 64px rgba(255, 170, 40, 0.4);
-  pointer-events: none;
-  z-index: 25;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
-  will-change: transform, opacity, box-shadow;
-}
 
-.bridgeRule {
+
+.bridgeGoldRule {
   position: absolute;
   top: 50%;
   left: 0;
@@ -118,8 +100,7 @@
     visibility: visible !important;
   }
 
-  .bridgeRule,
-  .bridgeGoldDot {
+  .bridgeGoldRule {
     display: none;
   }
 }

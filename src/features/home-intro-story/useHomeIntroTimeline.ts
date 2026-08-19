@@ -50,8 +50,6 @@ export function useHomeIntroTimeline({
       // -----------------------------------------------------------------------
       // PART 1-4: PINNED 4-ACT STORY TIMELINE (Acts 1 to 4)
       // -----------------------------------------------------------------------
-      const bridgeDot = stage.querySelector("[data-story-bridge-dot]");
-
       const act1Wrapper = stage.querySelector("[data-story-act1-wrapper]");
       const act2Wrapper = stage.querySelector("[data-story-act2-wrapper]");
       const act3Wrapper = stage.querySelector("[data-story-act3-wrapper]");
@@ -66,7 +64,7 @@ export function useHomeIntroTimeline({
       const heroCtaRow = stage.querySelector("[data-story-cta-row]");
       const heroQuote = stage.querySelector("[data-story-quote]");
       const heroPortraitRoot = stage.querySelector("[data-story-portrait-root]");
-      const heroLeftAccent = stage.querySelector(".leftBrushAccent");
+      const heroLeftAccent = stage.querySelector("[data-story-left-accent]");
 
       const act2Index = stage.querySelector("[data-story-act2-index]");
       const act2HeadlineLines = stage.querySelectorAll(
@@ -80,9 +78,10 @@ export function useHomeIntroTimeline({
       const act2Stats = stage.querySelectorAll(
         "[data-story-act2-stats] > div"
       );
-      const act2Sunlight = stage.querySelector(".sunlightBeam");
-      const act2Shadow1 = stage.querySelector(".foliageShadow1");
-      const act2Shadow2 = stage.querySelector(".foliageShadow2");
+      const act2Sunlight = stage.querySelector("[data-story-act2-sunlight]");
+      const act2ShadowLeft = stage.querySelector("[data-story-act2-shadow-left]");
+      const act2ShadowMid = stage.querySelector("[data-story-act2-shadow-mid]");
+      const act2Ambient = stage.querySelector("[data-story-act2-ambient]");
       const act23DHeadline = stage.querySelector("[data-story-act2-3dheadline]");
 
       const act3Ticket = stage.querySelector("[data-story-act3-ticket]");
@@ -116,22 +115,14 @@ export function useHomeIntroTimeline({
         });
       }
 
-      if (bridgeDot) {
-        gsap.set(bridgeDot, {
-          opacity: 0,
-          scale: 0,
-          x: 0,
-          y: 0,
-        });
-      }
-
       gsap.set(act2Wrapper, { visibility: "hidden", opacity: 0 });
       gsap.set(act3Wrapper, { visibility: "hidden", opacity: 0 });
       gsap.set(act4Wrapper, { visibility: "hidden", opacity: 0 });
 
-      if (act2Sunlight) gsap.set(act2Sunlight, { opacity: 0, x: -60 });
-      if (act2Shadow1) gsap.set(act2Shadow1, { opacity: 0, x: -40 });
-      if (act2Shadow2) gsap.set(act2Shadow2, { opacity: 0, x: -30 });
+      if (act2Sunlight) gsap.set(act2Sunlight, { opacity: 0, x: -30 });
+      if (act2ShadowLeft) gsap.set(act2ShadowLeft, { opacity: 0, x: -20 });
+      if (act2ShadowMid) gsap.set(act2ShadowMid, { opacity: 0, x: -15 });
+      if (act2Ambient) gsap.set(act2Ambient, { opacity: 0 });
       if (act23DHeadline) gsap.set(act23DHeadline, { perspective: 1000, rotateY: -3, rotateX: 2 });
 
       gsap.set(act2Index, { opacity: 0, y: -8 });
@@ -147,19 +138,16 @@ export function useHomeIntroTimeline({
 
       gsap.set(act3Ticket, {
         opacity: 0,
-        scale: 0.88,
-        rotateX: 14,
+        y: 12,
         transformOrigin: "center center",
       });
       gsap.set(act3Florets, {
         opacity: 0,
-        scale: 0,
-        rotate: -180,
+        scale: 0.85,
         transformOrigin: "center center",
       });
       gsap.set(act3Scallops, {
         opacity: 0,
-        scale: 0,
         transformOrigin: "center center",
       });
       gsap.set(act3Axis, {
@@ -168,18 +156,17 @@ export function useHomeIntroTimeline({
         transformOrigin: "center",
       });
       gsap.set(act3AxisFloret, {
-        scale: 0,
-        rotate: -90,
+        scale: 0.4,
         opacity: 0,
       });
       gsap.set(act3Index, { opacity: 0, y: -8 });
       gsap.set(act3HeadlineLines, { yPercent: 105 });
       gsap.set(act3MetaLabel, { opacity: 0, y: -6 });
-      gsap.set(act3MetaStar, { scale: 0, rotate: -90, opacity: 0 });
+      gsap.set(act3MetaStar, { scale: 0.4, opacity: 0 });
       gsap.set(act3Note, { opacity: 0, y: 10 });
-      gsap.set(act3Badges, { opacity: 0, scale: 0.75, y: 18 });
-      gsap.set(act3Titles, { opacity: 0, y: 12 });
-      gsap.set(act3Items, { opacity: 0, y: 24 });
+      gsap.set(act3Badges, { opacity: 0, y: 8 });
+      gsap.set(act3Titles, { opacity: 0, y: 6 });
+      gsap.set(act3Items, { opacity: 0, y: 8 });
 
       gsap.set(act4Index, { opacity: 0, y: -8 });
       gsap.set(act4Kicker, { opacity: 0, y: -6 });
@@ -209,46 +196,7 @@ export function useHomeIntroTimeline({
       // -----------------------------------------------------------------------
       masterTl.addLabel("DECONSTRUCT", 0.0);
 
-      // Kinetic Bridge Photon Particle Leap
-      if (bridgeDot) {
-        masterTl.fromTo(
-          bridgeDot,
-          {
-            opacity: 0,
-            scale: 0,
-            x: -60,
-            y: 40,
-          },
-          {
-            opacity: 1,
-            scale: 2.2,
-            duration: 0.12,
-            ease: "power2.out",
-          },
-          "DECONSTRUCT+=0.02"
-        );
-        masterTl.to(
-          bridgeDot,
-          {
-            x: 160,
-            y: -230,
-            scale: 3.4,
-            duration: 0.22,
-            ease: "power2.inOut",
-          },
-          "DECONSTRUCT+=0.1"
-        );
-        masterTl.to(
-          bridgeDot,
-          {
-            scale: 0,
-            opacity: 0,
-            duration: 0.1,
-            ease: "power2.in",
-          },
-          "ACT2_ENTER+=0.02"
-        );
-      }
+
 
       if (heroGoldRule) {
         masterTl.to(
@@ -388,36 +336,47 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act2Sunlight,
           {
-            opacity: 0.85,
+            opacity: 0.5,
             x: 0,
-            duration: 0.55,
+            duration: 0.5,
             ease: "power2.out",
           },
           "ACT2_ENTER"
         );
       }
-      if (act2Shadow1) {
+      if (act2ShadowLeft) {
         masterTl.to(
-          act2Shadow1,
+          act2ShadowLeft,
           {
-            opacity: 0.75,
+            opacity: 0.38,
             x: 0,
-            duration: 0.6,
+            duration: 0.5,
             ease: "power2.out",
           },
           "ACT2_ENTER+=0.02"
         );
       }
-      if (act2Shadow2) {
+      if (act2ShadowMid) {
         masterTl.to(
-          act2Shadow2,
+          act2ShadowMid,
           {
-            opacity: 0.65,
+            opacity: 0.3,
             x: 0,
-            duration: 0.65,
+            duration: 0.5,
             ease: "power2.out",
           },
           "ACT2_ENTER+=0.04"
+        );
+      }
+      if (act2Ambient) {
+        masterTl.to(
+          act2Ambient,
+          {
+            opacity: 0.25,
+            duration: 0.5,
+            ease: "power2.out",
+          },
+          "ACT2_ENTER"
         );
       }
 
@@ -523,31 +482,42 @@ export function useHomeIntroTimeline({
           act2Sunlight,
           {
             opacity: 0,
-            x: 30,
-            duration: 0.28,
+            x: 15,
+            duration: 0.25,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3"
         );
       }
-      if (act2Shadow1) {
+      if (act2ShadowLeft) {
         masterTl.to(
-          act2Shadow1,
+          act2ShadowLeft,
           {
             opacity: 0,
-            x: 24,
-            duration: 0.28,
+            x: 15,
+            duration: 0.25,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3"
         );
       }
-      if (act2Shadow2) {
+      if (act2ShadowMid) {
         masterTl.to(
-          act2Shadow2,
+          act2ShadowMid,
           {
             opacity: 0,
-            x: 18,
+            x: 15,
+            duration: 0.25,
+            ease: "power2.in",
+          },
+          "ACT2_TO_ACT3"
+        );
+      }
+      if (act2Ambient) {
+        masterTl.to(
+          act2Ambient,
+          {
+            opacity: 0,
             duration: 0.25,
             ease: "power2.in",
           },
@@ -665,10 +635,9 @@ export function useHomeIntroTimeline({
           act3Ticket,
           {
             opacity: 1,
-            scale: 1,
-            rotateX: 0,
-            duration: 0.45,
-            ease: "power3.out",
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
           },
           "ACT3_ENTER"
         );
@@ -679,10 +648,9 @@ export function useHomeIntroTimeline({
           {
             opacity: 1,
             scale: 1,
-            rotate: 0,
-            duration: 0.45,
-            stagger: 0.04,
-            ease: "back.out(2)",
+            duration: 0.35,
+            stagger: 0.03,
+            ease: "power2.out",
           },
           "ACT3_ENTER+=0.04"
         );
@@ -692,12 +660,11 @@ export function useHomeIntroTimeline({
           act3Scallops,
           {
             opacity: 1,
-            scale: 1,
-            duration: 0.4,
-            stagger: 0.03,
-            ease: "back.out(2.5)",
+            duration: 0.35,
+            stagger: 0.02,
+            ease: "power1.out",
           },
-          "ACT3_ENTER+=0.05"
+          "ACT3_ENTER+=0.03"
         );
       }
       if (act3Axis) {
@@ -709,7 +676,7 @@ export function useHomeIntroTimeline({
             duration: 0.4,
             ease: "power2.out",
           },
-          "ACT3_ENTER+=0.06"
+          "ACT3_ENTER+=0.05"
         );
       }
       if (act3AxisFloret) {
@@ -717,12 +684,11 @@ export function useHomeIntroTimeline({
           act3AxisFloret,
           {
             scale: 1,
-            rotate: 0,
             opacity: 1,
-            duration: 0.35,
-            ease: "back.out(2)",
+            duration: 0.3,
+            ease: "power2.out",
           },
-          "ACT3_ENTER+=0.08"
+          "ACT3_ENTER+=0.07"
         );
       }
       if (act3Index) {
@@ -742,8 +708,8 @@ export function useHomeIntroTimeline({
           act3HeadlineLines,
           {
             yPercent: 0,
-            duration: 0.45,
-            stagger: 0.05,
+            duration: 0.4,
+            stagger: 0.04,
             ease: "power3.out",
           },
           "ACT3_ENTER+=0.03"
@@ -758,7 +724,7 @@ export function useHomeIntroTimeline({
             duration: 0.3,
             ease: "power2.out",
           },
-          "ACT3_ENTER+=0.05"
+          "ACT3_ENTER+=0.04"
         );
       }
       if (act3MetaStar) {
@@ -766,12 +732,11 @@ export function useHomeIntroTimeline({
           act3MetaStar,
           {
             scale: 1,
-            rotate: 0,
             opacity: 1,
-            duration: 0.35,
-            ease: "back.out(2)",
+            duration: 0.3,
+            ease: "power2.out",
           },
-          "ACT3_ENTER+=0.06"
+          "ACT3_ENTER+=0.05"
         );
       }
       if (act3Note) {
@@ -783,7 +748,7 @@ export function useHomeIntroTimeline({
             duration: 0.3,
             ease: "power2.out",
           },
-          "ACT3_ENTER+=0.06"
+          "ACT3_ENTER+=0.05"
         );
       }
       if (act3Badges.length) {
@@ -791,13 +756,12 @@ export function useHomeIntroTimeline({
           act3Badges,
           {
             opacity: 1,
-            scale: 1,
             y: 0,
-            duration: 0.4,
-            stagger: 0.05,
-            ease: "back.out(1.8)",
+            duration: 0.35,
+            stagger: 0.03,
+            ease: "power2.out",
           },
-          "ACT3_ENTER+=0.08"
+          "ACT3_ENTER+=0.06"
         );
       }
       if (act3Titles.length) {
@@ -807,10 +771,10 @@ export function useHomeIntroTimeline({
             opacity: 1,
             y: 0,
             duration: 0.35,
-            stagger: 0.05,
+            stagger: 0.03,
             ease: "power2.out",
           },
-          "ACT3_ENTER+=0.1"
+          "ACT3_ENTER+=0.08"
         );
       }
       if (act3Items.length) {
@@ -820,10 +784,10 @@ export function useHomeIntroTimeline({
             opacity: 1,
             y: 0,
             duration: 0.35,
-            stagger: 0.05,
+            stagger: 0.03,
             ease: "power2.out",
           },
-          "ACT3_ENTER+=0.08"
+          "ACT3_ENTER+=0.06"
         );
       }
 
@@ -836,16 +800,13 @@ export function useHomeIntroTimeline({
       // -----------------------------------------------------------------------
       masterTl.addLabel("ACT3_TO_ACT4", 2.5);
 
-      // Ticket Certificate 3D Flyaway / Roll Outro
       if (act3Ticket) {
         masterTl.to(
           act3Ticket,
           {
-            rotateX: -14,
-            y: -60,
-            scale: 0.92,
+            y: -20,
             opacity: 0,
-            duration: 0.4,
+            duration: 0.35,
             ease: "power2.inOut",
           },
           "ACT3_TO_ACT4"
@@ -855,12 +816,11 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act3Florets,
           {
-            scale: 0,
-            rotate: 180,
+            scale: 0.9,
             opacity: 0,
-            duration: 0.3,
+            duration: 0.25,
             stagger: 0.02,
-            ease: "power2.in",
+            ease: "power1.in",
           },
           "ACT3_TO_ACT4"
         );
@@ -869,11 +829,9 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act3Scallops,
           {
-            scale: 0,
             opacity: 0,
             duration: 0.25,
-            stagger: 0.02,
-            ease: "power2.in",
+            ease: "power1.in",
           },
           "ACT3_TO_ACT4"
         );
@@ -882,9 +840,9 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act3Axis,
           {
-            scaleX: 0,
+            scaleX: 0.8,
             opacity: 0,
-            duration: 0.2,
+            duration: 0.25,
             ease: "power2.in",
           },
           "ACT3_TO_ACT4"
@@ -894,9 +852,9 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act3Items,
           {
-            y: -25,
+            y: -15,
             opacity: 0,
-            duration: 0.3,
+            duration: 0.25,
             stagger: 0.02,
             ease: "power2.in",
           },

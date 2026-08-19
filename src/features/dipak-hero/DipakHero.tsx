@@ -41,7 +41,11 @@ export function DipakHero({ content }: { content: HeroContent }) {
       data-story-act1="true"
     >
       {/* Authentic Left Margin Calligraphy Brush Accent */}
-      <div className={styles.leftBrushAccent} aria-hidden="true" />
+      <div
+        className={styles.leftBrushAccent}
+        data-story-left-accent="true"
+        aria-hidden="true"
+      />
 
       {/* Top Header & Navigation */}
       <header className={styles.header} data-story-header="true">

@@ -21,10 +21,10 @@ export function DipakIdentityAct({
     >
       {/* 3D Diagonal Sunlight & Shadow Strips Layer */}
       <div className={styles.shadowGoboContainer} aria-hidden="true" data-story-act2-gobo="true">
-        <div className={styles.sunlightBeam} />
-        <div className={styles.shadowStripLeft} />
-        <div className={styles.shadowStripMid} />
-        <div className={styles.ambientLightWash} />
+        <div className={styles.sunlightBeam} data-story-act2-sunlight="true" />
+        <div className={styles.shadowStripLeft} data-story-act2-shadow-left="true" />
+        <div className={styles.shadowStripMid} data-story-act2-shadow-mid="true" />
+        <div className={styles.ambientLightWash} data-story-act2-ambient="true" />
       </div>
 
       <div className={styles.identityContainer}>

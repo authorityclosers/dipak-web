@@ -1,27 +1,23 @@
 .presenceSection {
   --dv-ink: #11110f;
   --dv-body: #3c3933;
-  --dv-canvas: #faf6ee;
-  --dv-gold-art: #c59b27;
+  --dv-canvas: #f4f0e9;
+  --dv-gold-art: #c89532;
   --dv-gold-text: #9a7432;
-  --dv-gold-line: rgba(197, 155, 39, 0.42);
-  --dv-line: rgba(17, 17, 15, 0.1);
+  --dv-gold-line: rgba(200, 149, 69, 0.44);
   --dv-serif: var(--font-serif), "Playfair Display", "Iowan Old Style", Georgia, serif;
   --dv-sans: var(--font-sans), "Plus Jakarta Sans", Inter, -apple-system, sans-serif;
-  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
 
   position: relative;
   width: 100%;
   height: 100dvh;
   min-height: 100dvh;
   max-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--dv-canvas);
+  display: grid;
+  place-items: center;
+  background: var(--dv-canvas);
   color: var(--dv-ink);
-  padding: clamp(1rem, 2.5vh, 2rem) clamp(1.2rem, 3.5vw, 3.8rem);
+  padding: 3.65dvh 2.03vw;
   overflow: clip;
   box-sizing: border-box;
   perspective: 1400px;
@@ -32,122 +28,109 @@
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.5;
-  background: 
-    radial-gradient(circle at 75% 25%, rgba(200, 149, 69, 0.05), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(200, 149, 69, 0.03), transparent 45%);
+  background: var(--dv-canvas);
 }
 
-/* =========================================================================
-   BROADER ENVELOPE / SECURITY CERTIFICATE FRAME
-   ========================================================================= */
+/* Canonical desktop target: reference frame is 1604 x 872 inside a 1672 x 941 image. */
 .ticketFrameRoot {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 108rem;
-  height: clamp(560px, 85vh, 810px);
-  background: #faf6ee;
-  border: 1px solid var(--dv-gold-line);
-  box-shadow: 
-    0 24px 64px rgba(17, 17, 15, 0.06),
-    0 0 0 1px rgba(255, 255, 255, 0.9) inset;
-  padding: clamp(2.5rem, 5.2vh, 4.4rem) clamp(2.5rem, 4.8vw, 5.2rem);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  padding: 0;
   box-sizing: border-box;
-  transform-style: preserve-3d;
   overflow: hidden;
+  background: var(--dv-canvas);
+  border: 1px solid var(--dv-gold-line);
+  box-shadow: 0 16px 48px rgba(17, 17, 15, 0.025);
+  transform-style: preserve-3d;
   will-change: transform, opacity;
 }
 
-/* =========================================================================
-   SUBTLE, SOPHISTICATED SUNSET AURORA TEXTURE
-   ========================================================================= */
+/* -------------------------------------------------------------------------
+   AURORA FIELD
+   The old code used three small, heavily blurred blobs above the frame.
+   The reference is a broad color field: amber along the upper-left, rose
+   around the upper-center, and a coral plume descending the left edge.
+   ------------------------------------------------------------------------- */
 .auroraBackground {
   position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  background:
+    radial-gradient(
+      ellipse 58% 52% at 13% 4%,
+      rgba(255, 153, 35, 0.88) 0%,
+      rgba(255, 167, 45, 0.72) 24%,
+      rgba(255, 188, 92, 0.38) 47%,
+      rgba(255, 205, 139, 0.13) 65%,
+      transparent 78%
+    ),
+    radial-gradient(
+      ellipse 45% 38% at 57% 7%,
+      rgba(236, 93, 112, 0.72) 0%,
+      rgba(247, 127, 112, 0.52) 32%,
+      rgba(248, 164, 143, 0.22) 57%,
+      transparent 76%
+    ),
+    radial-gradient(
+      ellipse 46% 64% at 5% 43%,
+      rgba(246, 105, 108, 0.66) 0%,
+      rgba(250, 138, 123, 0.53) 34%,
+      rgba(252, 178, 151, 0.22) 61%,
+      transparent 78%
+    ),
+    radial-gradient(
+      ellipse 30% 30% at 35% 27%,
+      rgba(255, 205, 135, 0.28) 0%,
+      rgba(255, 209, 154, 0.12) 48%,
+      transparent 76%
+    );
 }
 
-.auroraAmberBlob {
-  position: absolute;
-  top: -32%;
-  left: -12%;
-  width: 52%;
-  height: 68%;
-  background: radial-gradient(
-    circle at 35% 35%,
-    rgba(255, 149, 38, 0.65) 0%,
-    rgba(255, 122, 61, 0.42) 38%,
-    rgba(255, 168, 82, 0.2) 65%,
-    transparent 82%
-  );
-  filter: blur(54px);
-  mix-blend-mode: multiply;
-  opacity: 0.85;
-}
-
-.auroraCoralBlob {
-  position: absolute;
-  top: -34%;
-  left: 24%;
-  width: 54%;
-  height: 65%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(232, 90, 109, 0.58) 0%,
-    rgba(245, 122, 102, 0.36) 40%,
-    rgba(255, 164, 122, 0.16) 70%,
-    transparent 85%
-  );
-  filter: blur(56px);
-  mix-blend-mode: multiply;
-  opacity: 0.75;
-}
-
+/* Keep these hooks because the current TSX and GSAP choreography expect them.
+   They are deliberately weak; the main field above carries the composition. */
+.auroraAmberBlob,
+.auroraCoralBlob,
 .auroraRoseBlob {
   position: absolute;
-  top: -22%;
-  left: 48%;
-  width: 38%;
-  height: 58%;
-  background: radial-gradient(
-    circle at 40% 40%,
-    rgba(235, 99, 122, 0.48) 0%,
-    rgba(246, 147, 162, 0.22) 38%,
-    transparent 78%
-  );
-  filter: blur(50px);
-  mix-blend-mode: multiply;
-  opacity: 0.6;
+  inset: 0;
+  opacity: 0;
 }
 
 .auroraTextureOverlay {
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(
-    rgba(17, 17, 15, 0.03) 1px,
-    transparent 0
-  );
-  background-size: 16px 16px;
+  background: url("/textures/act3-grain.webp") repeat;
+  background-size: 256px 256px;
   mix-blend-mode: multiply;
-  opacity: 0.35;
+  opacity: 0.055;
 }
 
-/* =========================================================================
-   SCALLOP CORNER NOTCHES & GEOMETRIC 8-POINT STARS
-   ========================================================================= */
+/* -------------------------------------------------------------------------
+   DOUBLE ENGRAVED BORDER + CORNER CUTS
+   Reference: outer frame ~34px from viewport; second line ~9px inward;
+   corner cut radius ~40px and a solid four-point sparkle.
+   ------------------------------------------------------------------------- */
+.innerEngravedBorder {
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(200, 149, 69, 0.28);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .scallopTL,
 .scallopTR,
 .scallopBL,
 .scallopBR {
   position: absolute;
-  width: 34px;
-  height: 34px;
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--dv-gold-line);
   background: var(--dv-canvas);
   z-index: 4;
@@ -157,104 +140,110 @@
 .scallopTL {
   top: -1px;
   left: -1px;
-  border-bottom-right-radius: 34px;
-  border-top: none;
-  border-left: none;
+  border-top: 0;
+  border-left: 0;
+  border-bottom-right-radius: 40px;
 }
 
 .scallopTR {
   top: -1px;
   right: -1px;
-  border-bottom-left-radius: 34px;
-  border-top: none;
-  border-right: none;
+  border-top: 0;
+  border-right: 0;
+  border-bottom-left-radius: 40px;
 }
 
 .scallopBL {
   bottom: -1px;
   left: -1px;
-  border-top-right-radius: 34px;
-  border-bottom: none;
-  border-left: none;
+  border-bottom: 0;
+  border-left: 0;
+  border-top-right-radius: 40px;
 }
 
 .scallopBR {
-  bottom: -1px;
   right: -1px;
-  border-top-left-radius: 34px;
-  border-bottom: none;
-  border-right: none;
+  bottom: -1px;
+  border-right: 0;
+  border-bottom: 0;
+  border-top-left-radius: 40px;
 }
 
-/* 4 Corner Geometric Florets */
 .cornerStarTL,
 .cornerStarTR,
 .cornerStarBL,
 .cornerStarBR {
   position: absolute;
-  width: 16px;
-  height: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 15px;
+  height: 15px;
   z-index: 6;
-  pointer-events: none;
-}
-
-.cornerStarTL { top: 12px; left: 12px; }
-.cornerStarTR { top: 12px; right: 12px; }
-.cornerStarBL { bottom: 12px; left: 12px; }
-.cornerStarBR { bottom: 12px; right: 12px; }
-
-/* Inner Engraved Border Line */
-.innerEngravedBorder {
-  position: absolute;
-  inset: 12px;
-  border: 1px solid rgba(197, 155, 39, 0.28);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* =========================================================================
-   HEADER INSIDE CARD
-   ========================================================================= */
-.ticketHeaderRow {
-  position: relative;
-  z-index: 2;
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  align-items: flex-end;
-  gap: 2rem;
-  padding-bottom: clamp(0.6rem, 1.2vh, 1.2rem);
+  place-items: center;
+  pointer-events: none;
+  color: var(--dv-gold-art);
+}
+
+.cornerStarTL { top: 15px; left: 14px; }
+.cornerStarTR { top: 15px; right: 14px; }
+.cornerStarBL { bottom: 15px; left: 14px; }
+.cornerStarBR { right: 14px; bottom: 15px; }
+
+.cornerStarTL svg,
+.cornerStarTR svg,
+.cornerStarBL svg,
+.cornerStarBR svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* -------------------------------------------------------------------------
+   HEADER — ABSOLUTE NORMALIZED ANCHORS
+   The target does NOT use space-between. Its major visual rows sit at fixed
+   fractions of the certificate: header ~18%, axis ~51%, signatures ~63.5%.
+   ------------------------------------------------------------------------- */
+.ticketHeaderRow {
+  position: absolute;
+  z-index: 2;
+  top: 17.85%;
+  left: 6.65%;
+  right: 5.28%;
+  display: grid;
+  grid-template-columns: minmax(0, 56%) minmax(340px, 44%);
+  align-items: start;
+  gap: 0;
+  padding: 0;
 }
 
 .titleBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
+  display: block;
+  min-width: 0;
 }
 
 .sectionIndex {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.78rem, 0.88vw, 0.94rem);
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  color: var(--dv-gold-text);
-  text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.7rem;
   margin: 0;
+  font-family: var(--dv-sans);
+  font-size: min(0.9vw, 1.7dvh, 15px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.27em;
+  color: var(--dv-gold-text);
+  text-transform: uppercase;
 }
 
 .headline {
-  font-family: var(--dv-serif);
-  font-size: clamp(2.8rem, 5.4vw, 5.8rem);
-  font-weight: 800;
-  line-height: 0.92;
-  letter-spacing: -0.025em;
+  margin: 31px 0 0;
   color: var(--dv-ink);
-  margin: 0;
+  font-family: var(--dv-serif);
+  font-size: min(6.65vw, 11.8dvh, 7rem);
+  font-weight: 800;
+  font-synthesis: none;
+  line-height: 0.87;
+  letter-spacing: -0.031em;
+  white-space: nowrap;
 }
 
 .headlineMask {
@@ -269,17 +258,20 @@
 }
 
 .goldPeriod {
+  display: inline-block;
+  margin-left: 0.02em;
   color: var(--dv-gold-art);
   font-family: var(--dv-serif);
-  margin-left: 0.02em;
 }
 
 .headerMeta {
+  justify-self: end;
+  width: min(100%, 440px);
+  padding-top: 5px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  gap: 0.65rem;
 }
 
 .metaHeadingRow {
@@ -290,164 +282,262 @@
 
 .metaLabel {
   font-family: var(--dv-sans);
-  font-size: 0.78rem;
+  font-size: min(0.79vw, 1.5dvh, 13px);
   font-weight: 700;
-  letter-spacing: 0.2em;
+  line-height: 1;
+  letter-spacing: 0.22em;
   color: var(--dv-gold-text);
   text-transform: uppercase;
 }
 
 .metaDividerStar {
+  position: relative;
+  top: -1px;
   color: var(--dv-gold-art);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
+  line-height: 1;
 }
 
 .supportingNote {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.92rem, 1.04vw, 1.12rem);
-  line-height: 1.54;
+  width: 100%;
+  max-width: 435px;
+  margin: 29px 0 0;
   color: var(--dv-body);
-  max-width: 25rem;
-  margin: 0;
-  letter-spacing: -0.01em;
+  font-family: var(--dv-sans);
+  font-size: min(1.03vw, 2.0dvh, 17px);
+  font-weight: 400;
+  line-height: 2.12;
+  letter-spacing: -0.013em;
 }
 
-/* =========================================================================
-   MATHEMATICALLY PRECISE GEOMETRIC SEPARATOR AXIS
-   ========================================================================= */
+/* -------------------------------------------------------------------------
+   CENTER AXIS
+   Target ornament: ~29 x 32px four-point sparkle, with ~7px dots centered
+   ~33px either side. This replaces the current thin nested diamond.
+   ------------------------------------------------------------------------- */
 .centerDividerAxis {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  width: 100%;
-  height: 24px;
+  top: 51.05%;
+  left: 6.55%;
+  right: 6.55%;
+  height: 34px;
+  margin: 0;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
-  margin-block: clamp(0.6rem, 1.5vh, 1.5rem);
 }
 
 .geometricSeparatorSvg {
+  display: block;
   width: 100%;
-  height: 24px;
+  height: 34px;
   overflow: visible;
 }
 
-/* =========================================================================
-   BOTTOM 5-COLUMN PLATFORM SIGNATURES GRID
-   ========================================================================= */
+/* -------------------------------------------------------------------------
+   FIVE MEDIA SIGNATURES
+   Target top of badge row is ~63.5% of the certificate. The row spans almost
+   the entire width (only ~4% inset), unlike the more padded header.
+   ------------------------------------------------------------------------- */
 .platformsGrid {
-  position: relative;
+  position: absolute;
   z-index: 2;
+  top: 63.55%;
+  left: 3.93%;
+  right: 3.93%;
+  height: 24.2%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0;
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 .platformColumn {
   position: relative;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 0 clamp(0.75rem, 1.6vw, 1.8rem);
-  gap: 0.8rem;
+  padding: 0 1rem;
 }
 
-/* Vertical Divider with Gold Diamond Star Pip */
+.iconBadge {
+  flex: 0 0 auto;
+  width: min(4.68vw, 8.35dvh, 78px);
+  height: min(4.68vw, 8.35dvh, 78px);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--dv-ink);
+  background: rgba(250, 248, 242, 0.46);
+  border: 1px solid rgba(200, 149, 69, 0.42);
+  box-shadow: none;
+  transition:
+    transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.platformColumn:hover .iconBadge {
+  transform: translateY(-3px) scale(1.04);
+  background: rgba(255, 255, 255, 0.58);
+  border-color: rgba(200, 149, 69, 0.72);
+}
+
+.svgIcon {
+  width: min(2.05vw, 3.62dvh, 34px);
+  height: min(2.05vw, 3.62dvh, 34px);
+  fill: currentColor;
+}
+
+.platformTitle {
+  margin: 19px 0 0;
+  color: var(--dv-ink);
+  font-family: var(--dv-serif);
+  font-size: min(1.73vw, 3.08dvh, 29px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  transition: color 180ms ease, transform 220ms ease;
+}
+
+.platformColumn:hover .platformTitle {
+  color: var(--dv-gold-text);
+  transform: translateY(-1px);
+}
+
+.platformCaption {
+  max-width: 245px;
+  margin: 20px 0 0;
+  color: var(--dv-body);
+  font-family: var(--dv-sans);
+  font-size: min(0.98vw, 1.78dvh, 16.4px);
+  font-weight: 400;
+  line-height: 2.05;
+  letter-spacing: -0.015em;
+}
+
 .columnDivider {
   position: absolute;
-  top: 10%;
+  top: 6.5%;
   right: 0;
-  height: 80%;
   width: 1px;
-  background-color: rgba(197, 155, 39, 0.28);
+  height: 89%;
+  background: rgba(200, 149, 69, 0.24);
   pointer-events: none;
 }
 
 .dividerStarPip {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--dv-gold-art);
-  font-size: 9px;
-  background-color: #faf6ee;
-  padding: 2px 0;
+  display: block;
+  padding: 3px 0;
+  color: #ec9e72;
+  background: var(--dv-canvas);
+  font-size: 10px;
+  line-height: 1;
 }
 
-/* Icon Badge */
-.iconBadge {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  background: #fbf8f2;
-  border: 1px solid rgba(197, 155, 39, 0.35);
-  box-shadow: 0 4px 14px rgba(17, 17, 15, 0.04);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dv-ink);
-  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1), background-color 220ms ease, border-color 220ms ease, box-shadow 240ms ease;
+.platformLink {
+  display: contents;
 }
 
-.platformColumn:hover .iconBadge {
-  transform: translateY(-4px) scale(1.06);
-  background: #ffffff;
-  border-color: var(--dv-gold-art);
-  box-shadow: 0 10px 24px rgba(197, 155, 39, 0.2);
+.platformColumn:has(.platformLink) {
+  cursor: pointer;
 }
 
-.svgIcon {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
-}
-
-.platformTitle {
-  font-family: var(--dv-serif);
-  font-size: clamp(1.3rem, 1.6vw, 1.75rem);
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--dv-ink);
-  margin: 0;
-  transition: color 180ms ease;
-}
-
-.platformColumn:hover .platformTitle {
-  color: var(--dv-gold-text);
-}
-
-.platformCaption {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.82rem, 0.88vw, 0.94rem);
-  line-height: 1.48;
-  color: var(--dv-body);
-  margin: 0;
-}
-
-/* Responsive */
+/* -------------------------------------------------------------------------
+   TABLET / MOBILE
+   Pixel lock applies to desktop. Below 960px the composition intentionally
+   returns to document flow, preserving the existing one-column mobile brief.
+   ------------------------------------------------------------------------- */
 @media (max-width: 960px) {
+  .presenceSection {
+    height: auto;
+    min-height: 100dvh;
+    max-height: none;
+    padding: 1rem;
+  }
+
   .ticketFrameRoot {
     height: auto;
-    padding: 2.2rem 1.8rem;
-    gap: 2rem;
+    min-height: calc(100dvh - 2rem);
+    padding: 3.5rem 2rem 3rem;
+    overflow: hidden;
+  }
+
+  .ticketHeaderRow,
+  .centerDividerAxis,
+  .platformsGrid {
+    position: relative;
+    inset: auto;
+    transform: none;
   }
 
   .ticketHeaderRow {
+    display: grid;
     grid-template-columns: 1fr;
-    gap: 1.2rem;
+    gap: 2rem;
+  }
+
+  .headline {
+    margin-top: 1.2rem;
+    font-size: clamp(3rem, 10vw, 5rem);
+    white-space: normal;
   }
 
   .headerMeta {
+    justify-self: start;
+    width: 100%;
+    max-width: 34rem;
     align-items: flex-start;
     text-align: left;
+    padding-top: 0;
+  }
+
+  .supportingNote {
+    margin-top: 1rem;
+    max-width: 34rem;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .centerDividerAxis {
+    width: 100%;
+    height: 34px;
+    margin: 2.2rem 0 2rem;
   }
 
   .platformsGrid {
+    height: auto;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.8rem 0;
+    row-gap: 2.6rem;
+  }
+
+  .iconBadge {
+    width: 68px;
+    height: 68px;
+  }
+
+  .svgIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .platformTitle {
+    font-size: 1.55rem;
+  }
+
+  .platformCaption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
   }
 
   .columnDivider {
@@ -457,24 +547,26 @@
 
 @media (max-width: 640px) {
   .presenceSection {
-    padding: 1.2rem 0.8rem;
-    height: auto;
-    min-height: 100dvh;
-    max-height: none;
+    padding: 0.7rem;
   }
 
   .ticketFrameRoot {
-    padding: 1.8rem 1.4rem;
-    gap: 1.6rem;
+    min-height: 0;
+    padding: 3rem 1.25rem 2.5rem;
   }
 
   .headline {
-    font-size: clamp(2.2rem, 8.5vw, 3.6rem);
+    font-size: clamp(2.65rem, 13vw, 4rem);
   }
 
   .platformsGrid {
     grid-template-columns: 1fr;
-    gap: 1.4rem;
+    gap: 2rem;
+  }
+
+  .platformColumn {
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid rgba(200, 149, 69, 0.18);
   }
 }
 
@@ -492,12 +584,14 @@
     transform: none !important;
     opacity: 1 !important;
   }
-}
 
-.platformLink {
-  display: contents;
-}
+  .centerDividerAxis {
+    transform: translateY(-50%) !important;
+  }
 
-.platformColumn:has(.platformLink) {
-  cursor: pointer;
+  @media (max-width: 960px) {
+    .centerDividerAxis {
+      transform: none !important;
+    }
+  }
 }
