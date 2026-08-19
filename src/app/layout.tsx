@@ -18,14 +18,48 @@ const sansFont = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Dipak Vishwakarma — Sales Is The Transfer Of Certainty",
+  metadataBase: new URL("https://dipakvishwakarma.com"),
+  title: "Dipak Vishwakarma | The Certainty Builder",
   description:
-    "Thoughts on sales, communication, trust, and personal branding for people building meaningful authority.",
+    "Helping founders and sales teams build trust, handle objections, and close high-value clients.",
+  alternates: {
+    canonical: "https://dipakvishwakarma.com/",
+  },
   openGraph: {
-    title: "Dipak Vishwakarma — Sales Is The Transfer Of Certainty",
-    description:
-      "Thoughts on sales, communication, trust, and personal branding for people building meaningful authority.",
     type: "website",
+    url: "https://dipakvishwakarma.com/",
+    siteName: "Dipak Vishwakarma",
+    title: "Dipak Vishwakarma | The Certainty Builder",
+    description:
+      "Helping founders and sales teams build trust, handle objections, and close high-value clients.",
+    images: [
+      {
+        url: "/social/dipak-og-default-1200x630.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dipak Vishwakarma, The Certainty Builder, helping founders and sales teams close high-value deals.",
+      },
+      {
+        url: "/social/dipak-og-retina-2400x1260.jpg",
+        width: 2400,
+        height: 1260,
+        alt: "Dipak Vishwakarma, The Certainty Builder, helping founders and sales teams close high-value deals.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dipak Vishwakarma | The Certainty Builder",
+    description:
+      "Helping founders and sales teams build trust, handle objections, and close high-value clients.",
+    images: [
+      {
+        url: "/social/dipak-og-default-1200x630.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Dipak Vishwakarma, The Certainty Builder, helping founders and sales teams close high-value deals.",
+      },
+    ],
   },
 };
 
