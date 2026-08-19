@@ -791,71 +791,92 @@ export function useHomeIntroTimeline({
         );
       }
 
-      // ACT 3 CRISP HOLD
-      masterTl.addLabel("ACT3_HOLD", 1.85);
-      masterTl.to({}, { duration: 0.65 }, "ACT3_HOLD");
-
       // -----------------------------------------------------------------------
-      // BEAT 4: ACT 3 ➔ ACT 4 (THE MANIFESTO) (2.5 -> 3.7)
+      // BEAT 3.5: ACT 3 INTERACTIVE ENGAGEMENT & REPUTATION PULSE (1.4 -> 2.1)
+      // Keeps the user captivated as they scroll rather than hitting a dead pause
       // -----------------------------------------------------------------------
-      masterTl.addLabel("ACT3_TO_ACT4", 2.5);
+      masterTl.addLabel("ACT3_HOLD", 1.4);
 
-      if (act3Ticket) {
+      // Subtle progressive spotlight & aura intensification across the 5 platforms
+      if (act3Badges.length) {
         masterTl.to(
-          act3Ticket,
+          act3Badges,
           {
-            y: -20,
-            opacity: 0,
+            scale: 1.08,
+            boxShadow: "0 8px 24px rgba(200, 149, 69, 0.22)",
             duration: 0.35,
+            stagger: 0.08,
+            ease: "power1.inOut",
+          },
+          "ACT3_HOLD+=0.05"
+        );
+        masterTl.to(
+          act3Badges,
+          {
+            scale: 1,
+            boxShadow: "none",
+            duration: 0.3,
+            stagger: 0.08,
+            ease: "power1.out",
+          },
+          "ACT3_HOLD+=0.3"
+        );
+      }
+
+      // Center sparkle breathes and ignites as energy focuses toward the center
+      if (act3AxisFloret) {
+        masterTl.to(
+          act3AxisFloret,
+          {
+            scale: 1.45,
+            duration: 0.4,
             ease: "power2.inOut",
           },
-          "ACT3_TO_ACT4"
+          "ACT3_HOLD+=0.2"
         );
       }
-      if (act3Florets.length) {
+
+      // -----------------------------------------------------------------------
+      // BEAT 4: ACT 3 ➔ ACT 4 (THE MANIFESTO CONVERGENCE) (2.1 -> 3.0)
+      // The Act 3 certificate and cards dissolve inward while the golden axis
+      // stretches directly into Act 4's laser manifesto line
+      // -----------------------------------------------------------------------
+      masterTl.addLabel("ACT3_TO_ACT4", 2.1);
+
+      // Media cards and headlines part and dissolve elegantly
+      if (act3Items.length) {
         masterTl.to(
-          act3Florets,
+          act3Items,
           {
-            scale: 0.9,
+            y: 20,
             opacity: 0,
-            duration: 0.25,
-            stagger: 0.02,
-            ease: "power1.in",
-          },
-          "ACT3_TO_ACT4"
-        );
-      }
-      if (act3Scallops.length) {
-        masterTl.to(
-          act3Scallops,
-          {
-            opacity: 0,
-            duration: 0.25,
-            ease: "power1.in",
-          },
-          "ACT3_TO_ACT4"
-        );
-      }
-      if (act3Axis) {
-        masterTl.to(
-          act3Axis,
-          {
-            scaleX: 0.8,
-            opacity: 0,
-            duration: 0.25,
+            duration: 0.3,
+            stagger: 0.03,
             ease: "power2.in",
           },
           "ACT3_TO_ACT4"
         );
       }
-      if (act3Items.length) {
+      if (act3HeadlineLines.length) {
         masterTl.to(
-          act3Items,
+          act3HeadlineLines,
           {
-            y: -15,
+            yPercent: -105,
             opacity: 0,
-            duration: 0.25,
+            duration: 0.32,
             stagger: 0.02,
+            ease: "power2.inOut",
+          },
+          "ACT3_TO_ACT4"
+        );
+      }
+      if (act3Note) {
+        masterTl.to(
+          act3Note,
+          {
+            opacity: 0,
+            y: -10,
+            duration: 0.25,
             ease: "power2.in",
           },
           "ACT3_TO_ACT4"
@@ -865,57 +886,62 @@ export function useHomeIntroTimeline({
         masterTl.to(
           act3Index,
           {
-            y: -12,
             opacity: 0,
-            duration: 0.25,
+            y: -8,
+            duration: 0.22,
             ease: "power2.in",
           },
-          "ACT3_TO_ACT4+=0.02"
+          "ACT3_TO_ACT4"
         );
       }
-      if (act3HeadlineLines.length) {
+      if (act3MetaLabel) {
         masterTl.to(
-          act3HeadlineLines,
-          {
-            yPercent: -105,
-            duration: 0.35,
-            stagger: 0.02,
-            ease: "power2.inOut",
-          },
-          "ACT3_TO_ACT4+=0.04"
-        );
-      }
-      if (act3Note) {
-        masterTl.to(
-          act3Note,
+          act3MetaLabel,
           {
             opacity: 0,
-            duration: 0.25,
+            duration: 0.22,
             ease: "power2.in",
           },
-          "ACT3_TO_ACT4+=0.05"
+          "ACT3_TO_ACT4"
         );
       }
 
-      masterTl.to(
-        act3Wrapper,
-        {
-          opacity: 0,
-          duration: 0.2,
-          ease: "power1.in",
-        },
-        "ACT3_TO_ACT4+=0.15"
-      );
+      // Certificate frame fades out while central axis lines converge
+      if (act3Ticket) {
+        masterTl.to(
+          act3Ticket,
+          {
+            opacity: 0,
+            scale: 0.98,
+            duration: 0.35,
+            ease: "power2.inOut",
+          },
+          "ACT3_TO_ACT4+=0.08"
+        );
+      }
+      if (act3Axis) {
+        masterTl.to(
+          act3Axis,
+          {
+            scaleX: 1.2,
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.in",
+          },
+          "ACT3_TO_ACT4+=0.06"
+        );
+      }
+
       masterTl.set(
         act3Wrapper,
         {
           visibility: "hidden",
         },
-        "ACT3_TO_ACT4+=0.35"
+        "ACT3_TO_ACT4+=0.38"
       );
 
-      // ACT 4 ENTRANCE (Immediate, Grand, Horizontal)
-      masterTl.addLabel("ACT4_ENTER", 2.75);
+      // ACT 4 ENTRANCE (Immediate, Grand, Laser-Focused Manifesto)
+      masterTl.addLabel("ACT4_ENTER", 2.45);
       masterTl.set(
         act4Wrapper,
         {
