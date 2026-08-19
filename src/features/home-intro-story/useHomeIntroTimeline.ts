@@ -535,79 +535,115 @@ export function useHomeIntroTimeline({
         );
       }
 
-      if (act2Index) {
-        masterTl.to(
-          act2Index,
-          {
-            y: -24,
-            opacity: 0,
-            duration: 0.28,
-            ease: "power2.in",
-          },
-          "ACT2_TO_ACT3"
-        );
-      }
-      if (act2HeadlineLines.length) {
-        masterTl.to(
-          act2HeadlineLines,
-          {
-            yPercent: -105,
-            opacity: 0,
-            duration: 0.32,
-            stagger: 0.02,
-            ease: "power2.inOut",
-          },
-          "ACT2_TO_ACT3"
-        );
-      }
-      if (act2StructuralRules.length) {
-        masterTl.to(
-          act2StructuralRules,
-          {
-            scaleX: 1.15,
-            opacity: 0,
-            duration: 0.32,
-            stagger: 0.04,
-            ease: "power2.inOut",
-          },
-          "ACT2_TO_ACT3"
-        );
-      }
+      // 1. Surrounding elements (role, bio, stats, index) dissolve first to isolate "Certainty Builder™."
       if (act2Role) {
         masterTl.to(
           act2Role,
           {
-            y: -18,
+            y: -14,
             opacity: 0,
-            duration: 0.26,
+            duration: 0.22,
             ease: "power2.in",
           },
-          "ACT2_TO_ACT3+=0.02"
+          "ACT2_TO_ACT3"
         );
       }
       if (act2Bio) {
         masterTl.to(
           act2Bio,
           {
-            y: -18,
+            y: -14,
             opacity: 0,
-            duration: 0.26,
+            duration: 0.22,
             ease: "power2.in",
           },
-          "ACT2_TO_ACT3+=0.03"
+          "ACT2_TO_ACT3"
         );
       }
       if (act2Stats.length) {
         masterTl.to(
           act2Stats,
           {
-            y: 28,
+            y: 20,
             opacity: 0,
-            duration: 0.28,
+            duration: 0.22,
             stagger: 0.02,
             ease: "power2.in",
           },
           "ACT2_TO_ACT3"
+        );
+      }
+      if (act2Index) {
+        masterTl.to(
+          act2Index,
+          {
+            y: -16,
+            opacity: 0,
+            duration: 0.22,
+            ease: "power2.in",
+          },
+          "ACT2_TO_ACT3"
+        );
+      }
+
+      // 2. "Certainty Builder™." becomes the heroic focal point: scales up with majestic presence, then transitions
+      if (act23DHeadline) {
+        masterTl.to(
+          act23DHeadline,
+          {
+            scale: 1.08,
+            letterSpacing: "0.02em",
+            duration: 0.22,
+            ease: "power2.out",
+          },
+          "ACT2_TO_ACT3"
+        );
+        masterTl.to(
+          act23DHeadline,
+          {
+            scale: 1.14,
+            opacity: 0,
+            y: -18,
+            duration: 0.24,
+            ease: "power2.in",
+          },
+          "ACT2_TO_ACT3+=0.16"
+        );
+      } else if (act2HeadlineLines.length) {
+        masterTl.to(
+          act2HeadlineLines,
+          {
+            scale: 1.08,
+            duration: 0.2,
+            ease: "power2.out",
+          },
+          "ACT2_TO_ACT3"
+        );
+        masterTl.to(
+          act2HeadlineLines,
+          {
+            yPercent: -105,
+            opacity: 0,
+            duration: 0.24,
+            stagger: 0.02,
+            ease: "power2.inOut",
+          },
+          "ACT2_TO_ACT3+=0.16"
+        );
+      }
+
+      // 3. Golden rules expand gracefully into the stage
+      if (act2StructuralRules.length) {
+        masterTl.to(
+          act2StructuralRules,
+          {
+            scaleX: 1.25,
+            opacity: 0,
+            duration: 0.36,
+            stagger: 0.04,
+            ease: "power2.inOut",
+          },
+          "ACT2_TO_ACT3+=0.04"
         );
       }
 
