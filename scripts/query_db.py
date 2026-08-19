@@ -8,8 +8,9 @@ def run_remote_sql(sql):
 
 if __name__ == '__main__':
     sql = '''
-    SELECT id, "projectId", "fullName", email, phone, "sourceKind", "createdAt" FROM "ProjectLead" WHERE id='cmt0am5f106c5mz0196jjm4hc';
-    SELECT id, "connectorId", status, "createdAt" FROM "InboundLeadEvent" WHERE id='cmt0am56306bymz01rqs17eoa';
+    SELECT id, "projectId", email, label FROM "ProjectNotificationRecipient" WHERE "projectId"='proj_dipak_web_01';
+    SELECT id, "subscriptionDedupeKey", "normalizedEmail", channels, "leadAlertsEnabled", "digestEnabled" FROM "NotificationSubscription" WHERE "projectId"='proj_dipak_web_01';
+    SELECT id, "settingsKey", mode, "dryRunEmail" FROM "NotificationSetting" WHERE "settingsKey" IN ('account:ws_authclosers_01', 'project:proj_dipak_web_01');
     '''
     out, err = run_remote_sql(sql)
     print("OUTPUT:\n", out)
