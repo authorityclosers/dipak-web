@@ -74,20 +74,20 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={`${serifFont.variable} ${sansFont.variable}`}>
-      <body>
-        {children}
+      <head>
         {/* NayaGrowth Tracking & GTag Bootstrap */}
-        <Script
+        <script
           src="https://api.nayagrowth.com/capture/tracking-bootstrap.js"
-          strategy="afterInteractive"
+          async
         />
         {/* NayaGrowth Form Capture Script */}
-        <Script
+        <script
           src="https://api.nayagrowth.com/capture/v1.js"
           data-naya-connector="src_authorityclosers_web"
-          strategy="afterInteractive"
+          async
         />
-      </body>
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
