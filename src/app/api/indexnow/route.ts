@@ -16,8 +16,7 @@ import { getAllArticles } from "@/lib/articles";
 const BASE_URL = "https://dipakvishwakarma.com";
 // IndexNow key — must match the file at /public/<key>.txt
 // Using a deterministic value tied to the domain for simplicity.
-// If you add a real key via Google Search Console, update this value.
-const INDEXNOW_KEY = "dipak-vishwakarma-indexnow-2026";
+const INDEXNOW_KEY = "e3d7a85b9c144e0b925b42d71fa9a12c";
 const INDEXNOW_ENDPOINT = "https://api.indexnow.org/indexnow";
 
 // GET: serve the key so IndexNow can verify ownership
@@ -32,7 +31,7 @@ export async function POST() {
   const articles = getAllArticles();
 
   const urls = [
-    BASE_URL,
+    `${BASE_URL}/`,
     `${BASE_URL}/about`,
     `${BASE_URL}/articles`,
     `${BASE_URL}/videos`,
@@ -49,7 +48,7 @@ export async function POST() {
     const body = {
       host: "dipakvishwakarma.com",
       key: INDEXNOW_KEY,
-      keyLocation: `${BASE_URL}/api/indexnow`,
+      keyLocation: `${BASE_URL}/${INDEXNOW_KEY}.txt`,
       urlList: urls,
     };
 
