@@ -79,15 +79,17 @@ export function ConnectHub() {
         {/* Profile Card Header */}
         <header className={styles.profileHeader}>
           <div className={styles.avatarWrapper}>
-            <Image
-              src={connectContent.portrait.src}
-              alt={connectContent.portrait.alt}
-              width={120}
-              height={120}
-              priority
-              quality={90}
-              className={styles.avatarImg}
-            />
+            <div className={styles.avatarInner}>
+              <Image
+                src={connectContent.portrait.src}
+                alt={connectContent.portrait.alt}
+                width={140}
+                height={140}
+                priority
+                quality={92}
+                className={styles.avatarImg}
+              />
+            </div>
             <span className={styles.verifiedBadge} title="Verified Official Profile">
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <polyline points="20 6 9 17 4 12" />
