@@ -44,21 +44,38 @@ jobs:
           cp -r public .next/standalone/public
           rm -rf .next/standalone/public/test-snapshots
 
-          # Keep only the 10 media files actually referenced in source
+          # Dynamically keep all media files referenced in source or content
           python3 - <<'PYEOF'
-          import os
-          keep = {
-              '01_dsc06974.webp', '02_screenshot_2026-07-29_at_4.45.57_pm__1_.png',
-              '03_dsc06998.webp', '04_dsc07013.webp', '05_dsc06990.webp',
-              '06_dsc04024.webp', '08_img_1624.webp', '09_screenshot_2026-08-08_at_10.33.36_pm.png',
-              '10_screenshot_2026-08-08_at_10.40.56_pm.png', 'authority_closers_png__1_.png'
-          }
+          import os, re
+          referenced = set()
+          for root, _, files in os.walk('src'):
+              for f in files:
+                  try:
+                      with open(os.path.join(root, f), 'r', encoding='utf-8', errors='ignore') as sf:
+                          referenced.update(re.findall(r'/media/([a-zA-Z0-9_\-\.]+)', sf.read()))
+                  except Exception:
+                      pass
+          for root, _, files in os.walk('content'):
+              for f in files:
+                  try:
+                      with open(os.path.join(root, f), 'r', encoding='utf-8', errors='ignore') as sf:
+                          referenced.update(re.findall(r'/media/([a-zA-Z0-9_\-\.]+)', sf.read()))
+                  except Exception:
+                      pass
+          referenced.update({
+              'dipak-vishwakarma-portrait-connect.webp',
+              'dipak-vishwakarma-portrait-connect.jpg',
+              '01_dsc06974.webp', '03_dsc06998.webp', '04_dsc07013.webp',
+              '05_dsc06990.webp', '06_dsc04024.webp', '07_dsc_0053.webp',
+              '08_img_1624.webp', '11__dsc7249.webp', 'authority_closers_png__1_.png'
+          })
           media_dir = '.next/standalone/public/media'
           if os.path.exists(media_dir):
               for f in os.listdir(media_dir):
                   fp = os.path.join(media_dir, f)
-                  if not os.path.isdir(fp) and f not in keep:
+                  if not os.path.isdir(fp) and f not in referenced:
                       os.remove(fp)
+          print(f"Preserved {len(referenced)} referenced media files in standalone bundle")
           PYEOF
 
           # Write Dockerfile into the standalone bundle so nivi can build locally
