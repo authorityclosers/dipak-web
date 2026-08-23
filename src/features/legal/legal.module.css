@@ -4,32 +4,224 @@
    ========================================================================== */
 
 .legalContainer {
-  padding-block: clamp(3rem, 6vw, 5rem);
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+  padding-bottom: clamp(3rem, 6vw, 6rem);
 }
 
 .legalGrid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(2.5rem, 5vw, 4.5rem);
+  gap: clamp(2rem, 4vw, 4.5rem);
   align-items: start;
 }
 
 @media (min-width: 1024px) {
   .legalGrid {
-    grid-template-columns: 18rem minmax(0, 1fr);
+    grid-template-columns: 19rem minmax(0, 1fr);
   }
 }
 
-/* --- Sticky Table of Contents -------------------------------------------- */
+/* --- Mobile Quick Jump & Collapsible Accordion (< 1024px) ---------------- */
 
-.tocWrapper {
-  position: sticky;
-  top: 6.5rem;
-  padding: 1.75rem 1.5rem;
+.mobileTocSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 1024px) {
+  .mobileTocSection {
+    display: none;
+  }
+}
+
+.tocDetails {
   background: var(--surface-card, #ffffff);
   border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
-  border-radius: 4px;
+  border-radius: 6px;
+  overflow: hidden;
   box-shadow: 0 4px 20px -4px rgba(10, 10, 10, 0.04);
+  transition: border-color var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.tocDetails[open] {
+  border-color: rgba(232, 58, 18, 0.3);
+}
+
+.tocSummary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.15rem;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.tocSummary::-webkit-details-marker {
+  display: none;
+}
+
+.tocSummaryLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.tocSummaryTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-obsidian, #0a0a0a);
+}
+
+.tocBadge {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--signal-red, #e83a12);
+  background: rgba(232, 58, 18, 0.08);
+  padding: 0.2rem 0.55rem;
+  border-radius: 12px;
+  letter-spacing: 0.02em;
+}
+
+.tocChevron {
+  font-size: 0.95rem;
+  color: var(--ink-muted, #5a5a58);
+  transition: transform var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.tocDetails[open] .tocChevron {
+  transform: rotate(180deg);
+}
+
+.tocDropdownContent {
+  padding: 0.75rem 1.15rem 1.15rem;
+  border-top: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.06));
+  background: #fafaf8;
+}
+
+.mobileTocList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 600px) {
+  .mobileTocList {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.mobileTocLink {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.75rem;
+  background: #ffffff;
+  border: 1px solid rgba(10, 10, 10, 0.05);
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-body, #2e2e2c);
+  transition: all var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.mobileTocLink:active,
+.mobileTocLink:hover {
+  background: #ffffff;
+  border-color: var(--signal-red, #e83a12);
+  color: var(--signal-red, #e83a12);
+  transform: translateY(-1px);
+}
+
+.mobileTocIndex {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--signal-red, #e83a12);
+}
+
+.mobileTocText {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Horizontal Quick Scroll Chips */
+.quickChipsScroll {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-block: 0.35rem 0.5rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quickChipsScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.quickChip {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.85rem;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 20px;
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-body, #2e2e2c);
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px -2px rgba(10, 10, 10, 0.03);
+  transition: all var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.quickChip:active,
+.quickChip:hover {
+  border-color: var(--signal-red, #e83a12);
+  color: var(--signal-red, #e83a12);
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+.quickChipDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--signal-red, #e83a12);
+}
+
+/* --- Desktop Sticky Table of Contents (>= 1024px) ------------------------ */
+
+.desktopTocWrapper {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktopTocWrapper {
+    display: block;
+    position: sticky;
+    top: 6.5rem;
+    padding: 1.75rem 1.5rem;
+    background: var(--surface-card, #ffffff);
+    border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+    border-radius: 6px;
+    box-shadow: 0 4px 20px -4px rgba(10, 10, 10, 0.04);
+  }
 }
 
 .tocHeader {
@@ -46,6 +238,7 @@
   height: 7px;
   border-radius: 50%;
   background: var(--signal-red, #e83a12);
+  flex-shrink: 0;
 }
 
 .tocTitle {
@@ -55,6 +248,17 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-obsidian, #0a0a0a);
+}
+
+.tocCountBadge {
+  margin-left: auto;
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--signal-red, #e83a12);
+  background: rgba(232, 58, 18, 0.08);
+  padding: 0.15rem 0.45rem;
+  border-radius: 10px;
 }
 
 .tocList {
@@ -100,7 +304,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 1.5rem;
+  gap: 1.2rem;
   margin-bottom: 1.25rem;
 }
 
@@ -129,9 +333,9 @@
 
 .documentSummary {
   font-family: var(--font-family-serif, "Poppins", sans-serif);
-  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  font-size: clamp(1.02rem, 1.2vw, 1.18rem);
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--ink-obsidian, #0a0a0a);
   margin: 0;
 }
@@ -240,7 +444,7 @@
   padding: 2.2rem 2rem;
   background: var(--surface-card, #ffffff);
   border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
-  border-radius: 4px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   gap: 1rem;

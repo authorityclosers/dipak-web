@@ -21,11 +21,59 @@ export function LegalPageLayout({ document, indexNumber }: LegalPageLayoutProps)
 
       <section className={`${editorial.section} ${styles.legalContainer}`}>
         <div className={`${editorial.container} ${styles.legalGrid}`}>
-          {/* Sticky Table of Contents */}
-          <aside className={styles.tocWrapper} aria-label="Table of contents">
+          
+          {/* Mobile Quick Jump Bar & Collapsible Accordion (Visible on <1024px) */}
+          <div className={styles.mobileTocSection} aria-label="Mobile table of contents">
+            <details className={styles.tocDetails}>
+              <summary className={styles.tocSummary}>
+                <div className={styles.tocSummaryLeft}>
+                  <span className={styles.tocDot} aria-hidden="true" />
+                  <span className={styles.tocSummaryTitle}>Jump to Section</span>
+                  <span className={styles.tocBadge}>
+                    {document.sections.length} Sections
+                  </span>
+                </div>
+                <span className={styles.tocChevron} aria-hidden="true">
+                  ▾
+                </span>
+              </summary>
+              <div className={styles.tocDropdownContent}>
+                <ul className={styles.mobileTocList}>
+                  {document.sections.map((section, idx) => (
+                    <li key={section.id}>
+                      <a className={styles.mobileTocLink} href={`#${section.id}`}>
+                        <span className={styles.mobileTocIndex}>
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <span className={styles.mobileTocText}>
+                          {section.title.replace(/^\d+\.\s*/, "")}
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </details>
+
+            {/* Horizontal Quick Scroll Chips for 1-Tap Jumping */}
+            <div className={styles.quickChipsScroll}>
+              {document.sections.map((section, idx) => (
+                <a key={section.id} className={styles.quickChip} href={`#${section.id}`}>
+                  <span className={styles.quickChipDot} />
+                  {section.title.replace(/^\d+\.\s*/, "")}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Sticky Table of Contents (Visible on >=1024px) */}
+          <aside className={styles.desktopTocWrapper} aria-label="Table of contents">
             <div className={styles.tocHeader}>
               <span className={styles.tocDot} aria-hidden="true" />
               <span className={styles.tocTitle}>Contents</span>
+              <span className={styles.tocCountBadge}>
+                {document.sections.length}
+              </span>
             </div>
             <nav>
               <ul className={styles.tocList}>
