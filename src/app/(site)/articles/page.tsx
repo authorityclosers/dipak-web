@@ -1,124 +1,68 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
-import { getAllArticles, formatArticleDate } from "@/lib/articles";
-import { PageHero, Reveal } from "@/features/editorial";
-import editorial from "@/features/editorial/editorial.module.css";
-import styles from "./articles.module.css";
+import { getAllArticles } from "@/lib/articles";
+import { ArticlesHub } from "@/features/articles";
 
 export const metadata: Metadata = {
-  title: "Articles by Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  title: "Principles & Frameworks by Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
   description:
-    "Explore strategic articles by Dipak Vishwakarma, Founder of Authority Closers, covering sales psychology, communication, high-ticket deal structure, and AI in sales.",
+    "Explore strategic frameworks, field notes, and essays on buyer psychology, consultative communication, deal architecture, and personal authority by Dipak Vishwakarma.",
+  alternates: {
+    canonical: "https://dipakvishwakarma.com/articles",
+  },
+  openGraph: {
+    title: "Principles & Frameworks by Dipak Vishwakarma",
+    description:
+      "Strategic frameworks and essays on high-ticket sales psychology, objection elimination, and consultative authority.",
+    url: "https://dipakvishwakarma.com/articles",
+    siteName: "Dipak Vishwakarma — Founder of Authority Closers",
+    images: [
+      {
+        url: "/media/04_dsc07013.webp",
+        width: 1800,
+        height: 1200,
+        alt: "Dipak Vishwakarma — Principles & Frameworks Archive",
+      },
+    ],
+  },
 };
 
 export default function ArticlesPage() {
   const articles = getAllArticles();
-  const [lead, ...rest] = articles;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Principles & Frameworks by Dipak Vishwakarma",
+    description:
+      "A strategic archive of high-ticket sales frameworks, buyer psychology insights, and consultative principles by Dipak Vishwakarma, Founder of Authority Closers.",
+    url: "https://dipakvishwakarma.com/articles",
+    author: {
+      "@type": "Person",
+      name: "Dipak Vishwakarma",
+      jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
+      worksFor: {
+        "@type": "Organization",
+        name: "Authority Closers",
+        url: "https://authorityclosers.com",
+      },
+      url: "https://dipakvishwakarma.com",
+    },
+    hasPart: articles.map((a) => ({
+      "@type": "Article",
+      headline: a.displayTitle,
+      url: `https://dipakvishwakarma.com/articles/${a.slug}`,
+      datePublished: a.date,
+      description: a.excerpt,
+    })),
+  };
 
   return (
     <>
-      <PageHero
-        eyebrow="Articles by Dipak Vishwakarma"
-        index="01"
-        headline="Principles & Frameworks by Dipak Vishwakarma"
-        body={[
-          "Tactical frameworks on sales psychology, objection elimination, communication, personal branding, AI, and entrepreneurship by Dipak Vishwakarma, Founder of Authority Closers.",
-        ]}
-        aside={
-          <div className={styles.heroMediaFrame}>
-            <Image
-              src="/media/03_dsc06998.webp"
-              alt="Dipak Vishwakarma deep-work and writing"
-              width={1000}
-              height={750}
-              sizes="(max-width: 900px) 70vw, 24rem"
-              quality={90}
-              className={styles.heroMediaImage}
-            />
-          </div>
-        }
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-
-      <section className={editorial.section}>
-        <div className={editorial.container}>
-          {articles.length === 0 ? (
-            <p className={styles.emptyState}>
-              Building a growing library of practical ideas, frameworks and
-              field notes. Start with the latest thinking below.
-            </p>
-          ) : (
-            <>
-              {/* Lead article — large feature slot. Card is NOT a link; only
-                  the title and read-cue are interactive so clicking text/excerpt
-                  doesn't accidentally navigate. */}
-              <Reveal>
-                <div className={styles.leadCard}>
-                  <div className={styles.leadMeta}>
-                    {lead.series ? (
-                      <span className={styles.series}>{lead.series}</span>
-                    ) : null}
-                    <span className={styles.metaLine}>
-                      {lead.category} · {lead.readTime}
-                    </span>
-                  </div>
-
-                  <h2 className={styles.leadTitle}>
-                    <Link href={`/articles/${lead.slug}`} className={styles.titleLink}>
-                      {lead.title}
-                    </Link>
-                  </h2>
-                  <p className={styles.leadExcerpt}>{lead.excerpt}</p>
-
-                  <Link href={`/articles/${lead.slug}`} className={styles.readCue}>
-                    Read Article <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
-              </Reveal>
-
-              <ul className={styles.articleLedger}>
-                {rest.map((article, index) => (
-                  <Reveal as="li" key={article.slug} index={index}>
-                    {/* Card is a div — only title and date/arrow area link */}
-                    <div className={styles.ledgerCard}>
-                      <span className={styles.ledgerIndex}>
-                        {String(index + 2).padStart(2, "0")}
-                      </span>
-
-                      <div className={styles.ledgerMain}>
-                        <span className={styles.metaLine}>
-                          {article.category}
-                          {article.series ? ` // ${article.series}` : ""}
-                        </span>
-                        <h3 className={styles.ledgerTitle}>
-                          <Link href={`/articles/${article.slug}`} className={styles.titleLink}>
-                            {article.title}
-                          </Link>
-                        </h3>
-                        <p className={styles.ledgerExcerpt}>{article.excerpt}</p>
-                      </div>
-
-                      <div className={styles.ledgerAside}>
-                        <span className={styles.metaLine}>
-                          {formatArticleDate(article.date)}
-                        </span>
-                        <span className={styles.metaLine}>{article.readTime}</span>
-                        <Link
-                          href={`/articles/${article.slug}`}
-                          className={styles.ledgerArrowLink}
-                          aria-label={`Read ${article.title}`}
-                        >
-                          <span className={styles.ledgerArrow} aria-hidden="true">→</span>
-                        </Link>
-                      </div>
-                    </div>
-                  </Reveal>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-      </section>
+      <ArticlesHub articles={articles} />
     </>
   );
 }

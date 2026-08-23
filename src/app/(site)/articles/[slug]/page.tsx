@@ -135,7 +135,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </span>
           </div>
 
-          <h1 className={styles.postTitle}>{article.title}</h1>
+          <h1 className={styles.postTitle}>{article.displayTitle}</h1>
 
           <div className={styles.bylineRow}>
             <Link href="/about" className={styles.bylineName}>
