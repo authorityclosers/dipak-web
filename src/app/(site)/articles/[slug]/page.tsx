@@ -85,7 +85,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     author: {
       "@type": "Person",
       name: "Dipak Vishwakarma",
-      jobTitle: "Founder of Authority Closers | High-Ticket Sales Expert",
+      jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
       worksFor: {
         "@type": "Organization",
         name: "Authority Closers",
@@ -93,15 +93,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       },
       url: "https://dipakvishwakarma.com",
       sameAs: [
-        "https://www.linkedin.com/in/dipakvishwakarma/",
-        "https://twitter.com/dipakvishwa",
-        "https://www.youtube.com/@dipakvishwakarma",
+        "https://www.linkedin.com/in/dipak-vishwakarma",
+        "https://youtube.com/@dipakvishwakarmasalescoach",
+        "https://www.instagram.com/dipakv.sales",
+        "https://authorityclosers.com",
       ],
     },
     publisher: {
       "@type": "Person",
       name: "Dipak Vishwakarma",
-      jobTitle: "Founder of Authority Closers | High-Ticket Sales Expert",
+      jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
       url: "https://dipakvishwakarma.com",
     },
     mainEntityOfPage: `https://dipakvishwakarma.com/articles/${article.slug}`,
@@ -137,9 +138,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <h1 className={styles.postTitle}>{article.title}</h1>
 
           <div className={styles.bylineRow}>
-            <span className={styles.bylineName}>By Dipak Vishwakarma</span>
+            <Link href="/about" className={styles.bylineName}>
+              By Dipak Vishwakarma
+            </Link>
             <span className={styles.bylineSep}>·</span>
-            <span className={styles.bylineRole}>Founder of Authority Closers | High-Ticket Sales Expert</span>
+            <span className={styles.bylineRole}>High-Ticket Sales Coach &amp; Founder of Authority Closers</span>
           </div>
 
           {article.excerpt ? (
@@ -160,8 +163,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
         <section className={styles.authorBox} aria-label="About the Author">
           <div className={styles.authorBoxMeta}>
             <span className={styles.authorBoxLabel}>ABOUT THE AUTHOR</span>
-            <h3 className={styles.authorBoxName}>Dipak Vishwakarma</h3>
-            <p className={styles.authorBoxRole}>Founder of Authority Closers | High-Ticket Sales Expert</p>
+            <h3 className={styles.authorBoxName}>
+              <Link href="/about" className={styles.bylineName}>
+                Dipak Vishwakarma
+              </Link>
+            </h3>
+            <p className={styles.authorBoxRole}>High-Ticket Sales Coach &amp; Founder of Authority Closers</p>
           </div>
           <p className={styles.authorBoxBio}>
             Dipak Vishwakarma works across sales education, buyer psychology, communication, and high-ticket deal architecture, developing practical frameworks that help founders and sales professionals replace pressure with certainty.

@@ -8,17 +8,73 @@ import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./about.module.css";
 
 export const metadata: Metadata = {
-  title: "About Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  title: "About Dipak Vishwakarma — High-Ticket Sales Coach | Founder of Authority Closers",
   description:
-    "Dipak Vishwakarma is an entrepreneur, sales educator, and Founder of Authority Closers. The work and philosophy behind The Certainty Builder™.",
+    "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. Discover the story, frameworks, and philosophy behind The Certainty Builder™.",
+  alternates: {
+    canonical: "https://dipakvishwakarma.com/about",
+  },
+  openGraph: {
+    title: "About Dipak Vishwakarma — High-Ticket Sales Coach | Founder of Authority Closers",
+    description:
+      "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. Discover the story, frameworks, and philosophy behind The Certainty Builder™.",
+    url: "https://dipakvishwakarma.com/about",
+    type: "profile",
+    images: [
+      {
+        url: "/social/dipak-og-default-1200x630.jpg",
+        width: 1200,
+        height: 630,
+        alt: "About Dipak Vishwakarma — Founder of Authority Closers",
+      },
+    ],
+  },
 };
 
 const { hero, story, journey, philosophy, principles, missionVision, faq, cta } =
   aboutContent;
 
 export default function AboutPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name: "Dipak Vishwakarma",
+      alternateName: ["Dipak", "The Certainty Builder"],
+      jobTitle: "High-Ticket Sales Coach",
+      description:
+        "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers.",
+      url: "https://dipakvishwakarma.com",
+      image: "https://dipakvishwakarma.com/media/01_dsc06974.webp",
+      worksFor: {
+        "@type": "Organization",
+        name: "Authority Closers",
+        url: "https://authorityclosers.com",
+      },
+      sameAs: [
+        "https://www.linkedin.com/in/dipak-vishwakarma",
+        "https://youtube.com/@dipakvishwakarmasalescoach",
+        "https://www.instagram.com/dipakv.sales",
+        "https://authorityclosers.com",
+      ],
+      knowsAbout: [
+        "High-Ticket Sales",
+        "Sales Psychology",
+        "Buyer Psychology",
+        "Objection Handling",
+        "Consultative Selling",
+        "Deal Architecture",
+      ],
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <PageHero
         eyebrow={hero.eyebrow}
         index="01"

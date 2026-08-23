@@ -36,6 +36,7 @@ export async function POST() {
     `${BASE_URL}/articles`,
     `${BASE_URL}/videos`,
     `${BASE_URL}/resources`,
+    `${BASE_URL}/connect`,
     `${BASE_URL}/contact`,
     `${BASE_URL}/privacy`,
     `${BASE_URL}/terms`,

@@ -22,12 +22,12 @@ export interface FaqEntry {
 
 export const aboutContent = {
   hero: {
-    eyebrow: "About Dipak",
+    eyebrow: "About Dipak Vishwakarma",
     headline: "I study how people decide",
     body: [
-      "I am Dipak Vishwakarma — entrepreneur, sales educator and Founder of Authority Closers.",
-      "For more than a decade, I have worked across sales, marketing and entrepreneurship, helping teams and founders understand buyers, improve conversations and build systems that make growth more repeatable.",
-      "What interests me most is not persuasion. It is certainty: what creates it, what destroys it and how better questions, better communication and real value can help people make stronger decisions.",
+      "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers.",
+      "For more than a decade, he has worked across consultative sales, buyer psychology, and deal architecture, helping founders and sales teams build certainty, master objection handling, and close high-value clients.",
+      "What interests him most is not pressure or hype. It is certainty: what creates it, what destroys it, and how better questions, strategic discovery, and honest communication empower buyers to make confident high-stakes decisions.",
     ],
   },
 

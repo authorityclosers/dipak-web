@@ -1,0 +1,333 @@
+/* ==========================================================================
+   Connect Hub Feature — Editorial Link Destination
+   Brand: Dipak Vishwakarma / Authority Closers
+   ========================================================================== */
+
+.connectPage {
+  padding-top: clamp(6.5rem, 11vw, 9rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.connectContainer {
+  width: 100%;
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+/* --- Profile Header ------------------------------------------------------- */
+
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.9rem;
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 6.2rem;
+  height: 6.2rem;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--signal-red, #e83a12), rgba(10, 10, 10, 0.15));
+  box-shadow: 0 8px 24px -4px rgba(232, 58, 18, 0.18);
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--surface-card, #ffffff);
+}
+
+.verifiedBadge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--signal-red, #e83a12);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--surface-canvas, #f7f7f5);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.nameBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.profileName {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--ink-obsidian, #0a0a0a);
+  margin: 0;
+}
+
+.profileTitle {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--signal-red, #e83a12);
+  margin: 0;
+}
+
+.profileBio {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-body, #2e2e2c);
+  max-width: 32rem;
+  margin: 0;
+}
+
+.locationPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--ink-muted, #5a5a58);
+  background: rgba(10, 10, 10, 0.04);
+  padding: 0.25rem 0.65rem;
+  border-radius: 12px;
+}
+
+.locationDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
+}
+
+/* --- Social Quick Action Bar ---------------------------------------------- */
+
+.socialBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 20px;
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-obsidian, #0a0a0a);
+  text-decoration: none;
+  box-shadow: 0 2px 6px -2px rgba(10, 10, 10, 0.03);
+  transition: all var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.socialBtn:hover {
+  border-color: var(--signal-red, #e83a12);
+  color: var(--signal-red, #e83a12);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px -2px rgba(232, 58, 18, 0.12);
+}
+
+/* --- Links Grid ----------------------------------------------------------- */
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.linkCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 2px 12px -2px rgba(10, 10, 10, 0.03);
+  transition: all var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.linkCard:hover {
+  border-color: var(--signal-red, #e83a12);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(232, 58, 18, 0.1);
+}
+
+.linkCardFeatured {
+  background: linear-gradient(135deg, #ffffff 0%, #fffbf9 100%);
+  border: 1.5px solid rgba(232, 58, 18, 0.35);
+  box-shadow: 0 4px 20px -4px rgba(232, 58, 18, 0.08);
+}
+
+.linkCardFeatured:hover {
+  border-color: var(--signal-red, #e83a12);
+  box-shadow: 0 8px 28px -4px rgba(232, 58, 18, 0.18);
+}
+
+.linkCardLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  min-width: 0;
+}
+
+.iconWrapper {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 8px;
+  background: rgba(10, 10, 10, 0.03);
+  border: 1px solid rgba(10, 10, 10, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--ink-obsidian, #0a0a0a);
+  transition: all var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.linkCard:hover .iconWrapper {
+  background: rgba(232, 58, 18, 0.08);
+  border-color: rgba(232, 58, 18, 0.2);
+  color: var(--signal-red, #e83a12);
+}
+
+.linkCardFeatured .iconWrapper {
+  background: rgba(232, 58, 18, 0.08);
+  border-color: rgba(232, 58, 18, 0.2);
+  color: var(--signal-red, #e83a12);
+}
+
+.linkInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+
+.linkTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--ink-obsidian, #0a0a0a);
+  margin: 0;
+  transition: color var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.linkCard:hover .linkTitle {
+  color: var(--signal-red, #e83a12);
+}
+
+.itemBadge {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--signal-red, #e83a12);
+  background: rgba(232, 58, 18, 0.08);
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.linkSubtitle {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ink-muted, #5a5a58);
+  margin: 0;
+  white-space: normal;
+}
+
+.arrowRight {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 1.1rem;
+  color: var(--ink-muted, #5a5a58);
+  transition: all var(--dur-fast, 180ms) var(--ease-out-editorial);
+  flex-shrink: 0;
+}
+
+.linkCard:hover .arrowRight {
+  color: var(--signal-red, #e83a12);
+  transform: translateX(4px);
+}
+
+/* --- Footer Area ---------------------------------------------------------- */
+
+.connectFooter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.06));
+}
+
+.signatureLogo {
+  opacity: 0.85;
+}
+
+.footerNote {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.72rem;
+  color: var(--ink-muted, #5a5a58);
+  max-width: 28rem;
+  margin: 0;
+}
+
+.bottomHomeLink {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-obsidian, #0a0a0a);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.bottomHomeLink:hover {
+  color: var(--signal-red, #e83a12);
+}

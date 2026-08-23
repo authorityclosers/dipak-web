@@ -56,11 +56,11 @@ export const footerContent = {
 };
 
 /**
- * Social handles are deliberately empty.
- *
- * The copy master's CONTENT SAFETY flags list "Any social handles" as
- * unverified, and instructs: do not invent contact details. Populate this
- * array only with handles Dipak confirms — the footer renders nothing
- * until then rather than shipping dead or fabricated links.
+ * Verified Social and Directory Links for Dipak Vishwakarma
  */
-export const socialLinks: NavLink[] = [];
+export const socialLinks: NavLink[] = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/dipak-vishwakarma" },
+  { label: "YouTube", href: "https://youtube.com/@dipakvishwakarmasalescoach" },
+  { label: "Instagram", href: "https://www.instagram.com/dipakv.sales" },
+  { label: "Connect Hub", href: "/connect" },
+];

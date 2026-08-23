@@ -31,6 +31,12 @@ const nextConfig: NextConfig = {
         destination: "/articles/:slug",
         permanent: true,
       },
+      // Permanent 308: /links → /connect (bio link aggregator alias)
+      {
+        source: "/links",
+        destination: "/connect",
+        permanent: true,
+      },
     ];
   },
   async headers() {
