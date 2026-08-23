@@ -109,7 +109,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
                     url: "https://authorityclosers.com",
                   },
                   url: "https://dipakvishwakarma.com",
-                  image: "https://dipakvishwakarma.com/media/01_dsc06974.webp",
+                  image: "https://dipakvishwakarma.com/media/dipak-vishwakarma-portrait-connect.webp",
                   sameAs: [
                     "https://www.linkedin.com/in/dipak-vishwakarma",
                     "https://youtube.com/@dipakvishwakarmasalescoach",

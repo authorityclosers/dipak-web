@@ -44,7 +44,7 @@ export default function ConnectPage() {
       description:
         "High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers helping founders and sales teams build certainty and close high-ticket deals.",
       url: "https://dipakvishwakarma.com",
-      image: "https://dipakvishwakarma.com/media/01_dsc06974.webp",
+      image: "https://dipakvishwakarma.com/media/dipak-vishwakarma-portrait-connect.webp",
       worksFor: {
         "@type": "Organization",
         name: "Authority Closers",

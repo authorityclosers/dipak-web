@@ -37,8 +37,8 @@ export const connectContent: ConnectContent = {
   location: "Pune, India & Global",
   bio: "Helping founders, closers, and sales teams build certainty, master objection diagnosis, and close high-ticket deals without pressure or script manipulation.",
   portrait: {
-    src: "/media/01_dsc06974.webp",
-    alt: "Dipak Vishwakarma — High-Ticket Sales Coach & Founder of Authority Closers",
+    src: "/media/dipak-vishwakarma-portrait-connect.webp",
+    alt: "Dipak Vishwakarma — High-Ticket Sales Coach, Founder of Authority Closers",
   },
   links: [
     {
