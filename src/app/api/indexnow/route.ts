@@ -38,6 +38,10 @@ export async function POST() {
     `${BASE_URL}/videos`,
     `${BASE_URL}/resources`,
     `${BASE_URL}/contact`,
+    `${BASE_URL}/privacy`,
+    `${BASE_URL}/terms`,
+    `${BASE_URL}/cookies`,
+    `${BASE_URL}/disclaimer`,
     ...articles.map((a) => `${BASE_URL}/articles/${a.slug}`),
   ];
 

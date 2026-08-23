@@ -48,7 +48,9 @@ export const footerContent = {
   philosophyLine: "Because people buy certainty.",
   legalLinks: [
     { label: "Privacy Policy", href: "/privacy" },
-    { label: "Terms", href: "/terms" },
+    { label: "Terms of Service", href: "/terms" },
+    { label: "Cookie Policy", href: "/cookies" },
+    { label: "Disclaimer", href: "/disclaimer" },
   ] as NavLink[],
   copyright: "Dipak Vishwakarma. All rights reserved.",
 };

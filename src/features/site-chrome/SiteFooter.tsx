@@ -79,6 +79,15 @@ export function SiteFooter() {
       </div>
 
       <div className={styles.footerBaseline}>
+        <ul className={styles.footerLegalList}>
+          {footerContent.legalLinks.map((link) => (
+            <li key={link.href}>
+              <Link className={styles.footerLegalLink} href={link.href}>
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
         <span>
           Copyright © {year} {footerContent.copyright}
         </span>

@@ -1,0 +1,308 @@
+/* ==========================================================================
+   Legal Feature — Editorial Document Styling
+   Brand: Dipak Vishwakarma / Authority Closers
+   ========================================================================== */
+
+.legalContainer {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.legalGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .legalGrid {
+    grid-template-columns: 18rem minmax(0, 1fr);
+  }
+}
+
+/* --- Sticky Table of Contents -------------------------------------------- */
+
+.tocWrapper {
+  position: sticky;
+  top: 6.5rem;
+  padding: 1.75rem 1.5rem;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 4px;
+  box-shadow: 0 4px 20px -4px rgba(10, 10, 10, 0.04);
+}
+
+.tocHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+}
+
+.tocDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal-red, #e83a12);
+}
+
+.tocTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-obsidian, #0a0a0a);
+}
+
+.tocList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tocLink {
+  display: inline-block;
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--ink-muted, #5a5a58);
+  text-decoration: none;
+  transition: color var(--dur-fast, 180ms) var(--ease-out-editorial),
+              transform var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.tocLink:hover {
+  color: var(--signal-red, #e83a12);
+  transform: translateX(3px);
+}
+
+/* --- Document Content Area ----------------------------------------------- */
+
+.documentArea {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+}
+
+.documentMetaHeader {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(232, 58, 18, 0.08);
+  border: 1px solid rgba(232, 58, 18, 0.2);
+  border-radius: 2px;
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--signal-red, #e83a12);
+  text-transform: uppercase;
+}
+
+.metaDate {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.82rem;
+  color: var(--ink-muted, #5a5a58);
+  letter-spacing: 0.04em;
+}
+
+.documentSummary {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: clamp(1.05rem, 1.2vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-obsidian, #0a0a0a);
+  margin: 0;
+}
+
+/* --- Legal Section ------------------------------------------------------- */
+
+.legalSection {
+  scroll-margin-top: 6.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: clamp(1.2rem, 1.5vw, 1.45rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink-obsidian, #0a0a0a);
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(10, 10, 10, 0.05);
+}
+
+.paragraph {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--ink-body, #2e2e2c);
+  margin: 0;
+}
+
+/* --- Highlight Callout Box ----------------------------------------------- */
+
+.highlightBox {
+  margin-block: 0.75rem;
+  padding: 1.4rem 1.6rem;
+  background: var(--surface-card, #ffffff);
+  border-left: 3px solid var(--signal-red, #e83a12);
+  border-top: 1px solid rgba(10, 10, 10, 0.06);
+  border-right: 1px solid rgba(10, 10, 10, 0.06);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.06);
+  border-radius: 0 4px 4px 0;
+}
+
+.highlightTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-obsidian, #0a0a0a);
+  margin: 0 0 0.4rem 0;
+}
+
+.highlightText {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink-body, #2e2e2c);
+  margin: 0;
+}
+
+/* --- Subsections & Lists ------------------------------------------------- */
+
+.subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid rgba(10, 10, 10, 0.06);
+}
+
+.subsectionTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink-obsidian, #0a0a0a);
+  margin: 0;
+}
+
+.legalList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.2rem;
+  margin: 0.25rem 0 0.5rem 0;
+}
+
+.legalListItem {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink-body, #2e2e2c);
+}
+
+.legalListItem::marker {
+  color: var(--signal-red, #e83a12);
+}
+
+/* --- Document Bottom Contact Card ---------------------------------------- */
+
+.bottomContactCard {
+  margin-top: 2rem;
+  padding: 2.2rem 2rem;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--rule-hairline, rgba(10, 10, 10, 0.08));
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contactCardTitle {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink-obsidian, #0a0a0a);
+  margin: 0;
+}
+
+.contactCardText {
+  font-family: var(--font-family-serif, "Poppins", sans-serif);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink-body, #2e2e2c);
+  margin: 0;
+}
+
+.contactActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.primaryContactBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  background: var(--signal-red, #e83a12);
+  color: #ffffff;
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background var(--dur-fast, 180ms) var(--ease-out-editorial),
+              transform var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.primaryContactBtn:hover {
+  background: #ff4820;
+  transform: translateY(-1px);
+}
+
+.secondaryContactLink {
+  font-family: var(--font-family-sans, "Montserrat", sans-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-obsidian, #0a0a0a);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--signal-red, #e83a12);
+  transition: opacity var(--dur-fast, 180ms) var(--ease-out-editorial);
+}
+
+.secondaryContactLink:hover {
+  opacity: 0.8;
+}
