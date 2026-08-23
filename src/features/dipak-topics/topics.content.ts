@@ -1,10 +1,7 @@
 import type { TopicsContent } from "./topics.types";
 
 /**
- * "What I Think About" — the eight subjects from the client copy master
- * (01_COPY section 06). Titles and descriptions are transcribed verbatim;
- * only the mono `tag` kickers are presentational additions.
- *
+ * "What I Think About" — the core subjects explored by Dipak Vishwakarma.
  * All hrefs point to canonical /articles/* routes.
  */
 export const topicsContent: TopicsContent = {
@@ -67,28 +64,18 @@ export const topicsContent: TopicsContent = {
       href: "/articles/ai-and-the-future-of-sales",
     },
     {
-      id: "entrepreneurship",
-      number: "06",
-      tag: "Operating Reality",
-      title: "Entrepreneurship & Scale",
-      description:
-        "Building systems, teams and products around a clear market problem.",
-      image: "/media/11__dsc7249.webp",
-      href: "/articles/sales-number-one-skill-for-founders",
-    },
-    {
       id: "startups",
-      number: "07",
+      number: "06",
       tag: "Founder-Led Growth",
       title: "Startups & Deal Velocity",
       description:
         "Sales systems, founder-led growth and the transition from instinct to repeatability.",
-      image: "/media/07_dsc_0053.webp",
-      href: "/articles/sales-number-one-skill-for-founders",
+      image: "/media/11__dsc7249.webp",
+      href: "/articles/3-questions-founders-avoid-asking",
     },
     {
       id: "public-speaking",
-      number: "08",
+      number: "07",
       tag: "Stage Craft",
       title: "Public Speaking & Leverage",
       description:
