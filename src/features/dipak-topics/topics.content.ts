@@ -5,7 +5,7 @@ import type { TopicsContent } from "./topics.types";
  * (01_COPY section 06). Titles and descriptions are transcribed verbatim;
  * only the mono `tag` kickers are presentational additions.
  *
- * All hrefs now point to /articles/* (blog merged into articles).
+ * All hrefs point to canonical /articles/* routes.
  */
 export const topicsContent: TopicsContent = {
   sectionNumber: "05",
@@ -43,7 +43,7 @@ export const topicsContent: TopicsContent = {
       title: "Communication",
       description:
         "Questions, listening, framing and the language that changes how people understand value.",
-      image: "/media/05_dsc06990.webp",
+      image: "/media/08_img_1624.webp",
       href: "/articles/the-true-meaning-of-communication",
     },
     {
@@ -73,7 +73,7 @@ export const topicsContent: TopicsContent = {
       title: "Entrepreneurship & Scale",
       description:
         "Building systems, teams and products around a clear market problem.",
-      image: "/media/10_screenshot_2026-08-08_at_10.40.56_pm.png",
+      image: "/media/11__dsc7249.webp",
       href: "/articles/sales-number-one-skill-for-founders",
     },
     {
@@ -83,7 +83,7 @@ export const topicsContent: TopicsContent = {
       title: "Startups & Deal Velocity",
       description:
         "Sales systems, founder-led growth and the transition from instinct to repeatability.",
-      image: "/media/03_dsc06998.webp",
+      image: "/media/07_dsc_0053.webp",
       href: "/articles/sales-number-one-skill-for-founders",
     },
     {
