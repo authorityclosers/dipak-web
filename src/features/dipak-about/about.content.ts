@@ -1,5 +1,6 @@
 export interface JourneyStage {
   index: string;
+  numeral: string;
   phase: string;
   title: string;
   body: string;
@@ -20,26 +21,32 @@ export interface FaqEntry {
 
 export const aboutContent = {
   hero: {
-    eyebrow: "About Dipak Vishwakarma",
-    sectionIndex: "01",
-    headlineWord1: "I STUDY HOW",
-    headlineWord2: "PEOPLE DECIDE.",
-    leadQuote: "What interests me is not pressure or hype. It is certainty: what creates it, what destroys it, and how people make confident high-stakes decisions.",
-    summary: "High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. Helping B2B founders and enterprise sales teams replace pressure with certainty.",
-    stats: [
-      { label: "Sales Experience", value: "10+ Yrs" },
-      { label: "Founder", value: "Authority Closers" },
-      { label: "Methodology", value: "The Certainty Builder™" },
+    chapter: "01 — ABOUT",
+    headlineLine1: "I STUDY HOW",
+    headlineLine2People: "PEOPLE",
+    headlineLine2Decide: "decide.",
+    thesis:
+      "For more than a decade, I’ve been studying what happens in the few critical seconds between hesitation and commitment.",
+    leadQuote:
+      "What interests me is not pressure or hype. It is certainty — what creates it, what destroys it, and how buyers make confident high-stakes decisions.",
+    portraitCaption: "Dipak Vishwakarma · Founder, Authority Closers",
+    identityRail: [
+      { role: "Founder", entity: "Authority Closers" },
+      { role: "Creator", entity: "The Certainty Builder™" },
+      { role: "Focus", entity: "High-Ticket Sales Psychology" },
     ],
+    actions: {
+      primary: { label: "Explore Philosophy ↓", href: "#philosophy" },
+      secondary: { label: "Private Advisory →", href: "/connect" },
+    },
   },
 
   story: {
     index: "02",
     label: "My Story",
-    headline: "The work behind The Certainty Builder™",
+    headline: "The Work Behind The Certainty Builder™",
     quote: "People rarely need more pressure. They need more clarity.",
     paragraphs: [
-      "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. For more than a decade, he has worked across consultative sales, buyer psychology, and deal architecture, helping founders and sales teams eliminate buyer hesitation, master objection handling, and close high-value enterprise clients.",
       "My career has been shaped by one recurring question: why do some conversations create trust while others create resistance?",
       "Years of selling, training teams, working with businesses, and building systems kept bringing me back to the same fundamental reality: objections are not battles to win—they are signals of unresolved buyer uncertainty.",
       "Instead of memorizing aggressive closing scripts, I focused on asking better questions. Instead of trying to control the buyer, I focused on helping the buyer understand the decision.",
@@ -49,83 +56,111 @@ export const aboutContent = {
 
   journey: {
     index: "03",
-    label: "Journey",
-    headline: "From Selling to Systems",
-    subhead: "The five evolutionary phases that turned frontline closing experience into a scalable advisory framework.",
+    label: "Evolution",
+    headlineLine1: "From Selling to",
+    headlineLine2: "Systems.",
+    subhead:
+      "A decade of commercial evolution—from closing high-stakes deals on the frontline to codifying institutional sales engineering.",
     stages: [
       {
         index: "01",
+        numeral: "01",
         phase: "Phase 01 · Ground Realities",
-        title: "Frontline Sales",
-        body: "Learning the raw reality of high-stakes customer conversations, fear of commitment, buyer objections, and how real trust is forged.",
-        takeaway: "Lesson: Pressure creates resistance; clarity creates momentum.",
+        title: "Frontline Closing & Objections",
+        focus: "High-Stakes Conversations & Buyer Resistance",
+        body: "Handling thousands of live B2B sales conversations firsthand. Learning the raw psychology of commitment, hesitation, and the fatal gap between polite interest and real buying certainty.",
+        takeaway: "Pressure creates friction; only genuine clarity creates irreversible buying momentum.",
       },
       {
         index: "02",
-        phase: "Phase 02 · Positioning & Demand",
-        title: "Strategic Marketing",
-        body: "Understanding market positioning, demand generation, and how expectations are shaped long before the first sales conversation begins.",
-        takeaway: "Lesson: The sales call starts the moment the prospect discovers your brand.",
+        numeral: "02",
+        phase: "Phase 02 · Pre-Call Psychology",
+        title: "Strategic Market Positioning",
+        focus: "Demand Generation & Pre-Call Authority",
+        body: "Discovering that the hardest sales conversations are caused long before the call begins. Mastering buyer expectations, authority framing, and inbound positioning.",
+        takeaway: "A sales conversation is won or lost by the authority established before discovery.",
       },
       {
         index: "03",
-        phase: "Phase 03 · Scaling Infrastructure",
-        title: "Entrepreneurship",
-        body: "Building teams, scalable offers, and commercial systems—learning firsthand that revenue growth becomes fragile when reliant on hero individuals.",
-        takeaway: "Lesson: Systems and frameworks must survive individual talent.",
+        numeral: "03",
+        phase: "Phase 03 · Commercial Scale",
+        title: "Entrepreneurship & Systems",
+        focus: "Unit Economics & Team Infrastructure",
+        body: "Building revenue teams, launching proprietary offers, and engineering commercial infrastructure. Experiencing firsthand the fragility of relying on hero individuals instead of engineered systems.",
+        takeaway: "Individual talent cannot scale; documented frameworks and commercial systems do.",
       },
       {
         index: "04",
+        numeral: "04",
         phase: "Phase 04 · Codification",
-        title: "Sales Coaching & Advisory",
-        body: "Translating years of closing intuition into structured, transferable playbooks that founders and sales teams can practice, master, and repeat.",
-        takeaway: "Lesson: True mastery is not a script—it is diagnosing context.",
+        title: "Sales Advisory & Deal Architecture",
+        focus: "Consultative Playbooks & Diagnosis",
+        body: "Translating a decade of closing intuition into structured, transferable playbooks. Coaching founders and enterprise revenue teams to diagnose context with surgical precision.",
+        takeaway: "True mastery is not reciting scripts—it is diagnosing buyer context with surgical precision.",
       },
       {
         index: "05",
-        phase: "Phase 05 · The Platform Era",
-        title: "Authority Closers",
-        body: "Building an institutional company dedicated to sales education, deliberate practice, data-driven feedback, and technology-assisted skill mastery.",
-        takeaway: "Lesson: Continuous feedback loops beat theoretical training every time.",
+        numeral: "05",
+        phase: "Phase 05 · The Institutional Era",
+        title: "Authority Closers™ Ecosystem",
+        focus: "Deliberate Practice Labs & Certainty Architecture",
+        body: "Building an institutional ecosystem dedicated to simulated roleplay environments, call diagnostics, and sales engineering. Turning high-ticket selling from an unpredictable art into a repeatable discipline.",
+        takeaway: "Continuous feedback loops, deliberate practice, and certainty architecture beat theory every time.",
       },
-    ] as JourneyStage[],
+    ] as (JourneyStage & { focus: string })[],
   },
 
   philosophy: {
     index: "04",
-    label: "My Philosophy",
-    headline: "Four Ideas I Keep Returning To",
-    subhead: "The core cognitive principles that govern every high-ticket consultative conversation.",
+    label: "Philosophy",
+    headlineLine1: "Four Ideas I Keep",
+    headlineLine2: "Returning To.",
+    subhead:
+      "The core cognitive principles that govern every high-ticket consultative conversation.",
+    footnote:
+      "These are not tactical scripts. They are foundational laws of human decision-making.",
     entries: [
       {
         index: "01",
-        tag: "Core Premise",
-        statement: "Sales is the transfer of certainty.",
+        category: "CORE PREMISE",
+        statementPrefix: "Sales is the transfer of",
+        accentWord: "certainty.",
         elaboration:
-          "A buyer moves forward when risk ambiguity decreases and confidence in the projected outcome increases. You cannot give what you do not embody.",
+          "A buyer moves forward when risk ambiguity decreases and confidence in the projected outcome increases. You cannot transfer what you do not deeply embody.",
+        implication:
+          "If the closer carries 90% certainty, the buyer feels 45%. Certainty must be total internally before it can be transferred externally.",
       },
       {
         index: "02",
-        tag: "Buyer Psychology",
-        statement: "Trust is the absence of doubt.",
+        category: "BUYER PSYCHOLOGY",
+        statementPrefix: "Trust is the absence of",
+        accentWord: "doubt.",
         elaboration:
-          "Trust is not manufactured by charisma alone. It compounds when the buyer feels thoroughly understood and every unspoken doubt is brought to light and resolved.",
+          "Trust is not manufactured by charisma or enthusiasm alone. It compounds when the buyer feels thoroughly understood and every unspoken doubt is brought to light and resolved.",
+        implication:
+          "Doubt is never passive. Any unvoiced hesitation or unresolved risk defaults to a silent 'No' the moment the meeting ends.",
       },
       {
         index: "03",
-        tag: "Consultative Leverage",
-        statement: "Curiosity builds trust.",
+        category: "CONSULTATIVE LEVERAGE",
+        statementPrefix: "Curiosity builds",
+        accentWord: "trust.",
         elaboration:
           "The depth of a sales conversation depends entirely on the precision of your questions. Shallow questions get defensive answers; insightful questions reveal the real decision.",
+        implication:
+          "Whoever asks the most diagnostic, uncovering questions naturally commands the authentic authority and frame of the dialogue.",
       },
       {
         index: "04",
-        tag: "Deal Architecture",
-        statement: "Negotiation is a symptom. Value is the cure.",
+        category: "DEAL ARCHITECTURE",
+        statementPrefix: "Negotiation is a symptom. Value is the",
+        accentWord: "cure.",
         elaboration:
-          "Price pressure rarely indicates a tight budget. It reveals that relevance, ROI differentiation, or certainty was never established early in discovery.",
+          "Price resistance rarely indicates a lack of budget. It reveals that strategic differentiation, ROI relevance, or outcome certainty was never established early in discovery.",
+        implication:
+          "When economic value and outcome certainty are undeniable, commercial terms become an implementation detail rather than a battle.",
       },
-    ] as PhilosophyEntry[],
+    ],
   },
 
   principles: {

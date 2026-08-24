@@ -62,9 +62,9 @@
 }
 
 .headerSignatureImg {
-  width: clamp(140px, 14vw, 175px);
+  width: clamp(165px, 16vw, 205px);
   height: auto;
-  max-height: 48px;
+  max-height: 54px;
   object-fit: contain;
 }
 
@@ -112,7 +112,7 @@
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: clamp(1.1rem, 2.4vw, 2.6rem);
+  gap: clamp(1.2rem, 2.5vw, 2.8rem);
 }
 
 .navLink {
@@ -134,12 +134,13 @@
 
 .activeIndicator {
   position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -2px;
+  width: 4px;
+  height: 4px;
   background: var(--signal-red, #e83a12);
-  border-radius: 1px;
+  border-radius: 50%;
 }
 
 /* --- Menu button ---------------------------------------------------------- */
@@ -237,178 +238,282 @@
 
 /* --- Footer --------------------------------------------------------------- */
 
+/* --- Footer (Option A: 4-Column Luxury Editorial Ledger) ------------------ */
+
 .footer {
-  background: var(--carbon-black, #0a0a0a);
-  color: var(--inv-text);
-  padding: clamp(3.5rem, 6vw, 6rem) var(--gutter) 2rem;
+  background: #080808;
+  color: #ffffff;
+  padding: clamp(4rem, 7vw, 6rem) var(--gutter) 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footerInner {
   display: grid;
-  gap: clamp(2.5rem, 5vw, 4rem);
-  grid-template-columns: 1.4fr 1fr 1.2fr;
+  grid-template-columns: 1.35fr 0.9fr 0.9fr 1.3fr;
+  gap: clamp(2rem, 3.5vw, 3.5rem);
   max-width: var(--max-page);
   margin-inline: auto;
-  padding-bottom: clamp(2.5rem, 5vw, 4rem);
-  border-bottom: 1px solid var(--inv-hairline);
+  padding-bottom: clamp(3rem, 5vw, 4rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .footerBrandBlock {
-  display: grid;
-  gap: 0.9rem;
-  align-content: start;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
-.footerWordmark {
-  color: var(--inv-text);
-}
-
-.footerBrandBlock .wordmarkSecond {
-  color: var(--inv-text-muted);
+.footerBrandMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
 }
 
 .footerPositioning {
   font-family: var(--font-family-mono);
-  font-size: var(--step-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: var(--tracking-mono);
-  color: var(--signal-red, #e83a12);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--signal-red, #e83a12);
 }
 
 .footerPhilosophy {
   margin: 0;
-  max-width: 28ch;
-  font-family: var(--font-family-sans);
-  font-size: var(--step-body);
-  color: var(--inv-text-muted);
-  line-height: 1.6;
+  font-family: var(--font-family-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #b3b0a8;
+  line-height: 1.5;
 }
 
-.footerLabel {
-  display: block;
-  margin-bottom: 1.1rem;
+.footerLocationRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+}
+
+.footerLocationDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.footerLocationText {
   font-family: var(--font-family-mono);
-  font-size: var(--step-mono);
-  letter-spacing: var(--tracking-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--inv-text-muted);
+  color: #8c8983;
 }
 
-.footerNavList,
-.socialList {
-  display: grid;
-  gap: 0.6rem;
+.footerColHeader {
+  display: block;
+  font-family: var(--font-family-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--signal-red, #e83a12);
+  margin-bottom: 1.25rem;
+}
+
+.footerNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
-}
-
-.socialList {
-  margin-top: 1.5rem;
 }
 
 .footerLink {
-  color: var(--inv-text-muted);
-  font-size: var(--step-body);
-  transition: color var(--dur-fast) var(--ease-out-editorial);
-}
-
-.footerLink:hover {
-  color: #ffffff;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: var(--signal-red, #e83a12);
-}
-
-.footerCtaBlock {
-  align-content: start;
-}
-
-.footerCta {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
-  padding: 0.85rem 1.4rem;
-  background: var(--signal-red, #e83a12);
-  border: 1px solid var(--signal-red, #e83a12);
-  color: #ffffff;
+  gap: 0.35rem;
   font-family: var(--font-family-sans);
-  font-weight: 700;
-  font-size: var(--step-meta);
-  letter-spacing: 0.04em;
-  border-radius: 2px;
-  transition: background var(--dur-fast) var(--ease-out-editorial),
-    border-color var(--dur-fast) var(--ease-out-editorial),
-    transform var(--dur-fast) var(--ease-out-editorial);
+  font-size: 0.92rem;
+  color: #a8a49c;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.footerCta:hover {
-  background: #ff4820;
-  border-color: #ff4820;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-.footerBaseline {
+.footerSocialList {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 1.2rem;
-  max-width: var(--max-page);
-  margin-inline: auto;
-  padding-top: 2.2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  font-family: var(--font-family-mono);
-  font-size: var(--step-mono);
-  letter-spacing: 0.06em;
-  color: var(--inv-text-muted);
-  text-align: center;
+  gap: 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-@media (min-width: 820px) {
-  .footerBaseline {
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
-  }
+.footerSocialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #a8a49c;
+  text-decoration: none;
+  font-family: var(--font-family-sans);
+  font-size: 0.92rem;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.socialIconBox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: #a8a49c;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.socialSvg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2;
+  transition: transform 0.2s ease;
+}
+
+.socialLabelText {
+  transition: color 0.2s ease;
+}
+
+.footerSocialLink:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.footerSocialLink:hover .socialIconBox {
+  background: rgba(232, 58, 18, 0.16);
+  border-color: rgba(232, 58, 18, 0.45);
+  color: var(--signal-red, #e83a12);
+  box-shadow: 0 0 10px rgba(232, 58, 18, 0.3);
+}
+
+.footerSocialLink:hover .socialSvg {
+  transform: scale(1.1);
+}
+
+.footerSocialLink:hover .externalArrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--signal-red, #e83a12);
+}
+
+/* Venture Spotlight Card */
+.ventureCard {
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  backdrop-filter: blur(12px);
+}
+
+.ventureTitle {
+  font-family: var(--font-family-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.ventureDescription {
+  font-family: var(--font-family-sans);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: #a8a49c;
+  margin: 0;
+}
+
+.ventureBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.65rem 1.15rem;
+  margin-top: 0.4rem;
+  background: var(--signal-red, #e83a12);
+  color: #ffffff;
+  border-radius: 2px;
+  font-family: var(--font-family-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 14px rgba(232, 58, 18, 0.25);
+}
+
+.ventureBtn:hover {
+  background: #ffffff;
+  color: #0a0a0a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+}
+
+/* Baseline Sub-Footer */
+.footerBaseline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  max-width: var(--max-page);
+  margin-inline: auto;
+  padding-top: 2rem;
+  font-family: var(--font-family-sans);
+  font-size: 0.82rem;
+  color: #73706a;
 }
 
 .footerLegalList {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: clamp(0.9rem, 2vw, 1.8rem);
+  gap: clamp(1rem, 2vw, 1.75rem);
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
 .footerLegalLink {
-  color: var(--inv-text-muted);
+  color: #8c8983;
   text-decoration: none;
   font-size: 0.82rem;
-  letter-spacing: 0.03em;
-  transition: color var(--dur-fast) var(--ease-out-editorial);
+  transition: color 0.2s ease;
 }
 
 .footerLegalLink:hover {
   color: #ffffff;
   text-decoration: underline;
-  text-underline-offset: 4px;
+  text-underline-offset: 3px;
   text-decoration-color: var(--signal-red, #e83a12);
 }
 
-/* --- Responsive ----------------------------------------------------------- */
+.footerCopyright {
+  font-family: var(--font-family-sans);
+  font-size: 0.82rem;
+  color: #73706a;
+}
 
-@media (max-width: 900px) {
+/* --- Responsive Breakpoints ----------------------------------------------- */
+
+@media (max-width: 1024px) {
   .footerInner {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .footerBrandBlock {
-    grid-column: 1 / -1;
+    gap: 2.5rem;
   }
 }
 
@@ -420,11 +525,18 @@
   .menuButton {
     display: flex;
   }
+
+  .footerBaseline {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
 }
 
 @media (max-width: 560px) {
   .footerInner {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
 

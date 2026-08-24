@@ -9,72 +9,67 @@ export function AboutHub() {
 
   return (
     <article className={styles.aboutSection} aria-label="About Dipak Vishwakarma">
-      <div className={styles.atmosphereLayer} aria-hidden="true" />
-      <div className={styles.ensoEcho} aria-hidden="true" />
+      {/* Clean Ivory Background Canvas */}
+      <div className={styles.ensoWatermark} aria-hidden="true" />
 
-      {/* --- Section 1: Hero Profile -------------------------------------- */}
+      {/* --- Section 1: Hero Editorial Profile ---------------------------- */}
       <section className={styles.heroSection} aria-label="Executive Profile">
         <div className={styles.pageContainer}>
           <div className={styles.heroGrid}>
+            {/* Left Narrative Column */}
             <div className={styles.heroCopy}>
-              <p className={styles.sectionKicker}>
-                [ {hero.sectionIndex} / PROFILE ] · {hero.eyebrow}
-              </p>
+              <p className={styles.chapterEyebrow}>{hero.chapter}</p>
 
               <h1 className={styles.heroHeadline}>
-                {hero.headlineWord1} <span className={styles.heroHeadlineAccent}>{hero.headlineWord2}</span>
+                {hero.headlineLine1}
+                <br />
+                {hero.headlineLine2People}{" "}
+                <em className={styles.headlineItalic}>{hero.headlineLine2Decide}</em>
               </h1>
 
-              <blockquote className={styles.heroLeadQuote}>
-                &ldquo;{hero.leadQuote}&rdquo;
+              <p className={styles.heroThesis}>{hero.thesis}</p>
+
+              <blockquote className={styles.editorialQuote}>
+                What interests me is not pressure or hype. It is{" "}
+                <strong className={styles.highlightWord}>certainty</strong> — what creates it, what destroys it, and how people make confident high-stakes decisions.
               </blockquote>
 
-              <p className={styles.heroSummaryText}>
-                {hero.summary}
-              </p>
-
               <div className={styles.heroActionsRow}>
-                <a href="#philosophy" className={styles.heroPrimaryBtn}>
-                  Core Philosophy ↓
+                <a href={hero.actions.primary.href} className={styles.heroPrimaryBtn}>
+                  {hero.actions.primary.label}
                 </a>
-                <Link href="/connect" className={styles.heroSecondaryBtn}>
-                  Book Advisory →
+                <Link href={hero.actions.secondary.href} className={styles.heroSecondaryBtn}>
+                  {hero.actions.secondary.label}
                 </Link>
               </div>
 
-              <div className={styles.heroStatsRibbon}>
-                {hero.stats.map((stat, i) => (
-                  <div key={i} className={styles.statItem}>
-                    <span className={styles.statValue}>{stat.value}</span>
-                    <span className={styles.statLabel}>{stat.label}</span>
+              {/* Semantic Identity Rail */}
+              <div className={styles.identityRail}>
+                {hero.identityRail.map((item, idx) => (
+                  <div key={idx} className={styles.identityItem}>
+                    <span className={styles.identityRole}>{item.role}</span>
+                    <span className={styles.identityEntity}>{item.entity}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className={styles.heroMediaFrame}>
-              <Image
-                src="/media/01_dsc06974.webp"
-                alt="Dipak Vishwakarma — High-Ticket Sales Coach, Founder of Authority Closers"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className={styles.heroImage}
-              />
-
-              <div className={styles.heroBadgeOverlay}>
-                <div className={styles.heroBadgeLeft}>
-                  <span className={styles.heroBadgeName}>Dipak Vishwakarma</span>
-                  <span className={styles.heroBadgeRole}>Founder, Authority Closers</span>
-                </div>
-                <span className={styles.verifiedBadge}>
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-                  </svg>
-                  Verified
-                </span>
+            {/* Right Art-Directed Portrait Column */}
+            <figure className={styles.portraitFigure}>
+              <div className={styles.portraitFrame}>
+                <Image
+                  src="/media/01_dsc06974.webp"
+                  alt="Dipak Vishwakarma — Founder of Authority Closers"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className={styles.portraitImage}
+                />
               </div>
-            </div>
+              <figcaption className={styles.portraitCaption}>
+                [ Fig. 01 ] — {hero.portraitCaption}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -85,7 +80,7 @@ export function AboutHub() {
           <div className={styles.storyGrid}>
             <div className={styles.storyLeft}>
               <span className={styles.sectionHeaderKicker}>
-                [ {story.index} / ORIGIN ] · {story.label}
+                02 — {story.label.toUpperCase()}
               </span>
               <h2 className={styles.sectionHeaderTitle}>{story.headline}</h2>
               <p className={styles.storyPullQuote}>&ldquo;{story.quote}&rdquo;</p>
@@ -116,62 +111,172 @@ export function AboutHub() {
         </div>
       </section>
 
-      {/* --- Section 3: Journey Timeline ---------------------------------- */}
+      {/* --- Section 3: Journey (Progressive Evolution Spine) ----------- */}
       <section className={styles.journeySection} aria-label="Evolution & Milestones">
         <div className={styles.pageContainer}>
-          <div className={styles.journeyHeaderBlock}>
-            <span className={styles.sectionHeaderKicker}>
-              [ {journey.index} / EVOLUTION ] · {journey.label}
-            </span>
-            <h2 className={styles.sectionHeaderTitle}>{journey.headline}</h2>
-            <p className={styles.journeySubhead}>{journey.subhead}</p>
+          <div className={styles.journeyLayout}>
+            {/* Left Sticky Intellectual Intro */}
+            <div className={styles.journeyStickyIntro}>
+              <span className={styles.sectionHeaderKicker}>
+                03 — {journey.label.toUpperCase()}
+              </span>
+              <h2 className={styles.sectionHeaderTitle}>
+                {journey.headlineLine1}
+                <br />
+                <em className={styles.headlineItalic}>{journey.headlineLine2}</em>
+              </h2>
+              <p className={styles.journeySubhead}>{journey.subhead}</p>
+
+              {/* Cognitive Maturity Ladder Indicator */}
+              <div className={styles.maturityLadder}>
+                <span className={styles.ladderKicker}>Strategic Maturity Track</span>
+                <ol className={styles.ladderList}>
+                  {journey.stages.map((stage) => (
+                    <li key={stage.index} className={styles.ladderItem}>
+                      <span className={styles.ladderIndex}>[{stage.index}]</span>
+                      <span className={styles.ladderTitle}>{stage.title}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+            {/* Right Connected Evolution Spine (Phases 01 to 04) */}
+            <div className={styles.evolutionSpine}>
+              <div className={styles.spineRail} aria-hidden="true" />
+
+              {/* Sequential Evolution Chapters (Phases 01 to 04) */}
+              <div className={styles.evolutionChapters}>
+                {journey.stages.slice(0, 4).map((stage) => (
+                  <div key={stage.index} className={styles.evolutionNode}>
+                    <div className={styles.nodeMarker}>
+                      <span className={styles.nodeNumeral}>{stage.numeral}</span>
+                    </div>
+
+                    <div className={styles.nodeContent}>
+                      <div className={styles.nodeMetaRow}>
+                        <span className={styles.nodePhaseTag}>{stage.phase}</span>
+                        <span className={styles.nodeFocusBadge}>{stage.focus}</span>
+                      </div>
+
+                      <h3 className={styles.nodeTitle}>{stage.title}</h3>
+                      <p className={styles.nodeBody}>{stage.body}</p>
+
+                      <div className={styles.nodeInsightBlock}>
+                        <span className={styles.nodeInsightLabel}>The Core Epiphany</span>
+                        <blockquote className={styles.nodeInsightQuote}>
+                          &ldquo;{stage.takeaway}&rdquo;
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
-          <div className={styles.journeyCardsGrid}>
-            {journey.stages.map((stage) => (
-              <div key={stage.index} className={styles.journeyCard}>
-                <div className={styles.journeyCardTop}>
-                  <div className={styles.journeyBadgeRow}>
-                    <span className={styles.journeyIndex}>[{stage.index}]</span>
-                    <span className={styles.journeyPhaseTag}>{stage.phase}</span>
+          {/* Grand Full-Width Culmination Apex (Phase 05 - Authority Closers™) */}
+          {journey.stages[4] && (
+            <div className={styles.apexFullWidthWrapper}>
+              <div className={styles.apexMilestoneCard}>
+                <div className={styles.apexAtmosphere} aria-hidden="true" />
+                <div className={styles.apexCardContent}>
+                  <div className={styles.apexLeft}>
+                    <div className={styles.apexBadgeRow}>
+                      <span className={styles.apexTag}>★ THE APEX · CURRENT INSTITUTIONAL ERA</span>
+                      <span className={styles.apexIndex}>[05 / 05]</span>
+                    </div>
+                    <h3 className={styles.apexTitle}>{journey.stages[4].title}</h3>
+                    <span className={styles.apexFocusBadge}>{journey.stages[4].focus}</span>
+                    <p className={styles.apexBody}>{journey.stages[4].body}</p>
+                    <div className={styles.apexInsightBox}>
+                      <span className={styles.apexInsightLabel}>The Core Paradigm</span>
+                      <p className={styles.apexInsightText}>
+                        {journey.stages[4].takeaway}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className={styles.journeyCardTitle}>{stage.title}</h3>
-                  <p className={styles.journeyCardBody}>{stage.body}</p>
+
+                  <div className={styles.apexRight}>
+                    <span className={styles.apexCtaKicker}>Flagship Venture</span>
+                    <p className={styles.apexCtaBody}>
+                      Turning high-ticket consultative selling into an institutional, practice-driven discipline.
+                    </p>
+                    <a
+                      href="https://authorityclosers.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.apexBtn}
+                    >
+                      <span>Explore Authority Closers</span>
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  </div>
                 </div>
-                <div className={styles.journeyTakeaway}>{stage.takeaway}</div>
               </div>
-            ))}
-          </div>
+            </div>
+          )}
         </div>
       </section>
 
-      {/* --- Section 4: Philosophy (THE CINEMATIC GLASSMORPHISM STAGE) ---- */}
+      {/* --- Section 4: Philosophy (The Sticky Manifesto Ledger) --------- */}
       <section id="philosophy" className={styles.philosophySection} aria-label="Core Philosophy">
-        <div className={styles.philosophyAtmosphere} aria-hidden="true" />
-        <div className={styles.philosophyEnso} aria-hidden="true" />
-
         <div className={styles.pageContainer}>
-          <div className={styles.philosophyContainer}>
-            <div className={styles.philosophyHeaderBlock}>
-              <span className={styles.philosophyKicker}>
-                [ {philosophy.index} / CORE PHILOSOPHY ] · {philosophy.label}
+          <div className={styles.philosophyLayout}>
+            {/* Left Sticky Intellectual Anchor */}
+            <div className={styles.philosophyStickyCol}>
+              <span className={styles.sectionHeaderKicker}>
+                04 — {philosophy.label.toUpperCase()}
               </span>
-              <h2 className={styles.philosophyHeadline}>{philosophy.headline}</h2>
+              <h2 className={styles.sectionHeaderTitle}>
+                {philosophy.headlineLine1}
+                <br />
+                <em className={styles.headlineItalic}>{philosophy.headlineLine2}</em>
+              </h2>
               <p className={styles.philosophySubhead}>{philosophy.subhead}</p>
+
+              {/* Quick Philosophy Ledger Index */}
+              <div className={styles.philosophyLedgerBox}>
+                <span className={styles.ledgerBoxKicker}>Pillars of Decision Psychology</span>
+                <ol className={styles.ledgerList}>
+                  {philosophy.entries.map((entry) => (
+                    <li key={entry.index} className={styles.ledgerItem}>
+                      <span className={styles.ledgerIndex}>[{entry.index}]</span>
+                      <span className={styles.ledgerText}>
+                        {entry.statementPrefix} <em>{entry.accentWord}</em>
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              {/* Epistemological Footnote */}
+              <p className={styles.philosophyFootnote}>
+                &ldquo;{philosophy.footnote}&rdquo;
+              </p>
             </div>
 
-            <div className={styles.glassGrid}>
+            {/* Right Flowing Manifesto Stream */}
+            <div className={styles.philosophyStreamCol}>
               {philosophy.entries.map((entry) => (
-                <div key={entry.index} className={styles.glassCard}>
-                  <div className={styles.glassCardTop}>
-                    <div className={styles.glassCardBadgeRow}>
-                      <span className={styles.glassTag}>★ {entry.tag}</span>
-                      <span className={styles.glassIndex}>[{entry.index} / 04]</span>
-                    </div>
-                    <h3 className={styles.glassStatement}>&ldquo;{entry.statement}&rdquo;</h3>
+                <article key={entry.index} className={styles.manifestoCard}>
+                  <div className={styles.manifestoCardHeader}>
+                    <span className={styles.manifestoCategoryTag}>{entry.category}</span>
+                    <span className={styles.manifestoCardIndex}>[ {entry.index} / 04 ]</span>
                   </div>
-                  <p className={styles.glassElaboration}>{entry.elaboration}</p>
-                </div>
+
+                  <h3 className={styles.manifestoStatement}>
+                    {entry.statementPrefix}{" "}
+                    <em className={styles.manifestoItalic}>{entry.accentWord}</em>
+                  </h3>
+
+                  <p className={styles.manifestoExplanation}>{entry.elaboration}</p>
+
+                  <div className={styles.manifestoImplicationBox}>
+                    <span className={styles.implicationLabel}>Strategic Law</span>
+                    <p className={styles.implicationText}>&ldquo;{entry.implication}&rdquo;</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
@@ -183,7 +288,7 @@ export function AboutHub() {
         <div className={styles.pageContainer}>
           <div className={styles.principlesHeaderBlock}>
             <span className={styles.sectionHeaderKicker}>
-              [ {principles.index} / METHODOLOGY ] · {principles.label}
+              05 — {principles.label.toUpperCase()}
             </span>
             <h2 className={styles.sectionHeaderTitle}>{principles.headline}</h2>
           </div>
@@ -206,7 +311,7 @@ export function AboutHub() {
         <div className={styles.pageContainer}>
           <div className={styles.journeyHeaderBlock}>
             <span className={styles.sectionHeaderKicker}>
-              [ {missionVision.index} / DIRECTION ] · {missionVision.label}
+              06 — {missionVision.label.toUpperCase()}
             </span>
             <h2 className={styles.sectionHeaderTitle}>{missionVision.headline}</h2>
             <p className={styles.journeySubhead}>{missionVision.subhead}</p>
@@ -237,7 +342,7 @@ export function AboutHub() {
         <div className={styles.pageContainer}>
           <div className={styles.faqHeaderBlock}>
             <span className={styles.sectionHeaderKicker}>
-              [ {faq.index} / CLARITY ] · {faq.label}
+              07 — {faq.label.toUpperCase()}
             </span>
             <h2 className={styles.sectionHeaderTitle}>{faq.headline}</h2>
           </div>

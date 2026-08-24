@@ -1,23 +1,24 @@
 /* ==========================================================================
-   ABOUT HUB — LUXURY EDITORIAL & PHILOSOPHY STAGE
+   ABOUT HUB — EDITORIAL PROFILE OF AN INFLUENTIAL THINKER
    Scoped CSS Module for Dipak Vishwakarma /about
    ========================================================================== */
 
 .aboutSection {
   --dv-ink: #0a0a0a;
   --dv-body: #3c3933;
-  --dv-canvas: #f7f7f5;
+  --dv-canvas: #f9f8f5;
   --dv-surface: #ffffff;
-  --dv-sunken: #f0eee9;
+  --dv-sunken: #f4f2ec;
   --dv-dark-bg: #070707;
   --dv-dark-surface: #111111;
   --dv-signal-red: #e83a12;
-  --dv-line: rgba(10, 10, 10, 0.1);
-  --dv-line-strong: rgba(10, 10, 10, 0.2);
+  --dv-line: rgba(10, 10, 10, 0.08);
+  --dv-line-strong: rgba(10, 10, 10, 0.18);
   --dv-gold-light: #f3dfc8;
   --dv-gold-deep: #b37d4e;
-  --dv-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
+  --dv-display: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
   --dv-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
+  --dv-serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
 
   position: relative;
@@ -29,29 +30,17 @@
   box-sizing: border-box;
 }
 
-/* Ambient Backdrops */
-.atmosphereLayer {
+/* Subtle Enso Watermark */
+.ensoWatermark {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.85;
-  background:
-    radial-gradient(circle at 10% 12%, rgba(231, 212, 194, 0.4), transparent 50%),
-    radial-gradient(circle at 90% 45%, rgba(231, 212, 194, 0.3), transparent 50%),
-    radial-gradient(circle at 20% 85%, rgba(231, 212, 194, 0.25), transparent 45%);
-}
-
-.ensoEcho {
-  position: absolute;
-  top: 8rem;
+  top: 6rem;
   right: -120px;
-  width: 720px;
-  height: 720px;
+  width: 760px;
+  height: 760px;
   background-image: url("/hero/enso-brush-master.webp");
   background-size: contain;
   background-repeat: no-repeat;
-  opacity: 0.035;
+  opacity: 0.025;
   pointer-events: none;
   z-index: 0;
 }
@@ -66,13 +55,13 @@
   box-sizing: border-box;
 }
 
-/* --- Section 1: Hero Profile (Viewport Optimized) ------------------------- */
+/* --- Section 1: Hero Editorial Profile (Optical Refinement) -------------- */
 
 .heroSection {
   min-height: calc(100vh - 4.5rem);
   display: flex;
   align-items: center;
-  padding-top: clamp(4.8rem, 7.5vh, 6rem);
+  padding-top: clamp(4.5rem, 6.8vh, 5.5rem);
   padding-bottom: clamp(2rem, 3.5vh, 3rem);
   border-bottom: 1.5px solid var(--dv-line);
   box-sizing: border-box;
@@ -81,7 +70,7 @@
 .heroGrid {
   display: grid;
   grid-template-columns: 1.28fr 0.92fr;
-  gap: clamp(1.75rem, 3.5vw, 3.5rem);
+  gap: clamp(1.75rem, 3.2vw, 3.25rem);
   align-items: center;
   width: 100%;
 }
@@ -92,60 +81,66 @@
   gap: clamp(0.75rem, 1.4vh, 1.15rem);
 }
 
-.sectionKicker {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.74rem, 0.85vw, 0.84rem);
+.chapterEyebrow {
+  font-family: var(--dv-mono);
+  font-size: clamp(0.74rem, 0.85vw, 0.82rem);
   font-weight: 700;
-  letter-spacing: 0.22em;
-  color: var(--dv-ink);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
+  color: var(--dv-signal-red);
   margin: 0;
-}
-
-.sectionKicker::before {
-  content: "";
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  background: var(--dv-signal-red);
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(232, 58, 18, 0.5);
 }
 
 .heroHeadline {
-  font-family: var(--dv-serif);
-  font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+  font-family: var(--dv-display);
+  font-size: clamp(2.3rem, 3.9vw, 3.9rem);
   font-weight: 800;
-  line-height: 1.04;
-  letter-spacing: -0.025em;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
   color: var(--dv-ink);
   margin: 0;
 }
 
-.heroHeadlineAccent {
+.headlineItalic {
+  font-family: var(--dv-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.84em;
+  color: var(--dv-signal-red);
+  display: inline-block;
+  margin-left: 0.25rem;
+  transform: translateY(-0.02em);
+  letter-spacing: -0.01em;
+}
+
+.headlineAccent {
   color: var(--dv-signal-red);
 }
 
-.heroLeadQuote {
+.heroThesis {
   font-family: var(--dv-sans);
-  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
   font-weight: 500;
-  line-height: 1.48;
+  line-height: 1.55;
   color: var(--dv-ink);
   margin: 0;
-  border-left: 3px solid var(--dv-signal-red);
-  padding-left: 1rem;
 }
 
-.heroSummaryText {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.88rem, 0.95vw, 0.95rem);
-  line-height: 1.55;
-  color: var(--dv-body);
+.editorialQuote {
   margin: 0;
+  padding: 0.55rem 0 0.55rem 1.15rem;
+  border-left: 2px solid var(--dv-signal-red);
+  font-family: var(--dv-sans);
+  font-size: clamp(0.92rem, 1vw, 1rem);
+  line-height: 1.6;
+  color: var(--dv-body);
+  background: transparent;
+  border-radius: 0;
+}
+
+.highlightWord {
+  color: var(--dv-ink);
+  font-weight: 700;
 }
 
 .heroActionsRow {
@@ -153,22 +148,21 @@
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  padding-top: 0.25rem;
+  padding-top: 0.2rem;
 }
 
 .heroPrimaryBtn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.62rem 1.2rem;
+  padding: 0.65rem 1.3rem;
   background: var(--dv-ink);
   color: #ffffff;
-  border-radius: 0.375rem;
-  font-family: var(--dv-mono);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  border-radius: 2px;
+  font-family: var(--dv-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-decoration: none;
   transition: all 0.2s ease;
 }
@@ -176,135 +170,109 @@
 .heroPrimaryBtn:hover {
   background: var(--dv-signal-red);
   transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(232, 58, 18, 0.25);
 }
 
 .heroSecondaryBtn {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.62rem 1.2rem;
+  padding: 0.65rem 1.3rem;
   background: transparent;
-  border: 1px solid var(--dv-line-strong);
+  border: 1px solid var(--dv-ink);
   color: var(--dv-ink);
-  border-radius: 0.375rem;
-  font-family: var(--dv-mono);
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  border-radius: 2px;
+  font-family: var(--dv-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .heroSecondaryBtn:hover {
-  border-color: var(--dv-ink);
-  background: var(--dv-surface);
+  background: var(--dv-ink);
+  color: #ffffff;
   transform: translateY(-1px);
 }
 
-.heroStatsRibbon {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem 1.8rem;
-  padding-top: 0.85rem;
+/* Semantic Identity Rail (Asymmetric Editorial Rhythm) */
+.identityRail {
+  display: grid;
+  grid-template-columns: 1fr 1.28fr 1.38fr;
+  gap: clamp(0.85rem, 1.8vw, 1.5rem);
+  padding-top: 1.1rem;
   border-top: 1px solid var(--dv-line);
+  margin-top: 0.35rem;
 }
 
-.statItem {
+.identityItem {
   display: flex;
   flex-direction: column;
   gap: 0.15rem;
 }
 
-.statValue {
-  font-family: var(--dv-serif);
-  font-size: 1.22rem;
-  font-weight: 800;
-  color: var(--dv-ink);
-  letter-spacing: -0.02em;
-}
-
-.statLabel {
+.identityRole {
   font-family: var(--dv-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #73706a;
+  color: #8c8983;
 }
 
-.heroMediaFrame {
+.identityEntity {
+  font-family: var(--dv-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dv-ink);
+  line-height: 1.35;
+}
+
+/* Documentary Portrait Figure (Tighter Focus on Dipak) */
+.portraitFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.portraitFrame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 4.7;
-  max-height: clamp(18rem, 46vh, 26rem);
-  border-radius: 0.5rem;
+  aspect-ratio: 4 / 4.6;
+  max-height: clamp(23rem, 54vh, 32rem);
+  border-radius: 2px;
   overflow: hidden;
-  box-shadow: 0 12px 32px rgba(10, 10, 10, 0.07);
-  border: 1px solid var(--dv-line-strong);
   background: #111;
-  justify-self: center;
+  border: 1px solid var(--dv-line-strong);
+  box-shadow: 0 8px 24px rgba(10, 10, 10, 0.04);
 }
 
-.heroImage {
+.portraitImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 8%;
+  transform: scale(1.14);
+  transform-origin: center 18%;
+  filter: contrast(1.02) brightness(0.98);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.heroMediaFrame:hover .heroImage {
-  transform: scale(1.03);
+.portraitFrame:hover .portraitImage {
+  transform: scale(1.17);
 }
 
-.heroBadgeOverlay {
-  position: absolute;
-  bottom: 0.85rem;
-  left: 0.85rem;
-  right: 0.85rem;
-  padding: 0.65rem 0.95rem;
-  background: rgba(10, 10, 10, 0.88);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.375rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #ffffff;
-}
-
-.heroBadgeLeft {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
-}
-
-.heroBadgeName {
-  font-family: var(--dv-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-
-.heroBadgeRole {
+.portraitCaption {
   font-family: var(--dv-mono);
-  font-size: 0.64rem;
+  font-size: 0.76rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--dv-gold-light);
-}
-
-.verifiedBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  font-family: var(--dv-mono);
-  font-size: 0.68rem;
-  color: #22c55e;
-  background: rgba(34, 197, 94, 0.12);
-  border: 1px solid rgba(34, 197, 94, 0.3);
-  padding: 0.2rem 0.45rem;
-  border-radius: 9999px;
+  color: #4a4740;
   font-weight: 600;
+  text-align: right;
 }
 
 /* --- Section 2: Story & Narrative ----------------------------------------- */
@@ -339,7 +307,7 @@
 }
 
 .sectionHeaderTitle {
-  font-family: var(--dv-serif);
+  font-family: var(--dv-display);
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 800;
   line-height: 1.06;
@@ -419,288 +387,291 @@
   color: #73706a;
 }
 
-/* --- Section 3: The Journey (Connected Evolution Timeline) ---------------- */
+/* --- Section 3: The Journey (Progressive Evolution System & Spine) -------- */
 
 .journeySection {
-  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
   border-bottom: 1.5px solid var(--dv-line);
-  background: #fbfbf9;
-}
-
-.journeyHeaderBlock {
-  max-width: 48ch;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.journeySubhead {
-  font-family: var(--dv-sans);
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: var(--dv-body);
-  margin: 0;
-}
-
-.journeyCardsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 1.25rem;
+  background: var(--dv-sunken);
   position: relative;
 }
 
-.journeyCard {
+.journeyLayout {
+  display: grid;
+  grid-template-columns: 0.92fr 1.48fr;
+  gap: clamp(2.5rem, 4.5vw, 5rem);
+  align-items: start;
+}
+
+.journeyStickyIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 6.5rem;
+}
+
+.maturityLadder {
+  margin-top: 1rem;
+  padding: 1.25rem 1.4rem;
   background: var(--dv-surface);
   border: 1px solid var(--dv-line-strong);
-  border-radius: 0.5rem;
-  padding: 1.75rem 1.5rem;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 1.5rem;
-  box-shadow: 0 4px 16px rgba(10, 10, 10, 0.03);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  gap: 0.85rem;
+  box-shadow: 0 4px 16px rgba(10, 10, 10, 0.02);
+}
+
+.ladderKicker {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.ladderList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.ladderItem {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--dv-sans);
+  font-size: 0.84rem;
+  color: #4a4740;
+}
+
+.ladderIndex {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--dv-signal-red);
+  flex-shrink: 0;
+}
+
+.ladderTitle {
+  font-weight: 500;
+  color: var(--dv-ink);
+}
+
+/* Right Column: Connected Evolution Spine */
+.evolutionSpine {
   position: relative;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 3.5vw, 3rem);
+  padding-left: clamp(2rem, 3vw, 3rem);
 }
 
-.journeyCard::before {
-  content: "";
+.spineRail {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: transparent;
-  transition: background 0.3s ease;
+  top: 2rem;
+  bottom: 8rem;
+  left: 0.85rem;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    var(--dv-signal-red) 0%,
+    rgba(232, 58, 18, 0.6) 65%,
+    rgba(232, 58, 18, 0.15) 100%
+  );
+  pointer-events: none;
 }
 
-.journeyCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 32px rgba(10, 10, 10, 0.08);
+.evolutionChapters {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 3vw, 2.75rem);
+}
+
+.evolutionNode {
+  position: relative;
+  background: var(--dv-surface);
+  border: 1px solid var(--dv-line-strong);
+  border-radius: 2px;
+  padding: clamp(1.8rem, 3vw, 2.4rem);
+  box-shadow: 0 4px 20px rgba(10, 10, 10, 0.03);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.evolutionNode:hover {
+  transform: translateX(4px);
+  box-shadow: 0 16px 36px rgba(10, 10, 10, 0.08);
   border-color: var(--dv-ink);
 }
 
-.journeyCard:hover::before {
-  background: var(--dv-signal-red);
-}
-
-.journeyCardTop {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.journeyBadgeRow {
+.nodeMarker {
+  position: absolute;
+  left: clamp(-2.45rem, -3vw, -3.45rem);
+  top: 2rem;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: var(--dv-canvas);
+  border: 2px solid var(--dv-signal-red);
+  border-radius: 50%;
+  z-index: 2;
 }
 
-.journeyIndex {
+.nodeDot {
+  display: none;
+}
+
+.nodeNumeral {
   font-family: var(--dv-mono);
-  font-size: 0.8rem;
+  font-size: 0.72rem;
   font-weight: 800;
   color: var(--dv-signal-red);
 }
 
-.journeyPhaseTag {
-  font-family: var(--dv-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: #8c8983;
+.nodeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
-.journeyCardTitle {
-  font-family: var(--dv-serif);
-  font-size: 1.35rem;
+.nodeMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nodePhaseTag {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
   font-weight: 700;
-  line-height: 1.15;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.nodeFocusBadge {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #73706a;
+  background: var(--dv-canvas);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  border: 1px solid var(--dv-line);
+}
+
+.nodeTitle {
+  font-family: var(--dv-display);
+  font-size: clamp(1.35rem, 1.8vw, 1.65rem);
+  font-weight: 800;
+  line-height: 1.16;
   color: var(--dv-ink);
   margin: 0;
 }
 
-.journeyCardBody {
+.nodeBody {
   font-family: var(--dv-sans);
-  font-size: 0.92rem;
-  line-height: 1.6;
+  font-size: 0.96rem;
+  line-height: 1.64;
   color: var(--dv-body);
   margin: 0;
 }
 
-.journeyTakeaway {
-  padding-top: 1rem;
-  border-top: 1px solid var(--dv-line);
+.nodeInsightBlock {
+  margin-top: 0.35rem;
+  padding-left: 1.15rem;
+  border-left: 2px solid var(--dv-signal-red);
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.nodeInsightLabel {
   font-family: var(--dv-mono);
-  font-size: 0.74rem;
-  line-height: 1.45;
-  color: #4a4740;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.nodeInsightQuote {
+  margin: 0;
+  font-family: var(--dv-sans);
+  font-size: 0.94rem;
   font-weight: 600;
+  line-height: 1.5;
+  color: var(--dv-ink);
 }
 
-/* --- Section 4: Philosophy (THE CINEMATIC GLASSMORPHISM STAGE) ------------- */
-
-.philosophySection {
+/* Flagship Culmination Apex (Grand Full-Width Horizon Card) */
+.apexFullWidthWrapper {
+  margin-top: clamp(3.5rem, 6vw, 5rem);
+  width: 100%;
   position: relative;
-  background: var(--dv-dark-bg);
-  color: #ffffff;
-  padding: clamp(5rem, 9vw, 8rem) 0;
-  overflow: hidden;
 }
 
-.philosophyAtmosphere {
+.apexMilestoneCard {
+  position: relative;
+  background: #080808;
+  color: #ffffff;
+  border-radius: 2px;
+  padding: clamp(2.5rem, 4.5vw, 4rem);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.apexAtmosphere {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 15% 20%, rgba(232, 58, 18, 0.2), transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(179, 125, 78, 0.15), transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 60%);
-  opacity: 0.9;
+    radial-gradient(circle at 10% 20%, rgba(232, 58, 18, 0.28), transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(179, 125, 78, 0.2), transparent 50%);
 }
 
-.philosophyEnso {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 900px;
-  height: 900px;
-  background-image: url("/hero/enso-brush-master.webp");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.philosophyContainer {
+.apexCardContent {
   position: relative;
   z-index: 1;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(2.5rem, 5vw, 4.5rem);
+  align-items: center;
 }
 
-.philosophyHeaderBlock {
-  max-width: 52ch;
+.apexLeft {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
-  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+  gap: 0.95rem;
 }
 
-.philosophyKicker {
-  font-family: var(--dv-mono);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--dv-signal-red);
+.apexBadgeRow {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-}
-
-.philosophyKicker::before {
-  content: "";
-  display: inline-block;
-  width: 0.45rem;
-  height: 0.45rem;
-  background: var(--dv-signal-red);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--dv-signal-red);
-}
-
-.philosophyHeadline {
-  font-family: var(--dv-serif);
-  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
-  font-weight: 800;
-  line-height: 0.98;
-  letter-spacing: -0.025em;
-  color: #ffffff;
-  margin: 0;
-}
-
-.philosophySubhead {
-  font-family: var(--dv-sans);
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #a8a49c;
-  margin: 0;
-}
-
-/* Glassmorphism Cards Grid */
-.glassGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: clamp(1.25rem, 2.5vw, 2rem);
-}
-
-.glassCard {
-  position: relative;
-  background: rgba(255, 255, 255, 0.035);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  padding: clamp(2rem, 3.5vw, 3rem);
-  display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  gap: 1.75rem;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.12);
-  overflow: hidden;
-}
-
-.glassCard::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-.glassCard:hover {
-  transform: translateY(-6px);
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.22);
-  box-shadow:
-    0 20px 48px rgba(0, 0, 0, 0.5),
-    0 0 24px rgba(232, 58, 18, 0.15),
-    inset 0 1px 1px rgba(255, 255, 255, 0.25);
-}
-
-.glassCard:hover::after {
-  opacity: 1;
-}
-
-.glassCardTop {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 
-.glassCardBadgeRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.glassTag {
+.apexTag {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.3rem 0.75rem;
-  background: rgba(232, 58, 18, 0.15);
-  border: 1px solid rgba(232, 58, 18, 0.35);
+  padding: 0.35rem 0.85rem;
+  background: rgba(232, 58, 18, 0.16);
+  border: 1px solid rgba(232, 58, 18, 0.45);
   border-radius: 9999px;
   font-family: var(--dv-mono);
   font-size: 0.72rem;
@@ -708,37 +679,333 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #ff6b4a;
+  white-space: nowrap;
 }
 
-.glassIndex {
+.apexIndex {
   font-family: var(--dv-mono);
-  font-size: 0.85rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 0.76rem;
+  font-weight: 700;
   color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
 }
 
-.glassStatement {
-  font-family: var(--dv-serif);
-  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
-  font-weight: 700;
-  line-height: 1.16;
+.apexTitle {
+  font-family: var(--dv-display);
+  font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.1;
   letter-spacing: -0.02em;
   color: #ffffff;
   margin: 0;
-  transition: color 0.25s ease;
 }
 
-.glassCard:hover .glassStatement {
-  color: #ffffff;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+.apexFocusBadge {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dv-gold-light);
 }
 
-.glassElaboration {
+.apexBody {
   font-family: var(--dv-sans);
-  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
-  line-height: 1.66;
+  font-size: 0.96rem;
+  line-height: 1.64;
   color: #b3b0a8;
+  margin: 0;
+}
+
+.apexInsightBox {
+  margin-top: 0.4rem;
+  padding: 0.85rem 1.15rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 3px solid var(--dv-signal-red);
+  border-radius: 0 2px 2px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.apexInsightLabel {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff6b4a;
+}
+
+.apexInsightText {
+  font-family: var(--dv-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #ffffff;
+  margin: 0;
+}
+
+.apexRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: clamp(1.8rem, 3.5vw, 2.6rem);
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.apexCtaKicker {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dv-gold-light);
+}
+
+.apexCtaBody {
+  font-family: var(--dv-sans);
+  font-size: 0.92rem;
+  line-height: 1.56;
+  color: #a8a49c;
+  margin: 0;
+}
+
+.apexBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.88rem 1.65rem;
+  background: var(--dv-signal-red);
+  color: #ffffff;
+  border-radius: 2px;
+  font-family: var(--dv-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(232, 58, 18, 0.35);
+  white-space: nowrap;
+}
+
+.apexBtn:hover {
+  background: #ffffff;
+  color: #0a0a0a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3);
+}
+
+/* --- Section 4: Philosophy (The Sticky Manifesto Ledger) ------------------ */
+
+.philosophySection {
+  position: relative;
+  background: var(--dv-canvas);
+  color: var(--dv-ink);
+  padding: clamp(5rem, 8vw, 7.5rem) 0;
+  border-bottom: 1.5px solid var(--dv-line);
+}
+
+.philosophyLayout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.45fr;
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: start;
+}
+
+.philosophyStickyCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 6.5rem;
+}
+
+.philosophySubhead {
+  font-family: var(--dv-sans);
+  font-size: 1.02rem;
+  line-height: 1.62;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+.philosophyLedgerBox {
+  margin-top: 0.75rem;
+  padding: 1.25rem 1.4rem;
+  background: var(--dv-surface);
+  border: 1px solid var(--dv-line-strong);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  box-shadow: 0 4px 16px rgba(10, 10, 10, 0.02);
+}
+
+.ledgerBoxKicker {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.ledgerList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.ledgerItem {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: var(--dv-sans);
+  font-size: 0.84rem;
+  color: #4a4740;
+  line-height: 1.4;
+}
+
+.ledgerIndex {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--dv-signal-red);
+  flex-shrink: 0;
+}
+
+.ledgerText {
+  color: var(--dv-ink);
+}
+
+.ledgerText em {
+  font-family: var(--dv-serif);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--dv-signal-red);
+}
+
+.philosophyFootnote {
+  font-family: var(--dv-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #73706a;
+  margin: 0;
+  border-left: 2px solid var(--dv-signal-red);
+  padding-left: 1rem;
+}
+
+/* Right Stream Column: Dense & Authoritative Manifesto Cards */
+.philosophyStreamCol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.manifestoCard {
+  background: var(--dv-surface);
+  border: 1px solid var(--dv-line-strong);
+  border-radius: 2px;
+  padding: clamp(1.85rem, 3.5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  box-shadow: 0 4px 18px rgba(10, 10, 10, 0.025);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.manifestoCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(10, 10, 10, 0.07);
+  border-color: var(--dv-ink);
+}
+
+.manifestoCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.manifestoCategoryTag {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.manifestoCardIndex {
+  font-family: var(--dv-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #8c8983;
+}
+
+.manifestoStatement {
+  font-family: var(--dv-display);
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+.manifestoItalic {
+  font-family: var(--dv-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.95em;
+  color: var(--dv-signal-red);
+  margin-left: 0.15rem;
+}
+
+.manifestoExplanation {
+  font-family: var(--dv-sans);
+  font-size: 0.98rem;
+  line-height: 1.66;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+.manifestoImplicationBox {
+  margin-top: 0.25rem;
+  padding: 0.95rem 1.2rem;
+  background: var(--dv-canvas);
+  border-left: 3px solid var(--dv-signal-red);
+  border-radius: 0 2px 2px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.implicationLabel {
+  font-family: var(--dv-mono);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.implicationText {
+  font-family: var(--dv-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--dv-ink);
   margin: 0;
 }
 
@@ -766,7 +1033,7 @@
 .principleCard {
   background: var(--dv-surface);
   border: 1px solid var(--dv-line);
-  border-radius: 0.5rem;
+  border-radius: 2px;
   padding: 1.5rem 1.75rem;
   display: flex;
   align-items: baseline;
@@ -790,7 +1057,7 @@
 }
 
 .principleText {
-  font-family: var(--dv-serif);
+  font-family: var(--dv-display);
   font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.35;
@@ -803,7 +1070,7 @@
 .missionVisionSection {
   padding: clamp(4.5rem, 8vw, 7rem) 0;
   border-bottom: 1.5px solid var(--dv-line);
-  background: #fbfbf9;
+  background: var(--dv-sunken);
 }
 
 .missionVisionGrid {
@@ -815,7 +1082,7 @@
 .mvCard {
   background: var(--dv-surface);
   border: 1.5px solid var(--dv-line-strong);
-  border-radius: 0.625rem;
+  border-radius: 2px;
   padding: clamp(2.2rem, 4vw, 3.5rem);
   display: flex;
   flex-direction: column;
@@ -859,7 +1126,7 @@
 }
 
 .mvHeadline {
-  font-family: var(--dv-serif);
+  font-family: var(--dv-display);
   font-size: clamp(1.6rem, 2.4vw, 2.1rem);
   font-weight: 800;
   line-height: 1.15;
@@ -909,7 +1176,7 @@
   padding: 1.4rem 0.5rem;
   cursor: pointer;
   list-style: none;
-  font-family: var(--dv-serif);
+  font-family: var(--dv-display);
   font-size: 1.22rem;
   font-weight: 700;
   letter-spacing: -0.01em;
@@ -949,7 +1216,7 @@
 .advisoryBanner {
   margin-top: clamp(3.5rem, 6vw, 5.5rem);
   background: var(--dv-dark-bg);
-  border-radius: 0.75rem;
+  border-radius: 2px;
   padding: clamp(2.5rem, 5vw, 4.2rem);
   display: grid;
   grid-template-columns: 1.35fr 1fr;
@@ -990,7 +1257,7 @@
 }
 
 .advisoryHeading {
-  font-family: var(--dv-serif);
+  font-family: var(--dv-display);
   font-size: clamp(1.7rem, 2.8vw, 2.5rem);
   font-weight: 800;
   line-height: 1.12;
@@ -1022,8 +1289,8 @@
   padding: 1rem 1.85rem;
   background: var(--dv-signal-red);
   color: #ffffff;
-  border-radius: 0.375rem;
-  font-family: var(--dv-mono);
+  border-radius: 2px;
+  font-family: var(--dv-sans);
   font-size: 0.85rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1057,16 +1324,25 @@
 
 @media (max-width: 1024px) {
   .heroGrid,
-  .storyGrid {
+  .storyGrid,
+  .journeyLayout,
+  .philosophyLayout {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
 
-  .storyLeft {
+  .storyLeft,
+  .journeyStickyIntro,
+  .philosophyStickyCol {
     position: static;
   }
 
-  .glassGrid,
+  .maturityLadder,
+  .philosophyLedgerBox {
+    display: none;
+  }
+
+  .apexCardContent,
   .principlesGrid,
   .missionVisionGrid {
     grid-template-columns: 1fr;
@@ -1091,7 +1367,7 @@
     font-size: clamp(2.4rem, 9vw, 3.4rem);
   }
 
-  .heroMediaFrame {
+  .portraitFrame {
     max-height: 26rem;
   }
 
@@ -1099,8 +1375,35 @@
     font-size: 1.25rem;
   }
 
-  .journeyCardsGrid {
-    grid-template-columns: 1fr;
+  .evolutionSpine {
+    padding-left: 1.75rem;
+  }
+
+  .spineRail {
+    left: 0.45rem;
+  }
+
+  .nodeMarker,
+  .apexNodeMarker {
+    left: -1.75rem;
+    width: 1.85rem;
+    height: 1.85rem;
+  }
+
+  .nodeNumeral {
+    font-size: 0.62rem;
+  }
+
+  .apexMilestoneCard {
+    padding: 1.85rem 1.4rem;
+  }
+
+  .manifestoStatement {
+    font-size: 1.6rem;
+  }
+
+  .manifestoExplanation {
+    font-size: 0.96rem;
   }
 
   .advisoryBanner {
@@ -1118,7 +1421,7 @@
     padding-bottom: 3rem;
   }
 
-  .sectionKicker {
+  .chapterEyebrow {
     font-size: 0.74rem;
     letter-spacing: 0.18em;
   }
@@ -1127,53 +1430,34 @@
     font-size: clamp(2.1rem, 9.5vw, 2.7rem);
   }
 
-  .heroLeadQuote {
+  .heroThesis {
     font-size: 0.98rem;
-    padding-left: 1rem;
   }
 
-  .heroStatsRibbon {
-    gap: 1.25rem 2rem;
+  .editorialQuote {
+    font-size: 0.92rem;
+    padding: 0.75rem 1rem;
   }
 
-  .statValue {
-    font-size: 1.3rem;
+  .identityRail {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
   }
 
-  .heroMediaFrame {
+  .portraitFrame {
     aspect-ratio: 1 / 1;
-    max-height: 20rem;
-  }
-
-  .heroBadgeOverlay {
-    bottom: 0.75rem;
-    left: 0.75rem;
-    right: 0.75rem;
-    padding: 0.65rem 0.85rem;
-  }
-
-  .heroBadgeName {
-    font-size: 0.78rem;
-  }
-
-  .heroBadgeRole {
-    font-size: 0.62rem;
+    max-height: 22rem;
   }
 
   .sectionHeaderTitle {
     font-size: 1.75rem;
   }
 
-  .glassCard {
-    padding: 1.5rem 1.25rem;
-    gap: 1.25rem;
+  .manifestoStatement {
+    font-size: 1.4rem;
   }
 
-  .glassStatement {
-    font-size: 1.35rem;
-  }
-
-  .glassElaboration {
+  .manifestoExplanation {
     font-size: 0.92rem;
   }
 

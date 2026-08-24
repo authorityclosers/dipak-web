@@ -9,6 +9,7 @@
 export interface NavLink {
   label: string;
   href: string;
+  isExternal?: boolean;
 }
 
 export interface SiteBrand {
@@ -16,13 +17,15 @@ export interface SiteBrand {
   secondLine: string;
   positioning: string;
   primaryIdea: string;
+  location: string;
 }
 
 export const siteBrand: SiteBrand = {
   firstLine: "DIPAK",
   secondLine: "VISHWAKARMA",
-  positioning: "Founder of Authority Closers | High-Ticket Sales Expert",
+  positioning: "Founder of Authority Closers · High-Ticket Sales Expert",
   primaryIdea: "Because people buy certainty.",
+  location: "Pune, India · Global Engagements",
 };
 
 export const primaryNav: NavLink[] = [
@@ -42,6 +45,38 @@ export const authorityClosersCta = {
   label: "Explore Authority Closers",
   href: "https://authorityclosers.com",
   event: "public.global.authority_closers_clicked",
+};
+
+export const footerSections = {
+  navigation: {
+    label: "Explore",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "About Dipak", href: "/about" },
+      { label: "Articles & Essays", href: "/articles" },
+      { label: "Video Masterclasses", href: "/videos" },
+      { label: "Resources & Frameworks", href: "/resources" },
+      { label: "Executive Contact", href: "/contact" },
+    ] as NavLink[],
+  },
+  dialogue: {
+    label: "Direct Dialogue",
+    links: [
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/dipak-vishwakarma", isExternal: true },
+      { label: "YouTube", href: "https://youtube.com/@dipakvishwakarmasalescoach", isExternal: true },
+      { label: "Instagram", href: "https://www.instagram.com/dipakv.sales", isExternal: true },
+      { label: "Connect Hub", href: "/connect", isExternal: false },
+    ] as NavLink[],
+  },
+  venture: {
+    label: "Flagship Venture",
+    title: "Authority Closers™",
+    description: "The institutional sales training, deliberate practice labs, and deal architecture ecosystem.",
+    cta: {
+      label: "Explore Authority Closers",
+      href: "https://authorityclosers.com",
+    },
+  },
 };
 
 export const footerContent = {
