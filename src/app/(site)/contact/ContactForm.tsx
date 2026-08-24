@@ -107,6 +107,44 @@ export const INTENTS: ContactIntent[] = [
   },
 ];
 
+export function openContactFlow(topic?: string) {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(
+      new CustomEvent("open-contact-flow", { detail: { topic } })
+    );
+  }
+}
+
+export function HeroContactTrigger() {
+  return (
+    <div className={styles.heroCtaContainer}>
+      <div className={styles.heroActionCluster}>
+        <button
+          type="button"
+          className={styles.heroPrimaryBtn}
+          onClick={() => openContactFlow()}
+          aria-label="Initiate conversation with Dipak Vishwakarma"
+        >
+          <span>Initiate Conversation</span>
+          <span className={styles.heroBtnArrow} aria-hidden="true">→</span>
+        </button>
+
+        <a href="#channels" className={styles.heroSecondaryLink}>
+          <span>Browse all channels</span>
+          <span className={styles.heroSecondaryArrow} aria-hidden="true">↓</span>
+        </a>
+      </div>
+
+      <div className={styles.heroStatusLine}>
+        <span className={styles.locationDot} aria-hidden="true" />
+        <span className={styles.heroStatusText}>
+          Pune, India · Accepting select global advisory & keynote engagements
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export function ContactForm() {
   const searchParams = useSearchParams();
   const requestedTopic = searchParams.get("topic")?.toLowerCase() || "";
@@ -135,6 +173,29 @@ export function ContactForm() {
 
   const activeIntent = INTENTS.find((i) => i.id === selectedIntentId) || INTENTS[0];
   const [state, formAction, pending] = useActionState(submitContactForm, INITIAL_STATE);
+
+  // Custom event listener for external triggers (e.g. Hero CTA buttons)
+  useEffect(() => {
+    const handleOpenFlow = (e: Event) => {
+      const customEvent = e as CustomEvent<{ topic?: string }>;
+      if (customEvent.detail?.topic) {
+        const matching = INTENTS.find(
+          (i) =>
+            !i.isExternal &&
+            (i.id === customEvent.detail?.topic ||
+              i.label.toLowerCase().includes(customEvent.detail?.topic || ""))
+        );
+        if (matching) setSelectedIntentId(matching.id);
+      }
+      setCurrentStep(1);
+      setIsModalOpen(true);
+    };
+
+    window.addEventListener("open-contact-flow", handleOpenFlow);
+    return () => {
+      window.removeEventListener("open-contact-flow", handleOpenFlow);
+    };
+  }, []);
 
   // Keyboard escape listener & body scroll lock
   useEffect(() => {

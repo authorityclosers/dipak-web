@@ -18,22 +18,22 @@
 /* --- Section 1: Hero ("Clarity Before Contact") --------------------------- */
 
 .heroSection {
-  padding-top: clamp(5.5rem, 8vw, 6.75rem);
-  padding-bottom: clamp(2rem, 3.5vw, 3rem);
+  padding-top: clamp(8.5rem, 12vw, 11rem);
+  padding-bottom: clamp(3.5rem, 5vw, 4.75rem);
   border-bottom: 1.5px solid rgba(17, 17, 16, 0.08);
 }
 
 .heroGrid {
   display: grid;
   grid-template-columns: 1.4fr 0.8fr;
-  gap: clamp(2rem, 4vw, 4rem);
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
 
 .heroHeaderBlock {
   display: flex;
   flex-direction: column;
-  gap: 0.95rem;
+  gap: 1.25rem;
 }
 
 .chapterEyebrow {
@@ -73,11 +73,105 @@
   max-width: 52ch;
 }
 
-.heroLocationBadge {
+/* --- Hero Action Cluster ------------------------------------------------ */
+
+.heroCtaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 0.85rem;
+}
+
+.heroActionCluster {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.heroPrimaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.95rem 1.65rem;
+  background: #e83a12;
+  color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(232, 58, 18, 0.28);
+}
+
+.heroPrimaryBtn:hover {
+  background: var(--ink-obsidian, #111110);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(17, 17, 16, 0.25);
+}
+
+.heroBtnArrow {
+  font-size: 1.05em;
+  transition: transform 0.2s ease;
+}
+
+.heroPrimaryBtn:hover .heroBtnArrow {
+  transform: translateX(4px);
+}
+
+.heroSecondaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #57534e;
+  text-decoration: none;
+  padding: 0.4rem 0.2rem;
+  transition: all 0.2s ease;
+}
+
+.heroSecondaryLink:hover {
+  color: #e83a12;
+}
+
+.heroSecondaryArrow {
+  transition: transform 0.2s ease;
+}
+
+.heroSecondaryLink:hover .heroSecondaryArrow {
+  transform: translateY(2px);
+}
+
+.heroStatusLine {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  margin-top: 0.15rem;
+}
+
+.heroStatusText {
+  font-family: var(--font-montserrat), sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #78716c;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.heroTrustDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+  flex-shrink: 0;
 }
 
 .heroPortraitWrapper {

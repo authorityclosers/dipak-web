@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Suspense } from "react";
 import { authorityClosersCta } from "@/features/site-chrome";
-import { ContactForm } from "./ContactForm";
+import { ContactForm, HeroContactTrigger } from "./ContactForm";
 import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
@@ -29,13 +29,13 @@ export default function ContactPage() {
                 <em className={styles.headlineItalic}>begin with clarity.</em>
               </h1>
               <p className={styles.heroSubhead}>
-                For speaking, advisory, interviews, or strategic partnerships—choose the conversation that best fits.
+                Whether you are exploring an executive keynote, private deal architecture, podcast interview, or an institutional partnership—start with a direct note.
               </p>
 
-              <div className={styles.heroLocationBadge}>
-                <span className={styles.locationDot} aria-hidden="true" />
-                <span className={styles.locationText}>Pune, India · Global Engagements</span>
-              </div>
+              {/* High-Impact Executive Conversion Trigger */}
+              <Suspense fallback={null}>
+                <HeroContactTrigger />
+              </Suspense>
             </div>
 
             <div className={styles.heroPortraitWrapper}>
@@ -55,7 +55,7 @@ export default function ContactPage() {
       </section>
 
       {/* --- Section 2: Main Decision-to-Conversation Stage ------------ */}
-      <section className={styles.mainSection}>
+      <section id="channels" className={styles.mainSection}>
         <div className={styles.pageContainer}>
           <div className={styles.layoutGrid}>
             {/* Left Column: Interactive Progressive Experience */}
