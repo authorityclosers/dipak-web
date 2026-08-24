@@ -1,0 +1,1172 @@
+/* ==========================================================================
+   ABOUT HUB — LUXURY EDITORIAL & PHILOSOPHY STAGE
+   Scoped CSS Module for Dipak Vishwakarma /about
+   ========================================================================== */
+
+.aboutSection {
+  --dv-ink: #0a0a0a;
+  --dv-body: #3c3933;
+  --dv-canvas: #f7f7f5;
+  --dv-surface: #ffffff;
+  --dv-sunken: #f0eee9;
+  --dv-dark-bg: #070707;
+  --dv-dark-surface: #111111;
+  --dv-signal-red: #e83a12;
+  --dv-line: rgba(10, 10, 10, 0.1);
+  --dv-line-strong: rgba(10, 10, 10, 0.2);
+  --dv-gold-light: #f3dfc8;
+  --dv-gold-deep: #b37d4e;
+  --dv-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
+  --dv-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
+  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--dv-canvas);
+  color: var(--dv-ink);
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+/* Ambient Backdrops */
+.atmosphereLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(231, 212, 194, 0.4), transparent 50%),
+    radial-gradient(circle at 90% 45%, rgba(231, 212, 194, 0.3), transparent 50%),
+    radial-gradient(circle at 20% 85%, rgba(231, 212, 194, 0.25), transparent 45%);
+}
+
+.ensoEcho {
+  position: absolute;
+  top: 8rem;
+  right: -120px;
+  width: 720px;
+  height: 720px;
+  background-image: url("/hero/enso-brush-master.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.pageContainer {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 88rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4.5vw, 5rem);
+  box-sizing: border-box;
+}
+
+/* --- Section 1: Hero Profile ---------------------------------------------- */
+
+.heroSection {
+  padding-top: clamp(6.5rem, 11vw, 9.5rem);
+  padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  border-bottom: 1.5px solid var(--dv-line);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sectionKicker {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.78rem, 0.9vw, 0.92rem);
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--dv-ink);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.sectionKicker::before {
+  content: "";
+  display: inline-block;
+  width: 0.55rem;
+  height: 0.55rem;
+  background: var(--dv-signal-red);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(232, 58, 18, 0.5);
+}
+
+.heroHeadline {
+  font-family: var(--dv-serif);
+  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+  font-weight: 800;
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+.heroHeadlineAccent {
+  color: var(--dv-signal-red);
+}
+
+.heroLeadQuote {
+  font-family: var(--dv-sans);
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.58;
+  color: var(--dv-ink);
+  margin: 0;
+  border-left: 3px solid var(--dv-signal-red);
+  padding-left: 1.25rem;
+}
+
+.heroBodyList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.heroBodyText {
+  font-family: var(--dv-sans);
+  font-size: 1rem;
+  line-height: 1.66;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+.heroStatsRibbon {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--dv-line);
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.statValue {
+  font-family: var(--dv-serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--dv-ink);
+  letter-spacing: -0.02em;
+}
+
+.statLabel {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #73706a;
+}
+
+.heroMediaFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 38rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(10, 10, 10, 0.08);
+  border: 1px solid var(--dv-line-strong);
+  background: #111;
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.heroMediaFrame:hover .heroImage {
+  transform: scale(1.03);
+}
+
+.heroBadgeOverlay {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  right: 1.25rem;
+  padding: 0.85rem 1.15rem;
+  background: rgba(10, 10, 10, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #ffffff;
+}
+
+.heroBadgeLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.heroBadgeName {
+  font-family: var(--dv-sans);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.heroBadgeRole {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--dv-gold-light);
+}
+
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  padding: 0.25rem 0.55rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+/* --- Section 2: Story & Narrative ----------------------------------------- */
+
+.storySection {
+  padding: clamp(4rem, 7vw, 6.5rem) 0;
+  border-bottom: 1.5px solid var(--dv-line);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+.storyLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: sticky;
+  top: 6rem;
+}
+
+.sectionHeaderKicker {
+  font-family: var(--dv-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.sectionHeaderTitle {
+  font-family: var(--dv-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+.storyPullQuote {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--dv-signal-red);
+  margin-top: 1rem;
+  border-left: 2px solid var(--dv-signal-red);
+  padding-left: 1.25rem;
+}
+
+.storyRight {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.storyParagraph {
+  font-family: var(--dv-sans);
+  font-size: 1.05rem;
+  line-height: 1.72;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+.storyParagraph:first-child {
+  font-size: 1.18rem;
+  font-weight: 500;
+  color: var(--dv-ink);
+  line-height: 1.6;
+}
+
+.storySignatureBlock {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--dv-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.signatureImage {
+  width: clamp(160px, 20vw, 220px);
+  height: auto;
+  object-fit: contain;
+}
+
+.signatureMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  text-align: right;
+}
+
+.signatureName {
+  font-family: var(--dv-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dv-ink);
+}
+
+.signatureTitle {
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #73706a;
+}
+
+/* --- Section 3: The Journey (Connected Evolution Timeline) ---------------- */
+
+.journeySection {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-bottom: 1.5px solid var(--dv-line);
+  background: #fbfbf9;
+}
+
+.journeyHeaderBlock {
+  max-width: 48ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.journeySubhead {
+  font-family: var(--dv-sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+.journeyCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.25rem;
+  position: relative;
+}
+
+.journeyCard {
+  background: var(--dv-surface);
+  border: 1px solid var(--dv-line-strong);
+  border-radius: 0.5rem;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  box-shadow: 0 4px 16px rgba(10, 10, 10, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.journeyCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+
+.journeyCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(10, 10, 10, 0.08);
+  border-color: var(--dv-ink);
+}
+
+.journeyCard:hover::before {
+  background: var(--dv-signal-red);
+}
+
+.journeyCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.journeyBadgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.journeyIndex {
+  font-family: var(--dv-mono);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: var(--dv-signal-red);
+}
+
+.journeyPhaseTag {
+  font-family: var(--dv-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8c8983;
+}
+
+.journeyCardTitle {
+  font-family: var(--dv-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+.journeyCardBody {
+  font-family: var(--dv-sans);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+.journeyTakeaway {
+  padding-top: 1rem;
+  border-top: 1px solid var(--dv-line);
+  font-family: var(--dv-mono);
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: #4a4740;
+  font-weight: 600;
+}
+
+/* --- Section 4: Philosophy (THE CINEMATIC GLASSMORPHISM STAGE) ------------- */
+
+.philosophySection {
+  position: relative;
+  background: var(--dv-dark-bg);
+  color: #ffffff;
+  padding: clamp(5rem, 9vw, 8rem) 0;
+  overflow: hidden;
+}
+
+.philosophyAtmosphere {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(232, 58, 18, 0.2), transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(179, 125, 78, 0.15), transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 60%);
+  opacity: 0.9;
+}
+
+.philosophyEnso {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 900px;
+  background-image: url("/hero/enso-brush-master.webp");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.philosophyContainer {
+  position: relative;
+  z-index: 1;
+}
+
+.philosophyHeaderBlock {
+  max-width: 52ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.philosophyKicker {
+  font-family: var(--dv-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.philosophyKicker::before {
+  content: "";
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--dv-signal-red);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--dv-signal-red);
+}
+
+.philosophyHeadline {
+  font-family: var(--dv-serif);
+  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.philosophySubhead {
+  font-family: var(--dv-sans);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #a8a49c;
+  margin: 0;
+}
+
+/* Glassmorphism Cards Grid */
+.glassGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.glassCard {
+  position: relative;
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: clamp(2rem, 3.5vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.75rem;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.glassCard::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.glassCard:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.5),
+    0 0 24px rgba(232, 58, 18, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+}
+
+.glassCard:hover::after {
+  opacity: 1;
+}
+
+.glassCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.glassCardBadgeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.glassTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  background: rgba(232, 58, 18, 0.15);
+  border: 1px solid rgba(232, 58, 18, 0.35);
+  border-radius: 9999px;
+  font-family: var(--dv-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ff6b4a;
+}
+
+.glassIndex {
+  font-family: var(--dv-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.glassStatement {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.45rem, 2.2vw, 1.95rem);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin: 0;
+  transition: color 0.25s ease;
+}
+
+.glassCard:hover .glassStatement {
+  color: #ffffff;
+  text-shadow: 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+.glassElaboration {
+  font-family: var(--dv-sans);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  line-height: 1.66;
+  color: #b3b0a8;
+  margin: 0;
+}
+
+/* --- Section 5: Principles Grid ------------------------------------------- */
+
+.principlesSection {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-bottom: 1.5px solid var(--dv-line);
+}
+
+.principlesHeaderBlock {
+  max-width: 48ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.principleCard {
+  background: var(--dv-surface);
+  border: 1px solid var(--dv-line);
+  border-radius: 0.5rem;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  box-shadow: 0 2px 8px rgba(10, 10, 10, 0.02);
+  transition: all 0.2s ease;
+}
+
+.principleCard:hover {
+  border-color: var(--dv-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
+}
+
+.principleIndex {
+  font-family: var(--dv-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--dv-signal-red);
+  flex-shrink: 0;
+}
+
+.principleText {
+  font-family: var(--dv-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+/* --- Section 6: Mission & Vision (Elevated Dual Panels) -------------------- */
+
+.missionVisionSection {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+  border-bottom: 1.5px solid var(--dv-line);
+  background: #fbfbf9;
+}
+
+.missionVisionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.mvCard {
+  background: var(--dv-surface);
+  border: 1.5px solid var(--dv-line-strong);
+  border-radius: 0.625rem;
+  padding: clamp(2.2rem, 4vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.75rem;
+  box-shadow: 0 6px 24px rgba(10, 10, 10, 0.04);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mvCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--dv-signal-red);
+}
+
+.mvCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(10, 10, 10, 0.08);
+  border-color: var(--dv-ink);
+}
+
+.mvCardTop {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.mvTag {
+  font-family: var(--dv-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.mvHeadline {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--dv-ink);
+  margin: 0;
+}
+
+.mvBody {
+  font-family: var(--dv-sans);
+  font-size: 1.02rem;
+  line-height: 1.66;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+/* --- Section 7: FAQ & CTA ------------------------------------------------- */
+
+.faqSection {
+  padding: clamp(4.5rem, 8vw, 7rem) 0;
+}
+
+.faqHeaderBlock {
+  max-width: 48ch;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  border-top: 1.5px solid var(--dv-ink);
+  max-width: 54rem;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--dv-line);
+}
+
+.faqQuestion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.4rem 0.5rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--dv-serif);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--dv-ink);
+  transition: color 0.2s ease;
+}
+
+.faqQuestion::-webkit-details-marker {
+  display: none;
+}
+
+.faqQuestion:hover {
+  color: var(--dv-signal-red);
+}
+
+.faqIcon {
+  font-size: 1.4rem;
+  color: var(--dv-signal-red);
+  font-weight: 300;
+  transition: transform 0.2s ease;
+}
+
+.faqItem[open] .faqIcon {
+  transform: rotate(45deg);
+}
+
+.faqAnswer {
+  padding: 0 0.5rem 1.6rem;
+  font-family: var(--dv-sans);
+  font-size: 1rem;
+  line-height: 1.68;
+  color: var(--dv-body);
+  margin: 0;
+}
+
+/* Executive Advisory Banner */
+.advisoryBanner {
+  margin-top: clamp(3.5rem, 6vw, 5.5rem);
+  background: var(--dv-dark-bg);
+  border-radius: 0.75rem;
+  padding: clamp(2.5rem, 5vw, 4.2rem);
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  align-items: center;
+  gap: 2.5rem;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.advisoryBanner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(232, 58, 18, 0.3), transparent 70%);
+  pointer-events: none;
+}
+
+.advisoryLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  z-index: 1;
+}
+
+.advisoryKicker {
+  font-family: var(--dv-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dv-signal-red);
+}
+
+.advisoryHeading {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.advisoryBody {
+  font-family: var(--dv-sans);
+  font-size: 1rem;
+  line-height: 1.62;
+  color: #b3b0a8;
+  margin: 0;
+}
+
+.advisoryRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.advisoryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.85rem;
+  background: var(--dv-signal-red);
+  color: #ffffff;
+  border-radius: 0.375rem;
+  font-family: var(--dv-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(232, 58, 18, 0.35);
+}
+
+.advisoryBtn:hover {
+  background: #ffffff;
+  color: #0a0a0a;
+  box-shadow: 0 6px 24px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.advisorySecondary {
+  font-family: var(--dv-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8c8983;
+}
+
+.advisorySecondary a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* --- Responsive Breakpoints (Mobile First) -------------------------------- */
+
+@media (max-width: 1024px) {
+  .heroGrid,
+  .storyGrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .storyLeft {
+    position: static;
+  }
+
+  .glassGrid,
+  .principlesGrid,
+  .missionVisionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .advisoryBanner {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+  }
+
+  .advisoryRight {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding-top: 5.5rem;
+  }
+
+  .heroHeadline {
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
+  }
+
+  .heroMediaFrame {
+    max-height: 26rem;
+  }
+
+  .storyPullQuote {
+    font-size: 1.25rem;
+  }
+
+  .journeyCardsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .advisoryBanner {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pageContainer {
+    padding: 0 1rem;
+  }
+
+  .heroSection {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+
+  .sectionKicker {
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+  }
+
+  .heroHeadline {
+    font-size: clamp(2.1rem, 9.5vw, 2.7rem);
+  }
+
+  .heroLeadQuote {
+    font-size: 0.98rem;
+    padding-left: 1rem;
+  }
+
+  .heroStatsRibbon {
+    gap: 1.25rem 2rem;
+  }
+
+  .statValue {
+    font-size: 1.3rem;
+  }
+
+  .heroMediaFrame {
+    aspect-ratio: 1 / 1;
+    max-height: 20rem;
+  }
+
+  .heroBadgeOverlay {
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    padding: 0.65rem 0.85rem;
+  }
+
+  .heroBadgeName {
+    font-size: 0.78rem;
+  }
+
+  .heroBadgeRole {
+    font-size: 0.62rem;
+  }
+
+  .sectionHeaderTitle {
+    font-size: 1.75rem;
+  }
+
+  .glassCard {
+    padding: 1.5rem 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .glassStatement {
+    font-size: 1.35rem;
+  }
+
+  .glassElaboration {
+    font-size: 0.92rem;
+  }
+
+  .principleCard {
+    padding: 1.2rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .principleText {
+    font-size: 1.05rem;
+  }
+
+  .mvCard {
+    padding: 1.75rem 1.35rem;
+    gap: 1.25rem;
+  }
+
+  .mvHeadline {
+    font-size: 1.5rem;
+  }
+
+  .mvBody {
+    font-size: 0.95rem;
+  }
+
+  .faqQuestion {
+    font-size: 1.08rem;
+    padding: 1.1rem 0.25rem;
+  }
+
+  .advisoryBanner {
+    padding: 1.75rem 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .advisoryHeading {
+    font-size: 1.45rem;
+  }
+
+  .advisoryBody {
+    font-size: 0.92rem;
+  }
+
+  .advisoryBtn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

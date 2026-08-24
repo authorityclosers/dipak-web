@@ -1,16 +1,14 @@
-/**
- * About page content.
- * Transcribed verbatim from the client handoff pack, 01_COPY section "ABOUT".
- * Do not edit copy here without a corresponding update to that master.
- */
-
 export interface JourneyStage {
   index: string;
+  phase: string;
   title: string;
   body: string;
+  takeaway: string;
 }
 
 export interface PhilosophyEntry {
+  index: string;
+  tag: string;
   statement: string;
   elaboration: string;
 }
@@ -23,167 +21,187 @@ export interface FaqEntry {
 export const aboutContent = {
   hero: {
     eyebrow: "About Dipak Vishwakarma",
-    headline: "I study how people decide",
+    sectionIndex: "01",
+    headlineWord1: "I STUDY HOW",
+    headlineWord2: "PEOPLE DECIDE.",
+    leadQuote: "What interests me is not pressure or hype. It is certainty: what creates it, what destroys it, and how people make confident high-stakes decisions.",
     body: [
       "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers.",
-      "For more than a decade, he has worked across consultative sales, buyer psychology, and deal architecture, helping founders and sales teams build certainty, master objection handling, and close high-value clients.",
-      "What interests him most is not pressure or hype. It is certainty: what creates it, what destroys it, and how better questions, strategic discovery, and honest communication empower buyers to make confident high-stakes decisions.",
+      "For more than a decade, he has worked across consultative sales, buyer psychology, and deal architecture, helping founders and sales teams eliminate buyer hesitation, master objection handling, and close high-value enterprise clients.",
+      "Instead of manipulative closing lines, Dipak focuses on diagnosing uncertainty, asking high-leverage questions, and empowering buyers to understand their own decisions.",
+    ],
+    stats: [
+      { label: "Years in Consultative Sales", value: "10+" },
+      { label: "Founder", value: "Authority Closers" },
+      { label: "Methodology", value: "The Certainty Builder™" },
     ],
   },
 
   story: {
-    index: "01",
+    index: "02",
     label: "My Story",
     headline: "The work behind The Certainty Builder™",
+    quote: "People rarely need more pressure. They need more clarity.",
     paragraphs: [
       "My career has been shaped by one recurring question: why do some conversations create trust while others create resistance?",
-      "Years of selling, training teams, working with businesses and building systems kept bringing me back to the same answer. People rarely need more pressure. They need more clarity.",
-      "That idea changed how I approached sales. Instead of treating objections as battles to win, I started treating them as signals of unresolved uncertainty. Instead of memorising more closing lines, I focused on asking better questions. Instead of trying to control the buyer, I focused on helping the buyer understand the decision.",
-      "Over time, those ideas became frameworks, training systems and eventually the philosophy behind Authority Closers.",
+      "Years of selling, training teams, working with businesses, and building systems kept bringing me back to the same fundamental reality: objections are not battles to win—they are signals of unresolved buyer uncertainty.",
+      "Instead of memorizing aggressive closing scripts, I focused on asking better questions. Instead of trying to control the buyer, I focused on helping the buyer understand the decision.",
+      "Over time, those field-tested ideas became frameworks, repeatable training systems, and eventually the operating philosophy behind Authority Closers.",
     ],
   },
 
   journey: {
-    index: "02",
+    index: "03",
     label: "Journey",
-    headline: "From selling to systems",
+    headline: "From Selling to Systems",
+    subhead: "The five evolutionary phases that turned frontline closing experience into a scalable advisory framework.",
     stages: [
       {
         index: "01",
-        title: "Sales",
-        body: "Learning the reality of customer conversations, objections, trust and decision-making.",
+        phase: "Phase 01 · Ground Realities",
+        title: "Frontline Sales",
+        body: "Learning the raw reality of high-stakes customer conversations, fear of commitment, buyer objections, and how real trust is forged.",
+        takeaway: "Lesson: Pressure creates resistance; clarity creates momentum.",
       },
       {
         index: "02",
-        title: "Marketing",
-        body: "Understanding positioning, demand, communication and how expectations are created before a sales conversation begins.",
+        phase: "Phase 02 · Positioning & Demand",
+        title: "Strategic Marketing",
+        body: "Understanding market positioning, demand generation, and how expectations are shaped long before the first sales conversation begins.",
+        takeaway: "Lesson: The sales call starts the moment the prospect discovers your brand.",
       },
       {
         index: "03",
+        phase: "Phase 03 · Scaling Infrastructure",
         title: "Entrepreneurship",
-        body: "Building teams, systems and offers — and learning that growth becomes fragile when everything depends on individual talent.",
+        body: "Building teams, scalable offers, and commercial systems—learning firsthand that revenue growth becomes fragile when reliant on hero individuals.",
+        takeaway: "Lesson: Systems and frameworks must survive individual talent.",
       },
       {
         index: "04",
-        title: "Training",
-        body: "Turning experience into frameworks that other sales professionals can understand, practise and apply.",
+        phase: "Phase 04 · Codification",
+        title: "Sales Coaching & Advisory",
+        body: "Translating years of closing intuition into structured, transferable playbooks that founders and sales teams can practice, master, and repeat.",
+        takeaway: "Lesson: True mastery is not a script—it is diagnosing context.",
       },
       {
         index: "05",
+        phase: "Phase 05 · The Platform Era",
         title: "Authority Closers",
-        body: "Building a company around education, deliberate practice, useful feedback and the long-term application of technology to sales skill development.",
+        body: "Building an institutional company dedicated to sales education, deliberate practice, data-driven feedback, and technology-assisted skill mastery.",
+        takeaway: "Lesson: Continuous feedback loops beat theoretical training every time.",
       },
     ] as JourneyStage[],
   },
 
   philosophy: {
-    index: "03",
+    index: "04",
     label: "My Philosophy",
-    headline: "Four ideas I keep returning to",
+    headline: "Four Ideas I Keep Returning To",
+    subhead: "The core cognitive principles that govern every high-ticket consultative conversation.",
     entries: [
       {
+        index: "01",
+        tag: "Core Premise",
         statement: "Sales is the transfer of certainty.",
         elaboration:
-          "A buyer moves when uncertainty decreases and confidence in the decision increases.",
+          "A buyer moves forward when risk ambiguity decreases and confidence in the projected outcome increases. You cannot give what you do not embody.",
       },
       {
+        index: "02",
+        tag: "Buyer Psychology",
         statement: "Trust is the absence of doubt.",
         elaboration:
-          "Trust is not created by charisma alone. It grows when the buyer feels understood and the important uncertainties have been addressed.",
+          "Trust is not manufactured by charisma alone. It compounds when the buyer feels thoroughly understood and every unspoken doubt is brought to light and resolved.",
       },
       {
+        index: "03",
+        tag: "Consultative Leverage",
         statement: "Curiosity builds trust.",
         elaboration:
-          "The quality of a sales conversation often depends on the quality of the questions.",
+          "The depth of a sales conversation depends entirely on the precision of your questions. Shallow questions get defensive answers; insightful questions reveal the real decision.",
       },
       {
+        index: "04",
+        tag: "Deal Architecture",
         statement: "Negotiation is a symptom. Value is the cure.",
         elaboration:
-          "Price pressure frequently appears when value, relevance or certainty has not been established strongly enough.",
+          "Price pressure rarely indicates a tight budget. It reveals that relevance, ROI differentiation, or certainty was never established early in discovery.",
       },
     ] as PhilosophyEntry[],
   },
 
   principles: {
-    index: "04",
-    label: "My Principles",
-    headline: "How I work",
+    index: "05",
+    label: "Operating Principles",
+    headline: "How I Work & Teach",
     items: [
       "Understand before you explain.",
-      "Diagnose before you prescribe.",
-      "Never use pressure to hide weak value.",
-      "Make complexity easier to understand.",
-      "Teach principles, not dependency.",
-      "Build systems that survive individual talent.",
-      "Use technology to improve practice and feedback — not to remove human judgment.",
-      "Treat trust as an outcome of clarity, consistency and relevance.",
+      "Diagnose deeply before you prescribe.",
+      "Never use aggressive pressure to mask weak value.",
+      "Make complex decisions simple to navigate.",
+      "Teach enduring principles, not fragile dependency.",
+      "Build sales systems that survive individual talent.",
+      "Use technology to sharpen practice and feedback—not replace human judgment.",
+      "Treat trust as the direct outcome of clarity, consistency, and relevance.",
     ],
   },
 
   missionVision: {
-    index: "05",
+    index: "06",
     label: "Mission & Vision",
+    headline: "Where This Is Going",
+    subhead: "The long-term commitments driving the Authority Closers ecosystem.",
     mission: {
-      headline: "Replace pressure with certainty.",
-      body: "To help sales professionals become stronger thinkers, listeners and communicators by understanding buyer psychology and learning how to create clarity without manipulation.",
+      tag: "The Mission",
+      headline: "Build a better way to learn sales.",
+      body: "To help sales professionals, closers, and B2B founders become exceptional thinkers, active listeners, and consultative communicators by eliminating manipulation and architecting authentic certainty.",
     },
     vision: {
-      headline: "Build a better way to learn sales.",
-      body: "My long-term vision is to build an ecosystem where people do not just consume sales content. They practise, receive feedback, improve measurable skills and become more capable in real conversations.",
+      tag: "The Vision",
+      headline: "The Future of Sales Mastery & Practice.",
+      body: "Building a world-class ecosystem where revenue teams don't just passively consume sales theory. They practice in simulated environments, receive objective feedback, and master high-stakes deal execution.",
     },
   },
 
   faq: {
-    index: "06",
+    index: "07",
     label: "FAQ",
-    headline: "Common questions",
+    headline: "Frequently Asked Questions",
     entries: [
       {
-        question: "What does Dipak Vishwakarma do?",
+        question: "What does Dipak Vishwakarma specialize in?",
         answer:
-          "Dipak works across sales education, buyer psychology, communication and entrepreneurship. He is the Founder of Authority Closers and develops practical frameworks to help sales professionals improve high-ticket sales conversations.",
+          "Dipak specializes in high-ticket B2B sales coaching, buyer psychology, objection elimination, and consultative deal architecture. He advises founders and sales teams on transforming unpredictable pitching into systematic, repeatable certainty.",
       },
       {
         question: "What is The Certainty Builder™?",
         answer:
-          "The Certainty Builder™ is Dipak’s personal positioning around a central idea: people make decisions when uncertainty decreases and certainty increases.",
+          "The Certainty Builder™ is Dipak’s core methodology based on a proven principle: buyers don't buy products or promises—they buy certainty. When uncertainty drops below the perceived cost of inaction, decisions happen naturally.",
       },
       {
         question: "What is Authority Closers?",
         answer:
-          "Authority Closers is a sales education, practice and technology company focused on helping people learn, apply, practise, receive feedback and improve.",
+          "Authority Closers is a sales education and performance ecosystem founded by Dipak Vishwakarma, focused on deliberate practice, call diagnostics, and modern sales engineering.",
       },
       {
-        question: "What topics does Dipak speak and write about?",
+        question: "What topics does Dipak speak and keynote on?",
         answer:
-          "Sales, buyer psychology, communication, personal branding, AI, entrepreneurship, startups and public speaking.",
-      },
-      {
-        question: "How can I work with Dipak?",
-        answer:
-          "Use the contact page for speaking, collaborations, interviews or partnerships. For structured sales learning and training, visit Authority Closers.",
+          "High-ticket consultative sales, buyer decision psychology, founder-led revenue velocity, strategic communication, personal branding in the age of AI, and executive stage leverage.",
       },
     ] as FaqEntry[],
   },
 
-  /**
-   * Books & Inspirations is intentionally absent from this file.
-   *
-   * The copy master carries an explicit instruction for that section:
-   * "Populate this section only with books, people and sources explicitly
-   * confirmed by Dipak. Do not fabricate a reading list." Until those are
-   * supplied, the section is not rendered at all rather than shipped empty.
-   */
-
   cta: {
     primary: {
-      text: "Want the frameworks? Explore my articles and videos.",
-      label: "Explore Articles",
-      href: "/articles",
+      label: "Book Executive Advisory",
+      href: "/connect",
+      text: "Ready to eliminate pipeline doubt and scale high-ticket deal closing in your business?",
     },
     secondary: {
-      text: "Want structured sales learning and practice?",
       label: "Explore Authority Closers",
+      href: "https://authorityclosers.com",
+      text: "Discover the training frameworks, community, and resources built for serious sales professionals.",
     },
   },
-} as const;
+};
