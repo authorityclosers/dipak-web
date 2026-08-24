@@ -66,45 +66,50 @@
   box-sizing: border-box;
 }
 
-/* --- Section 1: Hero Profile ---------------------------------------------- */
+/* --- Section 1: Hero Profile (Viewport Optimized) ------------------------- */
 
 .heroSection {
-  padding-top: clamp(6.5rem, 11vw, 9.5rem);
-  padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+  min-height: calc(100vh - 4.5rem);
+  display: flex;
+  align-items: center;
+  padding-top: clamp(4.8rem, 7.5vh, 6rem);
+  padding-bottom: clamp(2rem, 3.5vh, 3rem);
   border-bottom: 1.5px solid var(--dv-line);
+  box-sizing: border-box;
 }
 
 .heroGrid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(2.5rem, 5vw, 5rem);
+  grid-template-columns: 1.28fr 0.92fr;
+  gap: clamp(1.75rem, 3.5vw, 3.5rem);
   align-items: center;
+  width: 100%;
 }
 
 .heroCopy {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(0.75rem, 1.4vh, 1.15rem);
 }
 
 .sectionKicker {
   font-family: var(--dv-sans);
-  font-size: clamp(0.78rem, 0.9vw, 0.92rem);
+  font-size: clamp(0.74rem, 0.85vw, 0.84rem);
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.22em;
   color: var(--dv-ink);
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   margin: 0;
 }
 
 .sectionKicker::before {
   content: "";
   display: inline-block;
-  width: 0.55rem;
-  height: 0.55rem;
+  width: 0.5rem;
+  height: 0.5rem;
   background: var(--dv-signal-red);
   border-radius: 50%;
   box-shadow: 0 0 8px rgba(232, 58, 18, 0.5);
@@ -112,10 +117,10 @@
 
 .heroHeadline {
   font-family: var(--dv-serif);
-  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+  font-size: clamp(2.2rem, 3.8vw, 3.6rem);
   font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.03em;
+  line-height: 1.04;
+  letter-spacing: -0.025em;
   color: var(--dv-ink);
   margin: 0;
 }
@@ -126,46 +131,94 @@
 
 .heroLeadQuote {
   font-family: var(--dv-sans);
-  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  font-size: clamp(0.92rem, 1.05vw, 1.05rem);
   font-weight: 500;
-  line-height: 1.58;
+  line-height: 1.48;
   color: var(--dv-ink);
   margin: 0;
   border-left: 3px solid var(--dv-signal-red);
-  padding-left: 1.25rem;
+  padding-left: 1rem;
 }
 
-.heroBodyList {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.heroBodyText {
+.heroSummaryText {
   font-family: var(--dv-sans);
-  font-size: 1rem;
-  line-height: 1.66;
+  font-size: clamp(0.88rem, 0.95vw, 0.95rem);
+  line-height: 1.55;
   color: var(--dv-body);
   margin: 0;
+}
+
+.heroActionsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  padding-top: 0.25rem;
+}
+
+.heroPrimaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.62rem 1.2rem;
+  background: var(--dv-ink);
+  color: #ffffff;
+  border-radius: 0.375rem;
+  font-family: var(--dv-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.heroPrimaryBtn:hover {
+  background: var(--dv-signal-red);
+  transform: translateY(-1px);
+}
+
+.heroSecondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.62rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--dv-line-strong);
+  color: var(--dv-ink);
+  border-radius: 0.375rem;
+  font-family: var(--dv-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.heroSecondaryBtn:hover {
+  border-color: var(--dv-ink);
+  background: var(--dv-surface);
+  transform: translateY(-1px);
 }
 
 .heroStatsRibbon {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem 2.5rem;
-  padding-top: 1.5rem;
+  gap: 0.85rem 1.8rem;
+  padding-top: 0.85rem;
   border-top: 1px solid var(--dv-line);
 }
 
 .statItem {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.15rem;
 }
 
 .statValue {
   font-family: var(--dv-serif);
-  font-size: 1.5rem;
+  font-size: 1.22rem;
   font-weight: 800;
   color: var(--dv-ink);
   letter-spacing: -0.02em;
@@ -173,7 +226,7 @@
 
 .statLabel {
   font-family: var(--dv-mono);
-  font-size: 0.72rem;
+  font-size: 0.66rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #73706a;
@@ -182,13 +235,14 @@
 .heroMediaFrame {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  max-height: 38rem;
+  aspect-ratio: 4 / 4.7;
+  max-height: clamp(18rem, 46vh, 26rem);
   border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(10, 10, 10, 0.08);
+  box-shadow: 0 12px 32px rgba(10, 10, 10, 0.07);
   border: 1px solid var(--dv-line-strong);
   background: #111;
+  justify-self: center;
 }
 
 .heroImage {
@@ -205,10 +259,10 @@
 
 .heroBadgeOverlay {
   position: absolute;
-  bottom: 1.25rem;
-  left: 1.25rem;
-  right: 1.25rem;
-  padding: 0.85rem 1.15rem;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  right: 0.85rem;
+  padding: 0.65rem 0.95rem;
   background: rgba(10, 10, 10, 0.88);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -222,18 +276,18 @@
 .heroBadgeLeft {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
 }
 
 .heroBadgeName {
   font-family: var(--dv-sans);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
 }
 
 .heroBadgeRole {
   font-family: var(--dv-mono);
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--dv-gold-light);
@@ -242,13 +296,13 @@
 .verifiedBadge {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.3rem;
   font-family: var(--dv-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   color: #22c55e;
   background: rgba(34, 197, 94, 0.12);
   border: 1px solid rgba(34, 197, 94, 0.3);
-  padding: 0.25rem 0.55rem;
+  padding: 0.2rem 0.45rem;
   border-radius: 9999px;
   font-weight: 600;
 }

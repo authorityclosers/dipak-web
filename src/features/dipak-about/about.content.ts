@@ -25,13 +25,9 @@ export const aboutContent = {
     headlineWord1: "I STUDY HOW",
     headlineWord2: "PEOPLE DECIDE.",
     leadQuote: "What interests me is not pressure or hype. It is certainty: what creates it, what destroys it, and how people make confident high-stakes decisions.",
-    body: [
-      "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers.",
-      "For more than a decade, he has worked across consultative sales, buyer psychology, and deal architecture, helping founders and sales teams eliminate buyer hesitation, master objection handling, and close high-value enterprise clients.",
-      "Instead of manipulative closing lines, Dipak focuses on diagnosing uncertainty, asking high-leverage questions, and empowering buyers to understand their own decisions.",
-    ],
+    summary: "High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. Helping B2B founders and enterprise sales teams replace pressure with certainty.",
     stats: [
-      { label: "Years in Consultative Sales", value: "10+" },
+      { label: "Sales Experience", value: "10+ Yrs" },
       { label: "Founder", value: "Authority Closers" },
       { label: "Methodology", value: "The Certainty Builder™" },
     ],
@@ -43,6 +39,7 @@ export const aboutContent = {
     headline: "The work behind The Certainty Builder™",
     quote: "People rarely need more pressure. They need more clarity.",
     paragraphs: [
+      "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. For more than a decade, he has worked across consultative sales, buyer psychology, and deal architecture, helping founders and sales teams eliminate buyer hesitation, master objection handling, and close high-value enterprise clients.",
       "My career has been shaped by one recurring question: why do some conversations create trust while others create resistance?",
       "Years of selling, training teams, working with businesses, and building systems kept bringing me back to the same fundamental reality: objections are not battles to win—they are signals of unresolved buyer uncertainty.",
       "Instead of memorizing aggressive closing scripts, I focused on asking better questions. Instead of trying to control the buyer, I focused on helping the buyer understand the decision.",

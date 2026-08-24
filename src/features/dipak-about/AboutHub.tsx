@@ -22,20 +22,24 @@ export function AboutHub() {
               </p>
 
               <h1 className={styles.heroHeadline}>
-                {hero.headlineWord1}<br />
-                <span className={styles.heroHeadlineAccent}>{hero.headlineWord2}</span>
+                {hero.headlineWord1} <span className={styles.heroHeadlineAccent}>{hero.headlineWord2}</span>
               </h1>
 
               <blockquote className={styles.heroLeadQuote}>
                 &ldquo;{hero.leadQuote}&rdquo;
               </blockquote>
 
-              <div className={styles.heroBodyList}>
-                {hero.body.map((paragraph, i) => (
-                  <p key={i} className={styles.heroBodyText}>
-                    {paragraph}
-                  </p>
-                ))}
+              <p className={styles.heroSummaryText}>
+                {hero.summary}
+              </p>
+
+              <div className={styles.heroActionsRow}>
+                <a href="#philosophy" className={styles.heroPrimaryBtn}>
+                  Core Philosophy ↓
+                </a>
+                <Link href="/connect" className={styles.heroSecondaryBtn}>
+                  Book Advisory →
+                </Link>
               </div>
 
               <div className={styles.heroStatsRibbon}>
@@ -54,7 +58,7 @@ export function AboutHub() {
                 alt="Dipak Vishwakarma — High-Ticket Sales Coach, Founder of Authority Closers"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className={styles.heroImage}
               />
 
@@ -67,7 +71,7 @@ export function AboutHub() {
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                   </svg>
-                  Verified Profile
+                  Verified
                 </span>
               </div>
             </div>
@@ -142,7 +146,7 @@ export function AboutHub() {
       </section>
 
       {/* --- Section 4: Philosophy (THE CINEMATIC GLASSMORPHISM STAGE) ---- */}
-      <section className={styles.philosophySection} aria-label="Core Philosophy">
+      <section id="philosophy" className={styles.philosophySection} aria-label="Core Philosophy">
         <div className={styles.philosophyAtmosphere} aria-hidden="true" />
         <div className={styles.philosophyEnso} aria-hidden="true" />
 
