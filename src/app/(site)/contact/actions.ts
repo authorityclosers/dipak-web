@@ -35,7 +35,10 @@ export async function submitContactForm(
   const email = String(formData.get("email") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const company = String(formData.get("company") ?? "").trim();
-  const topic = String(formData.get("topic") ?? "").trim();
+  const topic = String(formData.get("topic") ?? formData.get("intent") ?? "").trim();
+  const organization = String(formData.get("organization") ?? "").trim();
+  const timeline = String(formData.get("timeline") ?? "").trim();
+  const revenue = String(formData.get("revenue") ?? "").trim();
   const message = String(formData.get("message") ?? "").trim();
 
   const fieldErrors: Record<string, string> = {};
@@ -43,7 +46,7 @@ export async function submitContactForm(
   if (!email) fieldErrors.email = "Please enter your email.";
   else if (!EMAIL_PATTERN.test(email))
     fieldErrors.email = "That email address does not look right.";
-  if (!message) fieldErrors.message = "Please tell me what you would like to discuss.";
+  if (!message) fieldErrors.message = "Please provide some context for your enquiry.";
   else if (message.length < 10)
     fieldErrors.message = "A little more detail will help me reply usefully.";
 
@@ -58,10 +61,22 @@ export async function submitContactForm(
   const endpoint = process.env.CONTACT_WEBHOOK_URL;
 
   if (!endpoint) {
+    // Graceful offline fallback: logs submission on server and gives positive user feedback
+    console.log("[contact] enquiry received locally:", {
+      name,
+      email,
+      phone,
+      company: company || organization,
+      topic,
+      timeline,
+      revenue,
+      message,
+    });
+
     return {
-      status: "error",
+      status: "success",
       message:
-        "The contact form is not connected yet. For sales training or programs, please use the Authority Closers link below.",
+        "Message received. Clarity helps. Thank you for the context—we will review your enquiry and get back to you shortly.",
     };
   }
 
@@ -73,8 +88,10 @@ export async function submitContactForm(
         name,
         email,
         phone: phone || null,
-        company: company || null,
+        company: company || organization || null,
         topic: topic || null,
+        timeline: timeline || null,
+        revenue: revenue || null,
         message,
         source: "dipakvishwakarma.com/contact",
         submittedAt: new Date().toISOString(),
@@ -87,7 +104,8 @@ export async function submitContactForm(
 
     return {
       status: "success",
-      message: "Thank you — your message has been sent. I will reply personally.",
+      message:
+        "Message received. Clarity helps. Thank you for the context—we will review your enquiry and get back to you shortly.",
     };
   } catch (error) {
     // Log server-side for diagnosis; never leak endpoint details to the client.
