@@ -24,7 +24,7 @@ export function EditorialPreloader({ onReady }: EditorialPreloaderProps) {
       }
 
       // 2. Preload & decode critical LCP image cutouts
-      const criticalImages = ["/hero/dipak-seated.webp", "/hero/enso-brush-master.webp"];
+      const criticalImages = ["/hero/enso-brush-master.webp", "/hero/dipak-seated-mobile.png"];
       await Promise.allSettled(
         criticalImages.map((src) => {
           return new Promise<void>((resolve) => {

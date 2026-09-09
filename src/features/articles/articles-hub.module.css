@@ -4,17 +4,19 @@
    ========================================================================== */
 
 .archiveSection {
-  --dv-ink: #0a0a0a;
-  --dv-body: #3c3933;
-  --dv-canvas: #f7f7f5;
-  --dv-surface: #ffffff;
-  --dv-sunken: #f0eee9;
-  --dv-signal-red: #e83a12;
-  --dv-line: rgba(10, 10, 10, 0.1);
-  --dv-line-strong: rgba(10, 10, 10, 0.2);
-  --dv-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
-  --dv-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
-  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+  --dv-ink: var(--ink, #0a0a0a);
+  --dv-body: var(--ink-body, #3c3a36);
+  --dv-canvas: var(--canvas, #f7f7f5);
+  --dv-surface: var(--canvas-soft, #ffffff);
+  --dv-sunken: var(--canvas-sunken, #e9e9e7);
+  --dv-signal-red: var(--accent, #e83a12);
+  --dv-accent: var(--accent, #e83a12);
+  --dv-sand: var(--sand, #e7d4c2);
+  --dv-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
+  --dv-line-strong: var(--rule-strong, rgba(10, 10, 10, 0.24));
+  --dv-serif: var(--font-family-serif);
+  --dv-sans: var(--font-family-sans);
+  --dv-mono: var(--font-family-mono);
 
   position: relative;
   width: 100%;

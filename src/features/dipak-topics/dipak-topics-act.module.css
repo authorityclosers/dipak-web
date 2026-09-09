@@ -1,16 +1,18 @@
 .topicsSection {
-  --dv-ink: #0a0a0a;
-  --dv-body: #3c3933;
-  --dv-canvas: #f7f7f5;
-  --dv-surface: #ffffff;
-  --dv-gold-art: #e83a12;
-  --dv-gold-text: #0a0a0a;
-  --dv-gold-line: rgba(10, 10, 10, 0.12);
-  --dv-signal-red: #e83a12;
-  --dv-line: rgba(10, 10, 10, 0.12);
-  --dv-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
-  --dv-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
-  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+  --dv-ink: var(--ink, #0a0a0a);
+  --dv-body: var(--ink-body, #3c3a36);
+  --dv-canvas: var(--canvas, #f7f7f5);
+  --dv-surface: var(--canvas-soft, #ffffff);
+  --dv-accent: var(--accent, #e83a12);
+  --dv-sand: var(--sand, #e7d4c2);
+  --dv-gold-art: var(--accent, #e83a12);
+  --dv-gold-text: var(--ink, #0a0a0a);
+  --dv-gold-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
+  --dv-signal-red: var(--accent, #e83a12);
+  --dv-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
+  --dv-serif: var(--font-family-serif);
+  --dv-sans: var(--font-family-sans);
+  --dv-mono: var(--font-family-mono);
 
   position: relative;
   width: 100%;
@@ -55,7 +57,7 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: 112rem;
+  max-width: 110rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -82,28 +84,35 @@
   font-family: var(--dv-sans);
   font-size: clamp(0.82rem, 0.9vw, 1rem);
   font-weight: 700;
-  letter-spacing: 0.28em;
-  color: var(--dv-ink);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  display: flex;
+  color: var(--dv-signal-red, #e83a12);
+  display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0;
+  gap: 0.5rem;
+}
+
+.sectionIndex::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dv-signal-red, #e83a12);
 }
 
 .headline {
   font-family: var(--dv-serif);
-  font-size: clamp(2.6rem, 5.5vw, 5.5rem);
-  font-weight: 700;
-  line-height: 0.94;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 0.96;
   color: var(--dv-ink);
   margin: 0;
 }
 
 .goldPeriod {
   color: var(--dv-signal-red, #e83a12);
-  font-family: var(--dv-serif);
 }
 
 .headerMeta {
@@ -128,11 +137,11 @@
   font-size: clamp(0.95rem, 1.05vw, 1.15rem);
   line-height: 1.55;
   color: var(--dv-body);
-  max-width: 26rem;
+  max-width: 28rem;
   margin: 0;
 }
 
-/* Split Layout: Left Ledger + Right Sticky Stage */
+/* Split Editorial Interactive Ledger + Sticky Visual Stage */
 .splitLayout {
   display: grid;
   grid-template-columns: 1fr;
@@ -162,8 +171,8 @@
   display: flex;
   flex-direction: column;
   background: var(--dv-surface);
-  border: 1px solid rgba(10, 10, 10, 0.08);
-  border-radius: 6px;
+  border: 1px solid var(--rule-subtle, rgba(10, 10, 10, 0.08));
+  border-radius: var(--radius-sm, 2px);
   padding: clamp(1.4rem, 2.5vw, 2rem);
   gap: 0.75rem;
   text-decoration: none;
@@ -196,8 +205,8 @@
   bottom: 0;
   width: 4px;
   background: var(--dv-signal-red, #e83a12);
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+  border-top-left-radius: var(--radius-sm, 2px);
+  border-bottom-left-radius: var(--radius-sm, 2px);
   opacity: 0;
   transform: scaleY(0.4);
   transition: opacity 250ms ease, transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -229,10 +238,10 @@
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #66635e;
+  color: var(--ink-muted, #626058);
   background: rgba(10, 10, 10, 0.04);
   padding: 0.2rem 0.6rem;
-  border-radius: 3px;
+  border-radius: var(--radius-pill, 9999px);
 }
 
 .itemBody {
@@ -264,9 +273,12 @@
 }
 
 .itemArrow {
-  font-size: 1.25rem;
-  color: rgba(10, 10, 10, 0.35);
-  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), color 250ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-muted, #626058);
+  transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), color 200ms ease;
+  flex-shrink: 0;
 }
 
 .ledgerItem:hover .itemArrow,
@@ -289,10 +301,10 @@
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 4px;
+  border-radius: var(--radius-sm, 2px);
   overflow: hidden;
   margin-top: 0.5rem;
-  background: #e8e3d8;
+  background: var(--canvas-sunken, #e9e9e7);
 }
 
 .mobileThumbImg {
@@ -324,7 +336,7 @@
     width: 100%;
     aspect-ratio: 4 / 5;
     max-height: calc(100vh - 11rem);
-    border-radius: 8px;
+    border-radius: var(--radius-sm, 2px);
     overflow: hidden;
     background: #0a0a0a;
     box-shadow: 0 24px 48px -12px rgba(10, 10, 10, 0.25), 0 0 0 1px rgba(10, 10, 10, 0.1);

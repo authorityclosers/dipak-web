@@ -57,7 +57,7 @@ export function LegalPageLayout({ document, indexNumber }: LegalPageLayoutProps)
 
             {/* Horizontal Quick Scroll Chips for 1-Tap Jumping */}
             <div className={styles.quickChipsScroll}>
-              {document.sections.map((section, idx) => (
+              {document.sections.map((section) => (
                 <a key={section.id} className={styles.quickChip} href={`#${section.id}`}>
                   <span className={styles.quickChipDot} />
                   {section.title.replace(/^\d+\.\s*/, "")}

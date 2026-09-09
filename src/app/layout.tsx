@@ -86,7 +86,6 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
     <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
       <head>
         {/* Preload High Priority LCP Assets */}
-        <link rel="preload" href="/hero/dipak-seated.webp" as="image" type="image/webp" />
         <link rel="preload" href="/hero/enso-brush-master.webp" as="image" type="image/webp" />
 
         {/* NayaGrowth Tracking & GTag Bootstrap */}

@@ -123,7 +123,7 @@ export function useHomeIntroTimeline({
       if (act1PageShadow) gsap.set(act1PageShadow, { opacity: 0 });
       if (act1PageSheen) gsap.set(act1PageSheen, { opacity: 0 });
 
-      gsap.set(act2Wrapper, { visibility: "hidden", opacity: 0, scale: 0.96, filter: "blur(4px)" });
+      gsap.set(act2Wrapper, { visibility: "hidden", opacity: 0, scale: 0.96 });
       gsap.set(act3Wrapper, { visibility: "hidden", opacity: 0 });
       gsap.set(act4Wrapper, { visibility: "hidden", opacity: 0 });
 
@@ -194,7 +194,7 @@ export function useHomeIntroTimeline({
           trigger: shell,
           start: "top top",
           end: "bottom bottom",
-          scrub: 0.15, // Direct, instantaneous 1:1 physical scroll response
+          scrub: 0.65, // Calibrated silky smooth kinetic scroll response
           pin: stage,
           anticipatePin: 1,
           fastScrollEnd: true,
@@ -282,7 +282,7 @@ export function useHomeIntroTimeline({
       }
 
       // 4. Act 2 Emerges from Depth underneath the turning page
-      masterTl.addLabel("ACT2_ENTER", 0.14);
+      masterTl.addLabel("ACT2_ENTER", 0.15);
       masterTl.set(
         act2Wrapper,
         {
@@ -294,10 +294,10 @@ export function useHomeIntroTimeline({
 
       masterTl.fromTo(
         act2Wrapper,
-        { scale: 0.95, filter: "blur(3px)" },
+        { scale: 0.96, opacity: 0.3 },
         {
           scale: 1,
-          filter: "blur(0px)",
+          opacity: 1,
           duration: 0.38,
           ease: "power2.out",
         },
@@ -454,12 +454,12 @@ export function useHomeIntroTimeline({
 
       // ACT 2 SOLID READING HOLD (Prevents premature trigger into Act 3)
       masterTl.addLabel("ACT2_HOLD", 0.6);
-      masterTl.to({}, { duration: 1.0 }, "ACT2_HOLD");
+      masterTl.to({}, { duration: 0.6 }, "ACT2_HOLD");
 
       // -----------------------------------------------------------------------
-      // BEAT 3: ACT 2 ➔ ACT 3 (PRESENCE / ENVELOPE REDESIGN) (1.8 -> 2.8)
+      // BEAT 3: ACT 2 ➔ ACT 3 (PRESENCE / ENVELOPE REDESIGN) (1.2 -> 1.8)
       // -----------------------------------------------------------------------
-      masterTl.addLabel("ACT2_TO_ACT3", 1.8);
+      masterTl.addLabel("ACT2_TO_ACT3", 1.2);
 
       if (act2Sunlight) {
         masterTl.to(
@@ -639,8 +639,7 @@ export function useHomeIntroTimeline({
       );
 
       // ACT 3 ENTRANCE (Continuous Geometric Handoff into Certificate Frame)
-      // Overlaps seamlessly at 1.25 where Act 2's gold rules morph into Act 3's axis
-      masterTl.addLabel("ACT3_ENTER", 1.25);
+      masterTl.addLabel("ACT3_ENTER", 1.45);
       masterTl.set(
         act3Wrapper,
         {
@@ -812,10 +811,10 @@ export function useHomeIntroTimeline({
       }
 
       // -----------------------------------------------------------------------
-      // BEAT 3.5: ACT 3 INTERACTIVE ENGAGEMENT & REPUTATION PULSE (1.4 -> 2.1)
+      // BEAT 3.5: ACT 3 INTERACTIVE ENGAGEMENT & REPUTATION PULSE
       // Keeps the user captivated as they scroll rather than hitting a dead pause
       // -----------------------------------------------------------------------
-      masterTl.addLabel("ACT3_HOLD", 1.4);
+      masterTl.addLabel("ACT3_HOLD", 1.95);
 
       // Subtle progressive spotlight & aura intensification across the 5 platforms
       if (act3Badges.length) {
@@ -857,11 +856,11 @@ export function useHomeIntroTimeline({
       }
 
       // -----------------------------------------------------------------------
-      // BEAT 4: ACT 3 ➔ ACT 4 (THE MANIFESTO CONVERGENCE) (2.1 -> 3.0)
+      // BEAT 4: ACT 3 ➔ ACT 4 (THE MANIFESTO CONVERGENCE)
       // The Act 3 certificate and cards dissolve inward while the golden axis
       // stretches directly into Act 4's laser manifesto line
       // -----------------------------------------------------------------------
-      masterTl.addLabel("ACT3_TO_ACT4", 2.1);
+      masterTl.addLabel("ACT3_TO_ACT4", 2.55);
 
       // Media cards and headlines part and dissolve elegantly
       if (act3Items.length) {
@@ -961,7 +960,7 @@ export function useHomeIntroTimeline({
       );
 
       // ACT 4 ENTRANCE (Immediate, Grand, Laser-Focused Manifesto)
-      masterTl.addLabel("ACT4_ENTER", 2.45);
+      masterTl.addLabel("ACT4_ENTER", 2.85);
       masterTl.set(
         act4Wrapper,
         {
@@ -1046,8 +1045,8 @@ export function useHomeIntroTimeline({
       }
 
       // ACT 4 READABLE HOLD (Holds cleanly until the pin ends)
-      masterTl.addLabel("ACT4_HOLD", 3.1);
-      masterTl.to({}, { duration: 0.6 }, "ACT4_HOLD");
+      masterTl.addLabel("ACT4_HOLD", 3.35);
+      masterTl.to({}, { duration: 0.5 }, "ACT4_HOLD");
 
       // -----------------------------------------------------------------------
       // PART 5: ACT 5 ARCHITECTURAL DOMAIN LEDGER REVEALS

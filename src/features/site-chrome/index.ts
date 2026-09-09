@@ -1,5 +1,6 @@
 export { SiteHeader } from "./SiteHeader";
 export { SiteFooter } from "./SiteFooter";
+export { EcosystemMarquee } from "./EcosystemMarquee";
 export { EditorialPreloader } from "./EditorialPreloader";
 export {
   siteBrand,

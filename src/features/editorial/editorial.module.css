@@ -401,3 +401,45 @@
     padding-top: 0;
   }
 }
+
+/* --- Editorial Separators ------------------------------------------------- */
+
+.separatorWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.separatorCentered {
+  width: clamp(200px, 32vw, 340px);
+  margin-inline: auto;
+}
+
+.separatorFull {
+  width: 100%;
+}
+
+.separatorInverted {
+  color: var(--rule-inv, rgba(255, 255, 255, 0.14));
+}
+
+.separatorSvgCentered {
+  width: 100%;
+  height: auto;
+  max-height: 28px;
+  overflow: visible;
+}
+
+.separatorSvgFull {
+  width: 100%;
+  height: clamp(20px, 3.2vh, 32px);
+  overflow: visible;
+}
+
+.separatorFloretGroup {
+  transform-origin: center center;
+}
+

@@ -1,4 +1,5 @@
 import React from "react";
+import { EditorialSeparator } from "@/features/editorial";
 import { missionContent } from "./mission.content";
 import type { MissionContent } from "./mission.types";
 import styles from "./dipak-mission-act.module.css";
@@ -71,11 +72,9 @@ export function DipakMissionAct({
           </h2>
         </blockquote>
 
-        {/* Central Gold Laser Axis with Center Accent */}
-        <div className={styles.laserContainer} data-story-act4-rule="true">
-          <div className={styles.laserLine} aria-hidden="true" />
-          <div className={styles.laserDiamond} aria-hidden="true" />
-          <div className={styles.laserLine} aria-hidden="true" />
+        {/* Central Architectural Florentine Separator Axis */}
+        <div className={styles.separatorContainer} data-story-act4-rule="true">
+          <EditorialSeparator variant="centered" />
         </div>
 
         {/* Two Pure Editorial Tenets */}

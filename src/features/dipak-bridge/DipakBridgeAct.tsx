@@ -1,4 +1,5 @@
 import React from "react";
+import { EditorialSeparator } from "@/features/editorial";
 import { bridgeContent } from "./bridge.content";
 import type { BridgeContent } from "./bridge.types";
 import styles from "./dipak-bridge-act.module.css";
@@ -66,8 +67,10 @@ export function DipakBridgeAct({
           <span className={styles.goldPeriod}>.</span>
         </h2>
 
-        {/* Gold Center Line */}
-        <div className={styles.goldLine} aria-hidden="true" />
+        {/* Architectural Florentine Separator Axis */}
+        <div className={styles.separatorContainer} aria-hidden="true">
+          <EditorialSeparator variant="centered" inverted={true} />
+        </div>
 
         {/* Body Text */}
         <p className={styles.bodyText} data-story-act7-body="true">

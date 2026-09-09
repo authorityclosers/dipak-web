@@ -1,15 +1,17 @@
 .missionSection {
-  --dv-ink: #0a0a0a;
-  --dv-body: #3c3933;
-  --dv-canvas: #f7f7f5;
-  --dv-gold-art: #e83a12;
-  --dv-gold-text: #0a0a0a;
-  --dv-gold-line: rgba(10, 10, 10, 0.12);
-  --dv-signal-red: #e83a12;
-  --dv-line: rgba(10, 10, 10, 0.12);
-  --dv-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
-  --dv-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
-  --dv-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", monospace;
+  --dv-ink: var(--ink, #0a0a0a);
+  --dv-body: var(--ink-body, #3c3a36);
+  --dv-canvas: var(--canvas, #f7f7f5);
+  --dv-accent: var(--accent, #e83a12);
+  --dv-sand: var(--sand, #e7d4c2);
+  --dv-gold-art: var(--accent, #e83a12);
+  --dv-gold-text: var(--ink, #0a0a0a);
+  --dv-gold-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
+  --dv-signal-red: var(--accent, #e83a12);
+  --dv-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
+  --dv-serif: var(--font-family-serif);
+  --dv-sans: var(--font-family-sans);
+  --dv-mono: var(--font-family-mono);
 
   position: relative;
   width: 100%;
@@ -176,43 +178,13 @@
   padding-right: 0.06em;
 }
 
-/* Central Signal Red Laser Axis with Center Accent */
-.laserContainer {
+/* Central Architectural Florentine Separator Axis */
+.separatorContainer {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
-  width: clamp(140px, 20vw, 240px);
+  width: clamp(220px, 30vw, 320px);
   transform-origin: center;
-}
-
-.laserLine {
-  flex: 1;
-  height: 1.5px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(10, 10, 10, 0.15) 60%,
-    var(--dv-signal-red, #e83a12) 100%
-  );
-  opacity: 0.8;
-}
-
-.laserLine:last-child {
-  background: linear-gradient(
-    90deg,
-    var(--dv-signal-red, #e83a12) 0%,
-    rgba(10, 10, 10, 0.15) 40%,
-    transparent 100%
-  );
-}
-
-.laserDiamond {
-  width: 6px;
-  height: 6px;
-  background-color: var(--dv-signal-red, #e83a12);
-  transform: rotate(45deg);
-  flex-shrink: 0;
 }
 
 /* Two Pure Editorial Tenets */

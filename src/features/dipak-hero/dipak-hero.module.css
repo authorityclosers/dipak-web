@@ -1,16 +1,18 @@
 .surface {
-  --dv-ink: #0a0a0a;
-  --dv-body: #3c3a36;
-  --dv-canvas: #f7f7f5;
-  --dv-canvas-soft: #ffffff;
-  --dv-gold-art: #c89545;
-  --dv-gold-text: #8f621f;
-  --dv-gold-line: #d8aa5a;
-  --dv-signal-red: #e83a12;
-  --dv-soft-sand: #e7d4c2;
-  --dv-line: rgba(10, 10, 10, 0.12);
-  --dv-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
-  --dv-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
+  --dv-ink: var(--ink, #0a0a0a);
+  --dv-body: var(--ink-body, #3c3a36);
+  --dv-canvas: var(--canvas, #f7f7f5);
+  --dv-canvas-soft: var(--canvas-soft, #ffffff);
+  --dv-accent: var(--accent, #e83a12);
+  --dv-accent-hover: var(--accent-hover, #ff4820);
+  --dv-soft-sand: var(--sand, #e7d4c2);
+  --dv-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
+  --dv-gold-art: var(--accent, #e83a12);
+  --dv-gold-text: var(--accent, #e83a12);
+  --dv-gold-line: var(--accent-hairline, rgba(232, 58, 18, 0.22));
+  --dv-signal-red: var(--accent, #e83a12);
+  --dv-serif: var(--font-family-serif);
+  --dv-sans: var(--font-family-sans);
 
   position: relative;
   isolation: isolate;
@@ -22,8 +24,8 @@
   flex-direction: column;
   justify-content: space-between;
   background:
-    radial-gradient(ellipse 34rem 28rem at 78% 42%, rgba(255, 255, 255, 0.44), transparent 72%),
-    #f4f1ea;
+    radial-gradient(ellipse 38rem 32rem at 78% 42%, rgba(255, 255, 255, 0.65) 0%, rgba(231, 212, 194, 0.2) 60%, transparent 80%),
+    var(--dv-canvas);
   color: var(--dv-ink);
   padding: clamp(0.8rem, 2vh, 1.8rem) clamp(1.5rem, 5vw, 6rem) clamp(0.8rem, 1.8vh, 1.4rem);
 }
@@ -455,6 +457,7 @@
   font-family: var(--dv-sans);
   font-size: 0.92rem;
   font-weight: 600;
+  border-radius: var(--radius-sm, 2px);
   text-decoration: none;
   cursor: pointer;
   transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;

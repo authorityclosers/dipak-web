@@ -13,37 +13,62 @@
   --soft-sand: #e7d4c2;
   --deep-indigo: #241a4b;
 
-  /* --- Surface / ink ---------------------------------------------------- */
-  --ink-obsidian: #0a0a0a;
+  /* --- Surface / Canvas ------------------------------------------------ */
+  --canvas: var(--warm-white, #f7f7f5);
+  --canvas-soft: #ffffff;
+  --canvas-sunken: var(--light-grey, #e9e9e7);
+  --canvas-dark: var(--carbon-black, #0a0a0a);
+  --paper: var(--canvas);
+  --paper-raised: var(--canvas-soft);
+  --paper-sunken: var(--canvas-sunken);
+
+  /* --- Inks / Typography ----------------------------------------------- */
+  --ink: var(--carbon-black, #0a0a0a);
+  --ink-obsidian: var(--ink);
   --ink-obsidian-deep: #060606;
   --ink-plate: #141414;
   --ink-body: #3c3a36;
   --ink-muted: #626058;
   --ink-faint: #8a877d;
 
-  --paper: #f7f7f5;
-  --paper-raised: #ffffff;
-  --paper-sunken: #e9e9e7;
-
-  /* --- Brand Kit Active Accents (Signal Red & Soft Sand Ramp) ---------- */
-  --gold: var(--signal-red, #e83a12);
-  --gold-deep: var(--signal-red, #e83a12);
-  --gold-light: #ff4820;
-  --gold-wash: rgba(232, 58, 18, 0.08);
-  --gold-hairline: rgba(232, 58, 18, 0.22);
-  --red-signal: var(--signal-red, #e83a12);
-  --red-wash: rgba(232, 58, 18, 0.10);
-
-  /* --- Inverted (dark sections) ----------------------------------------- */
-  --inv-text: #f7f7f5;
-  --inv-text-muted: rgba(247, 247, 245, 0.68);
+  /* Inverted Inks (dark backgrounds) */
+  --ink-inv: var(--warm-white, #f7f7f5);
+  --ink-inv-muted: rgba(247, 247, 245, 0.68);
+  --inv-text: var(--ink-inv);
+  --inv-text-muted: var(--ink-inv-muted);
   --inv-hairline: rgba(247, 247, 245, 0.14);
 
-  /* --- Rules ------------------------------------------------------------ */
-  --rule-hairline: rgba(10, 10, 10, 0.10);
-  --rule-strong: rgba(10, 10, 10, 0.24);
+  /* --- Accents (Signal Red & Soft Sand) --------------------------------- */
+  --accent: var(--signal-red, #e83a12);
+  --accent-hover: #ff4820;
+  --accent-wash: rgba(232, 58, 18, 0.08);
+  --accent-hairline: rgba(232, 58, 18, 0.22);
+  --gold: var(--accent);
+  --gold-deep: var(--accent);
+  --gold-light: var(--accent-hover);
+  --gold-wash: var(--accent-wash);
+  --gold-hairline: var(--accent-hairline);
+  --red-signal: var(--accent);
+  --red-wash: rgba(232, 58, 18, 0.10);
 
-  /* --- Brand Kit Typography (Montserrat + Poppins) ---------------------- */
+  --sand: var(--soft-sand, #e7d4c2);
+  --sand-wash: rgba(231, 212, 194, 0.25);
+  --sand-glow: rgba(231, 212, 194, 0.12);
+
+  /* --- Rules & Borders -------------------------------------------------- */
+  --rule-subtle: rgba(10, 10, 10, 0.10);
+  --rule-strong: rgba(10, 10, 10, 0.24);
+  --rule-hairline: var(--rule-subtle);
+  --rule-inv: rgba(247, 247, 245, 0.14);
+
+  /* --- Geometry & Radii ------------------------------------------------- */
+  --radius-sharp: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+
+  /* --- Brand Kit Typography (Montserrat + Poppins + Mono) --------------- */
   --font-family-display: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
   --font-family-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
   --font-family-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
@@ -67,7 +92,7 @@
   --gutter: clamp(1.25rem, 0.6rem + 3vw, 4.5rem);
   --section-y: clamp(4.5rem, 3rem + 7vw, 11rem);
   --measure: 62ch;
-  --max-page: 1680px;
+  --max-page: 110rem;
 
   /* --- Motion ----------------------------------------------------------- */
   --ease-out-editorial: cubic-bezier(0.22, 1, 0.36, 1);

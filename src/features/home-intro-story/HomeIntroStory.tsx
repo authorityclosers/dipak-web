@@ -9,7 +9,7 @@ import { DipakMissionAct, missionContent } from "@/features/dipak-mission";
 import { DipakTopicsAct, topicsContent } from "@/features/dipak-topics";
 import { DipakThinkingAct, thinkingContent } from "@/features/dipak-thinking";
 import { DipakBridgeAct, bridgeContent } from "@/features/dipak-bridge";
-import { EditorialPreloader } from "@/features/site-chrome";
+import { EditorialPreloader, EcosystemMarquee } from "@/features/site-chrome";
 import type { FeaturedArticle } from "@/features/dipak-thinking/thinking.types";
 import { useHomeIntroTimeline } from "./useHomeIntroTimeline";
 import styles from "./home-intro-story.module.css";
@@ -114,6 +114,9 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
       <div className={styles.actSectionWrapper}>
         <DipakBridgeAct content={bridgeContent} />
       </div>
+
+      {/* Light-Mode Minimal Transition Marquee Ribbon */}
+      <EcosystemMarquee />
     </div>
   );
 }

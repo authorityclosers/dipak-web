@@ -56,11 +56,11 @@
 }
 
 .headlineItalic {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-family-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95em;
-  color: #e83a12;
+  color: var(--accent, #e83a12);
   margin-left: 0.15rem;
 }
 
@@ -1011,7 +1011,7 @@
 }
 
 .successTitle {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-family-serif);
   font-size: clamp(1.5rem, 2.2vw, 2rem);
   font-style: italic;
   font-weight: 600;
@@ -1299,12 +1299,12 @@
   margin: 0;
 }
 
-.closingItalic {
-  font-family: Georgia, "Times New Roman", serif;
+.headlineItalic {
+  font-family: var(--font-family-serif);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 0.95em;
-  color: #e83a12;
+  color: var(--accent, #e83a12);
   margin-left: 0.15rem;
 }
 

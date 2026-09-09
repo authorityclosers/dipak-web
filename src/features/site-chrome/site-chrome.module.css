@@ -548,3 +548,184 @@
     transform: none;
   }
 }
+
+/* ==========================================================================
+   Ecosystem & Publications White Ribbon Marquee (Act 7 -> Footer Transition)
+   ========================================================================== */
+
+.marqueeSection {
+  position: relative;
+  width: 100%;
+  background: radial-gradient(
+      circle at 50% 50%,
+      rgba(231, 212, 194, 0.35) 0%,
+      transparent 75%
+    ),
+    var(--canvas, #f7f7f5);
+  color: var(--ink, #0a0a0a);
+  border-top: 1px solid var(--rule-subtle, rgba(10, 10, 10, 0.12));
+  border-bottom: 1px solid var(--rule-subtle, rgba(10, 10, 10, 0.12));
+  padding: clamp(2.4rem, 4vh, 3.4rem) 0 clamp(2rem, 3.5vh, 2.8rem);
+  overflow: clip;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.2rem, 2.5vh, 1.8rem);
+}
+
+.marqueeHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+  padding-inline: var(--gutter);
+}
+
+.marqueeKickerRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.marqueePulseDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #e83a12);
+  box-shadow: 0 0 8px rgba(232, 58, 18, 0.5);
+}
+
+.marqueeKicker {
+  font-family: var(--font-family-mono);
+  font-size: clamp(0.72rem, 0.8vw, 0.8rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent, #e83a12);
+}
+
+.marqueeSubhead {
+  font-family: var(--font-family-sans);
+  font-size: clamp(0.92rem, 1vw, 1.05rem);
+  color: var(--ink-body, #3c3a36);
+  margin: 0;
+  max-width: 45ch;
+}
+
+.marqueeTrackWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+  padding: 0.5rem 0;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  width: max-content;
+  animation: marqueeContinuous 32s linear infinite;
+  will-change: transform;
+}
+
+.marqueeTrack:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeContinuous {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marqueeCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.6rem;
+  background: var(--canvas-soft, #ffffff);
+  border: 1px solid var(--rule-subtle, rgba(10, 10, 10, 0.1));
+  border-radius: var(--radius-sm, 2px);
+  box-shadow: 0 2px 10px rgba(10, 10, 10, 0.03);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+  white-space: nowrap;
+}
+
+.marqueeCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent, #e83a12);
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.06);
+}
+
+.marqueeCardSymbol {
+  font-size: 0.85rem;
+  color: var(--accent, #e83a12);
+}
+
+.marqueeCardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.marqueeCardName {
+  font-family: var(--font-family-serif);
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--ink, #0a0a0a);
+}
+
+.marqueeCardCategory {
+  font-family: var(--font-family-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted, #626058);
+  text-transform: uppercase;
+}
+
+.marqueeMetricsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  padding-inline: var(--gutter);
+}
+
+.marqueeMetricPill {
+  font-family: var(--font-family-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-body, #3c3a36);
+  text-transform: uppercase;
+}
+
+.metricBold {
+  font-weight: 800;
+  color: var(--accent, #e83a12);
+}
+
+.marqueeMetricDivider {
+  color: var(--rule-strong, rgba(10, 10, 10, 0.24));
+  font-weight: 700;
+}
+
