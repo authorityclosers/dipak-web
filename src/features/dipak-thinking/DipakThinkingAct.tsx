@@ -78,6 +78,19 @@ export function DipakThinkingAct({
               aria-label={`Watch masterclass: ${featuredVideo.title}`}
               data-ac-event="public.home.featured_video_clicked"
             >
+              {/* The media is lazy-loaded only when this below-fold card nears
+                  the viewport; keeping it out of CSS avoids an eager fetch. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/media/06_dsc04024.webp"
+                alt=""
+                className={styles.masterclassImage}
+                width={1800}
+                height={1200}
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
               <div className={styles.cardMainInfo}>
                 <div className={styles.cardKickerRow}>
                   <span className={styles.cardCategory}>

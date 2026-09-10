@@ -184,27 +184,24 @@ export function DipakHero({ content }: { content: HeroContent }) {
             {/* Authentic Natural-Media Ensō Brush Artwork with Animated Reveal */}
             <BrushArtwork className={styles.halo} />
 
-            {/* Decontaminated High-Resolution Portrait Cutouts */}
-            <Image
-              className={`${styles.portrait} ${styles.desktopPortrait}`}
-              data-hero-portrait="true"
-              src={content.portrait}
-              alt={content.portraitAlt}
-              sizes="(max-width: 768px) 1px, (max-width: 1200px) 50vw, 44vw"
-              quality={92}
-              priority
-            />
-            <Image
-              className={`${styles.portrait} ${styles.mobilePortrait}`}
-              data-hero-portrait-mobile="true"
-              src="/hero/dipak-seated-mobile.png"
-              alt={content.portraitAlt}
-              width={1122}
-              height={1041}
-              sizes="(max-width: 768px) 96vw, 1px"
-              quality={92}
-              priority
-            />
+            {/* One responsive art-directed image prevents desktop and mobile
+                hero variants from both entering the critical request queue. */}
+            <picture className={styles.responsivePicture}>
+              <source
+                media="(max-width: 767px)"
+                srcSet="/hero/dipak-seated-mobile.webp"
+              />
+              <img
+                className={`${styles.portrait} ${styles.responsivePortrait}`}
+                data-hero-portrait="true"
+                src={content.portrait}
+                alt={content.portraitAlt}
+                width={1122}
+                height={1402}
+                fetchPriority="high"
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>

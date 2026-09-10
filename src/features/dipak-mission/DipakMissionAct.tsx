@@ -26,9 +26,14 @@ export function DipakMissionAct({
       <div className={styles.videoBackgroundContainer} aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/media/02_screenshot_2026-07-29_at_4.45.57_pm__1_.png"
+          src="/media/02_screenshot_2026-07-29_at_4.45.57_pm__1_.webp"
           alt=""
           className={styles.backgroundPhoto}
+          width={1800}
+          height={1021}
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
         />
         <div className={styles.videoGradientWash} />
       </div>

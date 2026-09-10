@@ -14,44 +14,18 @@ export function EditorialPreloader({ onReady }: EditorialPreloaderProps) {
     let active = true;
 
     async function waitForAssets() {
-      // 1. Wait for webfonts to finish loading
-      if (typeof document !== "undefined" && "fonts" in document) {
-        try {
-          await document.fonts.ready;
-        } catch {
-          // fallback if fonts api fails
-        }
-      }
-
-      // 2. Preload & decode critical LCP image cutouts
-      const criticalImages = ["/hero/enso-brush-master.webp", "/hero/dipak-seated-mobile.png"];
-      await Promise.allSettled(
-        criticalImages.map((src) => {
-          return new Promise<void>((resolve) => {
-            const img = new Image();
-            img.src = src;
-            if (img.complete) {
-              if ("decode" in img) {
-                img.decode().then(() => resolve()).catch(() => resolve());
-              } else {
-                resolve();
-              }
-            } else {
-              img.onload = () => {
-                if ("decode" in img) {
-                  img.decode().then(() => resolve()).catch(() => resolve());
-                } else {
-                  resolve();
-                }
-              };
-              img.onerror = () => resolve();
-            }
-          });
-        })
-      );
-
-      // 3. Minimum editorial pacing buffer (350ms) to ensure butter-smooth dissolve
-      await new Promise((resolve) => setTimeout(resolve, 350));
+      // Do not hold the page behind a second image preload/decode queue. The
+      // hero owns its single responsive high-priority image; this surface only
+      // provides a short editorial handoff while fonts settle in the background.
+      const fontReady =
+        typeof document !== "undefined" && "fonts" in document
+          ? document.fonts.ready.catch(() => undefined)
+          : Promise.resolve();
+      await Promise.race([
+        fontReady,
+        new Promise<void>((resolve) => setTimeout(resolve, 220)),
+      ]);
+      await new Promise((resolve) => setTimeout(resolve, 120));
 
       if (active) {
         setDismissed(true);

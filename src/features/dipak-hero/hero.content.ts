@@ -1,4 +1,3 @@
-import portraitArmchair from "./assets/dipak-seated-armchair.png";
 import type { HeroContent } from "./hero.types";
 
 export const dipakHeroContent: HeroContent = {
@@ -19,7 +18,7 @@ export const dipakHeroContent: HeroContent = {
   supportingCopy:
     "Thoughts on sales, communication, trust, and personal branding for people building meaningful authority.",
   quote: "Curiosity Builds Trust.",
-  portrait: portraitArmchair,
+  portrait: "/hero/dipak-seated-armchair.webp",
   portraitAlt: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
   ctas: [
     {

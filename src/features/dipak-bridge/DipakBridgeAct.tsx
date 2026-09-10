@@ -32,6 +32,11 @@ export function DipakBridgeAct({
           src="/media/08_img_1624.webp"
           alt=""
           className={styles.teamPhoto}
+          width={1800}
+          height={1350}
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
         />
         <div className={styles.teamGradientOverlay} />
       </div>
@@ -41,9 +46,14 @@ export function DipakBridgeAct({
         <div className={styles.brandMarkContainer}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/media/authority_closers_png__1_.png"
+            src="/media/15_authority_closers_png__1_.webp"
             alt="Authority Closers"
             className={styles.brandMarkLogo}
+            width={1800}
+            height={1364}
+            loading="lazy"
+            decoding="async"
+            fetchPriority="low"
           />
         </div>
 

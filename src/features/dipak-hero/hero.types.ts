@@ -1,5 +1,3 @@
-import type { StaticImageData } from "next/image";
-
 export type HeroEventName =
   | "public.dipak_hero.primary_cta_clicked"
   | "public.dipak_hero.secondary_cta_clicked"
@@ -28,7 +26,7 @@ export type HeroContent = {
   headlinePart3: string;
   supportingCopy: string;
   quote?: string;
-  portrait: StaticImageData;
+  portrait: string;
   portraitAlt: string;
   ctas: HeroCta[];
 };

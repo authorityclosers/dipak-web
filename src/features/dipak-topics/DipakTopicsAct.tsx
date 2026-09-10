@@ -164,10 +164,10 @@ export function DipakTopicsAct({
                           src={item.image}
                           alt={item.title}
                           fill
-                          priority={index === 0}
                           sizes="(min-width: 1024px) 45vw, 600px"
-                          quality={90}
+                          quality={85}
                           className={styles.slideImage}
+                          loading="lazy"
                         />
                       ) : null}
                       <div className={styles.slideGradient} />
