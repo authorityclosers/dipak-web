@@ -183,7 +183,7 @@
   align-items: center;
   gap: 0.6rem;
   padding: 1.1rem 2.4rem;
-  background: var(--dv-signal-red, #e83a12);
+  background: var(--accent-accessible, #c23213);
   color: #ffffff;
   font-family: var(--dv-sans);
   font-size: 0.95rem;
@@ -197,7 +197,7 @@
 
 .primaryButton:hover {
   transform: translateY(-2px);
-  background: var(--dv-accent-hover, #ff4820);
+  background: #a72b13;
   box-shadow: 0 14px 36px rgba(232, 58, 18, 0.5);
 }
 

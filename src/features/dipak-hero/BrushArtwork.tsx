@@ -36,7 +36,7 @@ export function BrushArtwork({ className }: { className?: string }) {
 
       {/* High-Resolution Authentic Natural-Media Brush Master Texture */}
       <image
-        href="/hero/enso-brush-master.webp"
+        href="/_next/image?url=%2Fhero%2Fenso-brush-master.webp&w=768&q=75"
         x="0"
         y="0"
         width="1000"

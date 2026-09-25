@@ -109,7 +109,7 @@ export function SiteFooter() {
         <div className={styles.footerVentureBlock}>
           <span className={styles.footerColHeader}>03 / {footerSections.venture.label}</span>
           <div className={styles.ventureCard}>
-            <h4 className={styles.ventureTitle}>{footerSections.venture.title}</h4>
+            <h3 className={styles.ventureTitle}>{footerSections.venture.title}</h3>
             <p className={styles.ventureDescription}>{footerSections.venture.description}</p>
             <a
               className={styles.ventureBtn}

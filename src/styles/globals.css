@@ -40,6 +40,7 @@
 
   /* --- Accents (Signal Red & Soft Sand) --------------------------------- */
   --accent: var(--signal-red, #e83a12);
+  --accent-accessible: #c23213;
   --accent-hover: #ff4820;
   --accent-wash: rgba(232, 58, 18, 0.08);
   --accent-hairline: rgba(232, 58, 18, 0.22);

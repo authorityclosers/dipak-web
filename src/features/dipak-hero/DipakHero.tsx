@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import { MobileNav } from "./MobileNav";
 import { BrushArtwork } from "./BrushArtwork";
 import type { HeroContent, HeroCta } from "./hero.types";
@@ -33,6 +33,29 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 }
 
 export function DipakHero({ content }: { content: HeroContent }) {
+  const portraitSizes =
+    "(max-width: 380px) 12.5rem, (max-width: 767px) min(24rem, calc(100vw - 3rem)), (max-width: 1200px) 42vw, 33vw";
+  const { props: desktopPortraitProps } = getImageProps({
+    src: content.portrait,
+    alt: content.portraitAlt,
+    width: 1122,
+    height: 1402,
+    sizes: portraitSizes,
+    quality: 75,
+    loading: "eager",
+    fetchPriority: "high",
+  });
+  const { props: mobilePortraitProps } = getImageProps({
+    src: "/hero/dipak-seated-mobile.webp",
+    alt: content.portraitAlt,
+    width: 1122,
+    height: 1041,
+    sizes: portraitSizes,
+    quality: 75,
+    loading: "eager",
+    fetchPriority: "high",
+  });
+
   return (
     <section
       id="hero"
@@ -189,17 +212,14 @@ export function DipakHero({ content }: { content: HeroContent }) {
             <picture className={styles.responsivePicture}>
               <source
                 media="(max-width: 767px)"
-                srcSet="/hero/dipak-seated-mobile.webp"
+                srcSet={mobilePortraitProps.srcSet}
+                sizes={mobilePortraitProps.sizes}
               />
               <img
+                {...desktopPortraitProps}
                 className={`${styles.portrait} ${styles.responsivePortrait}`}
                 data-hero-portrait="true"
-                src={content.portrait}
                 alt={content.portraitAlt}
-                width={1122}
-                height={1402}
-                fetchPriority="high"
-                decoding="async"
               />
             </picture>
           </div>

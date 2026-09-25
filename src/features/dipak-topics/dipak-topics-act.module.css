@@ -45,7 +45,7 @@
   transform: translateY(-50%);
   width: 700px;
   height: 700px;
-  background-image: url("/hero/enso-brush-master.webp");
+  background-image: url("/_next/image?url=%2Fhero%2Fenso-brush-master.webp&w=768&q=75");
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.035;
@@ -228,7 +228,7 @@
   font-family: var(--dv-mono);
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--dv-signal-red, #e83a12);
+  color: var(--accent-accessible, #c23213);
   letter-spacing: 0.1em;
 }
 

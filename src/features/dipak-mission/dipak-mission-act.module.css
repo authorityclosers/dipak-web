@@ -83,7 +83,7 @@
   transform: translate(-50%, -50%);
   width: clamp(380px, 45vw, 650px);
   height: clamp(380px, 45vw, 650px);
-  background-image: url("/hero/enso-brush-master.webp");
+  background-image: url("/_next/image?url=%2Fhero%2Fenso-brush-master.webp&w=768&q=75");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
