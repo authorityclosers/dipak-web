@@ -36,7 +36,7 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
       <EditorialPreloader />
 
       {/* Pinned Cinematic Story Stage: Act 1 (Hero) -> Act 2 (Identity) -> Act 3 (Presence) -> Act 4 (Mission) */}
-      <div ref={shellRef} className={styles.storyShell}>
+      <div ref={shellRef} className={styles.storyShell} data-story-shell="true">
         <div ref={stageRef} className={styles.storyStage}>
           {/* Shared Bridge Motif: The Gold Rule */}
           <div

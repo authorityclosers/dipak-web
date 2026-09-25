@@ -4,7 +4,6 @@ excerpt: "A lost deal rarely announces itself. It stalls, goes quiet, and gets r
 category: "Buyer Psychology"
 series: "Buyer Psychology Files™"
 date: "2026-08-12"
-readTime: "6 MIN READ"
 featured: true
 ---
 

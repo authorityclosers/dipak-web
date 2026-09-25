@@ -37,6 +37,8 @@ export interface ArticleMeta {
   category: string;
   /** ISO date string, e.g. "2026-08-18". */
   date: string;
+  /** ISO date string for meaningful editorial revisions. */
+  updatedAt?: string;
   readTime: string;
   series?: string;
   featured?: boolean;
@@ -71,8 +73,14 @@ const DEFAULT_COVER_IMAGES: Record<string, string> = {
 };
 
 function estimateReadTime(body: string): string {
-  const words = body.trim().split(/\s+/).length;
-  return `${Math.max(1, Math.round(words / 200))} MIN READ`;
+  const visibleText = body
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/[#>*_~`]/g, " ");
+  const words = visibleText.match(/[\p{L}\p{N}]+(?:['’][\p{L}\p{N}]+)*/gu)?.length ?? 0;
+  return `${Math.max(1, Math.ceil(words / 200))} MIN READ`;
 }
 
 function parseTags(raw: unknown): string[] {
@@ -94,6 +102,7 @@ function readArticleFile(dir: string, fileName: string): Article | null {
   // Support both 'date' and 'publishedAt' frontmatter keys
   const dateStr = String(data.date || data.publishedAt || "");
   if (!dateStr) return null;
+  const updatedAt = String(data.updatedAt || "");
 
   // Support both 'category' (articles) and 'topic' (old blog) frontmatter
   const category = String(data.category || data.topic || "Sales");
@@ -108,7 +117,8 @@ function readArticleFile(dir: string, fileName: string): Article | null {
     excerpt: String(data.excerpt ?? ""),
     category,
     date: dateStr,
-    readTime: String(data.readTime ?? estimateReadTime(content)),
+    updatedAt: updatedAt || undefined,
+    readTime: estimateReadTime(content),
     series: data.series ? String(data.series) : undefined,
     featured: Boolean(data.featured),
     draft: Boolean(data.draft),

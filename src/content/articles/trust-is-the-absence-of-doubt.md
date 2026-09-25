@@ -4,7 +4,6 @@ excerpt: "Trust is not built by being likeable. It is what remains once the buye
 category: "Communication"
 series: "Trust Engineering™"
 date: "2026-08-05"
-readTime: "8 MIN READ"
 ---
 
 There is a comfortable myth in sales that trust is a matter of personality. Be warm, be confident, build rapport, and trust will follow.

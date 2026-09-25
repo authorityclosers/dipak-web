@@ -4,6 +4,8 @@ const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
+  { key: "Strict-Transport-Security", value: "max-age=31536000" },
+  { key: "X-Frame-Options", value: "DENY" },
 ];
 
 const nextConfig: NextConfig = {
@@ -13,13 +15,19 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     deviceSizes: [640, 768, 1024, 1280, 1536, 1920, 2048, 2560],
     imageSizes: [64, 96, 128, 192, 256, 384],
-    qualities: [75, 85, 92],
+    qualities: [75, 85, 90, 92],
     remotePatterns: [
       { protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" },
     ],
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.dipakvishwakarma.com" }],
+        destination: "https://dipakvishwakarma.com/:path*",
+        permanent: true,
+      },
       // Permanent 301: /blog → /articles (SEO juice passes through)
       {
         source: "/blog",

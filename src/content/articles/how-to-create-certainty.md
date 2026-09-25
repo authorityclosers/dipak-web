@@ -4,7 +4,6 @@ excerpt: "Certainty is not a feeling you generate with conviction. It is a struc
 category: "Sales"
 series: "Decision Momentum™"
 date: "2026-07-28"
-readTime: "7 MIN READ"
 ---
 
 Sales conversations fail in predictable places, and usually for the same structural reason: the right things were said in the wrong order.

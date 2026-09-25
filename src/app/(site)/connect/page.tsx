@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { ConnectHub } from "@/features/connect";
+import { PERSON_ID, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Connect with Dipak Vishwakarma | Official Links & Social Hub",
+  title: "Connect with Dipak Vishwakarma | Official Links",
   description:
-    "Official link hub and directory for Dipak Vishwakarma — High-Ticket Sales Coach and Founder of Authority Closers. Access YouTube masterclasses, LinkedIn essays, Instagram, and sales advisory.",
+    "Official links for Dipak Vishwakarma, high-ticket sales coach and founder of Authority Closers. Find his articles, social profiles, and contact details.",
   alternates: {
-    canonical: "https://dipakvishwakarma.com/connect",
+    canonical: `${SITE_URL}/connect`,
   },
   openGraph: {
-    title: "Connect with Dipak Vishwakarma | Official Links & Social Hub",
+    title: "Connect with Dipak Vishwakarma | Official Links",
     description:
-      "Official link hub and directory for Dipak Vishwakarma — High-Ticket Sales Coach and Founder of Authority Closers. Access YouTube masterclasses, LinkedIn essays, Instagram, and sales advisory.",
-    url: "https://dipakvishwakarma.com/connect",
+      "Official links for Dipak Vishwakarma, high-ticket sales coach and founder of Authority Closers. Find his articles, social profiles, and contact details.",
+    url: `${SITE_URL}/connect`,
     type: "profile",
     images: [
       {
@@ -25,9 +26,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Connect with Dipak Vishwakarma | Official Links & Social Hub",
+    title: "Connect with Dipak Vishwakarma | Official Links",
     description:
-      "Official link hub and directory for Dipak Vishwakarma — High-Ticket Sales Coach and Founder of Authority Closers.",
+      "Official links for Dipak Vishwakarma, high-ticket sales coach and founder of Authority Closers.",
     images: ["/social/dipak-og-default-1200x630.jpg"],
   },
 };
@@ -36,34 +37,11 @@ export default function ConnectPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    "@id": `${SITE_URL}/connect#profilepage`,
+    url: `${SITE_URL}/connect`,
+    name: "Connect with Dipak Vishwakarma",
     mainEntity: {
-      "@type": "Person",
-      name: "Dipak Vishwakarma",
-      alternateName: ["Dipak", "The Certainty Builder"],
-      jobTitle: "High-Ticket Sales Coach",
-      description:
-        "High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers helping founders and sales teams build certainty and close high-ticket deals.",
-      url: "https://dipakvishwakarma.com",
-      image: "https://dipakvishwakarma.com/media/dipak-vishwakarma-portrait-connect.webp",
-      worksFor: {
-        "@type": "Organization",
-        name: "Authority Closers",
-        url: "https://authorityclosers.com",
-      },
-      sameAs: [
-        "https://www.linkedin.com/in/dipak-vishwakarma",
-        "https://youtube.com/@dipakvishwakarmasalescoach",
-        "https://www.instagram.com/dipakv.sales",
-        "https://authorityclosers.com",
-      ],
-      knowsAbout: [
-        "High-Ticket Sales",
-        "Sales Psychology",
-        "Buyer Psychology",
-        "Objection Handling",
-        "Consultative Selling",
-        "Enterprise Sales Strategy",
-      ],
+      "@id": PERSON_ID,
     },
   };
 

@@ -4,7 +4,6 @@ excerpt: "AI can give you information and simulate objection practice, but high-
 category: "AI"
 tag: "SALES SIMULATION & AI"
 date: "2026-08-15"
-readTime: "6 MIN READ"
 ---
 
 I have a very simple view about AI.

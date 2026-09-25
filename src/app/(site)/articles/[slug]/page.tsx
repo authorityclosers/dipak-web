@@ -12,6 +12,7 @@ import { authorityClosersCta } from "@/features/site-chrome";
 import { ProseBody } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "../articles.module.css";
+import { PERSON_ID, SITE_URL } from "@/lib/structured-data";
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -29,9 +30,9 @@ export async function generateMetadata({
 
   if (!article) return { title: "Article not found" };
 
-  const canonicalUrl = `https://dipakvishwakarma.com/articles/${article.slug}`;
-  const seoTitle = `${article.title} — Dipak Vishwakarma | Founder of Authority Closers`;
-  const seoDescription = `${article.excerpt} Read this framework by Dipak Vishwakarma, Founder of Authority Closers and High-Ticket Sales Expert.`;
+  const canonicalUrl = `${SITE_URL}/articles/${article.slug}`;
+  const seoTitle = `${article.displayTitle} | Dipak Vishwakarma`;
+  const seoDescription = article.excerpt;
 
   return {
     title: seoTitle,
@@ -45,8 +46,9 @@ export async function generateMetadata({
       url: canonicalUrl,
       type: "article",
       publishedTime: article.date,
-      authors: ["https://dipakvishwakarma.com"],
-      siteName: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+      modifiedTime: article.updatedAt || article.date,
+      authors: [`${SITE_URL}/about`],
+      siteName: "Dipak Vishwakarma",
       images: [
         {
           url: article.coverImage || "/social/dipak-og-default-1200x630.jpg",
@@ -76,39 +78,53 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     .filter((candidate) => candidate.slug !== article.slug)
     .slice(0, 3);
 
+  const articleUrl = `${SITE_URL}/articles/${article.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.excerpt,
-    datePublished: article.date,
-    author: {
-      "@type": "Person",
-      name: "Dipak Vishwakarma",
-      jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
-      worksFor: {
-        "@type": "Organization",
-        name: "Authority Closers",
-        url: "https://authorityclosers.com",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${articleUrl}#article`,
+        headline: article.displayTitle,
+        description: article.excerpt,
+        datePublished: article.date,
+        dateModified: article.updatedAt || article.date,
+        inLanguage: "en",
+        ...(article.tags?.length ? { keywords: article.tags.join(", ") } : { keywords: article.category }),
+        author: { "@id": PERSON_ID },
+        publisher: { "@id": PERSON_ID },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": articleUrl,
+        },
+        image: article.coverImage
+          ? `${SITE_URL}${article.coverImage}`
+          : `${SITE_URL}/social/dipak-og-default-1200x630.jpg`,
       },
-      url: "https://dipakvishwakarma.com",
-      sameAs: [
-        "https://www.linkedin.com/in/dipak-vishwakarma",
-        "https://youtube.com/@dipakvishwakarmasalescoach",
-        "https://www.instagram.com/dipakv.sales",
-        "https://authorityclosers.com",
-      ],
-    },
-    publisher: {
-      "@type": "Person",
-      name: "Dipak Vishwakarma",
-      jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
-      url: "https://dipakvishwakarma.com",
-    },
-    mainEntityOfPage: `https://dipakvishwakarma.com/articles/${article.slug}`,
-    image: article.coverImage
-      ? `https://dipakvishwakarma.com${article.coverImage}`
-      : "https://dipakvishwakarma.com/social/dipak-og-default-1200x630.jpg",
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: SITE_URL,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Articles",
+            item: `${SITE_URL}/articles`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.displayTitle,
+            item: articleUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (

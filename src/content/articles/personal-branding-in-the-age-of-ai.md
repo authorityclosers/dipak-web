@@ -4,7 +4,6 @@ excerpt: "AI will make content abundant. In a world of infinite generated conten
 category: "Personal Branding"
 tag: "AUTHORITY & REACH"
 date: "2026-08-14"
-readTime: "6 MIN READ"
 ---
 
 I am a big fan of people who build personal brands.

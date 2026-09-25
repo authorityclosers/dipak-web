@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllArticles } from "@/lib/articles";
-
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://dipakvishwakarma.com";
+import { SITE_URL } from "@/lib/structured-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Single unified source — blog is merged into articles
@@ -9,76 +8,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${BASE_URL}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: SITE_URL,
       priority: 1.0,
     },
     {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      url: `${SITE_URL}/about`,
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/articles`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: `${SITE_URL}/articles`,
       priority: 0.9,
     },
     {
-      url: `${BASE_URL}/videos`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: `${SITE_URL}/resources`,
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/resources`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/connect`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      url: `${SITE_URL}/connect`,
       priority: 0.85,
     },
     {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
+      url: `${SITE_URL}/contact`,
       priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/terms`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/cookies`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
-    },
-    {
-      url: `${BASE_URL}/disclaimer`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.5,
     },
   ];
 
   const articleRoutes: MetadataRoute.Sitemap = articles.map((article) => ({
-    url: `${BASE_URL}/articles/${article.slug}`,
-    lastModified: article.date ? new Date(article.date) : new Date(),
+    url: `${SITE_URL}/articles/${article.slug}`,
+    lastModified: new Date(article.updatedAt || article.date),
     changeFrequency: "monthly",
     priority: 0.85,
   }));

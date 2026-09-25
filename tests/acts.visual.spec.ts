@@ -12,7 +12,10 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     const hero = page.locator('[data-story-act1="true"]');
     await expect(hero).toBeVisible();
     await expect(
-      page.locator("text=Sales Is The Transfer Of Certainty.")
+      page.getByRole("heading", {
+        level: 1,
+        name: "Sales Is The Transfer Of Certainty",
+      }),
     ).toBeVisible();
 
     // Act 2: Identity
@@ -30,30 +33,33 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     // Act 4: Mission
     const mission = page.locator('[data-story-act4="true"]');
     await expect(mission).toBeAttached();
-    await expect(page.locator("text=BUILDING CERTAINTY")).toBeAttached();
-    await expect(
-      page.locator("text=Sales is the transfer of certainty.")
-    ).toBeAttached();
+    const missionQuote = mission.locator("h2");
+    await expect(missionQuote).toContainText("transfer of certainty");
 
     // Act 5: Topics
     const topics = page.locator('[data-story-act5="true"]');
     await expect(topics).toBeAttached();
-    await expect(page.locator("text=WHAT I")).toBeAttached();
-    await expect(page.locator("text=SALES SYSTEMS")).toBeAttached();
-    await expect(page.locator("text=BUYER PSYCHOLOGY")).toBeAttached();
+    await expect(topics.getByText("WHAT I", { exact: true })).toBeAttached();
+    await expect(
+      topics.getByRole("link", { name: /Founder-Led Growth/ }),
+    ).toContainText("Sales systems, founder-led growth");
+    await expect(
+      topics.getByRole("link", { name: /Cognitive Dynamics/ }),
+    ).toBeAttached();
 
     // Act 6: Thinking
     const thinking = page.locator('[data-story-act6="true"]');
     await expect(thinking).toBeAttached();
-    await expect(page.locator("text=LATEST VIDEOS")).toBeAttached();
-    await expect(page.locator("text=LATEST ARTICLES")).toBeAttached();
+    await expect(
+      thinking.getByRole("heading", { level: 2 }),
+    ).toContainText("LATEST THINKING");
+    await expect(thinking).toContainText("LONG-FORM EDITORIAL ESSAYS");
 
     // Act 7: Bridge
     const bridge = page.locator('[data-story-act7="true"]');
     await expect(bridge).toBeAttached();
-    await expect(page.locator("text=AUTHORITY")).toBeAttached();
     await expect(
-      page.locator("text=Explore Authority Closers")
+      bridge.getByRole("link", { name: /Explore Authority Closers/ }),
     ).toBeAttached();
 
     // Zero horizontal overflow

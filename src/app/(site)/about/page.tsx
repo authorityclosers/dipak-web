@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import { AboutHub } from "@/features/dipak-about";
+import { PERSON_ID, SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "About Dipak Vishwakarma — High-Ticket Sales Coach | Founder of Authority Closers",
+  title: "About Dipak Vishwakarma | High-Ticket Sales Coach",
   description:
-    "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. Discover the story, frameworks, and philosophy behind The Certainty Builder™.",
+    "Meet Dipak Vishwakarma, high-ticket sales coach and founder of Authority Closers. Read about his work in buyer psychology, consultative selling, and sales education.",
   alternates: {
-    canonical: "https://dipakvishwakarma.com/about",
+    canonical: `${SITE_URL}/about`,
   },
   openGraph: {
-    title: "About Dipak Vishwakarma — High-Ticket Sales Coach | Founder of Authority Closers",
+    title: "About Dipak Vishwakarma | High-Ticket Sales Coach",
     description:
-      "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers. Discover the story, frameworks, and philosophy behind The Certainty Builder™.",
-    url: "https://dipakvishwakarma.com/about",
+      "Meet Dipak Vishwakarma, high-ticket sales coach and founder of Authority Closers. Read about his work in buyer psychology, consultative selling, and sales education.",
+    url: `${SITE_URL}/about`,
     type: "profile",
     images: [
       {
@@ -29,34 +30,11 @@ export default function AboutPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
+    "@id": `${SITE_URL}/about#profilepage`,
+    url: `${SITE_URL}/about`,
+    name: "About Dipak Vishwakarma",
     mainEntity: {
-      "@type": "Person",
-      name: "Dipak Vishwakarma",
-      alternateName: ["Dipak", "The Certainty Builder"],
-      jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
-      description:
-        "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers.",
-      url: "https://dipakvishwakarma.com",
-      image: "https://dipakvishwakarma.com/media/01_dsc06974.webp",
-      worksFor: {
-        "@type": "Organization",
-        name: "Authority Closers",
-        url: "https://authorityclosers.com",
-      },
-      sameAs: [
-        "https://www.linkedin.com/in/dipak-vishwakarma",
-        "https://youtube.com/@dipakvishwakarmasalescoach",
-        "https://www.instagram.com/dipakv.sales",
-        "https://authorityclosers.com",
-      ],
-      knowsAbout: [
-        "High-Ticket Sales",
-        "Sales Psychology",
-        "Buyer Psychology",
-        "Objection Handling",
-        "Consultative Selling",
-        "Deal Architecture",
-      ],
+      "@id": PERSON_ID,
     },
   };
 

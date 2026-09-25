@@ -4,7 +4,6 @@ excerpt: "Buyers rarely buy simply because you created desire. They buy because 
 category: "Buyer Psychology"
 tag: "DECISION ANATOMY"
 date: "2026-08-12"
-readTime: "6 MIN READ"
 ---
 
 I find buyer psychology fascinating because buyers rarely behave the way salespeople expect them to.

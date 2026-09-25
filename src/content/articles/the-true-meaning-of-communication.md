@@ -4,7 +4,6 @@ excerpt: "Communication is not what you say — communication is what the other 
 category: "Communication"
 tag: "CONVERSATION DYNAMICS"
 date: "2026-08-10"
-readTime: "5 MIN READ"
 ---
 
 I used to think I was a good communicator.

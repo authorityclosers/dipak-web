@@ -4,7 +4,6 @@ excerpt: "Discovery is not an interrogation; it is a clinical diagnosis. Here ar
 tags: ["Discovery", "Buyer Psychology", "Founder Sales"]
 topic: "Buyer Psychology"
 date: "2026-08-19"
-readTime: "3 MIN READ"
 draft: false
 ---
 

@@ -21,13 +21,9 @@ test.describe("Hero Surface Geometry, Registration & Responsive Fit", () => {
     test(`hero fits ${vp.name} (${vp.width}x${vp.height}) with zero overflow`, async ({ page }) => {
       await page.setViewportSize({ width: vp.width, height: vp.height });
       await page.goto("/");
-      await page.evaluate(async () => {
-        await document.fonts.ready;
-        await Promise.all(
-          [...document.images].map((img) =>
-            img.complete ? Promise.resolve() : img.decode().catch(() => {})
-          )
-        );
+      await page.locator("#hero img[data-hero-portrait='true']").evaluate(async (node) => {
+        const portrait = node as HTMLImageElement;
+        if (!portrait.complete) await portrait.decode().catch(() => undefined);
       });
 
       const hero = page.locator("#hero");

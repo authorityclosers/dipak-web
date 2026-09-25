@@ -2,6 +2,11 @@ import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Montserrat, Poppins } from "next/font/google";
 import "@/styles/globals.css";
+import {
+  authorityClosersOrganization,
+  dipakPerson,
+  SITE_URL,
+} from "@/lib/structured-data";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -18,12 +23,12 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dipakvishwakarma.com"),
-  title: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  metadataBase: new URL(SITE_URL),
+  title: "Dipak Vishwakarma | High-Ticket Sales Coach",
   description:
-    "Dipak Vishwakarma is the Founder of Authority Closers and a High-Ticket Sales Expert helping founders and sales teams build certainty, handle objections, and close high-value deals.",
+    "Dipak Vishwakarma is a high-ticket sales coach and founder of Authority Closers. He writes about buyer psychology, objection handling, consultative selling, and confident decisions.",
   alternates: {
-    canonical: "https://dipakvishwakarma.com/",
+    canonical: SITE_URL,
   },
   robots: {
     index: true,
@@ -38,11 +43,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    url: "https://dipakvishwakarma.com/",
+    url: SITE_URL,
     siteName: "Dipak Vishwakarma",
-    title: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+    title: "Dipak Vishwakarma | High-Ticket Sales Coach",
     description:
-      "Dipak Vishwakarma is the Founder of Authority Closers and a High-Ticket Sales Expert helping founders and sales teams build certainty, handle objections, and close high-value deals.",
+      "Dipak Vishwakarma is a high-ticket sales coach and founder of Authority Closers. He writes about buyer psychology, objection handling, consultative selling, and confident decisions.",
     images: [
       {
         url: "/social/dipak-og-default-1200x630.jpg",
@@ -60,9 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+    title: "Dipak Vishwakarma | High-Ticket Sales Coach",
     description:
-      "Dipak Vishwakarma is the Founder of Authority Closers and a High-Ticket Sales Expert helping founders and sales teams build certainty, handle objections, and close high-value deals.",
+      "Dipak Vishwakarma is a high-ticket sales coach and founder of Authority Closers. He writes about buyer psychology, objection handling, consultative selling, and confident decisions.",
     images: [
       {
         url: "/social/dipak-x-share-1600x900.jpg",
@@ -104,43 +109,16 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@graph": [
-                {
-                  "@type": "Person",
-                  "@id": "https://dipakvishwakarma.com/#person",
-                  name: "Dipak Vishwakarma",
-                  alternateName: ["Dipak", "The Certainty Builder"],
-                  jobTitle: "High-Ticket Sales Coach | Founder of Authority Closers",
-                  worksFor: {
-                    "@type": "Organization",
-                    name: "Authority Closers",
-                    url: "https://authorityclosers.com",
-                  },
-                  url: "https://dipakvishwakarma.com",
-                  image: "https://dipakvishwakarma.com/media/dipak-vishwakarma-portrait-connect.webp",
-                  sameAs: [
-                    "https://www.linkedin.com/in/dipak-vishwakarma",
-                    "https://youtube.com/@dipakvishwakarmasalescoach",
-                    "https://www.instagram.com/dipakv.sales",
-                    "https://authorityclosers.com",
-                  ],
-                  description:
-                    "Dipak Vishwakarma is a High-Ticket Sales Coach, Public Speaker, and Founder of Authority Closers helping founders and sales teams build certainty, handle objections, and close high-ticket deals.",
-                  knowsAbout: [
-                    "High-Ticket Sales",
-                    "Sales Psychology",
-                    "Buyer Psychology",
-                    "Objection Handling",
-                    "Consultative Selling",
-                    "Deal Architecture",
-                  ],
-                },
+                dipakPerson,
+                authorityClosersOrganization,
                 {
                   "@type": "WebSite",
-                  "@id": "https://dipakvishwakarma.com/#website",
-                  url: "https://dipakvishwakarma.com",
+                  "@id": `${SITE_URL}/#website`,
+                  url: SITE_URL,
                   name: "Dipak Vishwakarma",
+                  inLanguage: "en",
                   publisher: {
-                    "@id": "https://dipakvishwakarma.com/#person",
+                    "@id": `${SITE_URL}/#person`,
                   },
                 },
               ],

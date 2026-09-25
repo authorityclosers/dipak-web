@@ -4,7 +4,6 @@ excerpt: "Public speaking stops being a soft skill and becomes ultimate leverage
 category: "Public Speaking"
 tag: "KEYNOTE & INFLUENCE"
 date: "2026-08-16"
-readTime: "5 MIN READ"
 ---
 
 When I went to 8th standard, I was extremely happy.

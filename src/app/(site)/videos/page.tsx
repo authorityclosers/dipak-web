@@ -9,11 +9,19 @@ import {
 import { PageHero, SectionHeader, Reveal } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./videos.module.css";
+import { SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
   title: "Videos by Dipak Vishwakarma — Founder of Authority Closers | Keynotes & Sales Breakdowns",
   description:
     "Keynotes, sales breakdowns, and practical lessons on buyer psychology from Dipak Vishwakarma, Founder of Authority Closers & High-Ticket Sales Expert.",
+  alternates: {
+    canonical: `${SITE_URL}/videos`,
+  },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function VideosPage() {

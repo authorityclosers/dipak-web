@@ -169,15 +169,15 @@ export function DipakHero({ content }: { content: HeroContent }) {
             style={
               {
                 "--desktop-aspect": heroComposition.desktop.aspectRatio,
-                "--desktop-halo-u": heroComposition.desktop.halo_u,
-                "--desktop-halo-v": heroComposition.desktop.halo_v,
-                "--desktop-halo-sw": heroComposition.desktop.halo_sw,
-                "--desktop-halo-sh": heroComposition.desktop.halo_sh,
+                "--desktop-halo-u": `${heroComposition.desktop.halo_u * 100}%`,
+                "--desktop-halo-v": `${heroComposition.desktop.halo_v * 100}%`,
+                "--desktop-halo-sw": `${heroComposition.desktop.halo_sw * 100}%`,
+                "--desktop-halo-sh": `${heroComposition.desktop.halo_sh * 100}%`,
                 "--mobile-aspect": heroComposition.mobile.aspectRatio,
-                "--mobile-halo-u": heroComposition.mobile.halo_u,
-                "--mobile-halo-v": heroComposition.mobile.halo_v,
-                "--mobile-halo-sw": heroComposition.mobile.halo_sw,
-                "--mobile-halo-sh": heroComposition.mobile.halo_sh,
+                "--mobile-halo-u": `${heroComposition.mobile.halo_u * 100}%`,
+                "--mobile-halo-v": `${heroComposition.mobile.halo_v * 100}%`,
+                "--mobile-halo-sw": `${heroComposition.mobile.halo_sw * 100}%`,
+                "--mobile-halo-sh": `${heroComposition.mobile.halo_sh * 100}%`,
               } as React.CSSProperties
             }
           >

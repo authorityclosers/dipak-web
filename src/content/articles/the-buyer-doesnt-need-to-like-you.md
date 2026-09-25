@@ -4,7 +4,6 @@ excerpt: "Some salespeople are incredibly likable and still struggle to close. I
 category: "Communication"
 series: "Trust Engineering™"
 date: "2026-08-15"
-readTime: "8 MIN READ"
 featured: true
 ---
 
