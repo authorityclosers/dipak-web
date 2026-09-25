@@ -74,6 +74,7 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
                     width={64}
                     height={42}
                     className={styles.sealMonogramImg}
+                    unoptimized
                   />
                 </div>
                 <span className={styles.sealKicker}>AUTHORITY CLOSERS · ACT 01 / FOLIO</span>

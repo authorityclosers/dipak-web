@@ -29,11 +29,11 @@ export function DipakBridgeAct({
       <div className={styles.teamFilmStrip} aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/media/08_img_1624.webp"
+          src="/optimized/08_img_1624-768-v1.webp"
           alt=""
           className={styles.teamPhoto}
-          width={1800}
-          height={1350}
+          width={768}
+          height={576}
           loading="lazy"
           decoding="async"
           fetchPriority="low"
@@ -46,11 +46,11 @@ export function DipakBridgeAct({
         <div className={styles.brandMarkContainer}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/media/15_authority_closers_png__1_.webp"
+            src="/optimized/15_authority_closers_png__1_-768-v1.webp"
             alt="Authority Closers"
             className={styles.brandMarkLogo}
-            width={1800}
-            height={1364}
+            width={768}
+            height={582}
             loading="lazy"
             decoding="async"
             fetchPriority="low"

@@ -25,6 +25,7 @@ export function SiteFooter() {
               width={220}
               height={92}
               className={styles.footerSignatureImg}
+              unoptimized
             />
           </Link>
 

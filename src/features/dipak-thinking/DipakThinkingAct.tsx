@@ -82,11 +82,11 @@ export function DipakThinkingAct({
                   the viewport; keeping it out of CSS avoids an eager fetch. */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/media/06_dsc04024.webp"
+                src="/optimized/06_dsc04024-768-v1.webp"
                 alt=""
                 className={styles.masterclassImage}
-                width={1800}
-                height={1200}
+                width={768}
+                height={512}
                 loading="lazy"
                 decoding="async"
                 fetchPriority="low"

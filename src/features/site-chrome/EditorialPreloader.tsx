@@ -65,7 +65,7 @@ export function EditorialPreloader({ onReady }: EditorialPreloaderProps) {
             src="/branding/dipak-monogram-white.webp"
             alt="Dipak Vishwakarma Monogram"
             width={64}
-            height={64}
+            height={42}
             className={styles.monogramImg}
           />
         </div>

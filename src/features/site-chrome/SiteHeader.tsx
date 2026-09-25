@@ -74,6 +74,7 @@ export function SiteHeader() {
             height={76}
             className={styles.headerSignatureImg}
             priority
+            unoptimized
           />
         </Link>
 

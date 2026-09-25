@@ -1,4 +1,4 @@
-import Image, { getImageProps } from "next/image";
+import Image from "next/image";
 import { MobileNav } from "./MobileNav";
 import { BrushArtwork } from "./BrushArtwork";
 import type { HeroContent, HeroCta } from "./hero.types";
@@ -6,6 +6,12 @@ import heroComposition from "./generated/hero-composition.json";
 import styles from "./dipak-hero.module.css";
 
 const EVENT_SCHEMA_VERSION = "1";
+const portraitSizes =
+  "(max-width: 380px) 12.5rem, (max-width: 767px) min(24rem, calc(100vw - 3rem)), (max-width: 1200px) 42vw, 33vw";
+const desktopPortraitSrcSet =
+  "/optimized/dipak-desktop-384-v1.webp 384w, /optimized/dipak-desktop-640-v1.webp 640w";
+const mobilePortraitSrcSet =
+  "/optimized/dipak-mobile-384-v1.webp 384w, /optimized/dipak-mobile-640-v1.webp 640w";
 
 function CtaButton({ cta }: { cta: HeroCta }) {
   if (!cta.href) return null;
@@ -33,29 +39,6 @@ function CtaButton({ cta }: { cta: HeroCta }) {
 }
 
 export function DipakHero({ content }: { content: HeroContent }) {
-  const portraitSizes =
-    "(max-width: 380px) 12.5rem, (max-width: 767px) min(24rem, calc(100vw - 3rem)), (max-width: 1200px) 42vw, 33vw";
-  const { props: desktopPortraitProps } = getImageProps({
-    src: content.portrait,
-    alt: content.portraitAlt,
-    width: 1122,
-    height: 1402,
-    sizes: portraitSizes,
-    quality: 75,
-    loading: "eager",
-    fetchPriority: "high",
-  });
-  const { props: mobilePortraitProps } = getImageProps({
-    src: "/hero/dipak-seated-mobile.webp",
-    alt: content.portraitAlt,
-    width: 1122,
-    height: 1041,
-    sizes: portraitSizes,
-    quality: 75,
-    loading: "eager",
-    fetchPriority: "high",
-  });
-
   return (
     <section
       id="hero"
@@ -80,6 +63,7 @@ export function DipakHero({ content }: { content: HeroContent }) {
             height={78}
             className={styles.headerSignatureImg}
             priority
+            unoptimized
           />
         </a>
 
@@ -212,14 +196,21 @@ export function DipakHero({ content }: { content: HeroContent }) {
             <picture className={styles.responsivePicture}>
               <source
                 media="(max-width: 767px)"
-                srcSet={mobilePortraitProps.srcSet}
-                sizes={mobilePortraitProps.sizes}
+                srcSet={mobilePortraitSrcSet}
+                sizes={portraitSizes}
               />
               <img
-                {...desktopPortraitProps}
                 className={`${styles.portrait} ${styles.responsivePortrait}`}
                 data-hero-portrait="true"
+                src="/optimized/dipak-desktop-640-v1.webp"
+                srcSet={desktopPortraitSrcSet}
+                sizes={portraitSizes}
                 alt={content.portraitAlt}
+                width={640}
+                height={800}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
               />
             </picture>
           </div>

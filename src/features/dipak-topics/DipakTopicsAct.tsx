@@ -7,6 +7,10 @@ import type { TopicsContent } from "./topics.types";
 import { topicsContent } from "./topics.content";
 import styles from "./dipak-topics-act.module.css";
 
+function getOptimizedTopicImage(src: string) {
+  return src.replace("/media/", "/optimized/").replace(".webp", "-768-v1.webp");
+}
+
 interface DipakTopicsActProps {
   content?: TopicsContent;
   className?: string;
@@ -133,9 +137,10 @@ export function DipakTopicsAct({
                   {item.image ? (
                     <div className={styles.mobileThumbFrame}>
                       <Image
-                        src={item.image}
+                        src={getOptimizedTopicImage(item.image)}
                         alt={item.title}
                         fill
+                        unoptimized
                         sizes="(max-width: 1023px) 100vw, 400px"
                         className={styles.mobileThumbImg}
                         loading="lazy"
@@ -161,9 +166,10 @@ export function DipakTopicsAct({
                     >
                       {item.image ? (
                         <Image
-                          src={item.image}
+                          src={getOptimizedTopicImage(item.image)}
                           alt={item.title}
                           fill
+                          unoptimized
                           sizes="(min-width: 1024px) 45vw, 600px"
                           quality={85}
                           className={styles.slideImage}

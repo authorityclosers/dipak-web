@@ -81,6 +81,7 @@ export function MobileNav({
               alt="Dipak Vishwakarma"
               width={160}
               height={68}
+              unoptimized
               className={styles.headerSignatureImg}
               priority
             />
