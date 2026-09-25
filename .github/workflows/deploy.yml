@@ -141,15 +141,20 @@ jobs:
 
       - name: Health Check
         run: |
-          sleep 4
-          for i in $(seq 1 15); do
-            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://dipakvishwakarma.com/api/health || echo "0")
-            echo "Attempt $i → HTTP $STATUS"
-            [ "$STATUS" = "200" ] && { echo "✅ Healthy!"; exit 0; }
-            sleep 2
-          done
-          echo "❌ Health check failed"
-          exit 1
+          ssh production << 'REMOTE'
+            set -e
+            for i in $(seq 1 30); do
+              if docker exec dipak-web node -e "fetch('http://127.0.0.1:3000/api/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))" >/dev/null 2>&1; then
+                echo "Attempt $i → origin healthy"
+                exit 0
+              fi
+              echo "Attempt $i → waiting for origin"
+              sleep 2
+            done
+            echo "❌ Origin health check failed"
+            docker logs --tail=50 dipak-web || true
+            exit 1
+          REMOTE
 
       - name: Ping Search Engines (Sitemap + IndexNow)
         run: |
