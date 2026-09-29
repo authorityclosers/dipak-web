@@ -1,15 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { TopicsContent } from "./topics.types";
 import { topicsContent } from "./topics.content";
 import styles from "./dipak-topics-act.module.css";
-
-function getOptimizedTopicImage(src: string) {
-  return src.replace("/media/", "/optimized/").replace(".webp", "-768-v1.webp");
-}
 
 interface DipakTopicsActProps {
   content?: TopicsContent;
@@ -23,34 +18,25 @@ export function DipakTopicsAct({
   const [activeIndex, setActiveIndex] = useState(0);
   const itemRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-  // IntersectionObserver to sync active image on natural scroll
+  // Sync the sticky image with the row nearest the middle of the viewport.
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
 
     itemRefs.current.forEach((el, index) => {
       if (!el) return;
-
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveIndex(index);
-            }
+            if (entry.isIntersecting) setActiveIndex(index);
           });
         },
-        {
-          rootMargin: "-25% 0px -25% 0px",
-          threshold: 0.3,
-        }
+        { rootMargin: "-40% 0px -40% 0px", threshold: 0 },
       );
-
       observer.observe(el);
       observers.push(observer);
     });
 
-    return () => {
-      observers.forEach((obs) => obs.disconnect());
-    };
+    return () => observers.forEach((obs) => obs.disconnect());
   }, [content.topics]);
 
   const activeTopic = content.topics[activeIndex] || content.topics[0];
@@ -58,51 +44,28 @@ export function DipakTopicsAct({
   return (
     <section
       id="topics"
-      className={`${styles.topicsSection} ${className || ""}`}
+      className={`${styles.section} ${className || ""}`}
       aria-labelledby="topics-heading"
       data-story-act5="true"
     >
-      <div className={styles.atmosphereLayer} aria-hidden="true" />
-      <div className={styles.ensoEcho} aria-hidden="true" />
-
-      <div className={styles.topicsContainer}>
-        {/* Header Row */}
-        <header className={styles.headerRow}>
-          <div className={styles.titleBlock}>
-            <div className={styles.sectionIndex} data-story-act5-index="true">
-              <span>{content.sectionNumber}</span>
-              <span aria-hidden="true">/</span>
-              <span>{content.sectionTitle}</span>
-            </div>
-
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <div>
+            <p className={styles.eyebrow}>
+              <span className={styles.eyebrowIndex}>{content.sectionNumber}</span>
+              {content.sectionTitle}
+            </p>
             <h2 id="topics-heading" className={styles.headline}>
-              <span>{content.headlineWord1}</span>{" "}
-              <span>
-                {content.headlineWord2}
-                <span className={styles.goldPeriod}>.</span>
-              </span>
+              {content.headlineWord1} <em>{content.headlineWord2}</em>
             </h2>
           </div>
-
-          <div className={styles.headerMeta}>
-            <span className={styles.metaLabel}>{content.metaLabel}</span>
-            <p className={styles.supportingNote} data-story-act5-note="true">
-              {content.supportingNote}
-            </p>
-          </div>
+          <p className={styles.note}>{content.supportingNote}</p>
         </header>
 
-        {/* Split Editorial Interactive Ledger + Sticky Visual Stage */}
-        <div className={styles.splitLayout}>
-          {/* Left Column: Interactive Topic Ledger List */}
-          <div
-            className={styles.ledgerList}
-            aria-label="Topics ledger"
-            data-story-act5-ledger="true"
-          >
+        <div className={styles.split}>
+          <div className={styles.list} aria-label="Subjects">
             {content.topics.map((item, index) => {
               const isActive = index === activeIndex;
-
               return (
                 <Link
                   key={item.id}
@@ -110,95 +73,55 @@ export function DipakTopicsAct({
                     itemRefs.current[index] = el;
                   }}
                   href={item.href || "/articles"}
-                  className={`${styles.ledgerItem} ${isActive ? styles.ledgerItemActive : ""}`}
+                  className={`${styles.row} ${isActive ? styles.rowActive : ""}`}
                   onMouseEnter={() => setActiveIndex(index)}
                   onFocus={() => setActiveIndex(index)}
                   data-story-act5-item="true"
                   aria-current={isActive ? "true" : undefined}
                 >
-                  <div className={styles.itemIndicator} aria-hidden="true" />
-
-                  <div className={styles.itemHeader}>
-                    <span className={styles.itemNumber}>[{item.number}]</span>
-                    <span className={styles.itemTag}>{item.tag}</span>
-                  </div>
-
-                  <div className={styles.itemBody}>
-                    <div className={styles.itemTitleRow}>
-                      <h3 className={styles.itemTitle}>{item.title}</h3>
-                      <span className={styles.itemArrow} aria-hidden="true">
-                        ↗
-                      </span>
-                    </div>
-                    <p className={styles.itemDescription}>{item.description}</p>
-                  </div>
-
-                  {/* Mobile Compact Visual Fallback */}
-                  {item.image ? (
-                    <div className={styles.mobileThumbFrame}>
-                      <Image
-                        src={getOptimizedTopicImage(item.image)}
-                        alt={item.title}
-                        fill
-                        unoptimized
-                        sizes="(max-width: 1023px) 100vw, 400px"
-                        className={styles.mobileThumbImg}
-                        loading="lazy"
-                      />
-                    </div>
-                  ) : null}
+                  <span className={styles.rowIndex}>{item.number}</span>
+                  <span className={styles.rowBody}>
+                    <span className={styles.rowTag}>{item.tag}</span>
+                    <h3 className={styles.rowTitle}>{item.title}</h3>
+                    <span className={styles.rowDescription}>{item.description}</span>
+                  </span>
+                  <span className={styles.rowArrow} aria-hidden="true">
+                    →
+                  </span>
                 </Link>
               );
             })}
           </div>
 
-          {/* Right Column: Sticky Cinematic Image Stage (Desktop >= 1024px) */}
-          <aside className={styles.stickyStageColumn} aria-hidden="true">
-            <div className={styles.stickyStageInner}>
-              <div className={styles.previewCanvas}>
-                {content.topics.map((item, index) => {
-                  const isCurrent = index === activeIndex;
-
-                  return (
-                    <div
-                      key={item.id}
-                      className={`${styles.imageSlide} ${isCurrent ? styles.imageSlideActive : ""}`}
-                    >
-                      {item.image ? (
-                        <Image
-                          src={getOptimizedTopicImage(item.image)}
-                          alt={item.title}
-                          fill
-                          unoptimized
-                          sizes="(min-width: 1024px) 45vw, 600px"
-                          quality={85}
-                          className={styles.slideImage}
-                          loading="lazy"
-                        />
-                      ) : null}
-                      <div className={styles.slideGradient} />
-                    </div>
-                  );
-                })}
-
-                {/* Overlaid Context Floating Badge */}
-                <div className={styles.canvasBadge}>
-                  <span className={styles.badgeNumber}>
-                    {activeTopic.number} / {String(content.topics.length).padStart(2, "0")}
-                  </span>
-                  <span className={styles.badgeDivider}>·</span>
-                  <span className={styles.badgeTag}>{activeTopic.tag}</span>
-                </div>
-
-                {/* Overlaid Title Glass Bar */}
-                <div className={styles.canvasCaption}>
-                  <p className={styles.captionCategory}>DEEP EXPLORATION</p>
-                  <h4 className={styles.captionTitle}>{activeTopic.title}</h4>
-                  <Link href={activeTopic.href || "/articles"} className={styles.captionLink}>
-                    <span>Read Framework</span>
-                    <span aria-hidden="true">→</span>
-                  </Link>
-                </div>
+          <aside className={styles.stage} aria-hidden="true">
+            <div className={styles.stageSticky}>
+              <div className={styles.stageFrame}>
+                {content.topics.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className={`${styles.slide} ${index === activeIndex ? styles.slideActive : ""}`}
+                  >
+                    {item.image ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={item.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className={`editorialGrade ${styles.slideImg}`}
+                      />
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+              <div className={styles.stageCaption}>
+                <span className={styles.stageIndex}>
+                  {activeTopic.number} / {String(content.topics.length).padStart(2, "0")}
+                </span>
+                <span className={styles.stageTitle}>{activeTopic.title}</span>
+                <Link href={activeTopic.href || "/articles"} className={styles.stageLink} tabIndex={-1}>
+                  Read the framework <span aria-hidden="true">→</span>
+                </Link>
               </div>
             </div>
           </aside>

@@ -18,7 +18,7 @@ test.describe("Act 2 — The Certainty Builder Story & Layout", () => {
       .evaluate((shell) => {
         const shellTop = shell.getBoundingClientRect().top + window.scrollY;
         const scrollRange = shell.getBoundingClientRect().height - window.innerHeight;
-        return shellTop + scrollRange * 0.17;
+        return shellTop + scrollRange * 0.45;
       });
     await page.evaluate((y) => window.scrollTo(0, y), act2ScrollPosition);
 
@@ -27,24 +27,18 @@ test.describe("Act 2 — The Certainty Builder Story & Layout", () => {
     await expect(identity).toBeVisible();
 
     // Verified headline and subhead
-    await expect(identity.getByText("THE CERTAINTY", { exact: true })).toBeVisible();
-    await expect(identity.getByText("BUILDER™.", { exact: true })).toBeVisible();
-    await expect(
-      page.getByRole("heading", {
-        level: 3,
-        name: "Founder of Authority Closers.",
-      }),
-    ).toBeVisible();
+    await expect(identity.getByRole("heading", { level: 2, name: /The Certainty Builder/ })).toBeVisible();
+    await expect(identity.getByText("Founder of Authority Closers.")).toBeVisible();
 
     // Verified stats exist in DOM
     const stats = identity.locator('[data-story-act2-stats="true"]');
     await expect(stats).toContainText("11+");
-    await expect(stats).toContainText("YEARS OF EXPERIENCE");
-    await expect(stats).toContainText("₹9+");
-    await expect(stats).toContainText("CRORE");
-    await expect(stats).toContainText("REVENUE GENERATED");
+    await expect(stats).toContainText("Years in sales");
+    await expect(stats).toContainText("₹9");
+    await expect(stats).toContainText("Cr+");
+    await expect(stats).toContainText("Revenue generated");
     await expect(stats).toContainText("940+");
-    await expect(stats).toContainText("TRAINED SALES PROFESSIONALS");
+    await expect(stats).toContainText("Professionals trained");
 
     // Zero horizontal overflow
     const hasHorizontalOverflow = await page.evaluate(
@@ -69,7 +63,7 @@ test.describe("Act 2 — The Certainty Builder Story & Layout", () => {
     const identity = page.locator('[data-story-act2="true"]');
     await expect(identity).toBeVisible();
 
-    await expect(identity.getByText("THE CERTAINTY", { exact: true })).toBeVisible();
+    await expect(identity.getByRole("heading", { level: 2, name: /The Certainty Builder/ })).toBeVisible();
     await expect(identity.getByText("11+", { exact: true })).toBeVisible();
 
     const hasHorizontalOverflow = await page.evaluate(

@@ -1,5 +1,5 @@
 import { HomeIntroStory } from "@/features/home-intro-story";
-import { SiteFooter } from "@/features/site-chrome";
+import { SiteFooter, SiteHeader } from "@/features/site-chrome";
 import { getAllArticles } from "@/lib/articles";
 import type { FeaturedArticle } from "@/features/dipak-thinking/thinking.types";
 
@@ -11,8 +11,8 @@ export default function HomePage() {
     .map((article, index) => ({
       id: article.slug,
       number: String(index + 1).padStart(2, "0"),
-      title: article.title,
-      category: article.category.toUpperCase(),
+      title: article.displayTitle,
+      category: article.category,
       series: article.series,
       readTime: article.readTime,
       abstract: article.excerpt,
@@ -21,6 +21,7 @@ export default function HomePage() {
 
   return (
     <>
+      <SiteHeader />
       <main id="main">
         <HomeIntroStory latestArticles={latestArticles} />
       </main>

@@ -1,10 +1,7 @@
 /* --- Hero media frame ----------------------------------------------------- */
 
 .heroMediaFrame {
-  display: flex;
-  flex-direction: column;
-  border-bottom: 2px solid var(--gold);
-  padding-bottom: 0.6rem;
+  margin: 0;
 }
 
 .heroMediaImage {
@@ -12,16 +9,13 @@
   height: auto;
   aspect-ratio: 4 / 3;
   object-fit: cover;
-  filter: contrast(1.05) brightness(0.96);
+  display: block;
 }
 
 .updatedStamp {
   margin: 0 0 clamp(2.5rem, 5vw, 4rem);
-  font-family: var(--font-family-mono);
-  font-size: var(--step-mono);
-  letter-spacing: var(--tracking-mono);
-  text-transform: uppercase;
-  color: var(--gold-deep);
+  font-size: var(--step-meta);
+  color: var(--ink-faint);
 }
 
 .nowList {
@@ -29,7 +23,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--rule-hairline);
+  border-top: 1px solid var(--rule-strong);
 }
 
 .nowRow {
@@ -51,17 +45,14 @@
   font-family: var(--font-family-mono);
   font-size: var(--step-mono);
   letter-spacing: var(--tracking-mono);
-  color: var(--gold-deep);
+  color: var(--ink-faint);
 }
 
 .nowLabel {
   margin: 0;
-  font-family: var(--font-family-serif);
   font-size: var(--step-h3);
-  font-weight: 600;
+  font-weight: 450;
   line-height: 1.08;
-  letter-spacing: var(--tracking-tight);
-  text-transform: uppercase;
 }
 
 .nowNote {
@@ -96,16 +87,16 @@
   content: "";
   position: absolute;
   left: 0;
-  top: 0.68em;
-  width: 7px;
-  height: 7px;
-  border: 1px solid var(--gold);
-  transform: rotate(45deg);
+  top: 0.75em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
 }
 
 .itemEmpty {
   margin: 0;
-  font-family: var(--font-family-serif);
+  font-family: var(--font-family-display);
   font-style: italic;
   color: var(--ink-faint);
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { leadMagnets } from "@/features/dipak-media/media.content";
 import { authorityClosersCta } from "@/features/site-chrome";
@@ -24,17 +23,18 @@ export default function ResourcesPage() {
           "Practical tools to help you think, communicate and sell with more certainty.",
         ]}
         aside={
-          <div className={styles.heroMediaFrame}>
-            <Image
-              src="/media/04_dsc07013.webp"
-              alt="Notebook and frameworks detail"
-              width={1000}
-              height={750}
+          <figure className={styles.heroMediaFrame}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/optimized/resources-hero-1600-v1.webp"
+              srcSet="/optimized/resources-hero-960-v1.webp 960w, /optimized/resources-hero-1600-v1.webp 1600w"
               sizes="(max-width: 900px) 70vw, 24rem"
-              quality={90}
-              className={styles.heroMediaImage}
+              alt="Notebook and frameworks detail"
+              width={1600}
+              height={1067}
+              className={`editorialGrade ${styles.heroMediaImage}`}
             />
-          </div>
+          </figure>
         }
       />
 
@@ -42,35 +42,30 @@ export default function ResourcesPage() {
         <div className={editorial.container}>
           <ul className={styles.resourceGrid}>
             {leadMagnets.map((magnet, index) => (
-              <Reveal
-                as="li"
-                key={magnet.index}
-                index={index}
-                className={styles.resourceCard}
-              >
-                <span className={styles.resourceIndex}>{magnet.index}</span>
+              <Reveal as="li" key={magnet.index} index={index} className={styles.resourceCard}>
+                <div className={styles.resourceCover} aria-hidden="true">
+                  <span className={styles.resourceCoverIndex}>{magnet.index}</span>
+                  <span className={styles.resourceCoverTitle}>{magnet.title}</span>
+                </div>
 
                 <div className={styles.resourceBody}>
                   <h2 className={styles.resourceTitle}>{magnet.title}</h2>
-                  <p className={styles.resourceDescription}>
-                    {magnet.description}
-                  </p>
+                  <p className={styles.resourceDescription}>{magnet.description}</p>
+                  {/*
+                    Routes to the contact form with the resource pre-selected
+                    rather than linking a file. The copy master requires final
+                    downloads and their exact promises to be approved before
+                    publishing, so no download URL is invented here.
+                  */}
+                  <Link
+                    className={styles.resourceCta}
+                    href={`/contact?topic=${encodeURIComponent(magnet.topic)}`}
+                    data-ac-event="public.resources.request_clicked"
+                  >
+                    {magnet.ctaLabel}
+                    <span aria-hidden="true">→</span>
+                  </Link>
                 </div>
-
-                {/*
-                  Routes to the contact form with the resource pre-selected
-                  rather than linking a file. The copy master requires final
-                  downloads and their exact promises to be approved before
-                  publishing, so no download URL is invented here.
-                */}
-                <Link
-                  className={styles.resourceCta}
-                  href={`/contact?topic=${encodeURIComponent(magnet.topic)}`}
-                  data-ac-event="public.resources.request_clicked"
-                >
-                  {magnet.ctaLabel}
-                  <span aria-hidden="true">→</span>
-                </Link>
               </Reveal>
             ))}
           </ul>
@@ -81,8 +76,7 @@ export default function ResourcesPage() {
         <div className={editorial.container}>
           <div className={styles.bridgeBlock}>
             <h2 className={styles.bridgeHeadline}>
-              Looking for structured sales learning and practice
-              <span className={styles.goldPeriod}>?</span>
+              Looking for structured sales learning and <em>practice?</em>
             </h2>
             <p className={styles.bridgeBody}>
               Authority Closers is where these frameworks become a full learning
@@ -101,10 +95,10 @@ export default function ResourcesPage() {
                 data-ac-surface="resources-bridge"
               >
                 {authorityClosersCta.label}
-                <span aria-hidden="true">→</span>
+                <span aria-hidden="true">↗</span>
               </a>
               <Link className={editorial.ctaSecondary} href="/articles">
-                Explore My Thinking
+                Explore my thinking
                 <span aria-hidden="true">→</span>
               </Link>
             </div>

@@ -1,12 +1,11 @@
 /* ==========================================================================
    Editorial kit — shared primitives for the inner pages.
+   Eyebrow · SectionHeader · PageHero · section scaffolding · ledger · buttons
    ========================================================================== */
 
 /* --- Reveal --------------------------------------------------------------- */
 
 .reveal {
-  /* No hidden state by default: SSR / no-JS output must stay readable.
-     Reveal.tsx adds .revealArmed after mount to opt into the animation. */
   will-change: opacity, transform;
 }
 
@@ -15,19 +14,19 @@
   transition:
     opacity var(--dur-slow) var(--ease-out-editorial),
     transform var(--dur-slow) var(--ease-out-editorial);
-  transition-delay: calc(var(--reveal-index, 0) * 70ms);
+  transition-delay: calc(var(--reveal-index, 0) * 60ms);
 }
 
 .revealArmed.revealFrom_up {
-  transform: translateY(26px);
+  transform: translateY(24px);
 }
 
 .revealArmed.revealFrom_left {
-  transform: translateX(-26px);
+  transform: translateX(-24px);
 }
 
 .revealArmed.revealFrom_scale {
-  transform: scale(0.965);
+  transform: scale(0.97);
 }
 
 .revealShown {
@@ -40,38 +39,21 @@
 .eyebrowRow {
   display: flex;
   align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 1.4rem;
-}
-
-.eyebrow,
-.eyebrowIndex,
-.eyebrowSlash {
-  font-family: var(--font-family-mono);
-  font-size: var(--step-mono);
-  letter-spacing: var(--tracking-mono);
-  text-transform: uppercase;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
 }
 
 .eyebrowIndex {
-  color: var(--signal-red, #e83a12);
-  font-weight: 700;
-}
-
-.eyebrowSlash {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
   color: var(--ink-faint);
 }
 
 .eyebrow {
+  font-size: var(--step-meta);
+  font-weight: 500;
   color: var(--ink-muted);
-  font-weight: 600;
-}
-
-.eyebrowRule {
-  flex: 1;
-  max-width: 8rem;
-  height: 1px;
-  background: linear-gradient(90deg, var(--signal-red, #e83a12), transparent);
 }
 
 .sectionHeader {
@@ -85,50 +67,47 @@
 .sectionHeadline,
 .pageHeadline {
   margin: 0;
-  font-family: var(--font-family-serif);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  line-height: 1.04;
+  font-family: var(--font-family-display);
+  font-weight: 450;
+  letter-spacing: var(--tracking-display);
+  line-height: 1.02;
   text-wrap: balance;
 }
 
 .sectionHeadline {
-  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
-  text-transform: uppercase;
+  font-size: var(--step-h2);
 }
 
 .pageHeadline {
-  font-size: clamp(2.0rem, 3.6vw, 3.4rem);
+  font-size: var(--step-h1);
+  max-width: 16ch;
 }
 
 .sectionNote {
   margin: 0;
   max-width: 34ch;
-  color: var(--ink-body);
+  color: var(--ink-muted);
   font-size: var(--step-body);
 }
 
-.goldPeriod {
-  color: var(--signal-red, #e83a12);
+.inverted .eyebrow,
+.inverted .sectionNote {
+  color: var(--inv-text-muted);
 }
 
-.inverted .eyebrow {
-  color: var(--inv-text-muted);
+.inverted .eyebrowIndex {
+  color: rgba(247, 247, 245, 0.5);
 }
 
 .inverted .sectionHeadline {
   color: var(--inv-text);
 }
 
-.inverted .sectionNote {
-  color: var(--inv-text-muted);
-}
-
 /* --- Page hero ------------------------------------------------------------ */
 
 .pageHero {
   position: relative;
-  padding: clamp(8rem, 14vw, 12rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+  padding: calc(var(--header-h) + clamp(3rem, 8vw, 6rem)) var(--gutter) clamp(3rem, 6vw, 5rem);
   border-bottom: 1px solid var(--rule-hairline);
 }
 
@@ -144,15 +123,10 @@
   align-items: center;
 }
 
-.pageHeadline {
-  font-size: var(--step-h1);
-  max-width: 16ch;
-}
-
 .pageHeroBody {
   display: grid;
   gap: 1.1rem;
-  margin-top: 2rem;
+  margin-top: 1.75rem;
   max-width: var(--measure);
 }
 
@@ -160,7 +134,7 @@
   margin: 0;
   color: var(--ink-body);
   font-size: var(--step-body-lg);
-  line-height: 1.68;
+  line-height: 1.65;
 }
 
 .pageHeroAside {
@@ -189,7 +163,6 @@
 }
 
 .bgVideo {
-  /* Sits above the poster once playback starts. */
   z-index: 1;
 }
 
@@ -199,21 +172,16 @@
   z-index: 2;
   background: linear-gradient(
     180deg,
-    rgba(14, 13, 12, 0.55) 0%,
-    rgba(14, 13, 12, 0.72) 60%,
-    rgba(14, 13, 12, 0.92) 100%
+    rgba(23, 18, 47, 0.55) 0%,
+    rgba(23, 18, 47, 0.72) 60%,
+    rgba(23, 18, 47, 0.92) 100%
   );
 }
 
 .bgOverlayStrong {
-  background: linear-gradient(
-    180deg,
-    rgba(14, 13, 12, 0.82) 0%,
-    rgba(14, 13, 12, 0.9) 100%
-  );
+  background: linear-gradient(180deg, rgba(23, 18, 47, 0.82) 0%, rgba(23, 18, 47, 0.9) 100%);
 }
 
-/* Fine film grain — keeps large flat dark areas from banding. */
 .bgGrain {
   position: absolute;
   inset: 0;
@@ -231,12 +199,12 @@
 }
 
 .sectionDark {
-  background: var(--ink-obsidian-deep);
+  background: var(--indigo-deep);
   color: var(--inv-text);
 }
 
 .sectionSunken {
-  background: var(--paper-sunken);
+  background: var(--canvas-warm);
 }
 
 .container {
@@ -253,7 +221,7 @@
   margin-inline: auto;
 }
 
-/* --- Ledger rows (shared by topics / principles / timeline) ---------------- */
+/* --- Ledger rows ------------------------------------------------------------- */
 
 .ledger {
   display: grid;
@@ -274,23 +242,23 @@
 }
 
 .ledgerRow:hover {
-  background: var(--gold-wash);
+  background: var(--canvas-warm);
 }
 
 .ledgerIndex {
   font-family: var(--font-family-mono);
   font-size: var(--step-mono);
   letter-spacing: var(--tracking-mono);
-  color: var(--gold-deep);
+  color: var(--ink-faint);
   padding-top: 0.5rem;
 }
 
 .ledgerTitle {
   margin: 0;
-  font-family: var(--font-family-serif);
+  font-family: var(--font-family-display);
   font-size: var(--step-h3);
-  font-weight: 600;
-  letter-spacing: var(--tracking-tight);
+  font-weight: 450;
+  letter-spacing: var(--tracking-display);
   line-height: 1.1;
 }
 
@@ -300,23 +268,25 @@
   max-width: 52ch;
 }
 
-/* --- CTA buttons ---------------------------------------------------------- */
+/* --- Buttons ---------------------------------------------------------------- */
 
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 2.5rem;
+  gap: 0.75rem;
+  margin-top: 2.25rem;
 }
 
 .ctaPrimary,
 .ctaSecondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 1rem 1.75rem;
-  font-size: var(--step-meta);
-  letter-spacing: 0.04em;
+  gap: 0.7rem;
+  min-height: 3rem;
+  padding: 0.8rem 1.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 500;
   transition:
     background var(--dur-fast) var(--ease-out-editorial),
     color var(--dur-fast) var(--ease-out-editorial),
@@ -325,43 +295,46 @@
 }
 
 .ctaPrimary {
-  background: var(--ink-obsidian);
+  background: var(--ink);
   color: var(--inv-text);
+  border: 1px solid var(--ink);
 }
 
 .ctaPrimary:hover {
-  background: var(--gold-deep);
-  transform: translateY(-2px);
+  background: var(--indigo);
+  border-color: var(--indigo);
+  transform: translateY(-1px);
 }
 
 .ctaSecondary {
   border: 1px solid var(--rule-strong);
-  color: var(--ink-obsidian);
+  color: var(--ink);
 }
 
 .ctaSecondary:hover {
-  border-color: var(--gold);
-  color: var(--gold-deep);
-  transform: translateY(-2px);
+  border-color: var(--ink);
+  transform: translateY(-1px);
 }
 
 .sectionDark .ctaPrimary {
-  background: var(--gold);
-  color: var(--ink-obsidian);
+  background: #ffffff;
+  border-color: #ffffff;
+  color: var(--indigo-deep);
 }
 
 .sectionDark .ctaPrimary:hover {
-  background: var(--gold-light);
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
+  color: #ffffff;
 }
 
 .sectionDark .ctaSecondary {
-  border-color: var(--inv-hairline);
+  border-color: rgba(247, 247, 245, 0.35);
   color: var(--inv-text);
 }
 
 .sectionDark .ctaSecondary:hover {
-  border-color: var(--gold);
-  color: var(--gold-light);
+  border-color: #ffffff;
 }
 
 /* --- Responsive ----------------------------------------------------------- */
@@ -375,7 +348,7 @@
 
   .pageHeroAside {
     order: -1;
-    max-width: 20rem;
+    max-width: 22rem;
   }
 
   .ledgerRow {
@@ -402,7 +375,7 @@
   }
 }
 
-/* --- Editorial Separators ------------------------------------------------- */
+/* --- Editorial separators (kept for legacy callers) ------------------------ */
 
 .separatorWrapper {
   position: relative;
@@ -423,7 +396,7 @@
 }
 
 .separatorInverted {
-  color: var(--rule-inv, rgba(255, 255, 255, 0.14));
+  color: var(--rule-inv);
 }
 
 .separatorSvgCentered {
@@ -442,4 +415,3 @@
 .separatorFloretGroup {
   transform-origin: center center;
 }
-

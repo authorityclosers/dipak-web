@@ -5,4 +5,5 @@ export type {
   IdentityContent,
   IdentityMetric,
   MediaChannel,
+  IdentityPortrait,
 } from "./identity.types";

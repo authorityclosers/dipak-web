@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHero, Reveal } from "@/features/editorial";
 import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./now.module.css";
@@ -79,17 +78,18 @@ export default function NowPage() {
           "A simple, regularly updated page covering what I am building, learning and thinking about now.",
         ]}
         aside={
-          <div className={styles.heroMediaFrame}>
-            <Image
-              src="/media/10_screenshot_2026-08-08_at_10.40.56_pm.png"
-              alt="Collaboration and working session"
-              width={800}
-              height={1000}
+          <figure className={styles.heroMediaFrame}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/optimized/now-hero-1600-v1.webp"
+              srcSet="/optimized/now-hero-960-v1.webp 960w, /optimized/now-hero-1600-v1.webp 1600w"
               sizes="(max-width: 900px) 70vw, 24rem"
-              quality={90}
-              className={styles.heroMediaImage}
+              alt="Dipak Vishwakarma at his desk"
+              width={1600}
+              height={945}
+              className={`editorialGrade ${styles.heroMediaImage}`}
             />
-          </div>
+          </figure>
         }
       />
 

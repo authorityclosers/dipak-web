@@ -87,7 +87,7 @@
 .profileName {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: clamp(1.4rem, 2.2vw, 1.85rem);
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: -0.02em;
   color: var(--ink-obsidian, #0a0a0a);
   margin: 0;
@@ -259,7 +259,7 @@
 .linkTitle {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink-obsidian, #0a0a0a);
   margin: 0;
   transition: color var(--dur-fast, 180ms) var(--ease-out-editorial);
@@ -272,7 +272,7 @@
 .itemBadge {
   font-family: var(--font-family-mono, monospace);
   font-size: 0.66rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--signal-red, #e83a12);
   background: rgba(232, 58, 18, 0.08);
   padding: 0.15rem 0.45rem;
@@ -331,7 +331,7 @@
 .bottomHomeLink {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink-obsidian, #0a0a0a);
   text-decoration: none;
   letter-spacing: 0.06em;

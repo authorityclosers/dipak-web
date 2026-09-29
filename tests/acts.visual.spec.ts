@@ -14,7 +14,7 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     await expect(
       page.getByRole("heading", {
         level: 1,
-        name: "Sales Is The Transfer Of Certainty",
+        name: /Sales is the transfer of certainty/i,
       }),
     ).toBeVisible();
 
@@ -22,16 +22,13 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     const identity = page.locator('[data-story-act2="true"]');
     await expect(identity).toBeAttached();
 
-    // Act 3: Presence
-    const presence = page.locator('[data-story-act3="true"]');
-    await expect(presence).toBeAttached();
-    await expect(presence.locator("text=FEATURED")).toBeAttached();
-    await expect(presence.locator("text=Medium")).toBeAttached();
-    await expect(presence.locator("text=Dailyhunt")).toBeAttached();
-    await expect(presence.locator("text=LinkedIn")).toBeAttached();
+    // "Featured in" strip now lives inside Act 2
+    await expect(identity.locator("text=Medium")).toBeAttached();
+    await expect(identity.locator("text=Dailyhunt")).toBeAttached();
+    await expect(identity.locator("text=LinkedIn")).toBeAttached();
 
     // Act 4: Mission
-    const mission = page.locator('[data-story-act4="true"]');
+    const mission = page.locator('[data-story-act3="true"]');
     await expect(mission).toBeAttached();
     const missionQuote = mission.locator("h2");
     await expect(missionQuote).toContainText("transfer of certainty");
@@ -39,12 +36,12 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     // Act 5: Topics
     const topics = page.locator('[data-story-act5="true"]');
     await expect(topics).toBeAttached();
-    await expect(topics.getByText("WHAT I", { exact: true })).toBeAttached();
+    await expect(topics.getByRole("heading", { level: 2 })).toBeAttached();
     await expect(
-      topics.getByRole("link", { name: /Founder-Led Growth/ }),
+      topics.getByRole("link", { name: /Founder-led growth/ }),
     ).toContainText("Sales systems, founder-led growth");
     await expect(
-      topics.getByRole("link", { name: /Cognitive Dynamics/ }),
+      topics.getByRole("link", { name: /Cognitive dynamics/ }),
     ).toBeAttached();
 
     // Act 6: Thinking
@@ -52,8 +49,8 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     await expect(thinking).toBeAttached();
     await expect(
       thinking.getByRole("heading", { level: 2 }),
-    ).toContainText("LATEST THINKING");
-    await expect(thinking).toContainText("LONG-FORM EDITORIAL ESSAYS");
+    ).toContainText("Latest thinking");
+    await expect(thinking).toContainText("Essays");
 
     // Act 7: Bridge
     const bridge = page.locator('[data-story-act7="true"]');
@@ -79,7 +76,6 @@ test.describe("Homepage Master Story — Acts 1 to 7", () => {
     const sections = [
       "hero",
       "identity",
-      "presence",
       "mission",
       "topics",
       "thinking",

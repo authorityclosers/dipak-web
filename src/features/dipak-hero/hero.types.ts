@@ -10,16 +10,7 @@ export type HeroCta = {
   kind: "primary" | "secondary";
 };
 
-export type NavLink = {
-  label: string;
-  href: string;
-  active?: boolean;
-};
-
 export type HeroContent = {
-  brandFirstLine: string;
-  brandSecondLine: string;
-  navLinks: NavLink[];
   kicker: string;
   headlinePart1: string;
   headlinePart2: string;

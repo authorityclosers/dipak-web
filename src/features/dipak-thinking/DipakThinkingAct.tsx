@@ -1,4 +1,3 @@
-import React from "react";
 import Link from "next/link";
 import type { ThinkingContent, FeaturedArticle } from "./thinking.types";
 import { thinkingContent } from "./thinking.content";
@@ -6,13 +5,16 @@ import styles from "./dipak-thinking-act.module.css";
 
 interface DipakThinkingActProps {
   content?: ThinkingContent;
-  /**
-   * Real published articles, injected by the page from the file-backed
-   * article store. Supplying these is what makes this act link to live posts
-   * instead of the static fallback in thinking.content.ts.
-   */
+  /** Real published articles, injected by the page from the article store. */
   articles?: FeaturedArticle[];
   className?: string;
+}
+
+/** Read times under three minutes say more about length than value; hide them. */
+function meaningfulReadTime(readTime: string): string | null {
+  const minutes = Number.parseInt(readTime, 10);
+  if (Number.isNaN(minutes) || minutes < 3) return null;
+  return `${minutes} min read`;
 }
 
 export function DipakThinkingAct({
@@ -26,150 +28,104 @@ export function DipakThinkingAct({
   return (
     <section
       id="thinking"
-      className={`${styles.thinkingSection} ${className || ""}`}
+      className={`${styles.section} ${className || ""}`}
       aria-labelledby="thinking-heading"
       data-story-act6="true"
     >
-      <div className={styles.atmosphereLayer} aria-hidden="true" />
-      <div className={styles.ensoEcho} aria-hidden="true" />
-
-      <div className={styles.thinkingContainer}>
-        {/* Header Row */}
-        <header className={styles.headerRow}>
-          <div className={styles.titleBlock}>
-            <div className={styles.sectionIndex} data-story-act6-index="true">
-              <span>{content.sectionNumber}</span>
-              <span aria-hidden="true">/</span>
-              <span>{content.sectionTitle}</span>
-            </div>
-
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <div>
+            <p className={styles.eyebrow}>
+              <span className={styles.eyebrowIndex}>{content.sectionNumber}</span>
+              {content.sectionTitle}
+            </p>
             <h2 id="thinking-heading" className={styles.headline}>
-              <span>LATEST</span> <span>THINKING</span>
-              <span className={styles.goldPeriod}>.</span>
+              Latest <em>thinking</em>
             </h2>
           </div>
-
-          <div className={styles.headerMeta}>
-            <span className={styles.metaLabel}>{content.metaLabel}</span>
-            <p className={styles.supportingNote} data-story-act6-note="true">
-              {content.supportingNote}
-            </p>
-          </div>
+          <p className={styles.note}>{content.supportingNote}</p>
         </header>
 
-        {/*
-          Featured masterclass renders only when a real video URL exists.
-          AGENTS.md forbids shipping a dead destination to make a button
-          clickable, so an unset youtubeUrl removes the block entirely.
-        */}
-        {featuredVideo?.youtubeUrl ? (
-          <div className={styles.masterclassBlock} data-story-act6-video="true">
-            <div className={styles.blockLabelRow}>
-              <span className={styles.blockSectionTitle}>
-                {content.videoSectionHeading}
-              </span>
-            </div>
-
+        <div className={styles.layout}>
+          {featuredVideo?.youtubeUrl ? (
             <a
               href={featuredVideo.youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.masterclassCard}
+              className={styles.videoPlate}
               aria-label={`Watch masterclass: ${featuredVideo.title}`}
               data-ac-event="public.home.featured_video_clicked"
+              data-story-act6-video="true"
             >
-              {/* The media is lazy-loaded only when this below-fold card nears
-                  the viewport; keeping it out of CSS avoids an eager fetch. */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/optimized/06_dsc04024-768-v1.webp"
-                alt=""
-                className={styles.masterclassImage}
-                width={768}
-                height={512}
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-              />
-              <div className={styles.cardMainInfo}>
-                <div className={styles.cardKickerRow}>
-                  <span className={styles.cardCategory}>
-                    {featuredVideo.category} {" // MASTERCLASS"}
-                  </span>
-                  <span className={styles.cardDuration}>
-                    {featuredVideo.duration}
-                  </span>
-                </div>
-
-                <h3 className={styles.cardTitle}>{featuredVideo.title}</h3>
-
+              <span className={styles.videoFrame}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/optimized/video-plate-1600-v1.webp"
+                  srcSet="/optimized/video-plate-960-v1.webp 960w, /optimized/video-plate-1600-v1.webp 1600w"
+                  sizes="(max-width: 900px) 100vw, 44vw"
+                  alt=""
+                  width={1600}
+                  height={1067}
+                  loading="lazy"
+                  decoding="async"
+                  className={`editorialGrade ${styles.videoImg}`}
+                />
+                <span className={styles.playButton} aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5.5v13l11-6.5z" />
+                  </svg>
+                </span>
+              </span>
+              <span className={styles.videoMeta}>
+                <span className={styles.videoKicker}>
+                  {content.videoSectionHeading} · {featuredVideo.duration}
+                </span>
+                <span className={styles.videoTitle}>{featuredVideo.title}</span>
                 {featuredVideo.summary ? (
-                  <p className={styles.cardSubtitle}>{featuredVideo.summary}</p>
+                  <span className={styles.videoSummary}>{featuredVideo.summary}</span>
                 ) : null}
-              </div>
-
-              <div className={styles.cardActionCol}>
-                <div className={styles.playTokenContainer}>
-                  <span className={styles.playPrompt}>WATCH BREAKDOWN</span>
-                  <div className={styles.playIconSlot} aria-hidden="true">
-                    ▶
-                  </div>
-                </div>
-              </div>
+              </span>
             </a>
-          </div>
-        ) : null}
+          ) : null}
 
-        {/* Long-form essays — real published articles when available. */}
-        <div className={styles.essaysBlock} data-story-act6-articles="true">
-          <div className={styles.blockLabelRow}>
-            <span className={styles.blockSectionTitle}>
-              {content.articleSectionHeading}
-            </span>
-          </div>
-
-          <ul className={styles.essaysLedgerList} aria-label="Editorial essays">
-            {essays.map((essay) => (
-              <li key={essay.id}>
-                <Link
-                  href={essay.url ?? "/articles"}
-                  className={styles.essayLedgerRow}
-                  data-story-act6-essay-row="true"
-                  data-ac-event="public.home.article_clicked"
-                >
-                  <span className={styles.essayIndex}>[{essay.number}]</span>
-
-                  <div className={styles.essayTitleCol}>
-                    <span className={styles.essayCategory}>
-                      {essay.category}
-                      {essay.series ? ` // ${essay.series}` : " // ESSAY"}
-                    </span>
-                    <h3 className={styles.essayTitle}>{essay.title}</h3>
-                  </div>
-
-                  <div className={styles.essaySummaryCol}>
-                    {essay.abstract ? (
-                      <p className={styles.essayAbstract}>{essay.abstract}</p>
-                    ) : null}
-                    <div className={styles.essayMetaRow}>
-                      <span className={styles.essayReadTime}>
-                        {essay.readTime}
+          <div className={styles.essays} data-story-act6-articles="true">
+            <span className={styles.essaysLabel}>{content.articleSectionHeading}</span>
+            <ul className={styles.essayList} aria-label="Essays">
+              {essays.map((essay) => {
+                const readTime = meaningfulReadTime(essay.readTime);
+                return (
+                  <li key={essay.id}>
+                    <Link
+                      href={essay.url ?? "/articles"}
+                      className={styles.essayRow}
+                      data-story-act6-essay-row="true"
+                      data-ac-event="public.home.article_clicked"
+                    >
+                      <span className={styles.essayIndex}>{essay.number}</span>
+                      <span className={styles.essayBody}>
+                        <span className={styles.essayCategory}>
+                          {essay.category}
+                          {readTime ? ` · ${readTime}` : ""}
+                        </span>
+                        <h3 className={styles.essayTitle}>{essay.title}</h3>
+                        {essay.abstract ? (
+                          <span className={styles.essayAbstract}>{essay.abstract}</span>
+                        ) : null}
                       </span>
-                    </div>
-                  </div>
+                      <span className={styles.essayArrow} aria-hidden="true">
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
-                  <span className={styles.essayArrow} aria-hidden="true">
-                    →
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          <Link className={styles.allArticlesCta} href="/articles">
-            {content.articlesCtaText}
-            <span aria-hidden="true">→</span>
-          </Link>
+            <Link className={styles.allLink} href="/articles">
+              {content.articlesCtaText}
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </div>
       </div>
     </section>

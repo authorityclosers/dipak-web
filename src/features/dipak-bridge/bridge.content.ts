@@ -1,13 +1,13 @@
 import type { BridgeContent } from "./bridge.types";
 
 export const bridgeContent: BridgeContent = {
-  sectionNumber: "07",
-  sectionTitle: "NEXT STEP",
-  eyebrow: "THE SALES ENABLEMENT ECOSYSTEM",
-  headlineWord1: "AUTHORITY",
-  headlineWord2: "CLOSERS",
+  sectionNumber: "06",
+  sectionTitle: "Next step",
+  eyebrow: "The sales enablement ecosystem",
+  headlineWord1: "Authority",
+  headlineWord2: "Closers",
   bodyParagraph:
-    "Where personal methodology transforms into scalable sales systems, high-converting buyer psychology frameworks, and elite sales team enablement.",
+    "Where personal methodology becomes scalable sales systems, buyer psychology frameworks, and elite sales team enablement.",
   ctas: [
     {
       label: "Explore Authority Closers",
@@ -16,7 +16,7 @@ export const bridgeContent: BridgeContent = {
       event: "cta_explore_authority_closers",
     },
     {
-      label: "Read My Story",
+      label: "Read my story",
       href: "/about",
       primary: false,
       event: "cta_read_story_bridge",

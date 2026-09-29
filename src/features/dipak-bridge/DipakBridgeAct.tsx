@@ -1,5 +1,3 @@
-import React from "react";
-import { EditorialSeparator } from "@/features/editorial";
 import { bridgeContent } from "./bridge.content";
 import type { BridgeContent } from "./bridge.types";
 import styles from "./dipak-bridge-act.module.css";
@@ -19,97 +17,72 @@ export function DipakBridgeAct({
   return (
     <section
       id="authority-closers"
-      className={`${styles.bridgeSection} ${className || ""}`}
+      className={`${styles.section} ${className || ""}`}
       aria-labelledby="bridge-heading"
       data-story-act7="true"
     >
-      <div className={styles.atmosphereLayer} aria-hidden="true" />
+      <div className={styles.container}>
+        <div className={styles.copy}>
+          <p className={styles.eyebrow}>
+            <span className={styles.eyebrowIndex}>{content.sectionNumber}</span>
+            {content.sectionTitle}
+          </p>
 
-      {/* Restrained Wide Documentary Team Film Strip Layer */}
-      <div className={styles.teamFilmStrip} aria-hidden="true">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/optimized/08_img_1624-768-v1.webp"
-          alt=""
-          className={styles.teamPhoto}
-          width={768}
-          height={576}
-          loading="lazy"
-          decoding="async"
-          fetchPriority="low"
-        />
-        <div className={styles.teamGradientOverlay} />
-      </div>
-
-      <div className={styles.bridgeContainer}>
-        {/* Transparent Authority Closers Brand Mark */}
-        <div className={styles.brandMarkContainer}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/optimized/15_authority_closers_png__1_-768-v1.webp"
-            alt="Authority Closers"
-            className={styles.brandMarkLogo}
+            alt=""
+            className={styles.mark}
             width={768}
             height={582}
             loading="lazy"
             decoding="async"
-            fetchPriority="low"
           />
-        </div>
 
-        {/* Header Block */}
-        <div className={styles.headerBlock}>
-          <div className={styles.sectionIndex} data-story-act7-index="true">
-            <span>{content.sectionNumber}</span>
-            <span aria-hidden="true">/</span>
-            <span>{content.sectionTitle}</span>
+          <h2 id="bridge-heading" className={styles.headline}>
+            {content.headlineWord1} <em>{content.headlineWord2}</em>
+          </h2>
+
+          <p className={styles.kicker}>{content.eyebrow}</p>
+          <p className={styles.body}>{content.bodyParagraph}</p>
+
+          <div className={styles.ctaRow} data-story-act7-ctas="true">
+            {primaryCta ? (
+              <a
+                href={primaryCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.primary}
+                data-ac-event={primaryCta.event}
+              >
+                {primaryCta.label}
+                <span aria-hidden="true">↗</span>
+              </a>
+            ) : null}
+            {secondaryCta ? (
+              <a href={secondaryCta.href} className={styles.secondary} data-ac-event={secondaryCta.event}>
+                {secondaryCta.label}
+                <span aria-hidden="true">→</span>
+              </a>
+            ) : null}
           </div>
-
-          <p className={styles.eyebrow} data-story-act7-eyebrow="true">
-            {content.eyebrow}
-          </p>
         </div>
 
-        {/* Monumental Headline */}
-        <h2 id="bridge-heading" className={styles.headline}>
-          <span>{content.headlineWord1}</span>{" "}
-          <span>{content.headlineWord2}</span>
-          <span className={styles.goldPeriod}>.</span>
-        </h2>
-
-        {/* Architectural Florentine Separator Axis */}
-        <div className={styles.separatorContainer} aria-hidden="true">
-          <EditorialSeparator variant="centered" inverted={true} />
-        </div>
-
-        {/* Body Text */}
-        <p className={styles.bodyText} data-story-act7-body="true">
-          {content.bodyParagraph}
-        </p>
-
-        {/* CTA Buttons */}
-        <div className={styles.ctaRow} data-story-act7-ctas="true">
-          {primaryCta && (
-            <a
-              href={primaryCta.href}
-              className={styles.primaryButton}
-              data-ac-event={primaryCta.event}
-            >
-              <span>{primaryCta.label}</span>
-              <span aria-hidden="true">→</span>
-            </a>
-          )}
-
-          {secondaryCta && (
-            <a
-              href={secondaryCta.href}
-              className={styles.secondaryButton}
-              data-ac-event={secondaryCta.event}
-            >
-              <span>{secondaryCta.label}</span>
-            </a>
-          )}
-        </div>
+        <figure className={styles.media}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/optimized/bridge-team-1600-v1.webp"
+            srcSet="/optimized/bridge-team-960-v1.webp 960w, /optimized/bridge-team-1600-v1.webp 1600w"
+            sizes="(max-width: 900px) 100vw, 46vw"
+            alt="The Authority Closers team"
+            width={1600}
+            height={1200}
+            loading="lazy"
+            decoding="async"
+            className={`editorialGrade ${styles.photo}`}
+          />
+          <figcaption className={styles.caption}>Authority Closers cohort · Pune</figcaption>
+        </figure>
       </div>
     </section>
   );

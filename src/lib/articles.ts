@@ -57,19 +57,19 @@ export function getDisplayTitle(title: string): string {
 }
 
 const DEFAULT_COVER_IMAGES: Record<string, string> = {
-  "the-silent-sales-pipeline-killer": "/media/04_dsc07013.webp",
-  "why-the-best-salespeople-talk-less": "/media/08_img_1624.webp",
-  "3-questions-founders-avoid-asking": "/media/11__dsc7249.webp",
-  "the-architecture-of-high-ticket-sales": "/media/05_dsc06990.webp",
-  "buyer-psychology-undecided-mind": "/media/01_dsc06974.webp",
-  "personal-branding-in-the-age-of-ai": "/media/03_dsc06998.webp",
-  "public-speaking-as-business-leverage": "/media/06_dsc04024.webp",
-  "ai-and-the-future-of-sales": "/media/12_dsc04050.webp",
-  "the-buyer-doesnt-need-to-like-you": "/media/04_dsc07013.webp",
-  "the-true-meaning-of-communication": "/media/08_img_1624.webp",
-  "trust-is-the-absence-of-doubt": "/media/05_dsc06990.webp",
-  "why-buyers-dont-say-no": "/media/01_dsc06974.webp",
-  "how-to-create-certainty": "/media/11__dsc7249.webp",
+  "the-silent-sales-pipeline-killer": "/optimized/cover-the-silent-sales-pipeline-killer-1280-v1.webp",
+  "why-the-best-salespeople-talk-less": "/optimized/cover-why-the-best-salespeople-talk-less-1280-v1.webp",
+  "3-questions-founders-avoid-asking": "/optimized/cover-3-questions-founders-avoid-asking-1280-v1.webp",
+  "the-architecture-of-high-ticket-sales": "/optimized/cover-the-architecture-of-high-ticket-sales-1280-v1.webp",
+  "buyer-psychology-undecided-mind": "/optimized/cover-buyer-psychology-undecided-mind-1011-v1.webp",
+  "personal-branding-in-the-age-of-ai": "/optimized/cover-personal-branding-in-the-age-of-ai-1280-v1.webp",
+  "public-speaking-as-business-leverage": "/optimized/cover-public-speaking-as-business-leverage-1280-v1.webp",
+  "ai-and-the-future-of-sales": "/optimized/cover-ai-and-the-future-of-sales-1280-v1.webp",
+  "the-buyer-doesnt-need-to-like-you": "/optimized/cover-the-buyer-doesnt-need-to-like-you-1280-v1.webp",
+  "the-true-meaning-of-communication": "/optimized/cover-the-true-meaning-of-communication-1280-v1.webp",
+  "trust-is-the-absence-of-doubt": "/optimized/cover-trust-is-the-absence-of-doubt-1280-v1.webp",
+  "why-buyers-dont-say-no": "/optimized/cover-why-buyers-dont-say-no-1280-v1.webp",
+  "how-to-create-certainty": "/optimized/cover-how-to-create-certainty-1280-v1.webp",
 };
 
 function estimateReadTime(body: string): string {
@@ -108,7 +108,7 @@ function readArticleFile(dir: string, fileName: string): Article | null {
   const category = String(data.category || data.topic || "Sales");
   const title = String(data.title);
   const displayTitle = getDisplayTitle(title);
-  const coverImage = String(data.coverImage || DEFAULT_COVER_IMAGES[slug] || "/media/01_dsc06974.webp");
+  const coverImage = String(data.coverImage || DEFAULT_COVER_IMAGES[slug] || "/optimized/person-1200-v1.webp");
 
   return {
     slug,

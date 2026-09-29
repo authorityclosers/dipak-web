@@ -60,19 +60,17 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
 
   return (
     <section className={styles.archiveSection} aria-label="Articles & Frameworks Archive">
-      <div className={styles.atmosphereLayer} aria-hidden="true" />
-      <div className={styles.ensoEcho} aria-hidden="true" />
-
+      
       <div className={styles.archiveContainer}>
         {/* --- Header & Search -------------------------------------------- */}
         <header className={styles.heroHeader}>
           <div className={styles.heroLeft}>
             <p className={styles.sectionKicker}>
-              [ 01 / ARCHIVE ] · STRATEGIC ESSAYS & FRAMEWORKS
+              <span className={styles.kickerIndex}>01</span>Archive · Essays & frameworks
             </p>
             <h1 className={styles.headline}>
-              PRINCIPLES &<br />
-              <span className={styles.headlineAccent}>FRAMEWORKS.</span>
+              Principles &amp;<br />
+              <span className={styles.headlineAccent}>frameworks</span>
             </h1>
           </div>
 
@@ -131,7 +129,7 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
           </div>
 
           <span className={styles.resultsMeta}>
-            Showing {filteredArticles.length} of {articles.length} Frameworks
+            Showing {filteredArticles.length} of {articles.length}
           </span>
         </nav>
 
@@ -143,7 +141,7 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
                 <div className={styles.flagshipTop}>
                   <div className={styles.flagshipBadgeRow}>
                     <span className={styles.flagshipTag}>
-                      ★ FLAGSHIP ESSAY · {flagshipArticle.category}
+                      Flagship essay · {flagshipArticle.category}
                     </span>
                     <span className={styles.flagshipMeta}>
                       {formatArticleDate(flagshipArticle.date)} · {flagshipArticle.readTime}
@@ -185,7 +183,7 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
                     href={`/articles/${flagshipArticle.slug}`}
                     className={styles.flagshipCta}
                   >
-                    Read Analysis <span aria-hidden="true">→</span>
+                    Read the essay <span aria-hidden="true">→</span>
                   </Link>
                 </div>
               </div>
@@ -213,10 +211,10 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
             {isDefaultView && (
               <div className={styles.sectionSubheadRow}>
                 <h3 className={styles.sectionSubheadTitle}>
-                  CURATED STRATEGIC ESSAYS
+                  Curated essays
                 </h3>
                 <span className={styles.resultsMeta}>
-                  02 — 07 OF {articles.length}
+                  02 — 07 of {articles.length}
                 </span>
               </div>
             )}
@@ -235,7 +233,7 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
                         className={styles.gridCardImage}
                       />
                       <span className={styles.gridCardIndex}>
-                        #{String(articleIndex).padStart(2, "0")}
+                        {String(articleIndex).padStart(2, "0")}
                       </span>
                       <span className={styles.gridCardCategory}>
                         {article.category}
@@ -279,10 +277,10 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
           <section className={styles.ledgerSection} aria-label="Strategic Field Notes">
             <div className={styles.sectionSubheadRow}>
               <h3 className={styles.sectionSubheadTitle}>
-                TACTICAL FIELD NOTES & ESSAYS
+                Field notes & essays
               </h3>
               <span className={styles.resultsMeta}>
-                08 — {articles.length} OF {articles.length}
+                08 — {articles.length} of {articles.length}
               </span>
             </div>
 
@@ -341,7 +339,7 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
         <aside className={styles.advisoryBanner} aria-label="Executive Advisory">
           <div className={styles.advisoryLeft}>
             <span className={styles.advisoryKicker}>
-              FOUNDER-LED SALES ADVISORY
+              Founder-led sales advisory
             </span>
             <h3 className={styles.advisoryHeading}>
               Looking to eliminate pipeline doubt and scale deal velocity?
@@ -355,7 +353,7 @@ export function ArticlesHub({ articles }: ArticlesHubProps) {
 
           <div className={styles.advisoryRight}>
             <Link href="/connect" className={styles.advisoryBtn}>
-              Request Advisory Call <span aria-hidden="true">→</span>
+              Request an advisory call <span aria-hidden="true">→</span>
             </Link>
             <span className={styles.advisorySecondary}>
               Or explore <a href="https://authorityclosers.com" target="_blank" rel="noopener noreferrer">Authority Closers</a>

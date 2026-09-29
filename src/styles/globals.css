@@ -1,106 +1,125 @@
 /* ==========================================================================
-   Dipak Vishwakarma — Global Design Tokens
-   Single source of truth for colour, type, rhythm, and motion.
-   Feature CSS Modules must consume these tokens rather than re-declaring hex.
+   Dipak Vishwakarma — Global Design Tokens ("Quiet authority")
+   Single source of truth for colour roles, type, rhythm and motion.
+   Feature CSS Modules consume these tokens; they never re-declare hex.
+
+   Rules of the system:
+   1. Red is an ACTION colour. Buttons, links, active states. Never decoration.
+   2. One display voice (Fraunces), one text voice (Poppins), mono for indices.
+   3. Dark surfaces are indigo, not flat black.
    ========================================================================== */
 
 :root {
-  /* --- Brand Kit Colors (PB 1 & PB 2) ----------------------------------- */
-  --signal-red: #e83a12;
+  /* --- Brand kit primitives ------------------------------------------- */
+  --signal-red: #c23213;        /* AA on canvas (5.2:1). */
+  --signal-red-bright: #e83a12; /* for dark surfaces only */
   --carbon-black: #0a0a0a;
   --warm-white: #f7f7f5;
   --light-grey: #e9e9e7;
   --soft-sand: #e7d4c2;
   --deep-indigo: #241a4b;
 
-  /* --- Surface / Canvas ------------------------------------------------ */
-  --canvas: var(--warm-white, #f7f7f5);
-  --canvas-soft: #ffffff;
-  --canvas-sunken: var(--light-grey, #e9e9e7);
-  --canvas-dark: var(--carbon-black, #0a0a0a);
+  /* --- Surfaces --------------------------------------------------------- */
+  --canvas: #f7f7f5;
+  --canvas-soft: #fffefc;
+  --canvas-warm: #f1ebe3;
+  --canvas-sunken: #ece8e1;
+  --indigo: #241a4b;
+  --indigo-deep: #17122f;
+  --canvas-dark: var(--indigo-deep);
   --paper: var(--canvas);
   --paper-raised: var(--canvas-soft);
   --paper-sunken: var(--canvas-sunken);
 
-  /* --- Inks / Typography ----------------------------------------------- */
-  --ink: var(--carbon-black, #0a0a0a);
+  /* --- Inks ------------------------------------------------------------- */
+  --ink: #0a0a0a;
   --ink-obsidian: var(--ink);
-  --ink-obsidian-deep: #060606;
-  --ink-plate: #141414;
-  --ink-body: #3c3a36;
-  --ink-muted: #626058;
-  --ink-faint: #8a877d;
+  --ink-obsidian-deep: var(--indigo-deep);
+  --ink-plate: #1c1830;
+  --ink-body: #33312d;   /* ≥ 10:1 */
+  --ink-muted: #5c5a53;  /* ≥ 6:1  */
+  --ink-faint: #6f6c64;  /* ≥ 5:1  */
 
-  /* Inverted Inks (dark backgrounds) */
-  --ink-inv: var(--warm-white, #f7f7f5);
-  --ink-inv-muted: rgba(247, 247, 245, 0.68);
+  /* Inverted inks (on indigo) */
+  --ink-inv: #f7f7f5;
+  --ink-inv-muted: rgba(247, 247, 245, 0.72);
   --inv-text: var(--ink-inv);
   --inv-text-muted: var(--ink-inv-muted);
   --inv-hairline: rgba(247, 247, 245, 0.14);
 
-  /* --- Accents (Signal Red & Soft Sand) --------------------------------- */
-  --accent: var(--signal-red, #e83a12);
-  --accent-accessible: #c23213;
-  --accent-hover: #ff4820;
+  /* --- Action accent ----------------------------------------------------- */
+  --accent: var(--signal-red);
+  --accent-bright: var(--signal-red-bright);
+  --accent-accessible: var(--signal-red);
+  --accent-hover: #a62a10;
   --accent-wash: rgba(232, 58, 18, 0.08);
-  --accent-hairline: rgba(232, 58, 18, 0.22);
+  --accent-hairline: rgba(194, 50, 19, 0.25);
+
+  /* Legacy aliases (older modules). All resolve to the action accent. */
   --gold: var(--accent);
   --gold-deep: var(--accent);
-  --gold-light: var(--accent-hover);
+  --gold-light: var(--accent-bright);
   --gold-wash: var(--accent-wash);
   --gold-hairline: var(--accent-hairline);
   --red-signal: var(--accent);
-  --red-wash: rgba(232, 58, 18, 0.10);
+  --red-wash: var(--accent-wash);
 
-  --sand: var(--soft-sand, #e7d4c2);
-  --sand-wash: rgba(231, 212, 194, 0.25);
-  --sand-glow: rgba(231, 212, 194, 0.12);
+  --sand: var(--soft-sand);
+  --sand-wash: rgba(231, 212, 194, 0.28);
+  --sand-glow: rgba(231, 212, 194, 0.14);
 
-  /* --- Rules & Borders -------------------------------------------------- */
+  /* --- Rules ------------------------------------------------------------ */
   --rule-subtle: rgba(10, 10, 10, 0.10);
-  --rule-strong: rgba(10, 10, 10, 0.24);
+  --rule-strong: rgba(10, 10, 10, 0.26);
   --rule-hairline: var(--rule-subtle);
   --rule-inv: rgba(247, 247, 245, 0.14);
 
-  /* --- Geometry & Radii ------------------------------------------------- */
+  /* --- Geometry --------------------------------------------------------- */
   --radius-sharp: 0px;
   --radius-sm: 2px;
   --radius-md: 4px;
   --radius-pill: 9999px;
   --radius-circle: 50%;
 
-  /* --- Brand Kit Typography (Montserrat + Poppins + Mono) --------------- */
-  --font-family-display: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
-  --font-family-serif: var(--font-montserrat), "Montserrat", -apple-system, sans-serif;
-  --font-family-sans: var(--font-poppins), "Poppins", -apple-system, sans-serif;
-  --font-family-body: var(--font-poppins), "Poppins", -apple-system, sans-serif;
+  /* --- Typography ------------------------------------------------------- */
+  --font-family-display: var(--font-fraunces), "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-family-serif: var(--font-family-display);
+  --font-family-sans: var(--font-poppins), "Poppins", -apple-system, "Segoe UI", sans-serif;
+  --font-family-body: var(--font-family-sans);
   --font-family-mono: "SF Mono", "Cascadia Code", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Fluid display scale — tuned for Montserrat display & Poppins body */
-  --step-mono: 0.6875rem;
-  --step-meta: clamp(0.6875rem, 0.66rem + 0.12vw, 0.78rem);
-  --step-body: clamp(0.92rem, 0.88rem + 0.16vw, 1.0rem);
-  --step-body-lg: clamp(1.0rem, 0.95rem + 0.22vw, 1.15rem);
-  --step-h3: clamp(1.2rem, 1.05rem + 0.75vw, 1.55rem);
-  --step-h2: clamp(1.5rem, 1.2rem + 1.5vw, 2.4rem);
-  --step-h1: clamp(1.85rem, 1.4rem + 2.2vw, 3.2rem);
-  --step-monument: clamp(2.2rem, 1.6rem + 3.2vw, 4.2rem);
+  /* Fluid scale (1.25 ratio at desktop) */
+  --step-mono: 0.72rem;
+  --step-caption: 0.75rem;
+  --step-meta: 0.8rem;
+  --step-body: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  --step-body-lg: clamp(1.1rem, 1.02rem + 0.32vw, 1.25rem);
+  --step-h3: clamp(1.35rem, 1.2rem + 0.7vw, 1.8rem);
+  --step-h2: clamp(2rem, 1.4rem + 2.2vw, 3.4rem);
+  --step-h1: clamp(2.6rem, 1.8rem + 3.4vw, 5rem);
+  --step-monument: clamp(3rem, 2rem + 5vw, 7rem);
 
-  --tracking-mono: 0.16em;
-  --tracking-tight: -0.022em;
+  --tracking-mono: 0.14em;
+  --tracking-caps: 0.12em;
+  --tracking-tight: -0.02em;
+  --tracking-display: -0.025em;
+
+  --leading-display: 1.02;
+  --leading-body: 1.6;
 
   /* --- Rhythm ----------------------------------------------------------- */
   --gutter: clamp(1.25rem, 0.6rem + 3vw, 4.5rem);
-  --section-y: clamp(4.5rem, 3rem + 7vw, 11rem);
+  --section-y: clamp(4.5rem, 3rem + 7vw, 10rem);
   --measure: 62ch;
-  --max-page: 110rem;
+  --max-page: 96rem;
+  --header-h: 5rem;
 
   /* --- Motion ----------------------------------------------------------- */
   --ease-out-editorial: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out-editorial: cubic-bezier(0.65, 0, 0.35, 1);
-  --dur-fast: 220ms;
-  --dur-base: 420ms;
-  --dur-slow: 760ms;
+  --dur-fast: 200ms;
+  --dur-base: 400ms;
+  --dur-slow: 700ms;
 }
 
 * {
@@ -119,17 +138,16 @@ body {
 
 html {
   scroll-behavior: smooth;
-  /* Header is fixed on inner pages; keep in-page anchors clear of it. */
-  scroll-padding-top: 6rem;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
   overflow-x: clip;
 }
 
 body {
   background: var(--paper);
-  color: var(--ink-obsidian);
+  color: var(--ink);
   font-family: var(--font-family-sans);
   font-size: var(--step-body);
-  line-height: 1.6;
+  line-height: var(--leading-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -152,24 +170,34 @@ video {
   max-width: 100%;
 }
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-family-display);
+  font-weight: 500;
+  letter-spacing: var(--tracking-display);
+  line-height: var(--leading-display);
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+
 mark {
-  background: rgba(231, 212, 194, 0.55);
-  color: var(--ink-obsidian);
-  padding: 0.08em 0.35em;
+  background: var(--sand-wash);
+  color: var(--ink);
+  padding: 0.04em 0.2em;
   border-radius: 2px;
-  border-bottom: 2px solid var(--signal-red, #e83a12);
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
 }
 
 ::selection {
-  background: var(--signal-red, #e83a12);
+  background: var(--indigo);
   color: #ffffff;
 }
 
-/* Visible focus for keyboard users only — never a mouse-click ring. */
 :focus-visible {
-  outline: 2px solid var(--signal-red, #e83a12);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -185,6 +213,11 @@ mark {
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* One photographic grade for every editorial figure on the site. */
+.editorialGrade {
+  filter: grayscale(0.92) sepia(0.14) contrast(1.06) brightness(0.98);
 }
 
 @media (prefers-reduced-motion: reduce) {

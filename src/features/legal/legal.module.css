@@ -72,7 +72,7 @@
 .tocSummaryTitle {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 0.88rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--ink-obsidian, #0a0a0a);
 }
@@ -146,7 +146,7 @@
 .mobileTocIndex {
   font-family: var(--font-family-mono, monospace);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--signal-red, #e83a12);
 }
 
@@ -244,7 +244,7 @@
 .tocTitle {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ink-obsidian, #0a0a0a);
@@ -352,7 +352,7 @@
 .sectionTitle {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: clamp(1.2rem, 1.5vw, 1.45rem);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.35;
   color: var(--ink-obsidian, #0a0a0a);
   letter-spacing: -0.01em;
@@ -385,7 +385,7 @@
 .highlightTitle {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 0.92rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--ink-obsidian, #0a0a0a);
   margin: 0 0 0.4rem 0;
@@ -453,7 +453,7 @@
 .contactCardTitle {
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink-obsidian, #0a0a0a);
   margin: 0;
 }
@@ -483,7 +483,7 @@
   color: #ffffff;
   font-family: var(--font-family-sans, "Montserrat", sans-serif);
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.04em;
   text-decoration: none;
   border-radius: 2px;

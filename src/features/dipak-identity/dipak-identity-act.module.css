@@ -1,561 +1,260 @@
-.identitySection {
-  --dv-ink: var(--ink, #0a0a0a);
-  --dv-ink-pure: #000000;
-  --dv-body: var(--ink-body, #3c3a36);
-  --dv-canvas: var(--canvas, #f7f7f5);
-  --dv-canvas-soft: var(--canvas-soft, #ffffff);
-  --dv-accent: var(--accent, #e83a12);
-  --dv-sand: var(--sand, #e7d4c2);
-  --dv-gold-art: var(--accent, #e83a12);
-  --dv-gold-vibrant: var(--accent, #e83a12);
-  --dv-gold-text: var(--ink, #0a0a0a);
-  --dv-signal-red: var(--accent, #e83a12);
-  --dv-gold-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
-  --dv-line: var(--rule-subtle, rgba(10, 10, 10, 0.10));
-  --dv-serif: var(--font-family-serif);
-  --dv-sans: var(--font-family-sans);
-  --dv-mono: var(--font-family-mono);
+/* ==========================================================================
+   Act 2 — The person
+   ========================================================================== */
 
+.section {
   position: relative;
   width: 100%;
   height: 100%;
   min-height: 100dvh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background:
-    radial-gradient(ellipse 65% 55% at 75% 35%, rgba(247, 247, 245, 0.95) 0%, rgba(231, 212, 194, 0.2) 60%, #f7f7f5 100%);
-  color: var(--dv-ink);
-  padding: clamp(2.5rem, 5vh, 4.5rem) clamp(2rem, 6vw, 7.5rem);
+  background: var(--canvas-warm);
+  color: var(--ink);
+  padding: calc(var(--header-h) + 1rem) var(--gutter) clamp(1.5rem, 4vh, 3rem);
   overflow: clip;
-  box-sizing: border-box;
 }
 
-/* ==========================================================================
-   Architectural Sunlight Shafts & Diagonal Warm Shadow Gobo Layer
-   ========================================================================== */
-
-.shadowGoboContainer {
-  position: absolute;
-  inset: -10%;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
-
-/* Ray 1: Elegant Window Shadow Slat across Top-Left (GPU-native gradient) */
-.shadowStripLeft {
-  position: absolute;
-  top: -45%;
-  left: -15%;
-  width: 55%;
-  height: 210%;
-  transform: rotate(-38deg);
-  background: linear-gradient(
-    90deg,
-    rgba(231, 212, 194, 0.25) 0%,
-    rgba(231, 212, 194, 0.08) 45%,
-    transparent 100%
-  );
-  opacity: 0.6;
-}
-
-/* Bright Volumetric Sunlight Beam (GPU-native soft gradient) */
-.sunlightBeam {
-  position: absolute;
-  top: -35%;
-  left: 18%;
-  width: 46%;
-  height: 190%;
-  transform: rotate(-38deg);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.25) 25%,
-    rgba(255, 255, 255, 0.65) 50%,
-    rgba(255, 255, 255, 0.25) 75%,
-    transparent 100%
-  );
-  opacity: 0.8;
-}
-
-/* Ray 2: Secondary Soft Amber Shadow */
-.shadowStripMid {
-  position: absolute;
-  top: -25%;
-  left: 42%;
-  width: 42%;
-  height: 175%;
-  transform: rotate(-38deg);
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(231, 212, 194, 0.2) 35%,
-    rgba(231, 212, 194, 0.06) 70%,
-    transparent 95%
-  );
-  opacity: 0.6;
-}
-
-/* Ambient Warm Glow Wash */
-.ambientLightWash {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 35% 20%, rgba(255, 255, 255, 0.5) 0%, transparent 60%),
-    radial-gradient(circle at 85% 75%, rgba(231, 212, 194, 0.2) 0%, transparent 55%);
-  opacity: 0.9;
-}
-
-/* Subtle Architectural Geometric Seal in background */
-.watermarkEmblem {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: clamp(420px, 46vw, 720px);
-  height: clamp(420px, 46vw, 720px);
-  transform: translate(-50%, -50%);
-  color: var(--dv-signal-red, #e83a12);
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-  animation: slowEmblemRotate 120s linear infinite;
-}
-
-@keyframes slowEmblemRotate {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-/* ==========================================================================
-   Container Structure
-   ========================================================================== */
-
-.identityContainer {
-  position: relative;
-  z-index: 1;
+.grid {
   width: 100%;
-  max-width: 110rem;
+  max-width: var(--max-page);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: clamp(520px, 78vh, 760px);
-}
-
-/* ==========================================================================
-   Top Header Row: 02 / THE PERSON (Aligned High) + Hairline/Dot + Headline
-   ========================================================================== */
-
-.topRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: clamp(1.5rem, 3.5vw, 4.5rem);
-}
-
-.sectionIndexWrapper {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 5vw, 6rem);
   align-items: center;
-  gap: 1.25rem;
-  padding-top: clamp(0.6rem, 1.2vh, 1.2rem);
-  flex: 1;
-  max-width: 34rem;
 }
 
-.sectionIndex {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.76rem, 0.86vw, 0.92rem);
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  color: var(--dv-ink);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
+/* --- Portrait --------------------------------------------------------------- */
+
+.portraitCol {
   margin: 0;
-  white-space: nowrap;
+  display: grid;
+  gap: 0.75rem;
 }
 
-.livePulseDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--dv-signal-red, #e83a12);
-  box-shadow: 0 0 0 0 rgba(232, 58, 18, 0.7);
-  animation: pulseRedDot 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  display: inline-block;
-}
-
-@keyframes pulseRedDot {
-  0% {
-    box-shadow: 0 0 0 0 rgba(232, 58, 18, 0.7);
-    transform: scale(0.95);
-  }
-  70% {
-    box-shadow: 0 0 0 8px rgba(232, 58, 18, 0);
-    transform: scale(1.15);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(232, 58, 18, 0);
-    transform: scale(0.95);
-  }
-}
-
-.headerHairlineTrack {
-  display: flex;
-  align-items: center;
-  flex: 1;
+.portraitFrame {
   position: relative;
-}
-
-.headerHairline {
-  height: 1px;
-  flex: 1;
-  background-color: var(--dv-line);
-}
-
-.headerDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background-color: var(--dv-signal-red, #e83a12);
-  margin-left: 2px;
-  flex-shrink: 0;
-}
-
-/* Monumental Headline: THE CERTAINTY BUILDER™. */
-.headline {
-  font-family: var(--dv-serif);
-  font-size: clamp(2.2rem, 4.2vw, 4.6rem);
-  font-weight: 800;
-  line-height: 0.96;
-  letter-spacing: -0.025em;
-  color: var(--dv-ink);
-  margin: 0;
-  text-align: right;
-}
-
-.headlineMask {
-  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: calc(100dvh - var(--header-h) - 6rem);
   overflow: hidden;
-  padding-bottom: 0.12em;
-  margin-bottom: -0.12em;
+  background: var(--canvas-sunken);
 }
 
-.headlineLine {
+.portraitImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 55% 30%;
   display: block;
-  color: var(--dv-ink);
-  will-change: transform, opacity;
 }
 
-/* Minimal organic Signal Red & warm marker highlight behind CERTAINTY BUILDER */
-.highlightSmudge {
-  position: relative;
-  display: inline;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-  padding: 0.04em 0.18em 0.08em;
-  margin: 0 -0.06em;
-  border-radius: 2px 4px 3px 5px;
-  
-  /* 
-    Brand Kit Signal Red & warm amber highlight stripe
-  */
-  background-image: linear-gradient(
-    to bottom,
-    transparent 50%,
-    rgba(232, 58, 18, 0.16) 50%,
-    rgba(232, 58, 18, 0.24) 94%,
-    transparent 94%
-  );
-  background-repeat: no-repeat;
-  background-size: 0% 100%;
-  background-position: left center;
-  will-change: background-size;
+.portraitCaption {
+  font-size: var(--step-caption);
+  color: var(--ink-faint);
+}
+
+/* --- Copy ---------------------------------------------------------------------- */
+
+.copyCol {
+  display: grid;
+  gap: clamp(0.9rem, 1.8vh, 1.5rem);
+  align-content: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-size: var(--step-meta);
+  font-weight: 500;
+  color: var(--ink-muted);
+}
+
+.eyebrowIndex {
+  font-family: var(--font-family-mono);
+  font-size: var(--step-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--ink-faint);
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(2.6rem, 4.6vw, 4.8rem);
+  font-weight: 450;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.headlineEm {
+  font-style: italic;
+  font-weight: 400;
 }
 
 .tm {
-  font-family: var(--dv-sans);
+  font-family: var(--font-family-sans);
   font-size: 0.32em;
-  vertical-align: super;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  margin-left: 0.12em;
-  color: var(--dv-signal-red, #e83a12);
-}
-
-.goldPeriod {
-  color: var(--dv-signal-red, #e83a12);
-  font-family: var(--dv-serif);
-  margin-left: 0.04em;
-  font-size: 0.9em;
-}
-
-/* ==========================================================================
-   Full-Width Golden Divider Rules (Top and Bottom of Middle Row)
-   ========================================================================== */
-
-.dividerRuleContainer {
-  width: 100%;
-  position: relative;
-  margin-block: clamp(1.4rem, 2.6vh, 2.4rem);
-}
-
-.dividerRule {
-  width: 100%;
-  height: 1px;
-  background-color: var(--dv-gold-line);
-  opacity: 0.85;
-  transform-origin: left center;
-}
-
-/* ==========================================================================
-   Middle Content: Founder Lockup & Geometrically Aligned Bio
-   ========================================================================== */
-
-.middleRow {
-  display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: clamp(2rem, 5.5vw, 6.5rem);
-  align-items: start;
-}
-
-.roleColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-.roleSubhead {
-  font-family: var(--dv-serif);
-  font-size: clamp(1.6rem, 2.4vw, 2.7rem);
-  font-weight: 600;
-  font-style: italic;
-  letter-spacing: -0.015em;
-  color: var(--dv-ink);
-  margin: 0;
-  line-height: 1.16;
-  display: flex;
-  flex-direction: column;
-}
-
-.roleBrand {
-  font-weight: 600;
-  color: var(--dv-ink);
-}
-
-.founderDash {
-  display: block;
-  width: 32px;
-  height: 2px;
-  background-color: var(--dv-signal-red, #e83a12);
-  border-radius: 1px;
-}
-
-.executiveProofSnippet {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  margin-top: 0.4rem;
-  padding-left: 0.85rem;
-  border-left: 1.5px solid var(--dv-signal-red, #e83a12);
-}
-
-.proofBadge {
-  font-family: var(--dv-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--dv-signal-red, #e83a12);
-  text-transform: uppercase;
-}
-
-.proofCaption {
-  font-family: var(--dv-sans);
-  font-size: 0.85rem;
   font-weight: 500;
-  color: var(--dv-body);
+  vertical-align: top;
+  margin-left: 0.15em;
+  color: var(--ink-muted);
+}
+
+.role {
   margin: 0;
-  line-height: 1.4;
+  font-family: var(--font-family-display);
+  font-style: italic;
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  color: var(--ink-body);
 }
 
-.bioColumn {
-  width: 100%;
-}
-
-.bioText {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.94rem, 1.08vw, 1.15rem);
-  line-height: 1.66;
-  color: var(--dv-body);
+.bio {
   margin: 0;
-  letter-spacing: -0.01em;
-  text-align: left;
+  max-width: 58ch;
+  font-size: var(--step-body);
+  line-height: 1.65;
+  color: var(--ink-body);
 }
 
-/* ==========================================================================
-   Bottom 3-Column Metric Ledger with Vertical Dividers
-   ========================================================================== */
+/* --- Metrics ------------------------------------------------------------------- */
 
-.statsRow {
+.metrics {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding-top: clamp(0.4rem, 1vh, 0.8rem);
-  position: relative;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+  margin: clamp(0.4rem, 1vh, 1rem) 0 0;
+  padding-top: clamp(1rem, 2vh, 1.5rem);
+  border-top: 1px solid var(--rule-strong);
 }
 
-.statBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-  position: relative;
-  padding-right: clamp(1rem, 2.5vw, 3rem);
+.metric {
+  display: grid;
+  gap: 0.2rem;
 }
 
-.statBlock:not(:first-child) {
-  padding-left: clamp(1rem, 2.5vw, 3rem);
+.metricLabel {
+  order: 2;
+  font-size: var(--step-caption);
+  color: var(--ink-muted);
 }
 
-.statValueRow {
-  display: flex;
-  align-items: baseline;
-  gap: 0.55rem;
-  flex-wrap: nowrap;
-}
-
-.statMain {
-  font-family: var(--dv-serif);
-  font-size: clamp(2.8rem, 4.2vw, 5rem);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  line-height: 0.95;
-  color: var(--dv-ink);
-}
-
-.statSuffix {
-  font-family: var(--dv-serif);
-  font-size: clamp(1.2rem, 1.8vw, 2.2rem);
-  font-weight: 700;
-  letter-spacing: 0.02em;
+.metricValue {
+  order: 1;
+  margin: 0;
+  font-family: var(--font-family-display);
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
+  font-weight: 450;
+  letter-spacing: -0.03em;
   line-height: 1;
-  color: var(--dv-ink);
-  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
 }
 
-.statLabelRow {
+.metricSuffix {
+  font-size: 0.5em;
+  margin-left: 0.1em;
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* --- Featured in ------------------------------------------------------------- */
+
+.featured {
   display: flex;
-  flex-direction: column;
-  margin-top: 0.35rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  padding-top: clamp(0.8rem, 1.6vh, 1.25rem);
+  border-top: 1px solid var(--rule-hairline);
 }
 
-.statLabel {
-  font-family: var(--dv-sans);
-  font-size: clamp(0.72rem, 0.78vw, 0.84rem);
-  font-weight: 700;
-  letter-spacing: 0.16em;
+.featuredLabel {
+  font-size: var(--step-mono);
+  font-weight: 600;
+  letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  color: var(--dv-ink);
+  color: var(--ink-faint);
 }
 
-.verticalDivider {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 1px;
-  background-color: var(--dv-line);
+.featuredList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* ==========================================================================
-   Responsive Adaptations
-   ========================================================================== */
+.featuredLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  transition: color var(--dur-fast) var(--ease-out-editorial);
+}
+
+a.featuredLink:hover {
+  color: var(--ink);
+}
+
+.featuredIcon {
+  width: 15px;
+  height: 15px;
+}
+
+/* --- Breakpoints --------------------------------------------------------------- */
+
+@media (min-width: 901px) and (max-height: 820px) {
+  .headline {
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+  }
+
+  .bio {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .metricValue {
+    font-size: clamp(1.8rem, 2.8vw, 2.6rem);
+  }
+}
 
 @media (max-width: 900px) {
-  .identitySection {
+  .section {
     height: auto;
-    min-height: auto;
+    min-height: 0;
+    padding: clamp(3.5rem, 8vw, 5rem) var(--gutter);
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .portraitFrame {
+    aspect-ratio: 4 / 3;
     max-height: none;
-    overflow: visible;
-    padding: clamp(3rem, 6vh, 4.5rem) clamp(1.25rem, 4vw, 2rem);
-  }
-
-  .identityContainer {
-    min-height: auto;
-    gap: clamp(1.8rem, 3.5vh, 2.5rem);
-  }
-
-  .topRow {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
   }
 
   .headline {
-    text-align: left;
-    font-size: clamp(2.4rem, 7vw, 4.4rem);
+    font-size: clamp(2.4rem, 9vw, 3.4rem);
   }
 
-  .middleRow {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
   }
 
-  .statsRow {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .identitySection {
-    padding: 3rem 1.25rem;
-    height: auto;
-    min-height: auto;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .identityContainer {
-    min-height: auto;
-    gap: 1.8rem;
-  }
-
-  .headline {
-    font-size: clamp(2.2rem, 8.8vw, 3.4rem);
-    line-height: 0.96;
-  }
-
-  .statsRow {
-    grid-template-columns: 1fr;
-    gap: 1.6rem;
-  }
-
-  .statBlock {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  .verticalDivider {
-    display: none;
+  .metricValue {
+    font-size: clamp(1.7rem, 7vw, 2.4rem);
   }
 }
 
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .headlineLine,
-  .dividerRule,
-  .bioText,
-  .statBlock,
-  .sunlightBeam,
-  .shadowStripLeft {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    opacity: 1 !important;
+@media (max-width: 480px) {
+  .metrics {
+    grid-template-columns: 1fr 1fr;
   }
 }

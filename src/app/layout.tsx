@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Montserrat, Poppins } from "next/font/google";
+import { Fraunces, Poppins } from "next/font/google";
 import "@/styles/globals.css";
 import {
   authorityClosersOrganization,
@@ -8,17 +8,26 @@ import {
   SITE_URL,
 } from "@/lib/structured-data";
 
-const montserrat = Montserrat({
+/**
+ * Type system.
+ *
+ * Fraunces (variable, optical sizing) is the single display voice: every
+ * headline, pull quote and manifesto line. Poppins stays as the brand-kit
+ * text face for body, UI and labels at three weights only. Four font files in
+ * total, down from eleven.
+ */
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-fraunces",
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
   display: "swap",
 });
 
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   display: "swap",
 });
 
@@ -83,12 +92,12 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   colorScheme: "light",
-  themeColor: "#f4f1ea",
+  themeColor: "#f7f7f5",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${poppins.variable}`}>
       <head>
         {/* NayaGrowth Tracking & GTag Bootstrap */}
         <script

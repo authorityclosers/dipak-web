@@ -268,7 +268,7 @@ export function ContactForm() {
         </div>
 
         <div className={styles.launcherGrid}>
-          {INTENTS.map((intent) => {
+          {INTENTS.filter((i) => !i.isExternal).map((intent) => {
             if (intent.isExternal) {
               return (
                 <a

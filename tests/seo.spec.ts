@@ -12,7 +12,7 @@ test("homepage gives a clear, consistent identity to search engines", async ({ p
   );
   await expect(page.locator("h1")).toHaveCount(1);
   await expect(page.locator("body")).toContainText(
-    "High-ticket sales coach Dipak Vishwakarma, founder of Authority Closers",
+    "High-ticket sales coach and founder of Authority Closers",
   );
 
   const jsonLd = await page

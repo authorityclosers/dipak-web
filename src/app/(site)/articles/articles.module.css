@@ -34,8 +34,8 @@
 }
 
 .series {
-  color: var(--signal-red, #e83a12);
-  font-weight: 700;
+  color: var(--ink);
+  font-weight: 600;
 }
 
 /* --- Lead card ------------------------------------------------------------ */
@@ -59,7 +59,7 @@
   max-width: 20ch;
   font-family: var(--font-family-serif);
   font-size: var(--step-h2);
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.12;
   letter-spacing: var(--tracking-tight);
   text-wrap: balance;
@@ -98,7 +98,7 @@
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
   color: var(--signal-red, #e83a12);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .readCue:hover span {
@@ -131,7 +131,7 @@
   font-size: var(--step-mono);
   letter-spacing: var(--tracking-mono);
   color: var(--signal-red, #e83a12);
-  font-weight: 700;
+  font-weight: 600;
   padding-top: 0.4rem;
 }
 
@@ -189,7 +189,7 @@
 }
 
 .postHeader {
-  padding: clamp(7.5rem, 13vw, 11rem) var(--gutter) 0;
+  padding: calc(var(--header-h) + clamp(2.5rem, 6vw, 5rem)) var(--gutter) 0;
 }
 
 .backLink {
@@ -220,7 +220,7 @@
   margin: 0 0 1.5rem;
   font-family: var(--font-family-serif);
   font-size: clamp(1.85rem, 3.2vw, 2.9rem);
-  font-weight: 800;
+  font-weight: 500;
   line-height: 1.14;
   letter-spacing: -0.024em;
   text-wrap: balance;
@@ -245,7 +245,7 @@
 
 .bylineName {
   font-family: var(--font-family-sans);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink-obsidian);
 }
 
@@ -273,7 +273,7 @@
   margin: clamp(2.5rem, 5vw, 4rem) 0;
   padding: clamp(1.75rem, 3.5vw, 2.5rem);
   background: var(--paper-sunken);
-  border-left: 3px solid var(--signal-red, #e83a12);
+  border-left: 2px solid var(--ink);
   border-top: 1px solid var(--rule-hairline);
   border-right: 1px solid var(--rule-hairline);
   border-bottom: 1px solid var(--rule-hairline);
@@ -289,7 +289,7 @@
   font-size: 0.75rem;
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: var(--signal-red, #e83a12);
+  color: var(--ink-faint);
   margin-bottom: 0.35rem;
 }
 
@@ -297,7 +297,7 @@
   margin: 0 0 0.25rem;
   font-family: var(--font-family-serif);
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--ink-obsidian);
 }
 
@@ -359,7 +359,7 @@
   margin: 2.25rem 0 0.9rem;
   font-family: var(--font-family-sans);
   font-size: 1.1rem;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.01em;
 }
 
@@ -379,7 +379,7 @@
 }
 
 .prose strong {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .prose em {

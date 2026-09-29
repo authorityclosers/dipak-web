@@ -4,16 +4,17 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { primaryNav } from "./site.content";
+import { authorityClosersCta, primaryNav, socialLinks } from "./site.content";
 import styles from "./site-chrome.module.css";
 
 const EVENT_SCHEMA_VERSION = "1";
 
 /**
- * Fixed header for the inner pages.
+ * The one site header. Fixed on every route, including Home.
  *
- * The homepage deliberately does NOT use this: its header is baked into the
- * pinned GSAP story stage (see dipak-hero) so it can deconstruct with Act 1.
+ * It starts transparent over the page's own canvas and gains a solid surface
+ * and hairline after 24px of scroll, so it never competes with a hero but is
+ * always reachable.
  */
 export function SiteHeader() {
   const pathname = usePathname();
@@ -21,8 +22,6 @@ export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
 
   // Close the drawer on route change so back/forward never strands it open.
-  // Adjusted during render rather than in an effect — React re-runs this
-  // component before painting, so the drawer never flashes on the new route.
   const [lastPath, setLastPath] = useState(pathname);
   if (lastPath !== pathname) {
     setLastPath(pathname);
@@ -63,7 +62,7 @@ export function SiteHeader() {
       </a>
 
       <header
-        className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
+        className={`${styles.header} ${scrolled || menuOpen ? styles.headerScrolled : ""}`}
         data-site-header="true"
       >
         <Link className={styles.brandLink} href="/" aria-label="Dipak Vishwakarma — home">
@@ -86,12 +85,21 @@ export function SiteHeader() {
               className={`${styles.navLink} ${isActive(link.href) ? styles.navLinkActive : ""}`}
               aria-current={isActive(link.href) ? "page" : undefined}
             >
-              <span>{link.label}</span>
-              {isActive(link.href) ? (
-                <span className={styles.activeIndicator} aria-hidden="true" />
-              ) : null}
+              {link.label}
             </Link>
           ))}
+          <a
+            className={styles.navCta}
+            href={authorityClosersCta.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-ac-event={authorityClosersCta.event}
+            data-ac-event-schema={EVENT_SCHEMA_VERSION}
+            data-ac-surface="site-header"
+          >
+            Authority Closers
+            <span aria-hidden="true">↗</span>
+          </a>
         </nav>
 
         <button
@@ -116,16 +124,13 @@ export function SiteHeader() {
       </header>
 
       {menuOpen ? (
-        <div
-          id="site-mobile-drawer"
-          className={`${styles.drawer} ${styles.drawerOpen}`}
-        >
+        <div id="site-mobile-drawer" className={styles.drawer} role="dialog" aria-modal="true">
           <nav className={styles.drawerNav} aria-label="Mobile">
             {primaryNav.map((link, index) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={styles.drawerLink}
+                className={`${styles.drawerLink} ${isActive(link.href) ? styles.drawerLinkActive : ""}`}
                 style={{ "--i": index } as React.CSSProperties}
               >
                 <span className={styles.drawerIndex}>
@@ -135,6 +140,32 @@ export function SiteHeader() {
               </Link>
             ))}
           </nav>
+
+          <div className={styles.drawerFoot}>
+            <a
+              className={styles.drawerCta}
+              href={authorityClosersCta.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-ac-event={authorityClosersCta.event}
+              data-ac-event-schema={EVENT_SCHEMA_VERSION}
+              data-ac-surface="mobile-drawer"
+            >
+              {authorityClosersCta.label}
+              <span aria-hidden="true">↗</span>
+            </a>
+            <ul className={styles.drawerSocial}>
+              {socialLinks
+                .filter((link) => link.href.startsWith("http"))
+                .map((link) => (
+                  <li key={link.href}>
+                    <a href={link.href} target="_blank" rel="noopener noreferrer">
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+            </ul>
+          </div>
         </div>
       ) : null}
     </>

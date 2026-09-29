@@ -21,14 +21,10 @@ export function PageHero({ eyebrow, headline, body, aside, index }: PageHeroProp
           <div className={styles.eyebrowRow}>
             {index ? <span className={styles.eyebrowIndex}>{index}</span> : null}
             <span className={styles.eyebrow}>{eyebrow}</span>
-            <span className={styles.eyebrowRule} aria-hidden="true" />
           </div>
 
           <h1 id="page-hero-heading" className={styles.pageHeadline}>
             {headline}
-            <span className={styles.goldPeriod} aria-hidden="true">
-              .
-            </span>
           </h1>
 
           {body?.length ? (
