@@ -101,6 +101,13 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           data-naya-connector="src_authorityclosers_web"
           async
         />
+        {/* Sales X-Ray: each enquiry form also becomes a lead in the Authority Closers
+            organisation, with its page and the ad it came from. The key is public. */}
+        <script
+          src="https://salesxray.authorityclosers.com/sx.js"
+          data-key="sxw_-NvEN15HdupGC63lei41ytsXSU4Zv45t"
+          async
+        />
 
         {/* Structured Data / JSON-LD for Google Search & Entity Knowledge Graph */}
         <script
