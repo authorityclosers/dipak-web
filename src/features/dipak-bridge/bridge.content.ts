@@ -1,7 +1,7 @@
 import type { BridgeContent } from "./bridge.types";
 
 export const bridgeContent: BridgeContent = {
-  sectionNumber: "07",
+  sectionNumber: "08",
   sectionTitle: "NEXT STEP",
   eyebrow: "THE SALES ENABLEMENT ECOSYSTEM",
   headlineWord1: "AUTHORITY",

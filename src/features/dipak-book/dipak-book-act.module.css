@@ -1,0 +1,227 @@
+.bookSection {
+  --dv-ink: var(--ink, #0a0a0a);
+  --dv-body: var(--ink-body, #3c3a36);
+  --dv-muted: var(--ink-muted, #626058);
+  --dv-canvas: var(--canvas, #f7f7f5);
+  --dv-raised: var(--canvas-soft, #ffffff);
+  --dv-accent: var(--accent, #e83a12);
+  --dv-accent-text: var(--accent-accessible, #c23213);
+  --dv-line: var(--rule-subtle, rgba(10, 10, 10, 0.1));
+  --dv-serif: var(--font-family-serif);
+  --dv-sans: var(--font-family-sans);
+  --dv-display: var(--font-family-display);
+
+  position: relative;
+  width: 100%;
+  background-color: var(--dv-canvas);
+  color: var(--dv-ink);
+  padding: clamp(4rem, 9vh, 7.5rem) clamp(1.25rem, 5vw, 6rem);
+  box-sizing: border-box;
+  border-top: 1px solid var(--dv-line);
+}
+
+.bookContainer {
+  max-width: 72rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
+  align-items: start;
+}
+
+.coverColumn {
+  position: sticky;
+  top: 7rem;
+  display: flex;
+  justify-content: center;
+}
+
+.cover {
+  display: block;
+  width: min(22rem, 100%);
+  height: auto;
+  aspect-ratio: 2 / 3;
+  border-radius: 2px 6px 6px 2px;
+  box-shadow:
+    -10px 14px 0 var(--sand, #e7d4c2),
+    0 30px 60px rgba(10, 10, 10, 0.28);
+  transform: rotate(-3deg);
+}
+
+.sectionIndex {
+  font-family: var(--dv-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--dv-accent-text);
+  text-transform: uppercase;
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+.eyebrow,
+.label {
+  font-family: var(--dv-sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dv-muted);
+  margin: 1rem 0 0;
+}
+
+.title {
+  font-family: var(--dv-display);
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin: 0.6rem 0 1rem;
+}
+
+.period {
+  color: var(--dv-accent);
+}
+
+.subtitle {
+  font-family: var(--dv-serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.45;
+  color: var(--dv-body);
+  margin: 0 0 2rem;
+  max-width: 38rem;
+}
+
+.hook {
+  font-family: var(--dv-sans);
+  font-size: clamp(1.15rem, 1.6vw, 1.3rem);
+  line-height: 1.5;
+  margin: 0 0 0.75rem;
+}
+
+.hook strong {
+  color: var(--dv-accent-text);
+}
+
+.body {
+  font-family: var(--dv-sans);
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--dv-body);
+  margin: 0.4rem 0 0;
+  max-width: 38rem;
+}
+
+.question {
+  font-family: var(--dv-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.7vw, 1.35rem);
+  line-height: 1.5;
+  margin: 1.6rem 0;
+  padding: 1rem 0 1rem 1.25rem;
+  border-left: 3px solid var(--dv-accent);
+  max-width: 38rem;
+}
+
+.inside {
+  list-style: none;
+  padding: 0;
+  margin: 0.75rem 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.inside li {
+  background: var(--dv-raised);
+  border: 1px solid var(--dv-line);
+  padding: 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.insideTitle {
+  font-family: var(--dv-sans);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dv-ink);
+}
+
+.insideBody {
+  font-family: var(--dv-sans);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: var(--dv-body);
+}
+
+.guide {
+  border-top: 1px solid var(--dv-line);
+  padding-top: 0.5rem;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 48px;
+  padding: 0.85rem 1.4rem;
+  font-family: var(--dv-sans);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.primaryButton {
+  background: var(--dv-ink);
+  color: var(--dv-canvas);
+}
+
+.primaryButton:hover {
+  background: var(--dv-accent-text);
+}
+
+.secondaryButton {
+  border: 1px solid var(--dv-ink);
+  color: var(--dv-ink);
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 3px solid var(--dv-accent);
+  outline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+  .bookContainer {
+    grid-template-columns: 1fr;
+  }
+  .coverColumn {
+    position: static;
+  }
+  .cover {
+    width: min(62vw, 16rem);
+  }
+  .inside {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primaryButton,
+  .secondaryButton {
+    transition: none;
+  }
+}
