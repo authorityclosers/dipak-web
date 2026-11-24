@@ -1,0 +1,48 @@
+# Preview environment — preview.dipakvishwakarma.com
+#
+# Runs beside production as a fully separate container, image, Traefik router
+# and compose project (directory /home/nivi/apps/dipak-web-preview). Nothing
+# here shares a name with docker-compose.prod.yml, so deploying or removing the
+# preview can never touch the live site.
+#
+# - No CONTACT_WEBHOOK_URL: preview form submissions are logged, not sent to the CRM.
+# - X-Robots-Tag noindex on every response, plus a disallow-all robots.txt
+#   (built with SITE_ENV=preview), keeps the preview out of search results.
+
+services:
+  dipak-web-preview:
+    image: dipak-web-preview-image:latest
+    container_name: dipak-web-preview
+    restart: unless-stopped
+    cpus: "0.35"
+    mem_limit: 384m
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      SITE_ENV: preview
+      NEXT_PUBLIC_SITE_ORIGIN: https://dipakvishwakarma.com
+    networks:
+      - proxy_net
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy_net"
+      - "traefik.http.routers.dipak-web-preview.rule=Host(`preview.dipakvishwakarma.com`)"
+      - "traefik.http.routers.dipak-web-preview.entrypoints=websecure"
+      - "traefik.http.routers.dipak-web-preview.tls.certresolver=letsencrypt"
+      - "traefik.http.services.dipak-web-preview.loadbalancer.server.port=3000"
+      - "traefik.http.middlewares.dipak-preview-headers.headers.contenttypenosniff=true"
+      - "traefik.http.middlewares.dipak-preview-headers.headers.framedeny=true"
+      - "traefik.http.middlewares.dipak-preview-headers.headers.referrerpolicy=strict-origin-when-cross-origin"
+      - "traefik.http.middlewares.dipak-preview-headers.headers.customresponseheaders.X-Robots-Tag=noindex, nofollow"
+      - "traefik.http.routers.dipak-web-preview.middlewares=dipak-preview-headers"
+
+networks:
+  proxy_net:
+    external: true

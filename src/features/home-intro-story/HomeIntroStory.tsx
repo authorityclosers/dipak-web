@@ -8,6 +8,7 @@ import { DipakPresenceAct, presenceContent } from "@/features/dipak-presence";
 import { DipakMissionAct, missionContent } from "@/features/dipak-mission";
 import { DipakTopicsAct, topicsContent } from "@/features/dipak-topics";
 import { DipakThinkingAct, thinkingContent } from "@/features/dipak-thinking";
+import { DipakBookAct, bookContent } from "@/features/dipak-book";
 import { DipakBridgeAct, bridgeContent } from "@/features/dipak-bridge";
 import { EditorialPreloader, EcosystemMarquee } from "@/features/site-chrome";
 import type { FeaturedArticle } from "@/features/dipak-thinking/thinking.types";
@@ -111,7 +112,12 @@ export function HomeIntroStory({ latestArticles }: HomeIntroStoryProps) {
         <DipakThinkingAct content={thinkingContent} articles={latestArticles} />
       </div>
 
-      {/* Act 7: Authority Closers Bridge & Final CTA */}
+      {/* Act 7: The book (The Sales Team Trap) */}
+      <div className={styles.actSectionWrapper}>
+        <DipakBookAct content={bookContent} />
+      </div>
+
+      {/* Act 8: Authority Closers Bridge & Final CTA */}
       <div className={styles.actSectionWrapper}>
         <DipakBridgeAct content={bridgeContent} />
       </div>
