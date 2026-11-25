@@ -64,7 +64,7 @@ export const connectContent: ConnectContent = {
       id: "youtube-channel",
       title: "YouTube Videos",
       subtitle: "Live sales call breakdowns, objection handling frameworks & buyer psychology.",
-      url: "https://youtube.com/@dipakvishwakarmasalescoach",
+      url: "https://www.youtube.com/@dipakvishwakarma",
       badge: "Free Training",
       isExternal: true,
       iconType: "youtube",

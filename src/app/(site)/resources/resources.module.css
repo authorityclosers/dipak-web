@@ -129,3 +129,11 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* WEB-DEBUG 25 Nov: phone tap targets >= 44px (WCAG 2.5.5) */
+@media (max-width: 820px) {
+  .resourceCta {
+    min-height: 44px;
+    align-items: center;
+  }
+}
