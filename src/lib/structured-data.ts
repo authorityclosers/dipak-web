@@ -14,7 +14,7 @@ export const dipakPerson = {
   image: `${SITE_URL}/media/dipak-vishwakarma-portrait-connect.webp`,
   sameAs: [
     "https://www.linkedin.com/in/dipak-vishwakarma",
-    "https://youtube.com/@dipakvishwakarmasalescoach",
+    "https://www.youtube.com/@dipakvishwakarma",
     "https://www.instagram.com/dipakv.sales",
     AUTHORITY_CLOSERS_URL,
   ],

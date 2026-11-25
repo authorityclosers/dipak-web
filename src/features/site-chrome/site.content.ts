@@ -63,7 +63,7 @@ export const footerSections = {
     label: "Direct Dialogue",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/dipak-vishwakarma", isExternal: true },
-      { label: "YouTube", href: "https://youtube.com/@dipakvishwakarmasalescoach", isExternal: true },
+      { label: "YouTube", href: "https://www.youtube.com/@dipakvishwakarma", isExternal: true },
       { label: "Instagram", href: "https://www.instagram.com/dipakv.sales", isExternal: true },
       { label: "Connect Hub", href: "/connect", isExternal: false },
     ] as NavLink[],
@@ -95,7 +95,7 @@ export const footerContent = {
  */
 export const socialLinks: NavLink[] = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/dipak-vishwakarma" },
-  { label: "YouTube", href: "https://youtube.com/@dipakvishwakarmasalescoach" },
+  { label: "YouTube", href: "https://www.youtube.com/@dipakvishwakarma" },
   { label: "Instagram", href: "https://www.instagram.com/dipakv.sales" },
   { label: "Connect Hub", href: "/connect" },
 ];

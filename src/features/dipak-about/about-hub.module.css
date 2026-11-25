@@ -1510,3 +1510,11 @@
     box-sizing: border-box;
   }
 }
+
+/* WEB-DEBUG 25 Nov: phone tap targets >= 44px (WCAG 2.5.5) */
+@media (max-width: 820px) {
+  .heroPrimaryBtn, .heroSecondaryBtn {
+    min-height: 44px;
+    align-items: center;
+  }
+}

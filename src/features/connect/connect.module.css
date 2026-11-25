@@ -342,3 +342,20 @@
 .bottomHomeLink:hover {
   color: var(--signal-red, #e83a12);
 }
+
+/* WEB-DEBUG 25 Nov: phone tap targets >= 44px (WCAG 2.5.5) */
+@media (max-width: 820px) {
+  .socialBtn {
+    min-height: 44px;
+    align-items: center;
+  }
+}
+
+/* WEB-DEBUG 25 Nov: larger tap area for inline links on phones, without moving the layout */
+@media (max-width: 820px) {
+  .bottomHomeLink {
+    display: inline-block;
+    padding-block: 12px;
+    margin-block: -12px;
+  }
+}

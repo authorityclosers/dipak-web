@@ -117,7 +117,7 @@ export default function ContactPage() {
                     <li>
                       <a
                         className={styles.asideSocialLink}
-                        href="https://youtube.com/@dipakvishwakarmasalescoach"
+                        href="https://www.youtube.com/@dipakvishwakarma"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
