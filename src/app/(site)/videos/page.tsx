@@ -12,7 +12,7 @@ import styles from "./videos.module.css";
 import { SITE_URL } from "@/lib/structured-data";
 
 export const metadata: Metadata = {
-  title: "Videos by Dipak Vishwakarma — Founder of Authority Closers | Keynotes & Sales Breakdowns",
+  title: "Videos: Keynotes & Sales Breakdowns | Dipak Vishwakarma",
   description:
     "Keynotes, sales breakdowns, and practical lessons on buyer psychology from Dipak Vishwakarma, Founder of Authority Closers & High-Ticket Sales Expert.",
   alternates: {

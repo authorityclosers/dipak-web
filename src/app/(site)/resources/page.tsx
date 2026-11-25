@@ -8,7 +8,7 @@ import editorial from "@/features/editorial/editorial.module.css";
 import styles from "./resources.module.css";
 
 export const metadata: Metadata = {
-  title: "Sales Resources by Dipak Vishwakarma — Founder of Authority Closers",
+  title: "Sales Resources | Dipak Vishwakarma",
   description:
     "Practical tools, objection frameworks, and high-ticket guides from Dipak Vishwakarma, Founder of Authority Closers.",
 };

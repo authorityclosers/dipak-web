@@ -3,7 +3,7 @@ import { getAllArticles } from "@/lib/articles";
 import { ArticlesHub } from "@/features/articles";
 
 export const metadata: Metadata = {
-  title: "Principles & Frameworks by Dipak Vishwakarma — Founder of Authority Closers | High-Ticket Sales Expert",
+  title: "Principles & Frameworks | Dipak Vishwakarma",
   description:
     "Explore strategic frameworks, field notes, and essays on buyer psychology, consultative communication, deal architecture, and personal authority by Dipak Vishwakarma.",
   alternates: {
