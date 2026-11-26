@@ -93,17 +93,6 @@
   max-width: 38rem;
 }
 
-.hook {
-  font-family: var(--dv-sans);
-  font-size: clamp(1.15rem, 1.6vw, 1.3rem);
-  line-height: 1.5;
-  margin: 0 0 0.75rem;
-}
-
-.hook strong {
-  color: var(--dv-accent-text);
-}
-
 .body {
   font-family: var(--dv-sans);
   font-size: 1.02rem;

@@ -10,10 +10,10 @@ export const bookContent: BookContent = {
   title: "The Sales Team Trap",
   subtitle:
     "The hidden mistakes in hiring, training and managing sales teams that quietly drain your profits.",
-  hook: "You built a sales team to grow your business.",
-  hookEmphasis: "So why does so much still depend on you?",
-  problem:
-    "You hire, train and manage your sales team. Yet key results still depend on your constant involvement.",
+  // One continuous description in one font (Dipak, 25 Nov: the three
+  // paragraphs looked like different things). Same words as salesxray.in.
+  description:
+    "You built a sales team to grow your business. So why does so much still depend on you? You hire, train and manage your sales team, yet key results still depend on your constant involvement. This book looks at the system around your salespeople, from hiring and training to the way you manage performance.",
   question: "What if the real problem isn’t your salespeople, but the system around them?",
   insideLabel: "INSIDE THE BOOK",
   inside: [

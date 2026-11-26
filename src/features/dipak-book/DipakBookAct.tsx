@@ -45,10 +45,7 @@ export function DipakBookAct({ content = bookContent, className }: DipakBookActP
           </h2>
           <p className={styles.subtitle}>{content.subtitle}</p>
 
-          <p className={styles.hook}>
-            {content.hook} <strong>{content.hookEmphasis}</strong>
-          </p>
-          <p className={styles.body}>{content.problem}</p>
+          <p className={styles.body}>{content.description}</p>
           <p className={styles.question}>{content.question}</p>
 
           <p className={styles.label}>{content.insideLabel}</p>

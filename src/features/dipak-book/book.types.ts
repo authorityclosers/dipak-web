@@ -10,9 +10,7 @@ export interface BookContent {
   eyebrow: string;
   title: string;
   subtitle: string;
-  hook: string;
-  hookEmphasis: string;
-  problem: string;
+  description: string;
   question: string;
   insideLabel: string;
   inside: { title: string; body: string }[];
